@@ -1,0 +1,184 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage[french]{babel}
+
+\usepackage[default,scale=0.95]{opensans}
+\usepackage[T1]{fontenc}
+\usepackage{amssymb} %math
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{systeme}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={MAPSI},
+    % pdfpagemode=FullScreen,
+    }
+\urlstyle{same} %\href{url}{Text}
+
+\theoremstyle{plain}% default
+\newtheorem{thm}{Théorème}[section]
+\newtheorem{lem}[thm]{Lemme}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem*{cor}{Corollaire}
+%\newtheorem*{KL}{Klein’s Lemma}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Définition}[section]
+\newtheorem{exmp}{Exemple}[section]
+% \newtheorem{xca}[exmp]{Exercise}
+
+\theoremstyle{remark}
+\newtheorem*{rem}{Remarque}
+\newtheorem*{note}{Note}
+%\newtheorem{case}{Case}
+
+
+
+\title{Cours: MAPSI}
+\author{Charles Vin}
+\date{2022}
+
+\begin{document}
+\maketitle
+\underline{Nouveau cours du 13/09} \\
+\section{Introduction}
+
+\begin{itemize}
+    \item Exam final : 50\%
+    \item Partiel : 35\%
+    \item Participation : 15\%
+    \begin{itemize}
+        \item travail dans la séance
+        \item TME soumis en fin de séance omg 
+    \end{itemize}
+\end{itemize}
+
+Deux grand type de modèle : \begin{itemize}
+    \item Modèle paramétrique : connaissance sur la distribution stat des données. Puis on estime les paramètres de la loi.
+    \item Modèle non paramétrique : l'inverse, on ne connait pas la loi. exemple : regression logistique
+\end{itemize}
+
+Echantillons : \begin{itemize}
+    \item population
+    \item ect 
+\end{itemize}
+
+\begin{defn}[]
+    Vocabulaire :   
+    \begin{itemize}
+        \item Voir diapo 9/51
+    \end{itemize}
+\end{defn}
+
+\begin{defn}[Mesure de proba]
+    Une fonction qui associe chaque événement à une valeur entre 0 et 1.
+    Voir diapo 15, definition importante.
+\end{defn}
+
+\begin{defn}[]
+    \[
+        P(A \cup B) = P(A) + P(B) - P(A \cap B)
+    .\]
+    Densité de proba 
+    \[
+        \text{Retrouver la définition}
+    .\]
+    
+    Fonction de répartition
+    \[
+        F(x) = P(X<x) = \int_{-\infty }^{x}f(x)dx
+    .\]
+    Espérance : \begin{align*}
+        E(X) &= \sum_{}^{}x_k*p_k \\
+        E(X) &= \int_{}^{}X p(x) dx \\ 
+        E(aX+b) = aE(X) + b \\
+        E(X + Y) = E(X)+E(Y)
+    \end{align*}
+
+    Le Mode \begin{align*}
+        p(Mo) = \max _k p(x_k)
+        p(Mo) = \max _x p(x)
+    \end{align*}
+
+    Variance : \begin{align*}
+        \sigma ^2 = \sum_{}^{}(x_k - E(X))^2 \\
+        \sigma ^2 = \int_{}^{}(x-E(X))^2 p(x)dx \\
+        V(aX+b) = a^2V(X) \\
+        V(X) = E(X^2) - E(X)
+    \end{align*}
+
+    Médiane et quantile \begin{align*}
+        \text{idk diapo}
+    \end{align*}
+\end{defn}
+
+\begin{defn}[Loi marginale]
+    La marginalisation consiste à projeter une loi jointe sur l'une des variables aléatoires. Par exemple extraire $ P(A) $ à partir de $ P(A,B) $. 
+    \[
+        P(A) = \sum_{i}^{}P(A, B = p b_i)
+    .\]
+    C'est la somme de la ligne ou de la colonne du tableau.
+\end{defn}
+
+\begin{defn}[]
+    Probabilités conditionnelles
+    \begin{align*}
+        &P(A|B) = \frac{P(A \cup B)}{P(B)} \\ 
+        \Leftrightarrow& P(A \cup B) = P(A|B)P(B)
+    \end{align*}
+    \begin{prop}[]
+        \begin{itemize}
+            \item Réversibilité : $ P(A,B) = P(A|B) $
+            \item Théorème de Bayes : 
+            \[
+                P(A|B) = \frac{P(B|A)P(A)}{P(B)}
+            .\]
+            \item Intégration des probabilités totale
+            \item DIAPO 39
+        \end{itemize}
+    \end{prop}    
+    
+\end{defn}
+
+\begin{defn}[Indépendance probabiliste]
+    Deux événements A et B sont indépendants si 
+    \[
+        P(A,B) = P(A) * P(B)
+    .\]
+    Corollaire : $ P(A|B) = P(A) $ 
+\end{defn}
+
+\begin{defn}[]
+    La covariance 
+    \[
+        cov(X,Y) = E[(X-E(X))(Y-E(Y))]
+    .\]
+\end{defn}
+
+\begin{defn}[Coefficient de corrélation linéaire ]
+    Soit X,Y deux variables. Le coefficient de corrélation linéaire entre X et Y est:
+    \[
+        r = \frac{cov(X,Y)}{\sigma _X \sigma _Y}
+    .\]
+\end{defn}
+
+CCL:
+\begin{itemize} VOIR DIAPO
+    \item Probabilité
+    \item Marginalisation
+    \item Conditionnement
+    \item Indépendance : Si $ X_1 $ et $ X_2 $ sont indépendantes : $ P(X_1, X_2) = P(X_1)P(X_) $ 
+\end{itemize}
+
+
+
+
+
+\end{document}
