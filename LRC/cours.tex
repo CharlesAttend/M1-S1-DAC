@@ -1,0 +1,215 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage[french]{babel}
+
+\usepackage[default,scale=0.95]{opensans}
+\usepackage[T1]{fontenc}
+\usepackage{amssymb} %math
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{systeme}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={LRC},
+    % pdfpagemode=FullScreen,
+    }
+\urlstyle{same} %\href{url}{Text}
+
+\theoremstyle{plain}% default
+\newtheorem{thm}{Théorème}[section]
+\newtheorem{lem}[thm]{Lemme}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem*{cor}{Corollaire}
+%\newtheorem*{KL}{Klein’s Lemma}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Définition}[section]
+\newtheorem{exmp}{Exemple}[section]
+% \newtheorem{xca}[exmp]{Exercise}
+
+\theoremstyle{remark}
+\newtheorem*{rem}{Remarque}
+\newtheorem*{note}{Note}
+%\newtheorem{case}{Case}
+
+
+
+\title{Logiques et représentations des connaissances}
+\author{Charles Vin}
+\date{S1-2022}
+
+\begin{document}
+\maketitle
+
+\section{Introduction à la logique des propositions et des prédicats du premier ordre}
+\begin{defn}[]
+    Quelques définitions
+    \begin{itemize}
+        \item Expression : une description logique. Elle est vrais ou fausse
+        \item Meaning : le sens qui relis l'expression vers sa référence
+        \item Référence : représente le sens
+    \end{itemize}
+
+    Le langage des propositions : 
+    \begin{itemize}
+        \item Atome 
+        \item Connecteur : \begin{itemize}
+            \item Binary : $ \neg $ = "et", $\wedge$ = "Ou" $\vee$ = négation 
+            \item DIAPO
+        \end{itemize}
+    \end{itemize}
+
+    Table de vérité : \begin{itemize}
+        \item Un ligne = une "interprétation"
+    \end{itemize}
+
+    Une formule est \begin{itemize}
+        \item Satisfiable : si vrais dans une interprétation
+        \item Valide : si vrais dans toute les interprétation
+        \item Unsatisfiable : faux sur toutes les interprétations
+    \end{itemize}
+
+    On peut avoir des fonctions qui représente une expression logique. \begin{itemize}
+        \item Un terme représente une fonction qui renvoie un paramètre ou le tuple de paramètre d'une fonction.
+        \item Un atome est une fonction qui renvoie un booléen.
+    \end{itemize}
+    En d'autre mot ça semble être en fonction de ce que la fonction renvoie un booléen ou un paramètre.
+    
+    Variable est : \begin{itemize}
+        \item Libre : si elle est "muette", c'est à dire que si on la change elle ne change pas le résultat
+        \item Liée : inverse je crois ?
+    \end{itemize}
+
+    Diapo interpretation : rien compris
+
+    A formula is "\textbf{valid}" if it is true in \textbf{all} the interpretation of \textbf{all} domains.
+    \begin{exmp}[]
+        \begin{itemize}
+            \item Valide 
+            \item DIAPO
+        \end{itemize}
+    \end{exmp}
+    
+    Un modèle est un couple $ \mathcal{M} = < \mathcal{D},i> $. Une valuation est une fonction $ v:\mathcal{V} \rightarrow  \mathcal{D} $. $ I_m(F) $ is the truth value. Y'a des propriétés de la truth value dans le DIAPO.
+
+    A est une conséquence sémantique de B si A est vrais pour toutes les interpretations où B est vrais i.e. for all models if $ I_{m \mathcal{V}}(B) $ then $ I_{m \mathcal{V}}(A) $. Exemple $ A \rightarrow B $  est une conséquence sémantique. Je crois que le symbole c'est $ B \models A $ == A conséquence logique de B. 
+\end{defn}
+
+\begin{defn}[]
+    Un système formel est composé d'un langage formel, un ensemble d'axiom et de règle d'inférence.
+
+    \begin{exmp}[]
+        Exemple dans le fiapo avec le système formel de Hilbert. 
+
+        $ \vdash  $ représente une dérivation. On peut prouver A à partir de B.
+    \end{exmp}
+\end{defn}
+
+\begin{defn}[Théorème]
+    Any formula which is derived from the axoms by iteratively applying inference rules is a \textbf{theorem}.\\
+    Notation : $ \vdash A $ means A is a theorem \\
+    \begin{exmp}[]
+        Exemple : $ \vdash (A \rightarrow A) $ 
+        \begin{proof}[Preuve: ]
+            Voir diapo c'est drôle
+        \end{proof}
+    \end{exmp}
+\end{defn}
+
+\begin{defn}[Démonstration]
+    A \textbf{proof} of a theorem A is a finite sequence of formulae $ F_0, ..., F_n $ such that .... DIAPO mais osef un peu
+\end{defn}
+
+\begin{defn}[Symbolic system]
+    \begin{itemize}
+        \item Consistency : Each description of the symbolic system corresponds to an object in the reality i.e. DIAPO
+        \item Completeness : each object of the reality can be described in the symbolic system $ \forall A \text{ if } \models A \text{ then } \vdash A$ 
+    \end{itemize}
+\end{defn}
+
+\subsection{Automatic theorem proving}
+\subsubsection{Tableau method}
+\begin{enumerate}
+    \item Normalisation : Transformation into \textbf{NNF - Negative Normal Form} : \textbf{The negations occurs only before atomic propositions}. i.e il faut développer les négations au max.
+    \item Build a tableau : \begin{itemize}
+        \item Root : The formula under NNF.
+        \item Build successors of T using two rules $ R_{\wedge } $ et $ R_{\vee } $ VOIR LE DIAPO POUR LEUR DEFINITIONS
+        \item On arrête lorsque l'on ne peux plus appliquer les règles.
+    \end{itemize}
+\end{enumerate}
+\begin{defn}[]
+    Un tableau peut être \begin{itemize}
+        \item Contradictory 
+        \item ... DIAPO 
+    \end{itemize}
+\end{defn}
+\begin{exmp}[de la methode]
+    DIAPO MDR OU YOUTUBE PLUTOT
+\end{exmp}
+
+L'avantage de cette méthode par rapport au tableau de vérité c'est qu'on a pas besoin de faire tous les cas possibles.
+
+\paragraph*{Généralisation} Si je comprend bien on peut prendre des raccourcis avec des nouvelles règles. Pour la règles $ \alpha  $ on met dans le même tableau. Pour les règles $ \beta  $ on met dans deux tableaux différents. \textbf{Apprendre les tableau de règles}
+
+\subsubsection{Resolution in propositional logic}
+\begin{defn}[Une clause]
+    \textbf{Ca tombe à l'exam d'après le prof}
+    \begin{itemize}
+        \item Un literal is either an atom or its negation
+        \item Une clause is a disjunction of literals
+    \end{itemize}
+    \begin{rem}[]
+        A clause is a logical entailment (implication) because $ (\neg A \vee B) $ is equivalent to $ (A \supset B) $ 
+    \end{rem}
+    \begin{exmp}[]
+        $ even(X) \supset odd(successor(X)) $ 
+    \end{exmp}
+\end{defn}
+\begin{thm}[]
+    Any claused formula (sans variable libre) $ F $ can be transformed into a logically equivalent conjunction of clauses
+    \begin{exmp}[]
+        
+    \end{exmp}
+\end{thm}
+
+\begin{defn}[Règle de résolution]
+    S'applique uniquement sur les clauses.
+    Pour prouver que $ S \models A $ il suffit de montrer que $ S \cup [neg A] $ est vide. Voir les exemples du DIAPO
+\end{defn}
+
+\subsubsection{Unification}
+\begin{defn}[Substitution]
+    A \textbf{substitution} is characterized by a infinite set of "
+
+    On peut \textbf{composer} plusieurs substitution
+\end{defn}
+\begin{defn}[term instance]
+
+\end{defn}
+
+\begin{defn}[Pattern Matching]
+    The term $ t_1 $ match with the term $ t_2 $ if and only if there exist a substitution $ \sigma  $ such that $ t_1 \sigma = t_2 $ 
+\end{defn}
+\begin{defn}[Unification]
+    The terms $ t_1 $ and $ t_2 $  unify if and only if there exists a substitution $ \sigma  $ such that $ t_1 \sigma = t_2 \sigma  $ 
+\end{defn}
+\textbf{Pattern matching $\rightarrow$ Unification}
+
+
+
+
+\subsubsection{Resolution in First Oder Logic}
+
+
+
+
+
+
+\end{document}
