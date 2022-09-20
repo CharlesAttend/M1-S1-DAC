@@ -1,0 +1,333 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage[french]{babel}
+
+\usepackage[default,scale=0.95]{opensans}
+\usepackage[T1]{fontenc}
+\usepackage{amssymb} %math
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{systeme}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={BIMA},
+    % pdfpagemode=FullScreen,
+    }
+\urlstyle{same} %\href{url}{Text}
+
+\theoremstyle{plain}% default
+\newtheorem{thm}{Théorème}[section]
+\newtheorem{lem}[thm]{Lemme}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem*{cor}{Corollaire}
+%\newtheorem*{KL}{Klein’s Lemma}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Définition}[section]
+\newtheorem{exmp}{Exemple}[section]
+% \newtheorem{xca}[exmp]{Exercise}
+
+\theoremstyle{remark}
+\newtheorem*{rem}{Remarque}
+\newtheorem*{note}{Note}
+%\newtheorem{case}{Case}
+
+
+
+\title{Base du traitement d'image}
+\author{Charles Vin}
+\date{S1-2022}
+
+\begin{document}
+\maketitle
+
+\underline{Nouveau cours du 13/09} \\
+
+https://www-master.ufr-info-p6.jussieu.fr/parcours/ima/bima/
+
+TP : correction avec échantillonnage random
+Une semaine pour les faire, il veut qu'on aille plus loins que les question ? 
+40\% CC et 50\% Exam, pas de DS1 
+
+Prise en compte de la perception dans le traitement d'image (sinon on ferait du traitement de signal) : exemple des illusions d'optiques
+
+\subsection{Encodage d'image}
+\subsubsection{RBG}
+RGB = un cube \\
+Limite de RGB :
+\begin{itemize}
+    \item Les 3 canaux sont très corrélé $\rightarrow$ Information redondante 
+    \item Problème pour utiliser des distances euclidienne : certaine couleurs sont proche en distance mais sont pas du tout pareil
+\end{itemize}
+Extension : \begin{itemize}
+    \item D'autre représentation : ACP 
+    \item Utiliser des model plus proche de l'humais : HSV 
+\end{itemize}
+
+\subsubsection{HSV}
+HSV = un cone 
+\begin{itemize}
+    \item Value : Moyenne de RGB 
+    \item Hue : De la trigo comme c'est un cercle 
+    \item Saturation : De la trigo comme c'est un cercle 
+\end{itemize}
+
+Brightness : juste la moyenne des valeur de l'image \\
+Contrast : C'est lié à la distance entre le min et le max qu'on définie pour le niveau de gris. On regarde la distance entre les valeur min et max, on peut utiliser l'écart type. 
+
+3 niveaux d'analyse/de compréhension des images:
+\begin{itemize}
+    \item Low : image => image \begin{itemize}
+        \item Compression 
+        \item Restauration (retirer le bruit)
+        \item Filtrage (trouver uniquement les contours)
+        \item Segmentation (un pixel = un label)
+    \end{itemize}
+    \item Mid : image => Attributes 
+    \item High : image => understanding (semantic description)
+\end{itemize}
+Proche du processing fait par les réseaux de neurone
+
+\underline{Nouveau cours du 20/09} \\
+
+\section{Basic image transformations}
+VOIR LE DIAPO AVANT 
+\begin{itemize}
+    \item Transformation affine
+    \item Translation
+    \item Change of scale
+    \item Rotation
+    \item Linear transformation
+\end{itemize}
+
+Cordonnée homogène : \begin{itemize}
+    \item On ajoute une nouvelle coordonne qui vaut 1 partout. Ainsi maintenant une translation dans $ \mathbb{R}^2 $ peuvent s'exprimer comme une opération linéaire dans $ \mathbb{R}^3 $ 
+    \item Ca permet d'être rapide comme les multiplications de matrice sont cablés dans les GPUs. 
+    \item Problème : En pivotant une image on créé des trous dans l'image (un losange dans un carré) et les pixels ne sont plus carrés. Deux solutions : \begin{itemize}
+        \item Direct transformation: pixels coordinates in the output image are determined from pixels coordinates in the input image \\
+        $\rightarrow$ can generate missing data or superposition.
+        \item Inverse transformation: pixels coordinates in the input image are determined from pixels coordinates in the output image \\
+        $\rightarrow$ can generate superposition and also missing data (due to bounded spatial domain).
+        \item IMAGE DIAPO 12
+        \item Exemple DIAPO 13
+    \end{itemize}
+\end{itemize}
+
+Méthode d'interpolation: 
+Two examples of basic interpolation methods
+\begin{itemize}
+    \item Nearest neighbor: pixel value is given by the value of the nearest neighboring pixel
+    \item Bilinear interpolation: pixel value is determined from the 4 nearest neighboring pixels using a bilinear interpolation (inconvéniant : lisse l'image, la rend flou)
+\end{itemize}
+Many other interpolation methods: B-splines, Hermite interpolation polynomials, ...
+IMAGE DIAPO 14
+\begin{note}[]
+    Globalement deux opération en traitement d'image : Soit on moyenne, soit on intègre. On verra dans le TD3.
+\end{note}
+
+Application des transformations géométrique : 
+\begin{itemize}
+    \item Suivre les objets sur deux caméras différente (un passant qui passe d'une caméra à l'autre) Belle image dans le diapo 17. Tout peut se passer avec une matrice $ 3 \times 3 $.
+    \item Faire le lien entre une carte dessiné et une image satellite. On peut détecter les points d’intérêt, ou en connaissant précisément la longitude et la latitude de chaque pixel
+    \item Application médical : Superposition de plusieurs modalité provenant de plusieurs capteur. Même reconstruire en 3D.
+    \item Compression vidéo : principe on essaye de prédire l'image suivant à partir de la précédente avec une fonction. Bref on regarde uniquement les pixel qui se déplace. 
+\end{itemize}
+
+\subsection{Operation between images}
+Application : \begin{itemize}
+    \item Soustration et réduction de bruit : Soit deux images $ I, I^n, I - I^n $ permet de détecter le bruit. On obtient alors que des pixels noir lorsqu'il n'y a pas de différence. Le reste est du bruit. \\
+    $\rightarrow$ Permet également de trouver les changements dans le temps, détection de mouvement. (image diapo 31-32)
+\end{itemize}
+
+\subsection{Image thresholding}
+\begin{itemize}
+    \item Thresholding: reduction of image values to few levels of intensity
+    \item Binarization: image values are reduced to two intensity levels
+    \item Binary thresholding, defined by: 
+    \[
+        k' = \begin{cases}
+        k_1 &\text{ si } k \leq S\\
+        k_2 &\text{ si } k \geq S\\
+        \end{cases} 
+    .\]
+    with $ k_1, k_2 $  and $ S $ (threshold) are levels of intensity
+\end{itemize}
+$\rightarrow$ Highlights regions but does not enhance the image
+
+\subsection{Image enhancement}
+\begin{defn}[]
+    \begin{itemize}
+        \item 
+    \end{itemize}
+\end{defn}
+Trois catégories : \begin{itemize}
+    \item Pixel level enhancement : \begin{itemize}
+        \item the image brightness or contrast is modified
+        \item no spatial information, only radiometric value of the visited pixel is considered
+    \end{itemize}
+    \item Local enhancement : Prend en compte le voisinage
+    \item Enhancement in the frequency domain : on prend l'image, on quitte la représentation spacial et on bascule dans le domaine fréquentiel pour faire des changements avant de revenir dans domaine spacial.
+\end{itemize}
+
+Application : \begin{itemize}
+    \item Regions to highlight
+    \item Images that are too bright or too dark
+    \item Intensity levels should be changed in order to make some details in the image more visible
+    \item Modify image brightness
+    \item Increase contrast (see Lecture 1)
+    \item Pixel-level enhancement is closely related to histogram
+    transformation
+    \item IMAGE COOL DIAPO 41
+\end{itemize}
+
+\subsection{Histogram}
+\begin{defn}[Histogram]
+    Histogram is an array / function describing the image values (intensities / gray values / colors) distribution. 
+    Provides image-specific information, such as:
+    \begin{itemize}
+        \item The statistical distribution of image values
+        \item Minimal and maximal image values, moyenne, médiane
+        \item \textbf{No spatial information at all (exemple diapo 44)}
+    \end{itemize}
+    Formule : 
+    \[
+        H(k) = \text{ complexe pour rien}
+    .\]
+    En réalité on parcours l'image et on regarde à quel interval il appartient et on incrémente celui-ci.
+    
+    \begin{exmp}[]
+        Voir l'image diapo 43.
+    \end{exmp}
+\end{defn}
+\begin{defn}[Normalized Histogram]
+    Permet d'approximer la densité de la loi. Car l'histograme normale n'est pas conforme à la définition d'une densité (intégrale égal à 1). 
+
+    Function Hn representing the probability (occurrence frequenc here) for a pixel to have a given value k 
+    \[
+        H_n(k) = \frac{H(k)}{N \times M}
+    .\]
+    with N and M are the image dimensions. Maintenant elle est à valeur dans $ \in  [0,1] $ 
+\end{defn}
+\begin{defn}[Cumulative Histogram]
+    Permet d'avoir une estiamtion de la fonction de répartition. On fait la somme cumulative 
+    \[
+        H_C(k) = \sum_{i \leq k}^{H(i)}
+    .\]
+\end{defn}
+
+\subsection{Image négative}
+\begin{defn}[]
+    negative of the image obtained by the negative transformation in the range of $[0, L - 1]$:
+    \[
+        k' = L - 1 -k
+    .\]
+    with $ l $  the dynamic range of the image (number of intensity levels)
+\end{defn}
+
+\subsection{Transformation}
+\subsubsection{Logarithmic transformation}
+\begin{defn}[]
+    Low values increase, high values decrease: allows increasing
+    the contrast in dark parts of the image.    
+    \[
+        k' = \log_{} (k)
+    .\]
+    Améliore le contraste dans les parties les plus sombre de l'image. EXEMPLE DIAPO 51
+\end{defn}
+
+\subsubsection{Exponential transformation}
+\begin{defn}[]
+    Low values decrease, high values increase: allows increasing the contrast in bright parts of the image. 
+    \[
+        k' = e^k
+    .\]
+\end{defn}
+
+\subsection{Opération sur les histograme }
+\begin{defn}[Histogram Translation]
+    Changes the \textbf{brightness} of an image, leaving the contrast unchanged. The new image is brighter or darker. Useful for images having a low dynamic range.
+    \[
+        k' = k+t
+    .\]
+\end{defn}
+
+\begin{defn}[Affine transformation]
+    
+\end{defn}
+
+\begin{defn}[Image Normalization]
+    On ramène les valeurs entre 0 et $ L-1 $.
+    \begin{itemize}
+        \item Let kmin and kmax be the minimal and maximal intensity levels
+        of an image, respectively:
+        \item Transformation: 
+        \[
+            k' = \frac{L - 1}{k_{max} - k_{min}} (k - k_{min})
+        .\]
+        \item After transformation, $ k' \in [0, L-1] $, contrast is maximal
+        \item No loss of information (same number of intensity levels)
+        \item Before visualization, an image is often normalized (but not necessarily)
+    \end{itemize}
+    SUPER EXEMPLE DANS LE DIAPO 59  
+\end{defn}
+
+\begin{defn}[Linear transformation with saturation]
+    Cette fois ci on vas étirer l'histogramme uniquement dans un intervale donnée. Voir diapo 60 pour plus d'information.
+
+    Cette fois il y a de la perte d'information.
+\end{defn}
+
+\begin{defn}[Histogram equalization]
+    On vas le coder ahah. On prend l'histogramme et on le rend plat (équidistribué).\\ 
+    \textbf{Perte d'information} mais bien pour la visualisation.
+    \begin{itemize}
+        \item Each intensity level is represented in the same proportion
+        \item Regions of lower local contrast gain a higher contrast
+        \item Global contrast increases
+    \end{itemize}
+    L'idée de la méthode : On fusions les pixels peu représenté avec les plus représenter.
+    \[
+        k' = Int(\frac{L-1}{N*M}H_c(k))
+    .\]
+    Avec \begin{itemize}
+        \item $ L $ the image dynamic range
+        \item $ N $ and $ M $  the image size
+        \item $ H_c(k) $ the cumulative histogram
+        \item $ Int $ rounding to the nearest integer
+    \end{itemize}
+    Super exemple dans le diapo 64. 
+\end{defn}
+
+\begin{note}[Histogram stretching versus histogram equalization: same operation?]
+    \begin{itemize}
+        \item Stretching: changes the bins distribution in the histogram, but not their size
+        \item Equalization: changes the bins distribution in the histogram and their size
+    \end{itemize}
+\end{note}
+
+\begin{note}[Application]
+    \begin{itemize}
+        \item Image mosaic : a target image and a base of small image.
+        \item Face recognition : On suppose que les histogram d'image faciale ont la même loi de proba.
+        \item Segmentation : En fusionnant beaucoup beaucoup les classes on peut segmenter en 5 couleurs (exemple diapo 70). Ou on utilise des algo de clustering
+    \end{itemize}
+\end{note}
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
