@@ -1,0 +1,180 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage[french]{babel}
+
+\usepackage[default,scale=0.95]{opensans}
+\usepackage[T1]{fontenc}
+\usepackage{amssymb} %math
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{systeme}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    % pdfpagemode=FullScreen,
+    }
+\urlstyle{same} %\href{url}{Text}
+
+\theoremstyle{plain}% default
+\newtheorem{thm}{Théorème}[section]
+\newtheorem{lem}[thm]{Lemme}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem*{cor}{Corollaire}
+%\newtheorem*{KL}{Klein’s Lemma}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Définition}[section]
+\newtheorem{exmp}{Exemple}[section]
+\newtheorem{xca}[exmp]{Exercise}
+
+\theoremstyle{remark}
+\newtheorem*{rem}{Remarque}
+\newtheorem*{note}{Note}
+%\newtheorem{case}{Case}
+
+
+
+\title{Cours}
+\author{Charles Vin}
+\date{Date}
+
+\begin{document}
+\maketitle
+
+\underline{Nouveau TP du 22/09} \\
+
+\begin{defn}[Parité]
+    Fonction paire et impaire 
+    \begin{itemize}
+        \item si $ x(t) = x(-t) $ $\rightarrow$ fonction paire
+        \item si $ x(t) = -x(t) $ $\rightarrow$ fonction impaire
+    \end{itemize}
+    On peut écrire une fonction $ x(t) $ de ses composantes paire et impaire.
+    \[
+        x(t) = \frac{1}{2}(x(t) + x(-t)) + \frac{1}{2}(x(t) - x(-t))
+    .\]
+\end{defn}
+
+
+\begin{xca}[1]
+    Écrivez $ x(t) = e^{-at}u(t)$ en fonction de ses composantes paires et impaires. \begin{itemize}
+        \item La fonction paire $ x_p(t) = \frac{1}{2}(x(t) + x(-t)) $ 
+        \item La fonction impaire $ \frac{1}{2} (x(t) - x(-t)) $ 
+    \end{itemize}
+    Dessin dans OneNote.
+\end{xca}
+
+\section{Système linéaire et invariant dans le temps}
+\begin{defn}[Système linéaire et invariant dans le temps]
+    Le système doit être \textbf{additif}, \textbf{homogène} et \textbf{invariant dans le temps}. \begin{itemize}
+        \item Additif : Si $ y_1(t) = y_2(t) $ donc le système $ h(t) $ est additif.
+        \item Homogène : Si $ y_1(t) = y_2(t) $ donc le système $ h(t) $ est homogène.
+        \item Invariant dans le temps : Si $ y_1(t) = y_2(t) $ donc le système est invariant dans le temps.
+        \item Voir dessin Onenote
+    \end{itemize}
+\end{defn}
+
+\begin{xca}[2]
+    Trouvez si les systèmes suivant sont linéaire et invariant dans le temps.\begin{align}
+        y(t) = x(t)cos(2 \pi ft)\\
+        y(t) = sin(x(t))
+    \end{align}
+    Réponse dans OneNote
+\end{xca}
+
+\begin{xca}[]
+    Trouver le résultat de la convolution $ x(t) \star h(t) $ \begin{align*}
+        x(t) &= u(t) - u(t-4) \\
+        h(t) &= tu(t)
+    \end{align*}
+    Correction dans OneNote : \begin{align*}
+        x(t) &= \int_{-\infty }^{\infty } x(\tau )h(t-\tau )d \tau \\
+            &= \int_{-\infty }^{\infty } h(\tau )x(t-\tau )d \tau
+    \end{align*}
+\end{xca}
+
+\begin{xca}[]
+    Trouver le résultat de la convolution $ x(t) \star h(t) $ \begin{align*}
+        x(t) &= u(t) - u(t-4) \\
+        h(t) &= tu(t)
+    \end{align*}
+    Correction dans OneNote
+\end{xca}
+
+\begin{xca}[]
+    Trouver le résultat de la convolution $ x(t) \star h(t) $ \begin{align*}
+        x(t) &= \sin (t) [u(t) - u(t-2 \pi )] \\
+        h(t) &= u(t-1) - u(t-3)
+    \end{align*}
+    Correction dans OneNote
+\end{xca}
+
+\paragraph*{A rendre sous forme de compte rendu avant le 28/09/2022}
+\begin{xca}[]
+    Trouver les composante paires et impaires de $ x(t) $: Dessin OneNote
+\end{xca}
+\begin{xca}[]
+    Déterminez si les systèmes suivants sont linéaire et invariant dans le temps \begin{align}
+        y(t) &= t^2 \frac{dx(t)}{dt} \\
+        y(t) &= \cos (2 \pi ft + x(t))
+    \end{align}
+\end{xca}
+\begin{xca}[]
+    Trouver la convolution de $ x(t) $ et $ h(t) $ : 
+    \begin{itemize}
+        \item Dessin OneNote
+        \begin{align*}
+            x(t) &= 2 u(t-10) \\
+            h(t) &= \sin (2t) u(t)
+        \end{align*}
+        \item \begin{align*}
+            x(t) &= u(t) \\
+            h(t) &=\text{ voir onenote}
+        \end{align*}
+        \item Voir OneNote
+    \end{itemize}
+\end{xca}
+\begin{xca}[]
+    Tracer avec MatLab les 3 courbes suivantes sur la même figure $ \forall t \in [0, 10] $ 
+    \begin{align}
+        w(t) &= e^{-t} \\
+        x(t) &= te^{-t} \\
+        y(t) &= e^{-t} + te^{-t}
+    \end{align}
+\end{xca}
+
+\paragraph*{Intro MatLab}
+Commande importante \begin{itemize}
+    \item Size : check la size d'un vecteur 
+    \item Length : Pareil pour les matrices
+    \item Load/Save : Sauver des résultats
+\end{itemize}
+On évite $ i $ et $ j $ car dans MatLab c'est les variables complexes.\\
+Faire attention au opérateur $ * $ = le produit scalaire et $ .* $  = le produit terme à terme de matrice.\\
+Faire le graph de sin : \begin{align*}
+    t &= 1:0.001:10 \\
+    y &= sin(t) \\
+    plot&(t,y) \\
+    xlabel&('\text{Temps en seconde}') \\
+    ylabel&('\text{Amplitude}')
+\end{align*}
+Log scale : $ semilogx(f, module) $, $ subplot $ pour subplot. \\
+Plusieurs courbes : \begin{align*}
+    x_1 &= e^{-t} \\
+    x_2 &= t \\
+    x_3 &= t + e^{-t} \\
+    plot(t,x_1,'b', t,x_2,'r', t,x_3, 'g') \\
+    c
+\end{align*}
+
+
+
+
+\end{document}

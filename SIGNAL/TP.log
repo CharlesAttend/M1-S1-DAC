@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 21.12.10) (preloaded format=pdflatex 2022.1.13)  22 SEP 2022 09:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 21.12.10) (preloaded format=pdflatex 2022.1.13)  22 SEP 2022 12:30
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"c:/Users/Charles/OneDrive - univ-lille.fr/M1/SIGNAL/cours.tex"
-(c:/Users/Charles/OneDrive - univ-lille.fr/M1/SIGNAL/cours.tex
+**"c:/Users/Charles/OneDrive - univ-lille.fr/M1/SIGNAL/TP.tex"
+(c:/Users/Charles/OneDrive - univ-lille.fr/M1/SIGNAL/TP.tex
 LaTeX2e <2021-11-15> patch level 1
 L3 programming layer <2021-11-22> (C:\Users\Charles\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
 Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
@@ -335,8 +335,8 @@ Package hyperref Info: Option `colorlinks' set `true' on input line 22.
 File: l3backend-pdftex.def 2021-12-14 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count298
 \l__pdf_internal_box=\box52
-) (cours.aux)
-\openout1 = `cours.aux'.
+) (TP.aux)
+\openout1 = `TP.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 48.
 LaTeX Font Info:    ... okay on input line 48.
@@ -434,9 +434,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 48.
 LaTeX Info: Redefining \pageref on input line 48.
 LaTeX Info: Redefining \nameref on input line 48.
- (cours.out) (cours.out)
+ (TP.out) (TP.out)
 \@outlinefile=\write3
-\openout3 = `cours.out'.
+\openout3 = `TP.out'.
 
 LaTeX Font Info:    Font shape `T1/opensans-TLF/m/n' will be
 (Font)              scaled to size 16.41594pt on input line 50.
@@ -450,68 +450,39 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 50.
  (C:\Users\Charles\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Overfull \hbox (1.59647pt too wide) in paragraph at lines 77--78
-[]\T1/opensans-TLF/m/n/10 Quatres type de si-gnal : Temps continu/discret X Am-pli-tude Ana-lo-gique(continue)/numérique(discret).
+Underfull \hbox (badness 10000) in paragraph at lines 51--52
+
  []
 
-LaTeX Font Info:    Font shape `T1/opensans-TLF/m/n' will be
-(Font)              scaled to size 13.67995pt on input line 79.
 LaTeX Font Info:    Font shape `T1/opensans-TLF/b/n' will be
-(Font)              scaled to size 13.67995pt on input line 79.
-LaTeX Font Info:    Font shape `T1/opensans-TLF/b/n' will be
-(Font)              scaled to size 11.39996pt on input line 80.
+(Font)              scaled to size 9.49997pt on input line 53.
 LaTeX Font Info:    Font shape `T1/opensans-TLF/m/n' will be
-(Font)              scaled to size 6.64998pt on input line 99.
-LaTeX Font Info:    Font shape `T1/opensans-TLF/m/n' will be
-(Font)              scaled to size 4.74998pt on input line 99.
+(Font)              scaled to size 13.67995pt on input line 74.
 LaTeX Font Info:    Font shape `T1/opensans-TLF/b/n' will be
-(Font)              scaled to size 9.49997pt on input line 103.
+(Font)              scaled to size 13.67995pt on input line 74.
 [1
 
 {C:/Users/Charles/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-<./figures/fig1.jpg, id=34, 1669.23625pt x 2225.31375pt>
-File: ./figures/fig1.jpg Graphic file (type jpg)
-<use ./figures/fig1.jpg>
-Package pdftex.def Info: ./figures/fig1.jpg  used on input line 140.
-(pdftex.def)             Requested size: 273.14923pt x 364.13889pt.
-
-
-LaTeX Font Warning: Font shape `T1/opensans-TLF/m/sc' undefined
-(Font)              using `T1/opensans-TLF/m/n' instead on input line 141.
-
-LaTeX Font Info:    Font shape `T1/opensans-TLF/m/it' will be
-(Font)              scaled to size 9.49997pt on input line 145.
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 161.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\star' on input line 161.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 161.
-
-[2] [3 <./figures/fig1.jpg>] (cours.aux)
-
-LaTeX Font Warning: Some font shapes were not available, defaults substituted.
-
-Package rerunfilecheck Info: File `cours.out' has not changed.
-(rerunfilecheck)             Checksum: 2132E02EE758671D8E1A165ED71C6926;766.
+LaTeX Font Info:    Font shape `T1/opensans-TLF/m/n' will be
+(Font)              scaled to size 6.64998pt on input line 140.
+LaTeX Font Info:    Font shape `T1/opensans-TLF/m/n' will be
+(Font)              scaled to size 4.74998pt on input line 140.
+ [2] (TP.aux)
+Package rerunfilecheck Info: File `TP.out' has not changed.
+(rerunfilecheck)             Checksum: 41EC0B4FD1315C9E5B8B437754F15A61;282.
  ) 
 Here is how much of TeX's memory you used:
- 12924 strings out of 480548
- 207404 string characters out of 2895278
- 521648 words of memory out of 3000000
- 30582 multiletter control sequences out of 15000+600000
- 416724 words of font info for 70 fonts, out of 8000000 for 9000
+ 12908 strings out of 480548
+ 206999 string characters out of 2895278
+ 524642 words of memory out of 3000000
+ 30569 multiletter control sequences out of 15000+600000
+ 415018 words of font info for 66 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 60i,10n,63p,407b,449s stack positions out of 5000i,500n,10000p,200000b,80000s
-{C:/Users/Charles/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/opensans/a_jg4h6q.enc}<C:/Users/Charles/AppData/Local/Programs/MiKTeX/fonts/type1/ascender/opensans/OpenSans-Bold.pfb><C:/Users/Charles/AppData/Local/Programs/MiKTeX/fonts/type1/ascender/opensans/OpenSans-Italic.pfb><C:/Users/Charles/AppData/Local/Programs/MiKTeX/fonts/type1/ascender/opensans/OpenSans-Regular.pfb><C:/Users/Charles/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/Charles/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Charles/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Charles/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Charles/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/Charles/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Charles/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
-Output written on cours.pdf (3 pages, 1148318 bytes).
+ 60i,10n,63p,373b,449s stack positions out of 5000i,500n,10000p,200000b,80000s
+{C:/Users/Charles/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/opensans/a_jg4h6q.enc}<C:/Users/Charles/AppData/Local/Programs/MiKTeX/fonts/type1/ascender/opensans/OpenSans-Bold.pfb><C:/Users/Charles/AppData/Local/Programs/MiKTeX/fonts/type1/ascender/opensans/OpenSans-Regular.pfb><C:/Users/Charles/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/Charles/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Charles/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Charles/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Charles/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/Charles/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Charles/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
+Output written on TP.pdf (2 pages, 118489 bytes).
 PDF statistics:
- 106 PDF objects out of 1000 (max. 8388607)
- 21 named destinations out of 1000 (max. 500000)
- 38 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 90 PDF objects out of 1000 (max. 8388607)
+ 24 named destinations out of 1000 (max. 500000)
+ 9 words of extra memory for PDF output out of 10000 (max. 10000000)
 
