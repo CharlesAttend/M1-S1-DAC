@@ -177,6 +177,124 @@ CCL:
     \item Indépendance : Si $ X_1 $ et $ X_2 $ sont indépendantes : $ P(X_1, X_2) = P(X_1)P(X_) $ 
 \end{itemize}
 
+\underline{Nouveau cours du 20/09} \\
+\begin{defn}[Indépendance de deux variables discrète]
+    Discrète : 
+    Continue : 
+\end{defn}
+\begin{defn}[Indépendance mutuelle de $ n $ variable]
+    Soient $ n $ variables aléatoires $ (X_1, ..., X_n) $. Elle sont \textbf{mutuellement indépendantes} si tout événement lié à une partie d'entre elles est indépendant de tout événement lié à toute autre partie disjointe de la précédente.
+    Propriété : \begin{itemize}
+        \item Indépendance mutuelle $\rightarrow$ Indépendance deux à deux. \textbf{Attention:} réciproque fausse
+    \end{itemize}
+
+    $\rightarrow$ Permet de réduire la taille du tableau des probabilité de chaque événement !
+\end{defn}
+
+\begin{defn}[Indépendance conditionnelles]
+    On reprend les formules de l'indépendances mais en sachant une variable, au final c'est dans un cas particulier. 
+    \begin{align*}
+        X \bot Y | Z \\
+        \forall x, \forall y, \forall z P(X=x \cap  Y=y | Z = z) = P(X=x|Z=z) * P(Y=y|Z=z)
+    \end{align*}
+    $\rightarrow$ 
+    \[
+        \Rightarrow P(X,Y | Z) = P(X|Z)*P(Y|Z)
+    .\]
+\end{defn}
+
+\begin{defn}[]
+    Loi normale 
+    \begin{prop}[]
+        - Moyenne linéaire et variance comme bilinéaire
+        \[
+            X \sim \mathcal{N}(\mu , \sigma ^2) \text{ alors } Y = aX + b \sim \mathcal{N}(a \mu + b , a^2 \sigma ^2)
+        .\]
+        - Centrer et réduire 
+        \[
+            Z = \frac{X - \mu }{\sigma } \sim \mathcal{N}(0,1)
+        .\]
+        
+    \end{prop}
+\end{defn}
+
+\begin{defn}[Convergence en loi]
+    \[
+        \forall x, \lim_{n \to \infty} F_n(x) = F(x)
+    .\]
+    On ne sais pas comment ça converge
+\end{defn}
+
+\begin{defn}[Convergence en probabilité]
+    $ (X_n) $ \textbf{converge en probabilité} vers $ X $ si, pour tout $ \epsilon > 0 $ la probabilité que l'écart absolu entre $ X_n $ et $ X $ dépasse $ \epsilon  $ tend vers 0 quand $ n \to \infty  $ 
+    \[
+        \lim_{n \to \infty} P(|X_n-X|\geq \epsilon ) = 0
+    .\]
+\end{defn}
+
+\begin{defn}[convergence presque sur]
+    $ (X_n) $ \textbf{converge presque surement}vers X s'il y a yne proba 1 que la suite des réalisation des $ X_n $ tende vers $ X $ 
+\end{defn}
+
+\begin{defn}[Loi faible des grands nombre]
+    Soit $ (X_n)_{n \in \mathbb{N}} $ est une suite de variables aléatoires :\begin{itemize}
+        \item De même loi
+        \item D'éspérance $ m $ 
+        \item Possédant une variance $ \sigma ^2 $ 
+        \item \textbf{Deux à deux} indépendante
+    \end{itemize}
+    Alors 
+    \[
+        \bar{X_n} = \frac{\sum_{k=1}^{n} X_k}{n}  \to _\mathbb{P} m
+    .\]
+    Rappel : 
+    \begin{align*}
+        E(\bar{X_n}) &= m \\
+        V(\bar{X_n}) &= \frac{\sigma ^2}{n}
+    \end{align*}
+\end{defn}
+
+\begin{defn}[Loi forte des grands nombres]
+    Soit $ (X_n)_{n \in \mathbb{N}} $ est une suite de variables aléatoires :\begin{itemize}
+        \item De même loi
+        \item D'éspérance $ m $ 
+        \item Possédant une variance $ \sigma ^2 $ 
+        \item \textbf{mutuellement} indépendante
+    \end{itemize}
+    Alors 
+    \[
+        \bar{X_n} = \frac{\sum_{k=1}^{n} X_k}{n} \to _{p.s} m
+    .\]
+\end{defn}
+
+\begin{defn}[Théorème centrale limite]
+    Soit $ (X_n)_{n \in \mathbb{N}} $ est une suite de variables aléatoires :\begin{itemize}
+        \item De même loi
+        \item D'éspérance $ \mu  $ 
+        \item Possédant une variance $ \sigma ^2 $ 
+        \item \textbf{mutuellement} indépendantes
+    \end{itemize}
+    Alors 
+    \[
+        \frac{\bar{X_n} - \mu }{\sigma / \sqrt[]{n}} \to_{loi} \mathcal{N}(0,1)
+    .\]
+\end{defn}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
