@@ -170,6 +170,110 @@ On vas écrire les fonctions de signal en utilisant cette fonction
     Trouvez la convolution de $ x(t), h(t) $. Voir one note
 \end{exmp}
 
+\underline{Nouveau cours du 23/09} \\
+
+\subsection{La transformé de Laplace}
+Dans le cas de la transformé de Laplace on a 
+\[
+    x(t) \rightarrow h(t) \rightarrow y(t)
+.\]
+qui devient
+\[
+    X(S) \rightarrow H(S) \rightarrow Y(S) = X(S)H(S)
+.\]
+\begin{defn}[La transformé de Laplace]
+    \begin{align*}
+        X(S) &= \mathcal{L}\{x(t)\} \\
+            &= \int_{-\infty }^{\infty }x(t) e^{-St}dt
+    \end{align*}
+    avec $ S = \sigma + j \omega \text{ ( imaginaire )}, w = 2 \pi f, f=\text{ la frequence}$
+\end{defn}
+\begin{exmp}[Laplace]
+    Ici on montre comment les valeurs du tableau poly sont calculées.
+    \begin{align*}
+        \mathcal{L}(u(t)) &= \int_{-\infty }^{\infty }u(t)e^{St}dt \\
+            &= \int_{0}^{\infty }e^{-St}dt = [\frac{e^{St}}{-S}]^{\infty }_0 \\
+            &= 0 - \frac{e^0}{-S} = \frac{1}{S}
+    \end{align*}
+\end{exmp}
+\begin{exmp}[]
+    Ici on montre comment les valeurs du tableau poly sont calculées.
+    \begin{align*}
+        \mathcal{L}\{\cos (\omega _0 t) u(t)\} &= \int_{-\infty }^{\infty }\cos (\omega _0 t) u(t)e^{St}dt \\
+        &= \int_{0}^{\infty }\cos (omega_0 t) e^{-St}dt \\
+        &= \int_{0}^{\infty }(\frac{e^{j \omega _0 t } + e^{-j \omega_0 t }}{2}) e^{St} dt \\
+        &= \frac{1}{2} \int_{0}^{\infty } e^{t(j\omega _0 - S)} + e^{-t(j \omega _0 + S)} dt \\
+        &= \frac{1}{2} [\frac{e^{t(j \omega _0 - S)}}{j \omega_0 - S} - \frac{e^{-t(j \omega _0 + S)}}{j \omega_0 + S}]_{0}^{\infty } \\
+        & \text{Ici y'a un problème de convergence avec le } + \infty \text{ le prof ne sais pas} \\
+        &= \frac{1}{2} (\frac{0 - 1}{j \omega _0 - S} + \frac{0 - 1}{-(j \omega _0 + S)}) \\
+        &= \frac{1}{2} (\frac{1}{S - j \omega _0} + \frac{1}{S + j \omega _0}) \\
+        &= \frac{1}{2} (\frac{S + j \omega _0 + S - j \omega _0}{S^2 + \omega _0^2}) \\
+        &= \frac{S}{S^2 + \omega _0 ^2}
+    \end{align*}
+\end{exmp}
+
+\begin{prop}[importante de la transformé de Laplace]
+    \begin{itemize}
+        \item Addition : $ \mathcal{L}\{x_1(t) + x_2(t)\} = X_1(S) + X_2(S)$ 
+        \item Dérivé (sous condition) : $ \mathcal{L}\{\frac{dx(t)}{dt}\} $ 
+        \item Dérivé seconde : $ \mathcal{L}\{\frac{d^2x(t)}{dt^2}\} $ 
+        \item Intégrale : $ \mathcal{L}\{\int_{0}^{t}x(t)dt\} = \frac{1}{S}X(S) $ 
+        \item \textbf{Convolution} : $ \mathcal{L}\{x_1(t) \star x_2(t)\} = X_1(S) X_2(S)$ 
+        \item Time shifting : $ \mathcal{L}\{x(t-t_0) u(t - t_0)\} = X(S)e^{-t_0 S}$ 
+    \end{itemize}
+\end{prop}
+
+\subsection{Transformé de Laplace Inverse}
+
+\begin{exmp}[Transformé de Laplace Inverse]
+    Cas général avec décomposition en élément simple.
+    \[
+        H(S) = \frac{7S - 6}{S^2 - S - 6}
+    .\]
+    Racine du dénominateur : $ 3 $ et $ -2 $ $\rightarrow$ Factorisation du dénominateur en $ (S-3)(S+2) $ 
+    \[
+        \frac{7S-6}{(S-3)(S+2)} = \frac{A}{S+2} + \frac{B}{S+2}
+    .\]
+    Pour trouver $ A $ et $ B $ : \href{https://www.methodemaths.fr/decomposition_elements_simples/#principe}{Trois techniques} \begin{itemize}
+        \item Par identification en remultipliant en haut et en bas 
+        \item Multiplier par un des facteurs à gauche et à droite pour simplifier une des fractions, remplacer $ S $ par $ -2 $ pour obtenir $ -2+2 = 0 $, ça simplifie plein de truc et hop on peut retrouver $ B $ facilement.
+        \item 
+    \end{itemize}
+    Bref ici $ A = 4 $ et $ B=3 $ \begin{align*}
+        H(S) &= \frac{4}{S+2}  + \frac{3}{S - 3} \\
+        \downarrow \mathcal{L}^{-1}& \\
+            h(t) &= 4 e^{-2t} u(t) + 3 e^{3t} u(t)
+    \end{align*}
+\end{exmp}
+
+\subsection{Expression générale d'un système linéaire invariant dans le temps}
+\begin{align*}
+    &\frac{d^N}{dt^N} y(t) + a_{N-1}\frac{d^N}{dt^N} y(t) + \dots + a_1 \frac{d}{dt}y(t) + a_0 y(t) \\
+    =& b_M \frac{d^M x(t)}{dt^M} + b_{M-1} \frac{d^{M-1} x(t)}{dt^{M-1}} + \dots + b_1 \frac{d x(t)}{dt} + b_0 x(t)
+\end{align*}
+En supposant toutes les conditions initiales nulles et en appliquant la transformée de Laplace : 
+\begin{align*}
+    & [S^N + a_{N-1} S^{N-1} + \dots + a_1 S + a_0]Y(S) = [b_M S^M + b_{M-1} S^{M-1} + \dots + S b_1 + b_0] X(S) \\
+    \Leftrightarrow & \frac{Y(S)}{X(S)} = \frac{b_M S^M + b_{M-1} S^{M-1} + \dots + S b_1 + b_0}{S^N + a_{N-1} S^{N-1} + \dots + a_1 S + a_0} \\ 
+    \Leftrightarrow & H(S) = \frac{Y(S)}{X(S)} = \frac{(S + z_1) + (S + z_2) + \dots + (S + z_M)}{(S + p_1) + (S + p_2) + \dots + (S + p_N)}
+\end{align*}
+Avec $ H(S) $ la fonction de transfert, $ z_1, \dots, z_M $  les zéros de la fonction de transfert et $ p_1, \dots, p_N $ les pôles de la fonction de transfert.
+\begin{align*}
+    H(S) &= \frac{1}{S+p_1} + \frac{B}{S+p_2} + \dots + \frac{N}{S + p_N} \\
+    \mathcal{L}^{-1} \downarrow & \\
+    h(t) &= Ae^{-p_1t} + Be^{-p_2t} + \dots + Ne^{-p_Nt}
+\end{align*}
+
+\begin{exmp}[Stabilité d'un système LTI]
+    \textbf{uniquement les pôles ont une influence sur la stabilité (?)}
+    \begin{align*}
+        H(S) &= \frac{1}{S+p_1} \rightarrow h(t) = e^{-p_1t} \\
+            &= \frac{1}{s-p_1} \to h(t) = e^{p_1t}
+    \end{align*}
+    Voir dessin OneNote
+\end{exmp}
+
+
 
 
 \end{document}
