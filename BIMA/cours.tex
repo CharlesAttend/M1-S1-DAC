@@ -320,11 +320,73 @@ Application : \begin{itemize}
     \end{itemize}
 \end{note}
 
+\underline{Nouveau cours du 27/09} \\
+15 min de retard, before diapo 11. 
 
+En gros la transformé de Fourier permet de représenter les fonctions périodique avec des coordonnes dans l'espaces infinis des fonctions périodiques. Pourquoi \begin{itemize}
+    \item Pour écrire les signaux de manière plus compact
+    \item Pour pouvoir les compresser
+    \item Pour pouvoir les comparer ensuite. 
+    \item CCL : DIAPO 14 
+\end{itemize}
 
+Transformé de Fourier : La seule différence c'est qu'on obtient un continuum de fréquence 
 
+\paragraph*{Interprétation du signal} : On obtient une représentation de notre fréquence en terme de fréquence (haute ou basse)\begin{itemize}
+    \item On utilise le module $ \left| X(f) \right|  $ pour obtenir la quantité de la fréquence pure $ f $ présente dans le signal $ x $.
+    \item La phase : L'angle de $ X(f) $ vue dans ce cas comme un vecteur du plans complexe
+\end{itemize}
+Le signal $ x $ peut être reconstruit à partir de sa transformé de Fourier $ X $. 
 
+\begin{defn}[Convolution]
+    Une sorte de moyenne locale de $ g $ pondéré par les valeur de $ f $. Opération commutative, distributive, associative.
+\end{defn}
 
+\paragraph*{Retour fourier diapo 26} 
+Liste des propriétés :\begin{itemize}
+    \item Linéaire
+    \item Time scaling : Quand on multiplie un signal par un scalaire, on le stretch et il s'étend. A l'inverse sa transformé de Fourier se rétrécis 
+    \item Time shifting : Si on translate le temps, on ne change pas la transformé
+    \item Frequency shifting : translater les fréquence, translate la transformé de Fourier
+    \item Théorème de la convolution : \begin{itemize}
+        \item  Convolution assez complexe à calculer $ O(n^2) $ 
+        \item Avec Fourier la convolution est super plus simple à calculer $ O(n \log_{}n) $ 
+        \item Voir formule dans le diapo 26 si nécessaire
+    \end{itemize}
+\end{itemize}
+\begin{exmp}[]
+    Exemple d'une transformé de Fourier avec une fonction porte.
+\end{exmp}
+\begin{exmp}[]
+    Exemple d'une transformé de Fourier avec une Gaussienne $\rightarrow$ On retrouve une gaussienne ! Damn c'est fou
+\end{exmp}
+\begin{exmp}[]
+    Exemple d'une transformé de Fourier avec une fonction de Dirac $ \delta (t) $. C'est l'élément neutre de la convolution. Au final, on pondère la moyenne mobile sur un unique point $\rightarrow$ ca donne la valeur de la fonction en ce point. 
+\end{exmp}
+\begin{exmp}[]
+    Exemple d'une transformé de Fourier de $ \sin  $ et $ \cos  $. C'est relativement facile en utilisant la formule d'Euler, qui donne deux exponentiel complexe, et une exponentielle complexe c'est une fonction de Dirac avec Fourier.
+\end{exmp}
+
+\paragraph*{Fourier en 2D}
+Globalement la même chose sauf qu'on intègre pour chaque dimension. On obtient en couple de fréquence, et pour le plot on utilise l'intensité lumineuse pour représenter l'amplitude.
+
+\textbf{Inportant:}la transformé de Fourier donne des information sur l'orientation des objects, leur taille, ect EXEMPLE DIAPO 53
+
+DIAPO 54, quelque fonction très utile. Et diapo 55 illustration de ce que fait la fonction $ fftshift() $
+
+Diapo 56 : On passe au log pour améliorer la visualisation. 
+
+Quelques Applications : \begin{itemize}
+    \item Débruiter : en supprimant les hautes fréquences
+    \item Compression : Les petits détails sont haute fréquences donc on peut les supprimer.
+    \item Obtenir les directions des choses ect
+    \item Filtrer : edge detection, point d'intérêt, ... 
+\end{itemize}
+
+Désavantage d'une représentation fréquentielle : \begin{itemize}
+    \item A cause de l'invariance par translation, on a pas d'information spacial.
+    \item Signaux non dérivable : Avec que des portes (=des contours nettes dans images), pour l'approcher avec des $ \sin  $ il faut une infinité de $ \sin  $ 
+\end{itemize}
 
 
 
