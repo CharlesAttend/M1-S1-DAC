@@ -280,6 +280,93 @@ CCL:
     .\]
 \end{defn}
 
+\underline{Nouveau cours du 27/09} \\
+
+\section{Maximum Vraissemblance}
+
+\begin{defn}[Vraissemblance d'un échantillon]
+    Soit $ x = (x_1, \dots, x_n) $ réalisation de $ (X_1, \dots, X_n) $  \textbf{iid = Mutuellement indépendant}
+    Alors on défini la vraisemblance dans le cas discret comem étant la proba d'obtenir \textbf{cet} échantillon sachant la loi P
+    \[
+        L(x) = P(X_1=x_1, \dots, X_n= x_n ) = \prod_{i=1}^{n}P(X_i = x_i)
+    .\]
+    Dans le cas continue :
+\end{defn}
+\begin{exmp}[avec des pièces de monnaies]
+    DIAPO 5
+\end{exmp}
+\begin{exmp}[innondation]
+    3 type de parcelles : Inondables (PI), partiellement inondables (PPI), non inondable (NI)
+    On a deux loi caractérisant le niveau de gris par rapport à la catégorie d'inondation.
+    \[
+        P(n | PI) = \mathcal{N}(\mu _1, \sigma ^2_1), P(n|PPI) = \mathcal{N}(\mu _2, \sigma ^2_2)
+    .\]
+    Avec $ n $ le niveau de gris.
+
+    Soit une image $ Z $ avec un niveau de gris $ n=80 $; Deux hypothèses \begin{itemize}
+        \item $ \theta _1 $ $ Z $ PI
+        \item $ \theta _2 $ $ Z $ PPI
+    \end{itemize}
+    On vas calculer le max de vraisemblance d'obtenir la zone Z sous $ \theta 1 $ ou $ \theta 2 $  
+    
+\end{exmp}
+
+\subsection{Maximum de vraissemblance}
+\begin{exmp}[Pièce de monnaie]
+    On vas faire la même chose mais cette fois ci, on prend des paramètre $ \theta _1 et \theta _2 $
+\end{exmp}
+
+\begin{defn}[Vraissemblance d'un échantillon]
+    On cherche à estimer un paramètre $ \Theta  $ 
+    Soit $ x = (x_1, \dots, x_n) $ réalisation de $ (X_1, \dots, X_n) $  \textbf{iid = Mutuellement indépendant}
+    Alors on défini la vraisemblance dans le cas discret comme étant la proba d'obtenir \textbf{cet} échantillon sachant la loi P
+    \[
+        L(x) = P(X_1=x_1, \dots, X_n= x_n | \Theta = \theta ) = \prod_{i=1}^{n}P(X_i = x_i | \Theta = \theta )
+    .\]
+    On peut utiliser la fonction de densité.
+\end{defn}
+
+\begin{defn}[Maximum vraissemblance]
+    On cherche le maximum de la fonction $ L(x, \theta ), \forall \theta $. Donc on vas la dériver ! et utiliser le $ \log_{}  $ 
+\end{defn}
+
+\begin{exmp}[]
+    Plein d'exemple dans le diapo
+\end{exmp}
+
+\begin{exmp}[problème d'ajustement]
+    On a des points un peu random, réparti comme un sinusoide qu'on vas approximé par un polynome. Problème : on a une erreur Normale.
+
+    il vas vite. Mais ça resemble à une regression.
+\end{exmp}
+
+\subsection{Estimation par maximum a posteriori}
+\begin{exmp}[Pièce de monnaie]
+    Imaginons qu'on a un tirage de 3 piles. Le maximum de vraisemblance vaut 1. Mais ça va à l'encontre du bon sens. $\rightarrow$ Solution : Maximum a posteriori. (A voir pourquoi ça fait 1)
+\end{exmp}
+
+\begin{defn}[Maximum a posteriori]
+    On se base dans un modèle bayésien avec \begin{itemize}
+        \item $ \mathcal{X}= $ l'espace des observations $ x $ de taille $ n $ 
+        \item $ \Theta  $ 
+    \end{itemize}
+    
+    \[
+        \text{ Formile de la vraissemblance diapo 32}
+    .\]
+    Estimateur du maximum a posteriori toujours égal à l'argmax de la vraissemblance 
+    \[
+        x \mapsto t = Argmax_{\theta \in \Theta } \pi (\theta |x)
+    .\]
+    
+\end{defn}
+\begin{exmp}[pièce de monnaie]
+    En faite la grosse différence c'est la dernière ligne du diapo 34. On pose, on invente l'information a priori de la proba de chaque paramètre qu'on vas tester. Cette information vas permettre d'être utiliser dans le modèle bayésien. On l'a choisi en fonction d'une loi normale. Fin du cours sans qu'il ait fini.
+\end{exmp}
+
+
+
+
 
 
 
