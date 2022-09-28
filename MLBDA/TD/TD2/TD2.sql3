@@ -1,0 +1,101 @@
+-- Excercice 1
+-- Question 2 
+
+create type Ville as object (
+    num varchar2(20),
+    nbHabitant number(5)
+);
+
+create type Biere as object (
+    marque varchar2(20),
+    type varchar2(10),
+    fabriquant varchar(10),
+    pays type varchar2(20)
+);
+
+-----------------------------------
+create type Etablissement as object (
+    num Varchar2(20),
+    horaire varchar2(20),
+    localisation ref Ville,
+) not final; -- Indique que l'objet à des descendants (héritage)
+
+create type magasin under Etablissement(
+    surface number(5)
+);
+
+create type bar under Etablissement(
+    capacite number(5)
+);
+-----------------------------------
+
+
+create type Consommateur as object(
+    nom varchar(20),
+    age number(2),
+    achete ref EnsBierreMag,
+    consomme EnsBierreBar
+);
+
+create type MagBiere as object(
+    quoi ref Bierre,
+    lieu ref Magasin,
+);
+create type EnsMagBierre as table of MagBierre;
+
+create type BarBiere as object(
+    quoi ref Bierre,
+    lieu ref Bar,
+);
+create type EnsBarBierre as table of BarBierre;
+-----------------------------------
+
+-- Question 3 
+create table LeBars of Bar;
+create table LeBierre of Biere;
+create table LesConsomateur of Comsommateur
+    nested table achete store as t1,
+    nested table consomme store as t2;
+
+-- Excercice 2
+create type Etudiant as object(
+    numero number(10),
+    nom varchar(20),
+    age number(3),
+    année varchar(20),
+    contrat ref ensUE -- Ref car on vas l'utiliser plusieur fois 
+);
+create type ensEtudiant as table of Etudiant; -- use "ref" 
+create type ensUE as table of UE; -- use "ref" 
+
+---------------------
+create type UE as object(
+    nom varchar(20),
+    code number(10),
+    nb_credit number(), -- 3 ou 6
+    séance ensUESéance, -- pas de ref car chaque ue aura une seule séance, elle ne sera pas réutiliser plus tard
+);
+
+create type Séance as object(
+    sujet varchar(20),
+    présent ref ensEtudiant,
+);
+create type UESéance as object(
+    numeros number(20),
+    séance Séance,
+);
+create type ensUESéance as table of UESéance;
+----------------------------
+-- Correction :
+    -- L'ordre est important dans les déclarations (comme en C), donc on fait des headers de type si nécéssaire 
+    -- Il a pas numéroté les séances donc il est direct passé par une table de Séance
+    -- You can use "... as table of *ref* ..."
+    -- J'ai oublié les notes mais c'est presque ce que j'ai fait avec Séance aka je sais le faire
+
+-- Question 2 
+create table Etudiant of Etudiant 
+    nested table contract store as t1;
+
+create table LesUnites of Unite
+    nested table notes store as t2,
+    nested table séance store as t3;
