@@ -32,7 +32,7 @@
 \theoremstyle{definition}
 \newtheorem{defn}{Définition}[section]
 \newtheorem{exmp}{Exemple}[section]
-% \newtheorem{xca}[exmp]{Exercise}
+\newtheorem{xca}[exmp]{Exercise}
 
 \theoremstyle{remark}
 \newtheorem*{rem}{Remarque}
@@ -395,13 +395,158 @@ Avec $ H(S) $ la fonction de transfert, $ z_1, \dots, z_M $  les \textbf{zéros 
 \begin{exmp}[Stabilité d'un système LTI]
     \textbf{uniquement les pôles ont une influence sur la stabilité (?)}
     \begin{align*}
-        H(S) &= \frac{1}{S+p_1} \rightarrow h(t) = e^{-p_1t} \\
-            &= \frac{1}{s-p_1} \to h(t) = e^{p_1t}
+        H(S) &= \frac{1}{S+p_1} \rightarrow_{\mathcal{L}^{-1}} h(t) = e^{-p_1t} \\
+            &= \frac{1}{s-p_1} \to_{\mathcal{L}^{-1}} h(t) = e^{p_1t}
     \end{align*}
+    C'est une formule que l'on retrouve dans la table de la transformé de Laplace qu'il a distribué.
+
+    \textbf{Les poles sont les racines de la fonction de transfert $ H(S) $ !}. Ici c'est un réel donc il est sur l'axe des abscises.
     Voir dessin OneNote
 \end{exmp}
 
 \underline{Nouveau \textbf{TP} du 29/09} \\
+
+\begin{exmp}[autre exemple ]
+    Voir les dessins dans OneNote.
+    \begin{align}
+        H(S) &= \frac{1}{S} \rightarrow_{\mathcal{L}^{-1}} h(t) = u(t), \text{Pole = } \{(0,0)\} \\
+        H(S) &= \frac{1}{S^2} \rightarrow_{\mathcal{L}^{-1}} h(t) = tu(t), \text{Pole = } \{(0,0), (0,0)\} \text{ (je crois)} \\
+        H(S) &= \frac{1}{(S+(a+jb))(S-(a-jb))} \rightarrow_{\mathcal{L}^{-1}} h(t) = u(t), \text{Pole = } \{\text{bcp OneNote}\} \\
+    \end{align}
+    Dans ce dernier cas, on a certaine condition de stabilité \begin{itemize}
+        \item Stable : Si tous les pôles sont dans la partie gauche du plans complexe
+        \item Instable : \begin{itemize}
+            \item Au moins un pôle dans la partie droite du plan complexe
+            \item Il existe au moins un pôle multiple sur l'axe imaginaire
+        \end{itemize}
+        \item Conditionnellement stable : Il existe un pôle simple sur l'axe imaginaire ($a=0$)
+        \item Comme d'hab dessin dans OneNote
+    \end{itemize}
+\end{exmp}
+
+\subsubsection{La réponse en fréquence}
+Pour tracer la réponse en fréquence on remplace $ S $ par $ j \omega  $ 
+\begin{exmp}[]
+    \begin{align*}
+        H(S) &= \frac{S + 0.1}{S + 5} \\
+        H(j \omega ) &= \frac{j \omega  + 0.1}{j \omega + 5} \\
+        \text{Le Modules: }\left| H(j \omega ) \right| = \frac{\sqrt[]{\omega ^2 + 0.1^2}}{\sqrt[]{\omega ^2 + 5^2}} \\ 
+        \text{La Phase: } \lfloor H(j \omega) = \arctan \frac{\omega }{0.1} - \arctan (\frac{\omega }{5})
+    \end{align*}
+    Graphique du module et de la phase dans OneNote. 
+\end{exmp}
+\begin{note}[]
+    Dans la suite on vas voir la méthode du diagrame de Bode qui permet "d'obtenir les graphiques" sans logiciel. On vas voir comment le $ 5 $ et le $ 0.1 $ affecte la phase et le module.
+\end{note}
+
+\paragraph*{Le diagramme de Bode}
+\begin{exmp}[]
+    \begin{align*}
+        H(S) &= K \frac{(S + a_1)(S+a_2)}{S(S+b_1)(S^2 + b_2 S + b_3)} \\
+            &= \text{ forme avec } a_1, a_2 \text{ en facteur commun} \\
+            &= \frac{K a_1 a_2}{b_1 b_3} * \frac{(1 + S/a_1)(1+S/a_2)}{S(1+S/b_1)(1 + S*b_2/b_2 + S^2/b_3)} \\ 
+        \left| H(j \omega ) \right| &= \frac{K a_1 a_2}{b_1 b_3} * \frac{|1+j \omega | |1 + j \omega /a_2|}{|j \omega | |1 + j \omega /b_1||1 + j \omega b_2/b_3  + |j \omega |^2 / b_3|} \\ 
+        20 \log_{} \left| H(j \omega ) \right| &= 20 \log_{} \frac{K a_1 a_2}{b_1 b_3} + 20 \log_{} | 1 + j \omega / a_1 | + 20 \log_{} | 1 + j \omega / a_2 | \\
+            & - 20 \log_{} j \omega - 20 \log_{} |1 + j \omega / b_1| - 20 \log_{} | 1 + j \omega b_2 / b_3  + (j \omega)^2 / b_2 | \\
+            & \text{ Il est maintenant facile de trouver la phase ? ou les pôles ? Je sais plus ce qu'il a dit } \\
+        \lfloor H(j \omega) &= \arctan (\omega / a_1) + \arctan (\omega /a_2) - \arctan (\omega / 0) - \arctan (\omega / b_1) - \arctan (\frac{\omega b_2/b_3}{1 - \omega ^2 / b_3})
+    \end{align*}
+\end{exmp}
+
+\begin{exmp}[Réponse en fréquence]
+    Réponse en fréquence de $ \frac{Ka_1 a_2}{b_1 b_3} $ : \begin{itemize}
+        \item Amplitude : $ 20 \log_{} (\frac{Ka_1 a_2}{b_1 b_3}) $ 
+        \item Phase $ \begin{cases}
+        0 &\text{si le terme est positif}\\
+        \pi  &\text{si le terme est negatif}\\
+        \end{cases}  $ 
+    \end{itemize}
+\end{exmp}
+\begin{exmp}[Réponse d'un pôle]
+    (Je sais pas si c'est des exemples différents.)
+    Réponse d'un pôle (ou d'un zero) à l'origine : Dessin dans OneNote. Un $ dec $ c'est quand on fait $ \times 10  $, ça va de paire avec l'échelle logarithmique des $ db $ 
+\end{exmp}
+\begin{exmp}[]
+    Réponse en fréquence d'un pôle (ou d'un zéro) simple : $ 1 + \frac{j \omega}{b_1} $ \begin{itemize}
+        \item Pour $ \omega << b_1 \rightarrow -20 \log_{} (1 + j \omega/b_1) \approx -20 \log_{} (1) = 0$ 
+        \item Pour $ \omega >> b_1 \rightarrow -20 \log_{} (1 + j \omega/b_1) \approx -20 \log_{} (j \omega / b_1) = 0$ 
+        \item Pour $ \omega = b_1 \rightarrow -20 \log_{} (1 + j) \approx -20 \log_{} (\sqrt[]{2}) = -3 db$ 
+    \end{itemize}
+    Pour la phase $ \lfloor 1 + j \omega / b_1 $
+    \begin{itemize}
+        \item Pour $ \omega << b \rightarrow -\arctan (\omega /b_1) = 0\text{°} $ 
+        \item Pour $ \omega >> b \rightarrow -\arctan (\omega /b_1) = 90\text{°} $ 
+        \item Pour $ \omega = b \rightarrow -\arctan (\omega /b_1) =-45\text{°} $ 
+    \end{itemize}
+    Dessin du module $ -20 \log_{} \left|  H(j \omega) \right|  $ et de la phase $ \lfloor 1 + j \omega / b_1 $  dans OneNote. 
+\end{exmp}
+\begin{exmp}[]
+    Pôle ou zero du second ordre 
+    \begin{align*}
+        & S^2 + b_2 S + b_3 \\
+        & S^2 + 2 \zeta \omega _n S + \omega _n ^2\\
+        \omega _n &= \sqrt[]{b_3} \\
+        2 \zeta \omega _n &= b_2 \\
+        \zeta = \frac{b_2}{2 \sqrt[]{b_3}}
+    \end{align*}
+    Alors pour $ H(j \omega ) = 20 \log (\left| 1 + j \frac{2 \zeta }{\omega_n} \omega  + \frac{(j \omega )^2}{\omega _n^2}\right| ) $ \begin{itemize}
+        \item Pour $ \omega << \omega _n \rightarrow \left| H_(j \omega ) \right| \approx 20 \log_{} (1) = 0  $ 
+        \item Pour $ \omega >> \omega _n \rightarrow \left| H_(j \omega  )\right| \approx 20 \log_{} (\frac{\omega ^2}{\omega _n ^2}) \approx - 40 \log_{} (\frac{\omega }{\omega _n}) $ 
+    \end{itemize}
+    Pour la phase : $ \lfloor K(j \omega ) = - \arctan (\frac{2 \zeta \omega / \omega _n}{1 - (\frac{\omega}{\omega _n)^2 }}) $ \begin{itemize}
+        \item Pour $ \omega << \omega _n \rightarrow \approx \arctan (0) = 0 \text{°} $ 
+        \item Pour $ \omega >> \omega _n \rightarrow \approx \arctan () = -180\text{°} (\text{mais il sait pas trop il a buge voir la photo onenote})$ 
+    \end{itemize}
+\end{exmp}
+
+\begin{exmp}[Diagramme de Bode]
+    Trouver le diagramme de Bode de 
+    \[
+        H(S) = \frac{20 S (S + 100)}{(S + 2)(S + 10)}
+    .\]
+    \begin{align*}
+        H(S) &= \frac{20 * 100}{2 * 10} \frac{S (1 + S/100)}{(1 + S/2) (1 + S/10)}
+    \end{align*}
+    \begin{note}[]
+        Le prof précise qu'il ne faut pas forcement remplacer le $ S $ par $ j \omega  $ et tout développer, il a montré ça en tant que démonstration. 
+    \end{note}
+    La partie constante : $ 20 \log_{} 100 = 40db $\begin{itemize}
+        \item Voir OneNote pour la suite
+    \end{itemize}
+    \textbf{CE QUE JE COMPREND PAS}
+    \begin{itemize}
+        \item Conversion en DB
+        \item D'où viennent les pôles qu'on trouve, là ou change les courbes
+    \end{itemize}
+\end{exmp}
+
+\paragraph*{L'inverse} On vas maintenant faire l'inverse. C'est à dire qu'on vas partir d'un graph pour obtenir une équation.
+
+On imagine un point $ a $ dans le plans complexe $ S $ 
+\begin{align*}
+    H(S) &= \frac{(S+z_1)(S+z_2)\dots (S+z_M)}{(S+p_1)(S+p_2)\dots (S+p_N)} \\
+    H(a) &= \frac{(a+z_1)(a+z_2)\dots (a+z_M)}{(a+p_1)(a+p_2)\dots (a+p_N)} \\
+    &= \frac{(r_1+e^{j\phi_1})(r_2+e^{j\phi_2})\dots (r_M+e^{j\phi_M})}{(d_1+e^{j\theta_1})(d_2+e^{j\theta_2})\dots (d_N+e^{j\theta_N})} \\
+    &= \frac{r_1 r_2 \dots r_M e^{j(\phi_1 + \phi_2 + \dots + \phi_M)}}{d_1 d_2 \dots d_M e^{j(\theta_1 + \theta_2 + \dots + \theta_M)}} \\
+    \text{Module: } \left| H(a) \right|  &= \frac{r_1 r_2 \dots r_M}{d_1 d_2 \dots d_N} \\
+    &= \frac{\text{Produit des distances entre les zéros et le point } a}{\text{Produit des distances entre les poles et le point } a} \\
+    \text{Phase: } \lfloor H(a) &= (\phi_1+ \phi_2 + \dots + \phi_M) - (\theta _1 + \theta _2 + \dots + \theta _N) \\
+    &= \text{(Somme des phases entre les zero et le point ) a } - \text{Somme des phases entre les poles et le poit } a
+\end{align*}
+
+\begin{exmp}[]
+    OneNote
+\end{exmp}
+
+
+
+
+
+
+
+
+
+
 
 
 \end{document}
