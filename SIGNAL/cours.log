@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 21.12.10) (preloaded format=pdflatex 2022.1.13)  29 SEP 2022 12:49
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 21.12.10) (preloaded format=pdflatex 2022.1.13)  30 SEP 2022 12:50
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -458,90 +458,106 @@ LaTeX Font Info:    Font shape `T1/opensans-TLF/m/n' will be
 (Font)              scaled to size 13.67995pt on input line 79.
 LaTeX Font Info:    Font shape `T1/opensans-TLF/b/n' will be
 (Font)              scaled to size 13.67995pt on input line 79.
+(cours.toc
 LaTeX Font Info:    Font shape `T1/opensans-TLF/b/n' will be
-(Font)              scaled to size 11.39996pt on input line 80.
-LaTeX Font Info:    Font shape `T1/opensans-TLF/m/n' will be
-(Font)              scaled to size 6.64998pt on input line 99.
-LaTeX Font Info:    Font shape `T1/opensans-TLF/m/n' will be
-(Font)              scaled to size 4.74998pt on input line 99.
+(Font)              scaled to size 9.49997pt on input line 2.
+)
+\tf@toc=\write4
+\openout4 = `cours.toc'.
+
 LaTeX Font Info:    Font shape `T1/opensans-TLF/b/n' will be
-(Font)              scaled to size 9.49997pt on input line 103.
-[1
+(Font)              scaled to size 11.39996pt on input line 82.
+ [1
 
 {C:/Users/Charles/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-<./figures/fig1.jpg, id=54, 1669.23625pt x 2225.31375pt>
+LaTeX Font Info:    Font shape `T1/opensans-TLF/m/n' will be
+(Font)              scaled to size 6.64998pt on input line 101.
+LaTeX Font Info:    Font shape `T1/opensans-TLF/m/n' will be
+(Font)              scaled to size 4.74998pt on input line 101.
+<./figures/fig1.jpg, id=79, 1669.23625pt x 2225.31375pt>
 File: ./figures/fig1.jpg Graphic file (type jpg)
 <use ./figures/fig1.jpg>
-Package pdftex.def Info: ./figures/fig1.jpg  used on input line 140.
+Package pdftex.def Info: ./figures/fig1.jpg  used on input line 142.
 (pdftex.def)             Requested size: 273.14923pt x 364.13889pt.
 
 
 LaTeX Font Warning: Font shape `T1/opensans-TLF/m/sc' undefined
-(Font)              using `T1/opensans-TLF/m/n' instead on input line 141.
+(Font)              using `T1/opensans-TLF/m/n' instead on input line 143.
 
 LaTeX Font Info:    Font shape `T1/opensans-TLF/m/it' will be
-(Font)              scaled to size 9.49997pt on input line 145.
+(Font)              scaled to size 9.49997pt on input line 147.
+[2] [3 <./figures/fig1.jpg>]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 161.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\star' on input line 161.
+(hyperref)                removing `math shift' on input line 163.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 161.
+(hyperref)                removing `\star' on input line 163.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 173--174
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 163.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 175--176
 
  []
 
-[2] [3 <./figures/fig1.jpg>] [4]
-Underfull \hbox (badness 10000) in paragraph at lines 301--302
+[4] [5]
+Underfull \hbox (badness 10000) in paragraph at lines 303--304
 
  []
 
-[5]
+[6]
 LaTeX Font Info:    Font shape `T1/opensans-TLF/b/it' will be
-(Font)              scaled to size 9.49997pt on input line 349.
- [6]
-Underfull \hbox (badness 10000) in paragraph at lines 407--408
+(Font)              scaled to size 9.49997pt on input line 351.
+ [7]
+Underfull \hbox (badness 10000) in paragraph at lines 409--410
 
  []
 
-[7]
-LaTeX Font Info:    Trying to load font information for TS1+opensans-TLF on input line 477.
+[8]
+LaTeX Font Info:    Trying to load font information for TS1+opensans-TLF on input line 479.
  (C:\Users\Charles\AppData\Local\Programs\MiKTeX\tex/latex/opensans\ts1opensans-tlf.fd
 File: TS1opensans-TLF.fd 2019/06/24 Font definitions for TS1/opensans-TLF.
 )
 LaTeX Font Info:    Font shape `TS1/opensans-TLF/m/n' will be
-(Font)              scaled to size 9.49997pt on input line 477.
- [8]
-Overfull \hbox (56.85394pt too wide) detected at line 535
+(Font)              scaled to size 9.49997pt on input line 479.
+ [9]
+Overfull \hbox (56.85394pt too wide) detected at line 537
 []
  []
 
-[9] (cours.aux)
+
+Underfull \hbox (badness 10000) in paragraph at lines 562--563
+
+ []
+
+[10]
+LaTeX Font Info:    Font shape `T1/opensans-TLF/m/it' will be
+(Font)              scaled to size 6.64998pt on input line 591.
+LaTeX Font Info:    Font shape `T1/opensans-TLF/m/it' will be
+(Font)              scaled to size 4.74998pt on input line 591.
+ [11] [12] (cours.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `cours.out' has not changed.
-(rerunfilecheck)             Checksum: 02CDD6F8E4ECF5086869123564D59DBF;2066.
+(rerunfilecheck)             Checksum: D94758C024635C109C0965FFD09276D7;2664.
  ) 
 Here is how much of TeX's memory you used:
- 13038 strings out of 480548
- 209488 string characters out of 2895278
- 528683 words of memory out of 3000000
- 30638 multiletter control sequences out of 15000+600000
- 418956 words of font info for 76 fonts, out of 8000000 for 9000
+ 13073 strings out of 480548
+ 209894 string characters out of 2895278
+ 531683 words of memory out of 3000000
+ 30647 multiletter control sequences out of 15000+600000
+ 419872 words of font info for 78 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 60i,13n,63p,517b,586s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,13n,63p,517b,549s stack positions out of 5000i,500n,10000p,200000b,80000s
 {C:/Users/Charles/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/opensans/a_nvvucy.enc}{C:/Users/Charles/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/opensans/a_jg4h6q.enc}<C:/Users/Charles/AppData/Local/Programs/MiKTeX/fonts/type1/ascender/opensans/OpenSans-Bold.pfb><C:/Users/Charles/AppData/Local/Programs/MiKTeX/fonts/type1/ascender/opensans/OpenSans-BoldItalic.pfb><C:/Users/Charles/AppData/Local/Programs/MiKTeX/fonts/type1/ascender/opensans/OpenSans-Italic.pfb><C:/Users/Charles/AppData/Local/Programs/MiKTeX/fonts/type1/ascender/opensans/OpenSans-Regular.pfb><C:/Users/Charles/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/Charles/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Charles/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/Charles/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Charles/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Charles/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/Charles/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/Charles/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Charles/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/Charles/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
-Output written on cours.pdf (9 pages, 1243638 bytes).
+Output written on cours.pdf (12 pages, 1262294 bytes).
 PDF statistics:
- 227 PDF objects out of 1000 (max. 8388607)
- 72 named destinations out of 1000 (max. 500000)
- 78 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 289 PDF objects out of 1000 (max. 8388607)
+ 95 named destinations out of 1000 (max. 500000)
+ 110 words of extra memory for PDF output out of 10000 (max. 10000000)
 
