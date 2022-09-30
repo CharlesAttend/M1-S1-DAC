@@ -30,7 +30,7 @@ On peut donc déduire trois modèles inclus les un dans les autres :
 - $M(P_2) = \{ \{(1,0,1)\}, \{(1,1,1)\} \}$
 - $M(P_1) = \{ \{(1,1,1)\}, \}$
 
-On a bien $$M(P_3)\subset M(P_2) \subset M(P_1)$$
+On a bien $$M(P_1)\subset M(P_2) \subset M(P_3)$$
 
 ### Question 4
 Non, justement à cause de cette inclusion possible. Un pré-modèle peut donner un à plusieurs modèles. Il faut compter plus précisément les atomes de chaque pré-modèle pour pouvoir le prédire. 
