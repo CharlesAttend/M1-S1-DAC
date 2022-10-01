@@ -1,0 +1,149 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage[french]{babel}
+
+\usepackage[default,scale=0.95]{opensans}
+\usepackage[T1]{fontenc}
+\usepackage{amssymb} %math
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{systeme}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Compte Rendu TM2},
+    % pdfpagemode=FullScreen,
+    }
+\urlstyle{same} %\href{url}{Text}
+
+\theoremstyle{plain}% default
+\newtheorem{thm}{Théorème}[section]
+\newtheorem{lem}[thm]{Lemme}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem*{cor}{Corollaire}
+%\newtheorem*{KL}{Klein’s Lemma}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Définition}[section]
+\newtheorem{exmp}{Exemple}[section]
+% \newtheorem{xca}[exmp]{Exercise}
+
+\theoremstyle{remark}
+\newtheorem*{rem}{Remarque}
+\newtheorem*{note}{Note}
+%\newtheorem{case}{Case}
+
+
+
+\title{Compte Rendu TM2}
+\author{Charles Vin}
+\date{30/09}
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+    \item Trouver la transformée de Laplace inverse de \begin{enumerate}
+        \item $ X(S) = \frac{10 (S+1)}{S^2 + 4S + 3} $ 
+        \item $ X(S) = \frac{10 (S+1)e^{-2S}}{S^2 + 4S + 3} $ 
+        \item $ X(S) = \frac{20}{S(S^2 + 10S + 16)} $ 
+    \end{enumerate} 
+    \item Tracer le diagramme de Bode de $ H(S) = \frac{20S(S+100)}{(S+2)(S+10)} $. Tracer la réponse en fréquence de $ H(S) $ en utilisant MatLab. Comparer les résultats \begin{align*}
+        f&=1:0.001:1000\\
+        w&=2 \pi * f \\
+        S&=i*w \\
+        H&=S \dot{} * (S+100) / \text{la fonction H du dessus} \\
+        module &= 20 * \log_{10} (abs(H)) \\
+        angle&(H) \\
+        plot&(w, module) \\
+        plot&(w, angle) \\
+    \end{align*}
+\end{enumerate}
+
+\section{Exercice 1}
+\begin{enumerate}
+    \item Racine du polynôme : $ \{-1, -3\} $ 
+    \begin{align*}
+        X(S) &= \frac{10 (S+1)}{S^2 + 4S + 3} \\
+            &= \frac{10 (S+1)}{(S+1)(S+3)} \\
+            &= \frac{10}{S+3}\\
+    \end{align*}
+    D'après la ligne cinq du tableau on a 
+    \[
+        x(t) = e^\lambda u(t) \Leftrightarrow X(S) = \frac{1}{S - \lambda }
+    .\]
+    Dans notre cas $ \lambda = -3 $. Conclusion : 
+    \begin{align*}
+        X(S) &= \frac{10 (S+1)}{S^2 + 4S + 3} \\
+        \downarrow \mathcal{L}^{-1}& \\
+            x(t) &= 10e^{-3t}u(t)
+    \end{align*} 
+    
+    \item \begin{align*}
+        X(S) &= \frac{10 (S+1)e^{-2S}}{S^2 + 4S + 3} \\
+        &= \frac{10 (S+1)e^{-2S}}{(S+1)(S+3)} \\
+        &= \frac{10e^{-2S}}{(S+3)} 
+    \end{align*}
+    Nous somme dans le même cas que précédemment avec un time shifting de $ 2 $. Conclusion :
+    \begin{align*}
+        X(S) &= \frac{10 (S+1)e^{-2S}}{S^2 + 4S + 3}\\
+        \downarrow \mathcal{L}^{-1}& \\
+            x(t) &= 10e^{-3(t-2)}u(t-2)
+    \end{align*}
+    
+    \item Les racines de $ S(S^2 + 10S + 16) $ sont $ \{0, -2, -8\} $ 
+    \begin{align*}
+        X(S) &= \frac{20}{S(S^2 + 10S + 16)} \\
+            &= \frac{20}{S(S+2)(S+8)} \\
+            &= \frac{A}{S} + \frac{B}{S+2} + \frac{C}{S+8} \\
+    \end{align*}
+    Trouvons $ A, B, C $ : 
+    \begin{align*}
+        &\frac{20}{S(S+2)(S+8)} = \frac{A}{S} + \frac{B}{S+2} + \frac{C}{S+8} \\
+        \Leftrightarrow & 20 = A(S+2)(S+8) + B(S+8)S + C(S+2)S \\ 
+        \Leftrightarrow & 20 = AS^2 + 10AS + 16A + BS^2 + 8BS + CS^2 + 2CS \\
+        \Leftrightarrow & 20 = (A + B + C)S^2 + (10A + 8B + 2C)S + 16A
+    \end{align*}
+    Par identification : 
+    \begin{align*}
+        &\begin{cases}
+            A + B + C = 0 \\
+            10A + 8B + 2C = 0 \\
+            16A = 20
+        \end{cases} \\
+        \Leftrightarrow &
+        \begin{cases}
+            B = -5/4 - C \\
+            8(-5/4 - C) + 2C = -50/4 \\
+            A = 20/16 = 5/4
+        \end{cases} \\
+        \Leftrightarrow &
+        \begin{cases}
+            B = -5/4 - C \\
+            -6C = -50/4 + 40/4 = -10/4 \\
+            A = 5/4 \\
+        \end{cases} \\
+        \Leftrightarrow &
+        \begin{cases}
+            B = -5/3 \\
+            C = 5/12 \\
+            A = 5/4 \\
+        \end{cases}
+    \end{align*}
+    \begin{align*}
+        X(S) &= \frac{20}{S(S^2 + 10S + 16)}\\
+        \downarrow \mathcal{L}^{-1}& \\
+        x(t) &= \frac{5}{4}u(t) - \frac{5}{3}e^{-2t}u(t) + \frac{5}{12}e^{-8t}u(t) \\
+            &= u(t)(\frac{5}{4} - \frac{5}{3}e^{-2t} + \frac{5}{12}e^{-8t})
+    \end{align*}
+\end{enumerate}
+
+\section{Exercice 2}
+
+\end{document}
