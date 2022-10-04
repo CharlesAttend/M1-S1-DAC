@@ -388,8 +388,115 @@ Désavantage d'une représentation fréquentielle : \begin{itemize}
     \item Signaux non dérivable : Avec que des portes (=des contours nettes dans images), pour l'approcher avec des $ \sin  $ il faut une infinité de $ \sin  $ 
 \end{itemize}
 
+\underline{Nouveau cours du 04/10} \\
+\section{2chantillonage}
+On doit échantilloné les signaux continues \begin{itemize}
+    \item Le fenétrage : on limite le support (domaine du signal) dans le temps
+    \item 
+\end{itemize}
 
+\subsection{Fenêtrage}
+Classiquement on multiplie pas une fonction porte.
 
+\subsubsection{1D}
+La multiplication par une fonction rectangle $ \Leftrightarrow $ faire la convolution dans le domaine fréquentiel.
+
+Mais visiblement ça complique pas mal la transformé en Fourier (voir image diapo 6 ). On retrouve des sinus cardianux. On verra en TD comment faire et si la taille de la fenêtre a une conséquence.
+
+\subsubsection{2D}
+Ici on multiplie par deux fonctions portes, ...
+Mais on a la même chose en 3D au final, on retrouve le sinus cardinal 
+
+Quand on prend une fenetre petite, la Fourier s'élargie fortement, ce qui peut la rendre illisible. Avec une fenetre large on tend vers une diract (diapo 12)
+
+\subsection{Echantillonage}
+On prend une mesure tous les x temps. Si fréquence trop faible, on n'arrive pas à reconstuire l'aspect continue, mais si trop grand on prend beaucoup de ressource de calcul.
+
+\subsubsection{1D}
+Pour faire ça on multiplie notre signal par un peigne de Dirac $ \mathrm{III} $, c'est une collection de Dirac. 
+
+Qu'est ce qui se passe dans le domaine fréquentiel ? La TF d'un peigne de Dirac c'est une peigne de Dirac, c'est plutôt contre intuitif. Mais en gros ça rend la TF périodique. 
+
+\paragraph*{Perte d'information}
+Y'a-t-il une perte d'information pendant l'échantillonnage ? Oui et non \begin{itemize}
+    \item Non Si on prend un signal borné séquentiellement. C'est à dire que la transformé de Fourier a un support borné sur l'axe des abscises
+    \item Sinon oui il y a perte
+\end{itemize}
+Liste des signaux band-limité \begin{itemize}
+    \item Rect non
+    \item sinc oui
+    \item sin oui 
+    \item cos oui 
+    \item Dirac oui 
+    \item BIEN ÉCRIRE DIAPO
+\end{itemize}
+
+\paragraph*{Quel fréquence d'échantillonnage ?} Pour pouvoir échantillons sans perte un signal, il faut utilise une fréquence max deux fois plus grande que la fréquence max du signal. C'est le théorème de Shannon. DIAPO 23 J'suis pas sur de ce que j'ai écrit. 
+
+\paragraph*{Reconstuire un signal échantillonné ?} On doit re-fenetrer. PAs compris vraiment mais en gros à la fin faux pas obtenir de courbe qui se chevauche. 
+
+\paragraph*{CCL} : Si Shannon est vérifié, toute l'information est dans la TF, on peut reconstruire le signal avec la formule de reconstruction de Shannon
+
+\paragraph*{Aliasing} Si on ne vérifie pas les dégradation on a un phénomène d'aliasing. Difficile à prédire. 
+\begin{exmp}[Cas d'une fonction sin]
+    DIAPO 30 TO 39
+    Ici ça illustre les deux cas (correct et incorrect).\begin{itemize}
+        \item Avec $ 4f_0 $, c'est suffisant pour reconstruire le signal.
+        \item Diapo 33 : à droite on a plot la formule d'interpolation de Shannon. 
+        \item On peut prendre une fréquence d'échantillonnage plus élevé mais ça change rien.
+        \item DIAPO 35 : fréquence trop basse $\rightarrow$ mauvais fenêtrage 
+        \item Diapo 37 : on peut voir une divergence des points rouge d'échantillonnage. 
+    \end{itemize}
+\end{exmp}
+
+\subsubsection{2D}
+Pareil, toujours les condition de Shannon : bande limité, fréquence d'échantillonnage. Plus restrictif car dans les deux direction. Le peigne de Dirac est représenté par une grille d'échantillonnage.
+
+On peut utiliser une grille cartésienne ou hexagonale (qui a certain avantage). Diapo 45
+
+Transformé de Fourier : il dit c'est pareil. On vas répéter le spectre dans toute les direction. Théorème de Shannon : pareil dans les deux directions. 
+
+Reconstruction : toujours possible avec une plus grosse formule.
+
+\paragraph*{Signaux à bande limité : Réalistique ? } En théorie non, jsp pk, mais en pratique on peut ignorer les fréquences de bruit créée. \begin{itemize}
+    \item En pratique ça marche bien avec les signaux lisse et stationnaire comme un ECG.
+    \item Pour les images naturels, chaque contours représente une forte fréquence (non lisse).
+    \item Exemple d'aliasing diapo 58 59 60
+\end{itemize}
+
+\paragraph*{Anti-aliasing}
+\begin{itemize}
+    \item Filtrer toute les fréquences qu'on peut pas représenter avec un filtre passe bas à partir de la moitié de la fréquence d'échantillonnage. 
+    \item Utile lorsque qu'on downsample une image. En retirant certain pixel, on perds certaine fréquence donc on crée de l'aliasing (?). Du coup on applique également un filtre aliasing.
+\end{itemize}
+
+\subsection{Quantification}
+Après l'échantillonnage on applique la quantification. But : réduire le nombre de bits nécessaire pour encoder l'image (je crois). Deux type de quantifier \begin{itemize}
+    \item Scalaire : chaque échantillon est quantifié
+    \item Vecteur : une séquence d'échantillon est quantifié
+\end{itemize}
+
+\subsubsection{Scalar quantification}
+Aucune idée de quoi on parle.
+
+\section{Transformé de Fourier discrète}
+C'est l'échantillonnage de la transformé de Fourier du signal échantillonné.  \begin{enumerate}
+    \item Transformé de Fourier du signal échantillonné. Calcul DIAPO 70 me semble pas mal.
+    \item On windows
+    \item On resample la DFT pour obtenir N valeur (comme donné à l'origine.) : ça resemble beaucoup à la série de fourier mais avec un $ k $ discret plutôt qu'un $ x $ continue. 
+\end{enumerate}
+Si on a un signal de $ N $ sample, alors la FT nous rend $ N $ valeur tel que : la formule diapo 75. 
+
+Il vas vite mais globalement pas de différence en 2D 
+
+\section{What you need to know}
+The difference between:
+\begin{enumerate}
+    \item Fourier transform of a continuous signal $\rightarrow$ a continuous function
+    \item Fourier transform of a windowed signal $\rightarrow$ a continuous function
+    \item Fourier Transform of a discrete (sampled) signal $\rightarrow$ again a continuous function
+    \item discrete Fourier transform of a discrete signal $\rightarrow$ a discrete function
+\end{enumerate}
 
 
 \end{document}
