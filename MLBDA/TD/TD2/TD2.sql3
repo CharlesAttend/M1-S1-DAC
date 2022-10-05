@@ -51,11 +51,23 @@ create type EnsBarBierre as table of BarBierre;
 -----------------------------------
 
 -- Question 3 
-create table LeBars of Bar;
-create table LeBierre of Biere;
+create table LesBars of Bar;
+create table LesBierre of Biere;
 create table LesConsomateur of Comsommateur
     nested table achete store as t1,
     nested table consomme store as t2;
+
+
+
+
+
+
+
+
+
+
+
+
 
 -- Excercice 2
 create type Etudiant as object(
