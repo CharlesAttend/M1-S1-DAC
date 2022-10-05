@@ -1,13 +1,9 @@
 -- compléter l'entête 
 -- ==================
 
--- NOM    :
--- Prénom :
-
--- NOM    :
--- Prénom :
-
--- Groupe :
--- binome :
+-- NOM    : VIN
+-- Prénom : Charles
 
 -- ================================================
+
+-- On skip les procedure pour l'instant, priorité au requete
