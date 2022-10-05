@@ -10,6 +10,7 @@
 \usepackage{amsmath}
 \usepackage{amsthm}
 \usepackage{systeme}
+\usepackage{xcolor}
 
 \usepackage{hyperref}
 \hypersetup{
@@ -47,24 +48,6 @@
 
 \begin{document}
 \maketitle
-
-\begin{enumerate}
-    \item Trouver la transformée de Laplace inverse de \begin{enumerate}
-        \item $ X(S) = \frac{10 (S+1)}{S^2 + 4S + 3} $ 
-        \item $ X(S) = \frac{10 (S+1)e^{-2S}}{S^2 + 4S + 3} $ 
-        \item $ X(S) = \frac{20}{S(S^2 + 10S + 16)} $ 
-    \end{enumerate} 
-    \item Tracer le diagramme de Bode de $ H(S) = \frac{20S(S+100)}{(S+2)(S+10)} $. Tracer la réponse en fréquence de $ H(S) $ en utilisant MatLab. Comparer les résultats \begin{align*}
-        f&=1:0.001:1000\\
-        w&=2 \pi * f \\
-        S&=i*w \\
-        H&=S \dot{} * (S+100) / \text{la fonction H du dessus} \\
-        module &= 20 * \log_{10} (abs(H)) \\
-        angle&(H) \\
-        plot&(w, module) \\
-        plot&(w, angle) \\
-    \end{align*}
-\end{enumerate}
 
 \section{Exercice 1}
 \begin{enumerate}
@@ -146,15 +129,57 @@
 
 \section{Exercice 2}
 \begin{align*}
-    H(S) &= \frac{20S(S+100)}{(S+2)(S+10)} \to _{p \to 0} \frac{20p*100}{2*20} = \frac{100p}{2} = 50p \\
-    20 \log_{10} \left| H(jw) \right|  &= 20 \log_{10} \left| 50jw \right| = 20 \log_{10} 50w \\
-    \text{Avec } w = 1 &: 20 \log_{10} \left| H(jw) \right| = 20 \log_{10} 50
+    H(S) &= \frac{20S(S+100)}{(S+2)(S+10)} \\
+        &= \frac{20*100}{2*10} \frac{S(1 + S/100)}{(1+S/2)(1+S/10)} \\
+        &= 100 * \frac{S(1 + S/100)}{(1+S/2)(1+S/10)} \\
 \end{align*}
-Grâce à ces calculs préalable, on peut maintenant tracer le diagramme de Bode du gain dans la figure \ref*{BodeGain}
+Calcul des niveaux de base
+\begin{itemize}
+    \item Le gain : $ 20 \log_{} 100  = 40db$ 
+    \item Le phase : $ = 0 $ car $ 100 > 0 $  
+\end{itemize}
+Grâce à ces calculs préalable, on peut maintenant tracer le diagramme de Bode du gain dans la figure \ref{BodeGain}. Voici sa légende : \begin{itemize}
+    \item \color{black} Niveau de base : 40db \color{orange}
+    \item Zero à l'origine: $ (S) \rightarrow 20 \frac{db}{dec}$ \color{red}
+    \item $ (1 + \frac{S}{100}) \rightarrow +20 \frac{db}{dec}$ \color{green}
+    \item $ (1 + \frac{S}{2}) \rightarrow -20 \frac{db}{dec}$ \color{blue}
+    \item $ (1 + \frac{S}{10}) \rightarrow -20 \frac{db}{dec}$ \color{yellow}
+    \item Résultante \color{black}
+\end{itemize}
+
 \begin{figure}[htbp]
     \centering
-    \includegraphics*[]{}
+    \includegraphics*[width=\textwidth]{./gain.png}
     \caption{Diagramme de Bode du gain}
     \label{BodeGain}
+\end{figure}
+
+Puis on peut tracer le diagramme de la phase sur la figure \ref{BodePhase}. Voici sa légende : 
+\begin{itemize}
+    \item \color{black} Niveau de base : 0 \color{orange}
+    \item Zero à l'origine: $ (S) \rightarrow +\frac{\pi}{2}$ \color{red}
+    \item $ (1 + \frac{S}{100}) \rightarrow +\frac{\pi}{4}$ sur $ [10,1000] $ \color{green}
+    \item $ (1 + \frac{S}{2}) \rightarrow -\frac{\pi}{4}$ sur $ [0.2,20] $ \color{blue}
+    \item $ (1 + \frac{S}{10}) \rightarrow -\frac{\pi}{4}$ sur $ [1,100] $ \color{yellow}
+    \item Résultante \color{black}
+\end{itemize}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics*[width=\textwidth]{./phase.png}
+    \caption{Diagramme de Bode de la phase}
+    \label{BodePhase}
+\end{figure}
+\subsection{MatLab}
+Voici deux diagramme de Bode:
+\begin{itemize}
+    \item Le premier dans la figure \ref{BodeMatLab} fut généré avec la fonction $ bode() $ de la toolbox de signal processing.
+    \item Le deuxième généré avec le code indiqué.
+\end{itemize}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics*[]{untitled.png}
+    \caption{Figure généré avec la fonction $ bode() $ }
+    \label{BodeMatLab}
 \end{figure}
 \end{document}
