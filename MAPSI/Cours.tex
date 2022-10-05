@@ -169,8 +169,8 @@ Echantillons : \begin{itemize}
     .\]
 \end{defn}
 
-CCL:
-\begin{itemize} VOIR DIAPO
+CCL: VOIR DIAPO
+\begin{itemize} 
     \item Probabilité
     \item Marginalisation
     \item Conditionnement
@@ -364,13 +364,83 @@ CCL:
     En faite la grosse différence c'est la dernière ligne du diapo 34. On pose, on invente l'information a priori de la proba de chaque paramètre qu'on vas tester. Cette information vas permettre d'être utiliser dans le modèle bayésien. On l'a choisi en fonction d'une loi normale. Fin du cours sans qu'il ait fini.
 \end{exmp}
 
+\underline{Nouveau cours du 04/10} \\
 
+\section{Principes d'apprentissage avec donnée manquantes}
+\begin{itemize}
+    \item Solution ez : Supprimer les lignes avec des données manquantes. Problème, ça peut changer les probabilités qu'on peut apprendre.
+    \item Remplacer les valeurs manquante par les plus probable : C'est équivalent à l'algo des K-Means. Mais pareil ça change les probas. Mais la valeur la plus probable peut quand même valoir 15\% si notre variables aléatoire peut prendre beaucoup de valeur. 
+    \item Replacer les valeurs manquante par toutes les valeurs possible : marche pas non plus. 
+    \item Tenir compte de la distribution des valeur : mais ça change encore X 
+    \item \textbf{Solution algo EM :}Replacer les valeurs manquante par toutes les valeurs possible ponderers par leur probabilité d'apparition. Cette fois-ci les proba sont équivalente entre les deux tableaux. 
+\end{itemize}
+Idée de K-MEans et EM : 
+\begin{itemize}
+    \item Se donner un modèle initial (pas trop mauvais)
+    \item Ce modèle $\rightarrow$ Donne des données complètés
+    \item Apprendre un nouveau modèle avec ces données
+    \item Boucle
+\end{itemize}
+Y'a-t-il convergence ? 
 
+\subsection{L'algorithme EM}
 
+Notation : 
+\begin{itemize}
+    \item $ x^o $  données observées, $ x^h $ données manquantes, $ x = x^o \cup x^h $ 
+    \item $M_{ij} = P(r_i^j \in x^h)$ proba de position des données manquantes
+\end{itemize}
 
+Plusieurs cas sur les proba de missing data : 
+\begin{itemize}
+    \item Missing Completely at Random (MCAR) : $P(M|x) = P(M)$ Aucune relation entre le fait qu'une donnée soit manquante ou observée
+    \item Missing at Random (MAR) : $P(M|x) = P(M|xo)$ données manquantes en relation avec les données observées mais pas avec les autres données manquantes
+    \item Not Missing At Random (NMAR) : $P(M|x)$ données   manquantes en relation avec toutes les données
+\end{itemize}
+On vas regarder que \textbf{MCAR}.
 
+On calcule une log vraissemblance sur les données observées
+\begin{align*}
+    \log_{} L(x^o, \Theta ) = \sum_{i=1}^{n}\log_{} P(x_i^o | \Theta ) = \sum_{i=1}^{n}\log_{} (\sum_{x_i^h \in x^h}^{}P(x_i^o, x_i^h | \Theta ))
+\end{align*}
+On fait apparaitre les $ x^h $ avec la formule de somme loi marginale. Rappel : on leur a donnée des probas manuellement. 
 
+Soit $ Q_i(x_i^h) $ une loi de proba \textbf{quelconque} alors on peut l'insérer dans l'équation pour ensuite utiliser l'équation de Jensen des fonction convexe/concave. Comme ça on vas pouvoir sortir la somme du log. 
 
+Bref, pour plus de détail sur les math voir le diapo, finalement on arrive diapo 16. 
+
+Algo EM : \begin{enumerate}
+    \item Choisir valeur initale 
+    \item \textbf{Pour chaque ligne}, je fais le calcul diapo 17 
+    \item Maximisation 
+    \item Boucle tant que pas de convergence
+\end{enumerate}
+En faite on converge vers un optimum \textbf{local} qui dépend du point initial. Donc du coup on en test plein 
+
+\begin{exmp}[]
+    DIAPO 18
+    \begin{enumerate}
+        \item On est pas obligé de faire cette méthode d'initialisation. C'est juste une sorte d'indication mais au final on défini encore en random après 
+        \item 
+    \end{enumerate}
+\end{exmp}
+
+Pourquoi ça converge ? Grace à l'inégalité de Jensen et la concavité du log. Voir diapo 26 et 27. 
+
+\section{Mixure de gaussiennes}
+Les données suivent plusieurs gaussienne différente ? 
+
+\begin{exmp}[application : apprentissage de prix fonciers]
+    On a un échantillon de prix de logement avec leur caractéristique et le quartier. Le prix est sur une gaussienne de paramètre variant en fonction du quartier. (Je suis pas sur de si on a l'info sur le quartier, je crois on cherche à la prédire avec de l'apprentissage non-supervisé)
+
+    On peut tenter de calculer directement ça je crois mais bref ça marche pas, pas de solution analytiquement. Solution $\rightarrow$ EM 
+
+    On créer une colonne vide, pleine de valeur manquante pour le quartier et on vas faire EM dessus. C'est assez drôle on créer des données à partir de rien. 
+\end{exmp}
+
+\begin{exmp}[Classification d'image]
+    Deux dernière diapo
+\end{exmp}
 
 
 
