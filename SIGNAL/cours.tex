@@ -661,7 +661,7 @@ Réponse d'un système temps-discret à une entrée externe
     \[
         \frac{X[Z]}{Z} = \frac{8Z - 19}{Z(Z-2)(Z-3)} = \frac{A}{Z} \frac{B}{Z-2} + \frac{B}{Z-3}
     .\]
-    Comem ça on pourra rebasculer le $ Z $ et retomber sur la somme de forme désirée. \\
+    Comme ça on pourra rebasculer le $ Z $ et retomber sur la somme de forme désirée. \\
     Décomposition en élément simple : $ A = \frac{-19}{6}, B = \frac{3}{2}, C = \frac{5}{3} $. Avec la ligne 6 du tableau, on retrombe sur
     \begin{align*}
         X[Z] &= \frac{-19}{6} \frac{Z}{Z} + \frac{3}{2} \frac{Z}{Z-2} + \frac{5}{3} \frac{Z}{Z-3} \\
@@ -670,20 +670,153 @@ Réponse d'un système temps-discret à une entrée externe
     \end{align*}
 \end{exmp}
 
+\underline{Nouveau \textbf{TP3} du 06/10} \\
 
+\subsection{Réponse en fréquence d'un système en Temps-Discret }
 
+\begin{exmp}[]
+    Trouvez la réponse en fréquence de $ H(Z) = \frac{Z}{Z - 0.8} = \frac{1}{1 - 0.8Z^{-1}} $ 
 
+    On remplace $ Z = e^{j \Omega } $  \begin{align*}
+        H[Z] &= \frac{1}{1-0.8 e^{-j \Omega }} \\ 
+            &= \frac{1}{1 - 0.8(\cos \Omega - j \sin \Omega} \\
+            &= \frac{1}{(1 - 0.8 \cos \Omega ) + j (0.8 \sin \Omega )} \\ 
+        \left| H(Z) \right| &= \frac{1}{\sqrt[]{(1 - 0.8 \cos \Omega )^2 + (0.8 \sin \Omega )^2}} \\
+        \lfloor H(e^{j \Omega }) &= - \arctan ( \frac{0.8 \sin \Omega }{1 - 0.8 \cos \Omega })
+    \end{align*}
+    Pour la phase : \begin{itemize}
+        \item Si $ \Omega = 1 $ alors ...
+        \item Si $ \Omega = 0 $ alors ... 
+    \end{itemize}
+    Graphique dans OneNote. \\
+\end{exmp}
+\textbf{La réponse en fréquence d'un système temps-discret est périodique.} \\
+La période dépend de la fréquence d'échantillonnage $ T = 1 / Fs \Leftrightarrow $ Période = inverse de la fréquence d'échantillonnage. Dans notre cas $ \omega T = \frac{\Omega }{Fs} = \frac{ \pi f}{Fs}$. \\
+Pour le pas brouiller le signal, il faut que la bande (de fréquence) soit 2 fois plus grande que la fréquence d'échantillonnage $ Fs > 2B $. 
 
+\subsection{Stabilité des systèmes Temps-Discret}
+On se souviens des règles de stabilité en temps continue dans le plan complexe $ S = \sigma + j \omega  $ 
+\begin{itemize}
+    \item A gauche de l'axe des imaginaires : Stable 
+    \item A droite de l'axe des imaginaires : Instable
+    \item Sur l'axe des imaginaires : Conditionnellement stable
+\end{itemize}
+Pour le cas discret, on a un cercle unitaire $ e $ dans le plans complexe $ Z = \Sigma + j \Omega  $ 
+\begin{itemize}
+    \item Dans le cercle unitaire : Stable
+    \item En dehors le cercle unitaire : Instable
+    \item Sur le cercle unitaire : Conditionnellement stable
+\end{itemize}
+Comparaison entre les deux graphiques dans OneNote.
+\begin{proof}[Preuve: ]
+    On a huit cas (schéma dans OneNote): \begin{itemize}
+        \item Pole sur $ \mathbb{R}^+ $ : $ H[Z] = \frac{Z}{Z - \gamma } \to ^{z^{-1}} h[n] = \gamma ^n u[n] \to _{n \to 0} 0 $ Converge donc $\rightarrow$ STABLE
+        \item Pole sur $ \mathbb{R}^- $ : il a pas détailler le calcul mais le graphique a changer mais Converge donc $\rightarrow$ STABLE 
+        \item Double pôle dans le cercle : $ H[Z] = \frac{(0.5 r e^{j \theta }) Z}{Z - \gamma } \frac{(0.5 r e^{j \theta })Z}{Z - \gamma ^*} \Leftrightarrow h[z] = v \left| \gamma  \right|^n \cos (\beta n + \theta ) u[n] $ (je sais pas d'où il sort ça comme ça)  $\rightarrow$ STABLE
+        \item Double pôle en dehors du cercle : pas de détail des calculs mais graphique divergent $\rightarrow$ INSTABLE
+        \item Pôle réel égal à 1 : $ H[Z] = \frac{Z}{Z - \gamma } \Leftrightarrow h[n] = \gamma ^n u[n] $, cette fois-ci le gamma égal 1 donc on a une fonction continue.$\rightarrow$ Conditionnellement stable
+        \item Pôle réel égal à -1 : cette fois ci on alterne avec le $ (-1)^n $ $\rightarrow$ Conditionnellement stable
+        \item Deux pôle sur le cercle : même calcul que précédemment mais cette fois-ci le module de gamma vaut 1 donc pas de convergence, juste une stabilité conditionnelle. $\rightarrow$ Conditionnellement stable
+        \item Double pôle positif : $ H[Z] = \frac{\gamma Z}{(Z - \gamma )^2} \Leftrightarrow h[n] = n \gamma ^n u[n] $ divergent donc $\rightarrow$ INSTABLE 
+        \item Double pôle négatif : divergence + alternance donc $\rightarrow$ INSTABLE 
+    \end{itemize}
+\end{proof}
 
+\textbf{CCL : Condition de stabilité} d'un système temps discret. 
+\begin{itemize}
+    \item Un système T.D. est stable si $\rightarrow$ touts les pôles sont à l'intérieur du cercle unitaire.
+    \item Un système T.D. est instable si \begin{itemize}
+        \item Au moins un pôle est à l'extérieur du cercle unitaire
+        \item Il existe des pôles multiples sur le cercle unitaire
+    \end{itemize} 
+    \item Un système T.D. est conditionnellement stable si $\rightarrow$ il existe des pôles simples sur le cercle unitaire.
+\end{itemize}
 
+\subsection{Placement des pôles et des éros dans le plan complexe $ Z $ }
+\begin{align*}
+    H(Z) &= \frac{(Z + z_1)\dots(Z + z_M)}{(Z + p_1)\dots(Z + p_n)} \\
+    H(e^{i \Omega }) &= \frac{r_1 e^{j \phi _1} \dots (r_M e^{j \phi _M})}{(d_1 e^{j \theta _1})\dots(d_N e^{j \theta _N})} \\
+        &= \frac{r_1\dots r_M}{d_1 \dots d_N}e^{j[(\phi _1 + \dots + \phi _M) - (\theta _1 + \dots + \theta _N)]} \\
+    \left| H(e^{j \Omega}) \right| &= \frac{r_1\dots r_M}{d_1 \dots d_N} \\ 
+    \lfloor H(e^{j \Omega } &= (Q_1+\dots+Q_M)-( \theta _1 + \dots + \theta _N)
+\end{align*}
 
+\subsubsection{Tracer le module et la phase d'un point réel}
+Du coup on vas tracer $ \left| H(e^{j \omega }) \right| = \frac{r_1 \dots r_M}{d_1 \dots d_N} = \frac{1}{d_1}  $ voir le dessin au debut de la section dans OneNote.
+Puis on regarde la distance avec chaque point du cercle, elle vas varier, augmenter et descendre. C'est ce qu'on vas ploter. Tout est dans OneNote.
 
+Pour la phase, on vas avoir la même approche mais avec l'angle.
 
+\subsubsection{Filtre}
+Trois exemple de filtre dans OneNote
+\begin{itemize}
+    \item Filtre passe-bas : On place les pôles proche de $ 0 $ (je crois)
+    \item Filtre passe bande : On place les pôles proche de $ \frac{\pi }{2} $ 
+    \item Filtre passe-haut : On place les pôles proche de $ \pi  $ 
+    \item Je pense qu'on peut faire varier la valeur en fonction de ce qu'on veux, ici c'est un exemple
+\end{itemize}
 
+\section{Réalisation d'un système temps-continue}
+\begin{align*}
+    H(S) &= \frac{(S + z_1) \dots (S + z_M)}{(S + p_1) \dots (S+p_N)} \\
+        &= \frac{b_M S^M + \dots + b_1 S + b_0}{S^N + a_{n-1} + \dots + a_1S + s_0}
+\end{align*}
 
+\begin{exmp}[]
+    \begin{align*}
+        H(S) &= \frac{b_3 S^3 + b_2 S^2 + b_1S + b_0}{S^3 + a_2 S^2 + a_1 S + a_0} \\
+            &= \frac{b_3 S^3 + b_2 S^2 + b_1S + b_0 / S^3}{S^3 + a_2 S^2 + a_1 S + a_0 / S^3} \\
+        H(S) = \frac{Y(S)}{X(S)} &= \frac{b_3 + b_2/S + b_1/S^2 + b_0 /S^3}{1 + a_2/S + a_1/S^2 + a_0/S^3}
+    \end{align*}
+    Voir le circuit dans OneNote. + les calculs sur les différentes sorties.
 
+    Matériel nécéssaire pour la réalisation de la fonction de transfert : 
+    \begin{itemize}
+        \item 6 intégrateurs
+        \item 7 gains
+        \item 6 additionneurs
+    \end{itemize}
 
+    On peut aussi avoir une forme plus optimisé prenant moins de matériel, d'e nergie et de place. Voir photo OneNote
+\end{exmp}
 
+\section{Réalisation d'un système temps-discret}
+\begin{align*}
+    z\{x[n-m]u[n-m]\} &= Z^{-m}X[Z] \\
+    z\{x[n+m]u[n]\} &= Z^{+m}X[Z] \\
+    \text{Avec toute les conditions initiale nulles}
+\end{align*}
+Il est facile de décaler le signal en arrière dans le temps. Donc on vas utiliser la première ligne comme bloc principal.
 
+\begin{exmp}[]
+    \begin{align*}
+        H(Z) &= \frac{b_3 Z^3 + b_2 Z^2 + b_1Z + b_0}{Z^3 + a_2 Z^2 + a_1 Z + a_0} \\
+        &= \frac{b_3 Z^3 + b_2 Z^2 + b_1Z + b_0 / Z^3}{Z^3 + a_2 Z^2 + a_1 Z + a_0 / Z^3} \\
+        H(Z) = \frac{Y(Z)}{X(Z)} &= \frac{b_3 + b_2/Z + b_1/Z^2 + b_0 /Z^3}{1 + a_2/Z + a_1/Z^2 + a_0/Z^3} \\
+        &= \frac{b_3 + b_2 Z^{-1} + b_1 Z^{-2} + b_0 Z^{-3}}{1 + a_2 Z^{-1} + a_1 Z^{-2} + a_0 Z^{-3}}
+    \end{align*}
+    On a presque le même circuit mais cette fois-ci on a un bloc $ Z^{-1} $ à la place de $ 1/S $ 
+    
+    Matériel nécessaire pour la réalisation de la fonction de transfert : 
+    \begin{itemize}
+        \item 3 retards
+        \item 7 gains (multiplieur)
+        \item 6 additionneurs
+    \end{itemize}
+\end{exmp}
+
+\paragraph*{DM3 pour mercredi 12/10}
+\subparagraph*{Exercice 1}
+Avec $ H(S) = \frac{S^2 + w_0^2}{S^2 + 2w_0 \cos \theta + w_0^2} $. \begin{enumerate}
+    \item Trouvez les pôles et les zéros de cette fonction de transfert
+    \item Tracer les pôles et les zéros dans le plans complexe $ S $ 
+    \item Quel type de filtre est réalisé par cette fonction de transfert ? Passe-bas, passe-haut, passe-bande, coupe-bande
+    \item Avec MatLab tracez la réponse en fréquence de ce filtre pour \begin{enumerate}
+        \item $ \theta = 60 \text{°}$
+        \item $ \theta = 80 \text{°}$
+        \item $ \theta = 87 \text{°}$
+    \end{enumerate}
+    et avec $ w_0 = 2 \pi f_0, f_0 = 50hz $ 
+\end{enumerate}
 
 \end{document}
