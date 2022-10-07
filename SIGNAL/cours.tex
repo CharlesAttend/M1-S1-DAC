@@ -819,4 +819,80 @@ Avec $ H(S) = \frac{S^2 + w_0^2}{S^2 + 2w_0 \cos \theta + w_0^2} $. \begin{enume
     et avec $ w_0 = 2 \pi f_0, f_0 = 50hz $ 
 \end{enumerate}
 
+\underline{Nouveau \textbf{cours3} du 07/10} \\
+
+\section{Filtre}
+\subsection{Spécification d'un filtre temps-continu}
+On ne peux pas faire un filtre parfait, du coup on se donne une sorte de marge, un intervalle dans lequel on s'autorise à passer. Voir OneNote pour un dessin
+\subsubsection{Approximation de Butterworth}
+\begin{defn}[]
+    \begin{align*}
+        \left| H(jw)^2 \right| &= \frac{1}{1+ (\frac{w}{w_c})^{2N}}
+    \end{align*}
+    Où $ N $ est l'ordre du filtre. On prend $ 2N $ car on ne se serre pas des pôles à droite donc on en prend deux fois plus \\
+    $\rightarrow$ Equation d'un cercle \\
+    $\rightarrow$La fonction de transfer contient uniquement des pôles
+\end{defn}
+Comment trouver l'ordre du filtre de Butterworth à partir des spécifications ?
+\begin{align*}
+    R_p &= -10 \log_{10} \frac{1}{1 + (\frac{w_p}{w_c})^{2N}} \\
+    A_s &= -10 \log_{10} \frac{1}{1 + (\frac{w_s}{w_c})^{2N}} \\
+    \rightarrow N &= \left\lceil \log_{10} \frac{(10^{R_p/10} - 1)(10^{A_s/10} - 1)}{2 \log_{10} \frac{w_p}{w_s}}\right\rceil \\
+    w_{cp} &= \frac{w_p}{(10^{R_p/10} - 1)^{1/2N}} \\
+    w_{cs} &= \frac{w_w}{(10^{A_p/10} - 1)^{1/2N}} \\
+    \rightarrow w_c &= \frac{w_{cp} + w_{cs}}{2}
+\end{align*}
+Ici $ N $ donne l'ordre (= le nombre de pôles), et les trois $ w $ le rayon du cercle 
+
+\begin{xca}[]
+    Réalisez un filtre de Butterworth pour les spécifications suivantes : $ w_p = 0.2 \pi , w_s = 0.3 \pi , R_p = 7dB, A_s = 16 dB $. \begin{enumerate}
+        \item Calculer les valeurs de $ N $ et $ w_c $ 
+        \item Trouvez la position des pôles dans le plan complexe $ S $ 
+        \item Ecrire une relation pour la fonction de transfert $ H(S) $ 
+        \item Trancez le schéma en bloc pour la réalisation du filtre
+        \item Tracer le module et la phase de $ H(S) $ 
+    \end{enumerate}
+
+    \begin{enumerate}
+        \item \begin{align*}
+            N &= \left\lceil \log_{10} \frac{(10^{R_p/10} - 1)(10^{A_s/10} - 1)}{2 \log_{10} \frac{w_p}{w_s}}\right\rceil = \left\lceil 2.8 \right\rceil = 3 \\
+            w_{cp} &= \frac{w_p}{(10^{R_p/10} - 1)^{1/2N}} \\
+            w_{cs} &= \frac{w_w}{(10^{A_p/10} - 1)^{1/2N}} \\
+            \rightarrow w_c &= \frac{w_{cp} + w_{cs}}{2} \approx 0.5
+        \end{align*}
+        On a un ordre 3 donc 6 pôles : $ H(S) = \frac{w_c^N}{(S-p_1)(S-p_2)(S-p_3)} $ 
+        \item On a donc un cercle de rayon $ 0.5 $ avec $ 2*3 $ pôles. Voir OneNote pour le graph. Les pôles $ p_0, p_1, p_5 $ sont instables, on utilise $ p_2, p_3, p_4 $.\begin{align*}
+            p_2 &= w_c e^{j 2 \pi /3} = w_c \cos (\frac{2 \pi}{3}) + j w_c \sin (\frac{2 \pi }{3}) = -0.25 + j 0.433 \\
+            p_4 &= w_c e^{j \pi } = -0.5 \\
+            p_3 &= w_c e^{j \frac{4 \pi }{3}} = w_c \cos (\frac{4 \pi}{3}) + j w_c \sin (\frac{4 \pi}{3}) = -0.25 - j 0.433
+        \end{align*} 
+        \item 
+        \begin{align*}
+            H(S) &= \frac{(0.5)^3}{(S+0.5) (S - (-0.25+j 0.433)) (S - (-0.25 - j 0.433))} \\
+                &= \frac{(0.5)^3}{S^3 + a_2 S^2 + a_1 S + a_0} \\
+                &= \frac{(0.5)^3 / S^3}{1 + a_2 S^{-1} + a_1 S^{-2} + a_0 S^{-3}} \\
+        \end{align*} 
+        \item OneNote \begin{align*}
+            V(S) &= X(S) + (-a_2 S^{-1} - a_1 S^{-2} - a_0 S^{-3} )V(S) \\
+            \Leftrightarrow (-a_2 S^{-1} - a_1 S^{-2} - a_0 S^{-3} ) V(S) &= X(S) \\ 
+            \Leftrightarrow V(S) &= \frac{X(S)}{(-a_2 S^{-1} - a_1 S^{-2} - a_0 S^{-3} )}
+            Y(S) &= \frac{b_0 V(S)}{S^3} &= \frac{ b_0S^{-3} X(S) }{1 + a_2 S^{-1} + a_1 S^{-2} + a_0 S^{-3}}
+        \end{align*}
+        \item il a dit on sais a quoi s'attendre, on le fera en TP avec matlab
+    \end{enumerate}
+\end{xca}
+
+\subsection{Spécification d'un filtre temps discret}
+Petit schéma dans OneNote pour les notations
+
+\subsubsection{Transformation bilinéaire}
+\[
+    H(Z) = H(S) | S = \frac{2}{T} \frac{1 - Z^{-1}}{1 + Z^{-1}}
+.\]
+La transformation bilinéaire ne change pas le module. Donc $ R_p (T.D.) = R_p(T.C.) $ et $ A_s(T.D.) = A_s(T.C.) $. \\
+La transformation bilinéaire ne change pas les fréquences avec la relation suivante : $ \frac{2}{T} \tan \frac{\Omega }{2} = w $ \\
+Donc $ \frac{2}{T}\tan (\frac{\Omega_p}{2}) = w_p $ et $ \frac{2}{T} \tan (\frac{\Omega _s}{2}) $ 
+
+
+
 \end{document}
