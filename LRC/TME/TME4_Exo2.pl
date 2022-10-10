@@ -1,0 +1,1 @@
+contatene(X,Y,Z) :- Z = [X|Y]. % Non il faut utiliser une récursion, voir photo du 10/10
