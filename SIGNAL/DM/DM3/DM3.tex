@@ -1,0 +1,65 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage[french]{babel}
+
+\usepackage[default,scale=0.95]{opensans}
+\usepackage[T1]{fontenc}
+\usepackage{amssymb} %math
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{systeme}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={DM3 SIGNAL},
+    % pdfpagemode=FullScreen,
+    }
+\urlstyle{same} %\href{url}{Text}
+
+\theoremstyle{plain}% default
+\newtheorem{thm}{Théorème}[section]
+\newtheorem{lem}[thm]{Lemme}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem*{cor}{Corollaire}
+%\newtheorem*{KL}{Klein’s Lemma}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Définition}[section]
+\newtheorem{exmp}{Exemple}[section]
+% \newtheorem{xca}[exmp]{Exercise}
+
+\theoremstyle{remark}
+\newtheorem*{rem}{Remarque}
+\newtheorem*{note}{Note}
+%\newtheorem{case}{Case}
+
+
+
+\title{DM3 SIGNAL}
+\author{Charles Vin}
+
+\begin{document}
+\maketitle
+
+\paragraph*{DM3 pour mercredi 12/10}
+\subparagraph*{Exercice 1}
+Avec $ H(S) = \frac{S^2 + w_0^2}{S^2 + 2w_0 \cos \theta + w_0^2} $. \begin{enumerate}
+    \item Trouvez les pôles et les zéros de cette fonction de transfert
+    \item Tracer les pôles et les zéros dans le plans complexe $ S $ 
+    \item Quel type de filtre est réalisé par cette fonction de transfert ? Passe-bas, passe-haut, passe-bande, coupe-bande
+    \item Avec MatLab tracez la réponse en fréquence de ce filtre pour \begin{enumerate}
+        \item $ \theta = 60 \text{°}$
+        \item $ \theta = 80 \text{°}$
+        \item $ \theta = 87 \text{°}$
+    \end{enumerate}
+    et avec $ w_0 = 2 \pi f_0, f_0 = 50hz $ 
+\end{enumerate}
+
+
+\end{document}
