@@ -49,7 +49,7 @@
 
 \paragraph*{DM3 pour mercredi 12/10}
 \subparagraph*{Exercice 1}
-Avec $ H(S) = \frac{S^2 + w_0^2}{S^2 + 2w_0 \cos \theta + w_0^2} $. \begin{enumerate}
+Avec $ H(S) = \frac{S^2 + w_0^2}{S^2 + 2Sw_0 \cos \theta + w_0^2} $. \begin{enumerate}
     \item Trouvez les pôles et les zéros de cette fonction de transfert
     \item Tracer les pôles et les zéros dans le plans complexe $ S $ 
     \item Quel type de filtre est réalisé par cette fonction de transfert ? Passe-bas, passe-haut, passe-bande, coupe-bande
@@ -61,5 +61,45 @@ Avec $ H(S) = \frac{S^2 + w_0^2}{S^2 + 2w_0 \cos \theta + w_0^2} $. \begin{enume
     et avec $ w_0 = 2 \pi f_0, f_0 = 50hz $ 
 \end{enumerate}
 
+\begin{enumerate}
+    \item Trouvons les racines du dénominateur : $ S^2 + 2Sw_0\cos \theta  $ \begin{itemize}
+        \item $ \Delta = (2w_0 \cos \theta )^2 - 4w_0^2  = 4 w_0^2 \cos ^2 \theta - 4 w_0^2 = 4w_0^2 ( \cos^2 \theta - 1)$ 
+        \item $ \sqrt[]{\Delta } = 2 w_0 \sqrt[]{\cos ^2 \theta - 1} $ 
+        \item Si $ w_0 = 0 $ ou si $ \theta = 0 $ alors $ \Delta = 0 $ il n'y a pas de racine.
+        \item Sinon $ \forall w_0 \in R^*, \theta \in R^*, w_0^2 > 0, \cos ^2 (\theta )- 1 < 0 \Rightarrow \Delta < 0$ 
+        \item Dans ce cas il y a deux racines complexes : $ \frac{-(2w_0 \cos \theta ) \pm i*2 w_0 \sqrt[]{\cos ^2 \theta - 1}}{2} = -w_0 \cos \theta \pm i * \sqrt[]{\cos ^2 \theta -1 }$ 
+    \end{itemize} 
+    \begin{align*}
+        H(S) &= \frac{S^2 + w_0^2}{S^2 + 2Sw_0 \cos \theta + w_0^2} \\
+        &= \frac{(S - iw_0)(S + iw_0)}
+        {(S - w_0 \cos \theta \pm i * \sqrt[]{\cos ^2 \theta -1 }) (S + -w_0 \cos \theta \pm i * \sqrt[]{\cos ^2 \theta -1 })} \\
+    \end{align*}
+    On a donc deux pôles : $ \pm i*w_0(-\cos \theta + \sqrt[]{\cos^2 \theta - 1 }) $ et deux zéros $ \pm iw_0 $
+    
+    \item On pose $ w_0 = 2 \pi f_0, f_0 = 50hz $. Pour les coordonnes des points, voir la table \ref*{pt}. Pour le plot des points, voir la figure \ref{plot_pt}.\\
+    On remarque que lorsque si $ \cos \theta  < 0 $ alors le système est instable. Si $ \cos \theta =0 $ le système est conditionnellement stable.
+    \begin{table}[!ht]
+        \centering
+        \begin{tabular}{|l|l|l|l|l|}
+        \hline
+            $\theta$ & $\pi/2$ & $\pi/4$                                                & $\pi/3$                                           & $ 2\pi /3 $   \\ \hline
+            $z_1$ & $(0,w_0)$   & $(0,w_0)$                                             & $(0,w_0)$                                         & $(0,w_0)$     \\ \hline
+            $z_2$ & $(0, -w_0)$ & $(0, -w_0)$                                           & $(0, -w_0)$                                       & $(0, -w_0)$   \\ \hline
+            $p_1$ & $(0, w_0)$  & $(-w_0*\frac{\sqrt[]{2}}{2}, \frac{w_0}{\sqrt[]{2}})$  & $(-\frac{w_0}{2}, \frac{\sqrt[]{3}}{2}w_0)$      & $(\frac{w_0}{2}, \frac{\sqrt[]{3}}{2}w_0)$ \\ \hline
+            $p_2$ & $(0, -w_0)$ & $(-w_0*\frac{\sqrt[]{2}}{2}, -\frac{w_0}{\sqrt[]{2}})$  & $(-\frac{w_0}{2}, -\frac{\sqrt[]{3}}{2}w_0)$    & $(\frac{w_0}{2}, -\frac{\sqrt[]{3}}{2}w_0)$ \\ \hline
+        \end{tabular}
+        \caption{Coordonnées des pôles et des zéros pour $ w_0 = 2 \pi * 50 $}
+        \label{pt}
+    \end{table}
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics*[width=.75\textwidth]{./pole_zero.png}
+        \caption{Pôle et zéros pour $ w_0 = 2 \pi * 50 $ }
+        \label{plot_pt}
+    \end{figure}
+
+
+    \item Les points étant sur la droite 
+\end{enumerate}
 
 \end{document}
