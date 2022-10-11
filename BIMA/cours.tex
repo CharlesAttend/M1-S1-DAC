@@ -498,5 +498,189 @@ The difference between:
     \item discrete Fourier transform of a discrete signal $\rightarrow$ a discrete function
 \end{enumerate}
 
+\underline{Nouveau cours du 11/10} \\
+
+\section{Linear filtering}
+\subsection{Linear time-invariant system}
+\begin{itemize}
+    \item Linéaire + invariant dans le temps $\rightarrow$ Convolution.
+    \item Filtrer en espace $ \Leftrightarrow $ filtrer en fréquence par la convolution. Voir les deux formules diapo 7
+    \item Avantage et inconvénient des deux méthodes : dépendra de ce qu'on fait en pratique 
+    \item La même chose en 1D discret, 2D Discret.
+    \item On retient que c'est une convolution quoi mdr
+\end{itemize}
+
+\subsection{Spacial filtering}
+Pourquoi filter : \begin{itemize}
+    \item Virer le bruit, trouver les bords 
+    \item Globalement on utilise une combinaison linéaire des pixel voisin pour déduire le nouveau pixel
+    \item $ . \star h $ opérateur qui s'applique sur chaque pixel
+\end{itemize}
+\begin{defn}[le bruit]
+    \begin{itemize}
+        \item processus indésirable dont on connait idéalement la loi
+        \item typiquement gaussien (type neige télé), ou impulse (arrive régulièrement dans les capteurs)
+        \item Le flou est un bruit
+    \end{itemize}
+\end{defn}
+\begin{exmp}[]
+    Exemple de bruit diapo 19 : \begin{itemize}
+        \item bruit gaussien
+        \item poivre et sel pour la deuxième image 
+        \item ?
+        \item Bruit multiplicatif : grain
+    \end{itemize}
+\end{exmp}
+
+Filtre spacial : 
+\begin{itemize}
+    \item On prend chaque pixel et on regarde les pixel autour 
+    \item 2D : Formule plus simple à lire : pour le pixel $ i,j $ on regarde grâce aux sommes les pixel autour, pondéré par les valeurs de $ h $ 
+    \item Deux cas pour $ h $ : finit (FIR) ou infini (IIR)
+\end{itemize}
+FIR Filter : 
+\begin{itemize}
+    \item Deux versions du filtre : une antisymétrique, quand on regarde en bas à droite on vas chercher la valeur en haut à droite. La version symétrique existe. C'est comme ça pour garder la commutativité de la convolution il parrain. 
+    \item Algo pour le faire : DIAPO 24
+\end{itemize}
+
+On déplace une fenêtre sur chaque pixel. Comment faire pour les bords ? 
+\begin{itemize}
+    \item "Convolution linéaire" : En faite par la convolution si la fonction image vaut zéros alors la convolution vaut zéros. Fonctionne super bien quand la fonction est a support compacte. Mais sur une photo en réalité on a la scène qui est hors cadre qui est importante donc hypothèse bof validé. 
+    \item "Convolution circulaire" : j'ai loupé merde
+    \item On rogne l'image en ne traitant pas les bords.
+\end{itemize}
+
+Smoothing linear filters : 
+\begin{itemize}
+    \item Pour réduire le bruit on peut faire la moyenne des pixel autour. 
+    \item Exemple de la matrice $ h $ diapo 29
+    \item $\rightarrow$ on réduit les détail
+    \item Comment ça se comporte en fréquence ? Filtre passe bas, idéal ? Voir TME
+\end{itemize}
+
+Gaussian Smoothing :
+\begin{itemize}
+    \item On pondère la moyenne par une gaussienne en choisissant bien $ \sigma  $. Il joue un rôle similaire à la taille du filtre moyenner. Plus il est grand plus on élimine de détail.
+    \item Exemple numérique diapo 40
+    \item Dans l'espace des fréquences, une gaussinne est une gaussienne. C'est un filtre passe bas non idéal. 
+    \item Exemple de la fonction de transfert plotée dans les diapos suivante
+\end{itemize}
+
+Binomial filter:
+\begin{itemize}
+    \item Pour avoir la matrice on fait un produit cartésient du binome de newton
+    \item Lowpass non ideal 
+\end{itemize}
+Autre filtre : 
+\begin{itemize}
+    \item Pyramidal : lowpass non ideal
+    \item Conic : lowpass non ideal 
+    \item Sharpening : high pass non ideal, increase image details
+\end{itemize}
+
+Gabor filter : 
+\begin{itemize}
+    \item On s'en est beaucoup servie pour la classification d'image
+    \item Calcule des features pour différente orientation (?)
+    \item Pour la formule il a pas trop su expliqué mais l'exp représente une partie de la gaussienne orienté dans une certaine direction $ \gamma  $. et la partie cos représente un détecteur de contours.
+    \item Faire varier $ \theta  $ fait changer l'orientation 
+    \item Faire varier $ s $, rend la dirac de plus en plus dirac
+\end{itemize}
+
+Filtre séparable :
+\begin{itemize}
+    \item La plupart des filtres 2D peuvent êtres exprimé par deux filtres 1D. (moyenne, gaussien, binomial, ...)
+    \item Permet d'aller plus vite et même faire des algo récursif.
+\end{itemize}
+
+Filtrer les couleurs des images :
+\begin{itemize}
+    \item Comme $ h $ est une matrice, quand on multiplie le pixel vecteur de 3 couleurs \begin{itemize}
+        \item Si la matrice est diagonale on traite les 3 channels pareil 
+        \item Sinon non 
+    \end{itemize}
+    \item Pratique car les canaux RGB sont relativement indépendant 
+    \item Mais attention on peut créer des fausse couleurs parfois comme l'indépendance n'est pas pur.
+\end{itemize}
+
+\section{Filtering in the frequency domain}
+\begin{defn}[] 
+    On considère un signal discret dont on vas modifier certaine composante de fréquence
+    \begin{itemize}
+        \item Dans le domaine spacial = convolution
+        \item La on vas multiplier les valeur dans le domaine des fréquences
+    \end{itemize}
+    \item 3 familles : lowpass, highpass, bandpass
+    \item ideal : les coef sont égal à 1 ou zéro, ça passe ou ça passe pas
+\end{defn}
+Principe : DIAPO 60 
+\begin{enumerate}
+    \item On prend la DFT
+    \item On créer notre $ H $ et on la complete avec des zéros pour faire un multiplication de matrice ez (voir diapo 61)
+    \item On multiplie element wise
+    \item Inverse DFT $\rightarrow$ filtrered image
+\end{enumerate}
+Exemple diapo 62 : on cut le bruit net
+
+Lowpass 2D filter:
+\begin{itemize}
+    \item 
+\end{itemize}
+
+ideal lowpass 2D filter:
+\begin{itemize}
+    \item IMAGE diapo 66
+    \item La ligne de la DFT de base : Pourquoi ? parce que l'image originale peut être vu comme une fonction porte de FFT $ sinc $. Puis après le filtre la FFT est proche d'une fonction porte du coup on retrouve une sorte de $ sinc $ dans l'image filtré == Gibbs artefacts 
+    \item Conséquence : ... Diapo 67
+    \item Dans l'espace normal, c'est une convolution avec une fonction de Bessel
+\end{itemize}
+Les filtres idéaux cool quand on connait la fréquence précise à cut, mais on a des gibbs artefact.
+
+Lowpass butterworth 2D filter :
+\begin{itemize}
+    \item Le paramètre $ n $ permet de faire varier la resemblance avec une porte. Comme elle est continue est dérivable ça permet de limiter l'effet Gibbs. 
+\end{itemize}
+
+Le filtre anti aliasing : 
+\begin{itemize}
+    \item Pour limiter les effet d'antialiasing, on vas filter les fréquences qu'on capture autour appartenant au autre sinc.
+\end{itemize}
+
+Highpass 1D filtering : 
+\begin{itemize}
+    \item Même chose que tout à l'heure mais on inverse 
+\end{itemize}
+
+Passe bande :
+\begin{itemize}
+    \item "C'est le tric intermédiaire"
+    \item on coupe à droite et à gauche
+    \item Ca se présente comme un anneaux en 2D
+    \item Dans l'exemple diapo 85, on isole une fréquence, on récupère deux diract, qui donne presque un cosinus.
+\end{itemize}
+
+\section{Filtrage non linéaire}
+Le filtre mediant :
+\begin{itemize}
+    \item Fait la médiane du voisinage
+    \item Parfait pour les bruit "salt and pepper"car le bruit est ponctuel.
+    \item Préserve les contours : on en discutera plus tard
+    \item Réduit aussi les autres bruits
+\end{itemize}
+
+Autre filtre non linéaire :
+\begin{itemize}
+    \item Filtre max : Supprime le bruit poivre
+    \item Filtre min : Supprime le bruit sel
+    \item On peut les composer et les stack
+    \item Nagao filter : On peut prendre des fenêtre bizarre au sein de la grande fenêtre. Puis il prend la moyenne de plein de sous fenêtre bizarre et change la valeur du pixel sur la plus petite. 
+\end{itemize}
+
+
+
+
+
+
 
 \end{document}
