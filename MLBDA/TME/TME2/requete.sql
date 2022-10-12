@@ -29,16 +29,23 @@ SELECT * FROM Les_Matieres m WHERE m.nom LIKE '%fer%';
 
 -- R5.	Donner le nom des pièces de base formant la pièce nommée 'billard'
 -- prompt 'R5:'
-SELECT value(cont_p.nom)
-    FROM Les_Pieces_Composites pc, table(pc.contient_pieces) cont_p 
-    WHERE pc.nom = 'billard';
+SELECT deref(cp.quoi).nom 
+    FROM Les_Pieces_Composites c, TABLE(c.contient_pieces) cp 
+    WHERE c.nom='billard' ;
 
 
 -- R6.	Donner le nom de chaque matière avec son nombre de pièces de bases.
-prompt 'R6:'
-
+-- prompt 'R6:'
+SELECT deref(p.est_en).nom ,COUNT(p.est_en)
+    FROM Les_Pieces_Bases p
+    GROUP BY p.est_en
+;
 
 -- R7.	Quelles sont les matières pour lesquelles il existe au moins 3 pièces de base ?
-prompt 'R7:'
-
+-- prompt 'R7:'
+SELECT deref(p.est_en).nom, COUNT(p.est_en)
+    FROM Les_Pieces_Bases p
+    GROUP BY p.est_en
+    HAVING COUNT(p.est_en) >=3
+;
 

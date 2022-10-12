@@ -88,4 +88,3 @@ SELECT value(e) from LesEtudiants e, table(e.contrat) u WHERE e.age > 25 AND val
 
 -- b) 
 SELECT value(e).nomE FROM LesUnités u, table(u.contenu) s, table(s.present) e where u.nomU = 'MLBDA' AND s.numero = 3;
-
