@@ -99,7 +99,14 @@ Avec $ H(S) = \frac{S^2 + w_0^2}{S^2 + 2Sw_0 \cos \theta + w_0^2} $. \begin{enum
     \end{figure}
 
 
-    \item Les points étant sur la droite 
+    \item Parcourons l'axe des imaginaires de $ jw = 0 \to +\infty  $. \begin{itemize}
+        \item Lorsque $ w=0, \left| H(jw) \right| = 1$ car les $ p_i $ et $ z_i $ sont placé sur un cercle.
+        \item Lorsque $ w=w_0, \left| H(jw) \right| = 0$ car on se place sur $ z_1 $ donc le numérateur s'annule  
+        \item Lorsque $ w \to + \infty , \left| H(jw) \right| \to 1$ également.
+    \end{itemize}
+    On peut donc déduire que le gain se réduit vers zéros autour de $ w_0 = 2 \pi f_0 $ puis remonte vers un (on pourra le voir sur la figure MatLab dans la question suivante). C'est donc un filtre coupe bande sur $ f_0 $.
+    
+    \item Pour les figures, voir la page suivante.
 \end{enumerate}
 
 \end{document}
