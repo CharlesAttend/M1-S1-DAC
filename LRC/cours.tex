@@ -208,6 +208,55 @@ L'avantage de cette méthode par rapport au tableau de vérité c'est qu'on a pa
 \underline{Nouveau cours du 28/09} \\
 Pas de diapo au moment du cours
 
+\underline{Nouveau cours du 12/10} \\
+\textbf{NOUVEAU PROF}
+Modèle Lr : diamond et carré $\Leftrightarrow$ il existe et pour tout 
 
+Modèle de Kripke = ensemble de monde (interprétation ?). Puis on peut faire un graph sur comment relier les mondes. \begin{itemize}
+    \item $ M, w_0\models p \rightarrow q $ c'est faux car dans le monde $ w_0 $ $ p $ est vrais mais $ q $ est faux
+    \item $ M, w_0\models \Box p $ est vrais, on regarde si tous les mondes qui parte de $ w_0 $ on $ p $ de vrais.
+    \item $ M, w_1 \models (p \vee r) \rightarrow \Box p$ ici on regarde dans $ w_1 $, la prémice de la fleche est vrais car p est vrais dans $ w_1 $, donc $ \Box p $ doit être vrais. On regarde dans $ w_3 $, $ p $ est faux donc l'implication est fausse. En revanche en partant de $ w_0 $ 
+    \item $ M, w_2 \models \Box \Box p $ 
+    \item VOIR ONENOTE J4ARRIVERAI JAMAIOS A ALLER ASSEZ VITE 
+\end{itemize}
+
+Système normal K (diapo 13): on veut avoir un système de preuve simple, comme celui de Hilbert. On a un axiome sous la forme d'une implication comme pour Hilbert. Mais on simplifie un peu par rapport à Hilbert niveau démonstration, je crois pas l'axiome $ K $ . \\
+Déduction (diapo 14) : On a prouvé $ p \rightarrow p \vdash \Box p \rightarrow \Box q $ (dans un univers ou tous les mondes vérifie $ p \rightarrow q $ alors $ \Box p \rightarrow \Box q $). Attention ça n'est pas équivalent a $ \vdash p \rightarrow p \vdash \Box p \rightarrow \Box q$, dans celle là on ne vérifie pas l'HP que tous les mondes on $ p \rightarrow q $. 
+
+Correction et complétude : 
+\begin{itemize}
+    \item $ \vdash  $ == démonstration dans un monde
+    \item $ \models  $ == démonstration dans tous les mondes
+    \item Correction : 
+    \item Complétude :
+    \item $\rightarrow$ Le système $ k $ est correct et complet vis à vis de l'ensemble des modèle de Kripke. 
+\end{itemize}
+
+CCL : 
+\begin{itemize}
+    \item Une formule est satisfiable DIAPO
+    \item Non validité : on montre un contre exemple
+    \item Insatisfiabilité : 
+    \item Validité : \begin{itemize}
+        \item par raisonnement sémantique
+        \item Avec la méthode des tableau et $ \lnot \phi  $ UNSAT
+        \item Un dernier truc pas compris
+    \end{itemize}
+\end{itemize}
+
+\begin{exmp}[]
+    Montrer que $ \Box \phi \rightarrow \Box \Box \phi  $ n'est pas valide. \\
+    $\Rightarrow$ Contre exemple : voir diapo 18
+\end{exmp}
+
+Théorie de la correspondance : 
+\begin{itemize}
+    \item C'est une série d'axiome 
+    \item Preuve de la réflexivité dans le DIAPO
+    \item Sérialité : globalement on kick out les monde sans fleche 
+    \item Transitivité : "Si quelque chose est vrais à un pas de distance, alors il est vrais à deux pas de distance également"
+    \item Euclidienne : "Si je crois possible que phi, je sais que je crois possible de phi"
+    \item Symétrie : 
+\end{itemize}
 
 \end{document}
