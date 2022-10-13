@@ -893,6 +893,53 @@ La transformation bilinéaire ne change pas le module. Donc $ R_p (T.D.) = R_p(T
 La transformation bilinéaire ne change pas les fréquences avec la relation suivante : $ \frac{2}{T} \tan \frac{\Omega }{2} = w $ \\
 Donc $ \frac{2}{T}\tan (\frac{\Omega_p}{2}) = w_p $ et $ \frac{2}{T} \tan (\frac{\Omega _s}{2}) $ 
 
+\underline{Nouveau \textbf{TP} du 13/10} \\
+Rappel de l'arborescence des types de filtre
+\begin{itemize}
+    \item Temps discret \begin{itemize}
+        \item IIR
+        \item FIR
+    \end{itemize}
+    \item Temps continue\begin{itemize}
+        \item Butterworth
+        \item Cauer
+        \item Bessel
+        \item Chebychev
+    \end{itemize}
+\end{itemize}
+Pour passer en temps discret on part d'un filtre temps continue et on le transforme en temps discret.
 
+\paragraph*{Le TP}
+\begin{itemize}
+    \item Filtre T.C. => Filtre butterworth avec H(S) => Conversion en IIR
+    \item Attention à la déformation engendrée par la conversion <= Il faut l'anticiper (voir les courbes da)
+\end{itemize}
+
+\begin{xca}[Exo 1]
+    Réalisez un filtre T.C. en utilisant l'approximation de Butterworth pour obtenir les spécifications suivantes 
+    \[
+        w_p = 0.2 \pi, w_s=0.3 \pi , R_p = 7 db, A_s = 16 db
+    .\]
+    \begin{enumerate}
+        \item Calculez $ N $ et $ w_c $
+        \item Trouvez la position des pôles et des zéros dans le plans S
+        \item Trouvez la fonction de transfert $ H(S) $
+        \item Tracer $ \left| H(jw) \right|  $ et $ \lfloor H(jw) $ et vérifier que les performances du filtre respectent les specs.
+        \item Proposer une implementation matérielle du filtre à base d'intégrateurs
+    \end{enumerate}
+\end{xca}
+
+\begin{xca}[Exo 2]
+    Réalisez un filtre T.D. en utilisant l'approx Butterworth et la transformation bilinéaire pour obtenir les specs suivantes : 
+    \[
+        \Omega _p = 0, \Omega _s = 0.3 \pi, R_p = 7db, A_s = 16 db
+    .\]
+    \begin{enumerate}
+        \item Trouvez $ N, w_c $ et $ H(S) $ 
+        \item Trouvez $ H[Z] $ et tracez les pôles et les zéros dans le plan Z
+        \item Tracez le module $ \left| H(e^{j \Omega }) \right| $ et la phase $ \lfloor H(e^{i \Omega }) $ et vérifier que les performances du filtre respectent les specs
+        \item Proposer une implementation matérielle du filtre à base de retard $ Z^{-1} $ 
+    \end{enumerate}
+\end{xca}
 
 \end{document}
