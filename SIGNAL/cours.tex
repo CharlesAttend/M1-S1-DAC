@@ -885,7 +885,7 @@ Ici $ N $ donne l'ordre (= le nombre de pôles), et les trois $ w $ le rayon du 
 \subsection{Spécification d'un filtre temps discret}
 Petit schéma dans OneNote pour les notations
 
-\subsubsection{Transformation bilinéaire}
+\subsubsection{Transformation bilinéaire = filtre IIR}
 \[
     H(Z) = H(S) | S = \frac{2}{T} \frac{1 - Z^{-1}}{1 + Z^{-1}}
 .\]
@@ -941,5 +941,76 @@ Pour passer en temps discret on part d'un filtre temps continue et on le transfo
         \item Proposer une implementation matérielle du filtre à base de retard $ Z^{-1} $ 
     \end{enumerate}
 \end{xca}
+
+\underline{Nouveau \textbf{cour4} du 14/10} \\
+
+\subsubsection{Filtre FIR}
+Le problème des filtres IIR, c'est que dans le cas concret on a une boucle dans le circuit et ça créer des problèmes sur le long terme. La phase est non linéaire, ça créer des problèmes également. La méthode est complexe, passer par du continue pour transformation ect. Bref, voilà la motivation des gens pour créer des filtres FIR. 
+
+\begin{defn}[Filtre FIR]
+    En évitant les pôles et en faisant un filtre uniquement avec des zéros, on évite le rebouclage, les problèmes de stabilité ect
+    \begin{align*}
+        H_{FIR} &= b_0 + b_1 Z^{-1} + \dots + B_{M-1}Z^{M-1} \\
+                &= \sum_{m=0}^{M-1}b_m Z^{-m}
+    \end{align*}
+\end{defn}
+
+\paragraph*{Méthode du fenêtrage}
+Comme en BIMA, on fenêtre avec une fonction rect qui se transforme en sinc et inversement par transformé de Fourier. A cause de certaine limitation du au sinc et au rect, les chercheurs ont trouvé d'autre type de fenêtre avec plus ou moins de coefficient : nombre $ M $ 
+
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{|l|l|l|}
+    \hline
+        Fenêtre & Bande de transition : $ \delta \Omega = \Omega _s - \Omega _p $   & Atténuation max hors bande ($ \Omega > \Omega _s $ )  \\ \hline
+        Rectangulaire & $\frac{1.8 \pi }{M}$ & $ A_s max = 21db $ \\ \hline
+        Bartlett (triangulaire) & $\frac{6.1 \pi }{M}$ & $ A_s max = 25db $ \\ \hline
+        Hanning & $\frac{6.2\pi }{M}$ & $ A_s max = 44db $ \\ \hline
+        Hamming & $\frac{6.6 \pi }{M}$ & $ A_s max = 53db $ \\ \hline
+        Blackman & $\frac{11 \pi }{M}$ & $ A_s max = 74db $ \\ \hline
+    \end{tabular}
+\end{table}
+
+Si les coefficients d'un filtre FIR sont symétrique (toujours le cas en principe) $\rightarrow$ la phase est du filtre est linéaire 
+\begin{exmp}[]
+    \begin{align*}
+        H[Z] &= \sum_{n=0}^{4}h_n Z^{-n} \text{ Filtre d'ordre 5} \\
+            &= h_0 + h_1 Z^{-1} + h_2 Z^{-2} + h_3 Z^{-3} + h_4 Z^{-4}
+    \end{align*}
+    Si les coefficients sont symétriques 
+    \begin{align*}
+        h_n = h_[M-1-n] :  h_0 = h_4, h_1 = h_3, h_2 = h_2
+    \end{align*}
+    Alors 
+    \begin{align*}
+        H[Z] &= h_2 Z^{-2} + (h_1 Z + h_3 Z^{-1}) Z^{-2} + (h_0 Z^2 + h_4 Z^{-2})Z^{-2} \\ 
+        H(e^{j \Omega }) &= h_2 e^{-j 2\Omega } + (h_1e^{j \Omega } + h_3 e^{-j \Omega })e^{-j 2\Omega } + (h_0 e^{j 2\Omega } + h_4 e^{-j 2\Omega }) e^{-j 2\Omega } \\ 
+            &= e^{-j 2\Omega }(h_2 + 2h_1 \cos \Omega + 2 h_0 \cos 2 \Omega ) \\ 
+            &= e^{-j 2\Omega } \left| H(e^{j \omega }) \right| \\
+        \lfloor H(e^{j \Omega }) &= -2 \Omega \text{ Phase linéaire !}
+    \end{align*}
+\end{exmp}
+
+\subsubsection{Type de filtre FIR}
+Voir graphique sur OneNote pour la représentation des différents types c'est intéressant.
+\begin{itemize}
+    \item \textbf{Type 1:} On peut réaliser tous les types de filtres passe-bas, passe-bande, passe-haut
+    \item \textbf{Type 2:} Il existe un zéro à $ \Omega = \pi  $ $\rightarrow$ On ne peut pas réaliser un filtre passe-haut
+    \item \textbf{Type 3:} Il existe un zéro à $ \Omega = 0 $ et à $ \Omega = \pi  $ $\rightarrow$ One ne peut pas réaliser un filtre passe-bas, ni un filtre passe-haut.
+    \item \textbf{Type 4:} Il existe un zéro à $ \Omega = 0 $ $\rightarrow$ on ne peut pas réaliser un filtre passe-bas
+\end{itemize}
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{|l|l|l|}
+    \hline
+        Symétrie de $h[n]$ & Nombre de coefficients $M$ & Type \\ \hline
+        Symétrie positive $ h_n = - h_{M-1-n} $ & Impaire & 1 \\ \hline
+        ~ & Paire & 2 \\ \hline
+        Symétrie négative : $ h_n = - h_{M-1-n} $  & Impaire & 3 \\ \hline
+        ~ & Paire & 4 \\ \hline
+    \end{tabular}
+\end{table}
+
+
 
 \end{document}
