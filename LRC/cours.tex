@@ -216,7 +216,13 @@ Modèle de Kripke = ensemble de monde (interprétation ?). Puis on peut faire un
     \item $ M, w_0\models p \rightarrow q $ c'est faux car dans le monde $ w_0 $ $ p $ est vrais mais $ q $ est faux
     \item $ M, w_0\models \Box p $ est vrais, on regarde si tous les mondes qui parte de $ w_0 $ on $ p $ de vrais.
     \item $ M, w_1 \models (p \vee r) \rightarrow \Box p$ ici on regarde dans $ w_1 $, la prémice de la fleche est vrais car p est vrais dans $ w_1 $, donc $ \Box p $ doit être vrais. On regarde dans $ w_3 $, $ p $ est faux donc l'implication est fausse. En revanche en partant de $ w_0 $ 
-    \item $ M, w_2 \models \Box \Box p $ 
+    \item $ M, w_2 \models \Box \Box p $ \begin{itemize}
+        \item $w_2 \Box p$ \begin{itemize}
+            \item $ w_2 p  $ Faux
+            \item $ w_1 p  $ Vrais
+        \end{itemize}
+        \item $w_1 \Box p$ Faux
+    \end{itemize}
     \item VOIR ONENOTE J4ARRIVERAI JAMAIOS A ALLER ASSEZ VITE 
 \end{itemize}
 

@@ -86,4 +86,8 @@ Je passe il faut que je rattrape mon retard, je suis à la 4ème séance de TME.
    `circuit(X,Y,0).`
 
 # TME2
-# Exercice 1
+## Exercice 1
+Rien de surprenant. On comprend les mécanique.
+
+## Exercice 2
+- `contatene(X,Y,Z) :- Z = [X|Y].` => Non dans ce cas là `concatene([a,b], [c,d]) => [[a,b], [c,d]]`, ce n'est pas ce qui est attendu. Il faut utiliser une récursion, voir photo du 10/10
