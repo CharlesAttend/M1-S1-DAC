@@ -449,6 +449,78 @@ Les données suivent plusieurs gaussienne différente ?
 
 tout comme l'année dernière 
 
+\underline{Nouveau cours du 18/10} \\
+
+\section{Chaine de Markov}
+Cette fois-ci on vas pas utiliser des données sous forme matriciel iid. Ici on vas s'intéresser à des modèles de séquences, qui ont une dynamique temporelle. Application :
+\begin{itemize}
+    \item Musique/reconnaissance de paroles
+    \item Reconnaissance de mouvement 
+    \item Diffusion dans les graphes
+\end{itemize}
+
+Problème : Les méthodes standard de classification = données de tailles fixes $\rightarrow$ transition difficile vers des données de taille variable
+
+Diapo 6/45 
+\begin{enumerate}
+    \item $ \Leftrightarrow $ vraissemblance
+    \item .
+    \item proba à posteriori
+\end{enumerate}
+Faire de l'apprentissage d'un modèle de séquence $ \Leftrightarrow $ apprendre une fonction de densité. On support toujours les $ \theta _k $ iid (HP forte).
+
+Diapo 9 : \\
+Au final on modèlise la dépendance par la chaine de markov. On vas essayer d'associer à une séquence, un label pour prédire la classe. Paramètre du modèle $ \{\Pi, A\} $. Permet de faire des prévision dans les espaces discrets
+
+Diapo 10 : \\
+Hypothèse Markovienne : La proba de l'état suivant ne dépend que de $ k $ état d'avant. On prend en général $ k=1 $ : l'état prochain ne dépend uniquement de l'était présent. Si on prend plus ça rajoute beaucoup beaucoup de paramètre.
+
+Diapo 11 : Définition des paramètres \\
+On a une matrice de transition $ A = [a_{ij} = p(x_{t+1} = q_j| x_t =q_i)]$ avec la somme des ligne égal à 1 (matrice stochastique). Et $ \Pi =  $ proba d'état initiale
+
+Diapo 14 : Représentation matriciel \\
+On peut avoir la proba $ p(x_{t+1} = q_j) $ en un calcul matriciel 
+\[
+    p_{t+1} = p_t * A
+.\]
+
+Diapo 21 : Stationarité
+\begin{defn}[]
+    Existe-t-il un état stationnaire $ \mu  $ 
+    \[
+        \mu = \mu A
+    .\]
+    C'est à dire qu'on 
+    \begin{itemize}
+        \item Si $ A $ irreductible $\rightarrow \mu $ est unique 
+    \end{itemize}
+\end{defn}
+
+\begin{defn}[Irréductible finie]
+    Si on part d'un état donnée, la probabilité d'y revenir est n on nulle. en un nombre d'étape fini $ \Leftrightarrow $ graphe fortement connexe, pas d'état final/absorbant.
+\end{defn}
+
+\begin{defn}[Périodicité]
+    Etat périodique de période $ k $ si on peut y revenir en un nombre d'étape multiple de $ k $.
+
+    Période d'une chaine de markov = PGCD de la période de tout ces états. Diapo 23
+\end{defn}
+
+\begin{thm}[Ergodique]
+    C'est la loi forte des grands nombres pour les chaines de markov. On a convergence vers la moyenne.
+
+    Les chaines irréductible et apériodique sont \textbf{ergodique}
+\end{thm}
+
+\section{Apprentissage des paramètres}
+Comment apprendre une CM à partir d'exemple ? Comment faire de la classification de séquences avec des CM ? 
+
+On vas maximiser la vraissemblance, mais cette fois on a des contraintes sur les distributions de proba égal à 1 (comme avec la multinomiale). $\rightarrow$ Langrandien 
+
+Il s'est arrêté diapo 34. et rush le reste. Au final c'est comme d'habitude la moyenne d’apparition
+
+
+
 
 
 
