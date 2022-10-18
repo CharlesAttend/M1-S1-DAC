@@ -1,7 +1,7 @@
-# Mes cours de M1-S1 du Master DAC Sorbonne Université
+# Mes cours de M1-S1 du Master DAC Sorbonne Université 2022-2023
 
 ## Liste des cours disponibles :
-* BIMA
+* BIMA : https://www-master.ufr-info-p6.jussieu.fr/parcours/ima/bima/
 * LRC
 * MAPSI
 * MLBDA
