@@ -677,10 +677,103 @@ Autre filtre non linéaire :
     \item Nagao filter : On peut prendre des fenêtre bizarre au sein de la grande fenêtre. Puis il prend la moyenne de plein de sous fenêtre bizarre et change la valeur du pixel sur la plus petite. 
 \end{itemize}
 
+\underline{Nouveau cours6 du 18/10} \\
 
+BEFORE DIAPO 12  BIG RETARD 
 
+Edge Model
+\begin{itemize}
+    \item On défini 
+\end{itemize}
 
+\section{Edge detection with filtering}
+\subsection{First order approaches}
+Principe 
+\begin{itemize}
+    \item On peut pas faire tendre $ h \to 0 $ car on est sur une grille de pixel indéxé sur $ \mathbb{N} $, donc on vas supprimer la limite. On dit qu'on fait une différence fini. 
+    \item Il a dit c'est équivalent à une convolution. 
+\end{itemize}
+Discrete approximation of gradient
+\begin{enumerate}
+    \item VOIR DIAPO ETAPE de l'algo 
+    \item 6) Edge linking : on prolonge le frontière dans l'espoir d'avoir un truc qui se ferme et d'avoir un contour. 
+\end{enumerate}
+\begin{itemize}
+    \item Pas de choix meilleurs que d'autre
+    \item Roberts : calcule les gradients direction $ \pi /4 $ 
+    \item Où on met l'origine du masque ? Il a dit "je vous laisse refléchir" gdshgis
+    \item Diapo 23 : le premier c'est comme la matrice. Filtre passe haut dans la direction abscice
+    \item Diapo 24 : c'est le Robert, pareil la première image c'est comme la matrice. Finalement ça resemble au filtre gradient mais pivoté, d'où la matrice. Passe bande dans une direction
+    \item Diapo 25 : Filtre de Prewitt avec les colonne de 1, deux pentes, deux sinus cardianux. Plutôt passe bande.
+    \item Diapo 26 : Sobel filter. Proche du précédent. Fait disparaitre les lobes des sinc
+    \item Diapo 27 : On moyenne avec le vecteur vertical, et on dérive avec le vecteur horizontale. Pourquoi on moyenne ? Pour prendre en compte les contours.
+    \item Diapo 28/29 : Filtre + réponse impultionnel. Filtre moyenneur => Resemble à un sinc dans Fourier. Filtre qui resemble à une gaussienne => Une gaussienne dans Fourier
+    \item Diapo 31 : Ce filtre permet de capturer les contours dans plusieurs direction en faisant pivoter les chiffres de la matrice. 
+    \item Diapo 32 : belle exemple de comment faire sur une omage. Image $ \theta  $ c'est les directions, mais comme on fait une division dans le $ \arctan  $ c'est pas très résistant au bruit
+    \item Diapo 34 : Ici on fait varier le seuil pour la carte de la norme $ \left\| G \right\|  $  Trop bas, on s'assure les vrais positifs mais peu de point.A l'inverse trop de point avec beaucoup de faux positif. 
+    \item Diapo 35 : On peut lisser les contours avant la detection de contour avec un filtre gaussien ou le médiant. Celà a pour effet d'épaissir les trait de contour.
+    \item Diapo 36 : Exemple avece un filtre gaussien
+    \item Diapo 37 : High smoothing : robuste au bruit mais bord épais (localisation imprécise). Faible = inverse. Threshold : 
+\end{itemize}
 
+Digression : Texture in Image 
+\begin{itemize}
+    \item Définition : spatial repetition of the same pattern whatever the direction
+    \item Processus stochastic et stationnaire. 
+    \item Diapo 40 : Texture : pas vraiment d'orientation de direction, contrairement à nos contour. Le plus simple est de lisser l'image (perte de loc) ou seuillage (autre problème)
+\end{itemize}
 
+\subsection{Second order approache}
+\begin{itemize}
+    \item Le laplacien est invariant par rotation 
+    \item Diapo 43 : de tout manière on vas approcher le laplacien. Marche mal sur les coins. 
+    \item Diapo 44 : méthode différence fini pour approcher le laplacien. Y'a un lien entre les matrices en bas et la formule, c'est les coef de la somme. la deuxième matric est plus robuste aux rotations.
+    \item Diapo 45 : passe haut 
+    \item Diapo 46 : passe haut 
+    \item Diapo 47 : Tuto appliquer la detection de bord avec le laplacien : On prend l'image, on convulutionne avec les laplaciens précédent. Et on regarde les passages par zéro : aka les changements de signes. Pour ça on regarde les min et max + un seuil pour éviter le bruit
+    \item Diapo 48 réponse du laplacien sans seuil 
+    \item Diapo 49 : 
+    \item Diapo 50 : Pro and cons du laplacien vs le gradient : lire le diapo
+    \item Diapo 51 : Pré-processing : les math du pourquoi ça marche un filtre \begin{enumerate}
+        \item .
+        \item dans l'équation (6) on utlise la dernière égalité 
+        \item Car on connait bien g
+    \end{enumerate}
+    \item Diapo 52 : 
+    \item Diapo 53 : C'est proche de ce qui se passe dans le cortex visuel. On aime bien les lissages à différente valeur de $ \sigma  $, il parrait que ça permet de voir les objects d'une certaine taille == pyramide de résolution
+    \item Diapo 54 : Pyramide de résolution : filtre gaussien $\rightarrow$ subsampling $\rightarrow$boucle. En faite ça permet de capturer les bords de toutes les tailles.
+    \item Diapo 55 : Après on combiner tous les résultats : multiscale fusion
+    \item Diapo 57-60 : Exemple 
+\end{itemize}
+\section{Approche continue}
+\subsection{Optimal filtering}
+Approche continue :
+\begin{itemize}
+    \item Canny a maximiser des critère qu'il trouvait important, en supposant un bruit gaussien
+    \item 3 critères : Bonne detection, bonne localization, unicité $ \Leftrightarrow $ un un filtre dériveur qui vérifie des hypothèses mathématiques correspondant aux 3 criètre.
+    \item Finalement c'est proche d'une gaussienne. Diapo 65
+    \item Y'a plusieurs solution mathématique.
+    \item Diapo 67 : on peut simplifier la solution en passant sur un support infini (IIR) + implémentation récursive == Canny Deriche == rapide, paramètre $ \alpha  $ 
+    \item Canny Deriche : $ \alpha  $ même effet que pour la gaussienne : épaisseur, précision bruit. 
+\end{itemize}
 
+\section{Post processing}
+\subsection{Non maxima suppression, threshold and edge linking}
+Post processing
+\begin{itemize}
+    \item Diapo 72-73-74
+    \item Diapo 75 : Finalement on a que 8 direction comme on est sur une grille de point. On peut booster en gardant que les points estimé dans ces directions (pas sûre si j'ai bien compris)
+\end{itemize}
+Thresholding : diapo 77
+\begin{itemize}
+    \item Technique basique 
+    \item Technique hysteresis : super puissant. Premier seuillage, puis deuxième seuillage en gardant les pixel qui ont un voisinage élevé (on vire les points seules finalement). Honnêtement pas tout compris.
+    \item Finalement c'est une manière de prolonger les contours ! 
+\end{itemize}
+Edge linking and boundary detection : prologement de contour
+\begin{itemize}
+    \item Et avoir des contours continue c'est important pour faire de la detection de zone.
+    \item On peut trasformer les pixel en un graph et chercher les cycles de ce graph en posant certaine condition. 
+    \item On peut essayer de retrouver une forme simple avec le bord (cercle, rectangle, ect) en utilisant une méthode de régression ou avec une transformé de Hough (on process par vote, mais coûteux)
+\end{itemize}
 \end{document}
