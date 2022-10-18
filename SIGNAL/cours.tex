@@ -860,7 +860,11 @@ Ici $ N $ donne l'ordre (= le nombre de pôles), et les trois $ w $ le rayon du 
             w_{cs} &= \frac{w_w}{(10^{A_p/10} - 1)^{1/2N}} \\
             \rightarrow w_c &= \frac{w_{cp} + w_{cs}}{2} \approx 0.5
         \end{align*}
-        On a un ordre 3 donc 6 pôles : $ H(S) = \frac{w_c^N}{(S-p_1)(S-p_2)(S-p_3)} $ 
+        On a un ordre 3 donc 6 pôles et on garde que les stables
+        \[
+            H(S) = \frac{w_c^N}{(S-p_1)(S-p_2)(S-p_3)}
+        .\]
+        
         \item On a donc un cercle de rayon $ 0.5 $ avec $ 2*3 $ pôles. Voir OneNote pour le graph. Les pôles $ p_0, p_1, p_5 $ sont instables, on utilise $ p_2, p_3, p_4 $.\begin{align*}
             p_2 &= w_c e^{j 2 \pi /3} = w_c \cos (\frac{2 \pi}{3}) + j w_c \sin (\frac{2 \pi }{3}) = -0.25 + j 0.433 \\
             p_4 &= w_c e^{j \pi } = -0.5 \\
@@ -875,8 +879,9 @@ Ici $ N $ donne l'ordre (= le nombre de pôles), et les trois $ w $ le rayon du 
         \item OneNote \begin{align*}
             V(S) &= X(S) + (-a_2 S^{-1} - a_1 S^{-2} - a_0 S^{-3} )V(S) \\
             \Leftrightarrow (-a_2 S^{-1} - a_1 S^{-2} - a_0 S^{-3} ) V(S) &= X(S) \\ 
-            \Leftrightarrow V(S) &= \frac{X(S)}{(-a_2 S^{-1} - a_1 S^{-2} - a_0 S^{-3} )}
-            Y(S) &= \frac{b_0 V(S)}{S^3} &= \frac{ b_0S^{-3} X(S) }{1 + a_2 S^{-1} + a_1 S^{-2} + a_0 S^{-3}}
+            \Leftrightarrow V(S) &= \frac{X(S)}{(-a_2 S^{-1} - a_1 S^{-2} - a_0 S^{-3} )} \\
+            Y(S) &= \frac{b_0 V(S)}{S^3} \\ 
+                &= \frac{ b_0S^{-3} X(S) }{1 + a_2 S^{-1} + a_1 S^{-2} + a_0 S^{-3}}
         \end{align*}
         \item il a dit on sais a quoi s'attendre, on le fera en TP avec matlab
     \end{enumerate}
