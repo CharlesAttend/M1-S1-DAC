@@ -279,4 +279,49 @@ Théorie de la correspondance :
     \item Symétrie : 
 \end{itemize}
 
+\underline{Nouveau cours du 19/10} \\
+On peut booster les modèle de Kripte en rajoutant des labels au flèche. Dans cette logique on écrit $ \Box  $ comme "sait". On peut l'écrire vite avec $ K_2p \Leftrightarrow K_2 \Box p $.
+
+Diapo 2 \\
+\begin{itemize}
+    \item .
+    \item .
+    \item $ M, w_1 \models  K_2 K_1 p $ assez space, je crois que ça se traduit bien avec "l'agent 2 sait que l'agent un sait p.
+    \item $ M, w_1 \models K_2 K_1 \lnot p $ 
+    \item $ M, w_1 \models K_2 \lnot K_1 $ Est-ce que l'agent 2 sait que l'agent 1 ne sait pas p. On regarde les mondes accessible par l'agent 2 : $ w_1, w_2 $. Dans $ w_1 $ l'agent 1 ne sais pas p (on regarde $ w_1, w_0 $ ). Dans $ w_2 $ l'agent 1 sait p. donc on a un faux et un vrais ce qui donne faux
+    \item $ M, w_1 \models K_1 \lnot K_2 p $ ça va 
+    \item $ M \models K_2 p $ ça va
+\end{itemize}
+
+Diapo après : Exemple d'application 
+
+Diapo 7 : 3 axiomes important qui forme le système S5
+
+Diapo 12 : différence "je sais que" je sais la chose VS "je sais si" = je sais la chose ou je ne sais pas la chose. le $ K_p^{si} $ c'est comme un où
+
+Diapo 13 : 
+\begin{itemize}
+    \item $ M, w_1 \models K_1 K_2^{si}p $ 
+    \item $ M, w_1 \models K_2 K_1^{si}p $ faux, mais si on prend $ B_2K_1^{si} p$ fonctionne, $ B_2K_1p$ fonctionne, $ B_2K_1\lnot p$ ne fonctionne pas
+\end{itemize}
+
+Diapo 14-15 : 
+\begin{exmp}[]
+    On a 6 mondes possible. On suppose les boucles sur eux même chaque monde (réflexivité)
+    \begin{itemize}
+        \item .
+        \item $ M, w_2 \models (2B \vee 2C) $ $ w_2 \rightarrow w_2, w_1 $ puis on regarde $ 2B \vee 2C $ 
+        \item .
+        \item $ M \models \lnot K_2 1A $ est-ce que dans tous les monde l'agent 2 ne sait pas que j'agent 1 à reçu A. L'agent 2 ne sais jamais la carte du joueur 1. 
+        \item $ M \models B_2 1A $ contre exemple : $ w_0, w_5 $ 
+        \item $ M \models K_2 2A \vee B_2 1A $ On peut utiliser le cas précédant. Vrais
+        \item $ M \models 1A \rightarrow K_1(2B \vee 2C) $ Rapide à vérifier avec l'implication, on regarde les mondes $ 1A $ et c'est vrais, on l'a vérifié 2 et 3.
+    \end{itemize}
+\end{exmp}
+
+Diapo 16 : Le problème de l'omniscience logique, paragraphe du millier, en faite c'est un hypothèse très forte, parce que $ K_i \phi  $ alors $ K_i $ connaît toute les conséquence logique de $ \phi  $. C'est assez fort de savoir toute les implications de ce qu'on sait.
+
+Diapo 17 : Complexité : assez forte si je comprend bien
+
+Diapo 19-20-21 : on peut avoir une équivalence entre deux modèles de Kripte. Y'a une définition formel appelé bi-simulation. Exemple dans le diapo 21
 \end{document}
