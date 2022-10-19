@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE base SYSTEM "contrainte.dtd">
+<base>
+  <restaurant nom="la tour d'argent" etoile="4" ville="Paris">
+    <!-- Restaurant n'as qu'un menu et 4 étoiles ce qui est impossible -->
+    <fermeture>dimanche et lundi</fermeture>
+    <menu nom="gourmet" prix="300"/>
+  </restaurant>
+
+  <ville nom="Paris">
+    <!-- 2 plus beaubeaumonument -->
+    <plusBeauMonument nom="tour Eiffel" tarif="30"/>
+    <plusBeauMonument nom="notre dame" tarif="50"/>
+  </ville>
+
+  <restaurant nom="chez Bocuse" etoile="2" ville="Lyon">
+    <fermeture>dimanche</fermeture>
+    <menu nom="sp�cialit�s lyonnaises" prix="200"/>
+    <menu nom="v�g�tarien" prix="299"/>
+  </restaurant>
+
+  <restaurant nom="MacDo" etoile="0" ville="Marseille">
+    <menu nom="standard" prix="35"/>
+    <menu nom="enfant" prix="20"/>
+    <menu nom="big" prix="49"/>
+  </restaurant>
+
+  <ville nom="Lyon" departement="69">
+  </ville>
+
+  <ville nom="Avignon" departement="84">
+    <plusBeauMonument nom="le pont" />
+    <!-- Pas de tarif -->
+  </ville>
+
+</base>

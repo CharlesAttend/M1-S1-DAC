@@ -1,0 +1,19 @@
+<!ELEMENT base (restaurant | ville)+>
+<!ELEMENT restaurant (fermeture?, menu+)>
+<!ATTLIST restaurant
+          etoile CDATA #REQUIRED
+          nom CDATA #REQUIRED
+          ville CDATA #REQUIRED>
+<!ELEMENT fermeture (#PCDATA)>
+<!ELEMENT menu (#PCDATA)>
+<!ATTLIST menu
+          nom CDATA #REQUIRED
+          prix CDATA #REQUIRED>
+<!ELEMENT ville (plusBeauMonument?)>
+<!ATTLIST ville
+          departement CDATA #REQUIRED
+          nom CDATA #REQUIRED>
+<!ELEMENT plusBeauMonument (#PCDATA)>
+<!ATTLIST plusBeauMonument
+          nom CDATA #REQUIRED
+          tarif CDATA #REQUIRED>

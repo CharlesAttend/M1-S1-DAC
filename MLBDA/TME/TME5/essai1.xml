@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<biblio>
+<livre>
+<isbn>11</isbn>
+<titre>aaa</titre>
+</livre>
+<livre>
+<titre>bbb</titre>
+<auteur>aaaaa</auteur>
+<annee>2020</annee>
+<edition>du monde</edition>
+</livre>
+<livre>
+<isbn>11</isbn>
+</livre>

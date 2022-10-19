@@ -1,0 +1,37 @@
+<!-- type de donnnee pour le document base1.xml -->
+
+<!ELEMENT base (restaurant|ville)*>
+
+<!-- Menu -->
+<!ELEMENT menu EMPTY>
+<!ATTLIST menu 
+    nom CDATA #REQUIRED
+    prix CDATA #REQUIRED
+>
+
+<!-- Fermeture -->
+<!ELEMENT fermeture (#PCDATA)>
+
+<!-- ville -->
+<!ELEMENT ville (plusBeauMonument?)>
+<!ATTLIST ville 
+    nom ID #REQUIRED
+    departement CDATA #REQUIRED
+>
+
+<!-- plusBeauMonument -->
+<!ELEMENT plusBeauMonument EMPTY>
+<!ATTLIST plusBeauMonument 
+    nom ID #REQUIRED
+    tarif CDATA #REQUIRED
+>
+
+<!-- Restaurant -->
+<!ELEMENT restaurant (fermeture?, menu+)>
+<!ATTLIST restaurant 
+    nom CDATA #REQUIRED
+    etoile CDATA #IMPLIED
+    ville IDREF #REQUIRED
+>
+
+

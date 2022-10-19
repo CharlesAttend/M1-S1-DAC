@@ -1,0 +1,54 @@
+<!-- FILMS (NoFilm, Titre, Nationalite, Realisateur, Couleur, Annee, Genre, Duree, Synopsis) ;
+ACTEURS (NoFilm, Acteur) ;
+DVD (NoFilm, NoExemplaire, Support, Statut) ;
+ABONNES (Code, Nom, Prenom, NoRue, CodePostal, Ville, Batiment, Etage, Digicode, Telephone, Email, Banque, Guichet, Compte, NbEmprunts) ;
+EMPRES ( NoFilm, NoExemplaire, CodeAbonne, DateEmpRes) ; -->
+
+<!ELEMENT films (titre, nationalite, realisateur, couleur, annee, genre, duree, synopsis)>
+<!ELEMENT titre (#PCDATA)>
+<!ELEMENT nationalite (#PCDATA)>
+<!ELEMENT realisateur (#PCDATA)>
+<!ELEMENT couleur (#PCDATA)>
+<!ELEMENT annee (#PCDATA)>
+<!ELEMENT genre (#PCDATA)>
+<!ELEMENT duree (#PCDATA)>
+<!ELEMENT synopsis (#PCDATA)>
+<!ATTLIST film nofilm ID #REQUIRED>
+
+<!ELEMENT acteurs (acteur)>
+<!ELEMENT acteur (#PCDATA)>
+<!ATTLIST acteurs nofilm IDREF #REQUIRED>
+
+
+<!ELEMENT dvd (support, status)>
+<!ELEMENT support (#PCDATA)>
+<!ELEMENT statut (#PCDATA)>
+<!ATTLIST dvd noexemplaire ID #REQUIRED>
+<!ATTLIST dvd nofilm IDREF #REQUIRED>
+
+<!ELEMENT abonnes (nom, prenom, norue, code, ville, batiment, etage, digicode, telephone, email, banque, guichet, compte)>
+<!ELEMENT nom (#PCDATA)>
+<!ELEMENT prenom (#PCDATA)>
+<!ELEMENT norue (#PCDATA)>
+<!ELEMENT code (#PCDATA)>
+<!ELEMENT ville (#PCDATA)>
+<!ELEMENT batiment (#PCDATA)>
+<!ELEMENT etage (#PCDATA)>
+<!ELEMENT digicode (#PCDATA)>
+<!ELEMENT telephone (#PCDATA)>
+<!ELEMENT email (#PCDATA)>
+<!ELEMENT banque (#PCDATA)>
+<!ELEMENT guichet (#PCDATA)>
+<!ELEMENT compte (#PCDATA)>
+
+
+<!ELEMENT batiment ()>
+
+
+<!ELEMENT guichet ()>
+
+
+<!ELEMENT empres ()>
+
+
+
