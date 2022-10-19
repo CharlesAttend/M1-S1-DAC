@@ -1,0 +1,5 @@
+- La balise après le DOCTYPE doit indiquer la balise à la racine du document.
+- ~~(#PCDATA, balise1, balise2)~~ FAUX => (#PCDATA | balise1 | balise2) OK
+- "+" = [1-n]
+- "*" = [0-n]  
+- "?" = [0-1]

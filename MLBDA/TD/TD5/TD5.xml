@@ -1,0 +1,119 @@
+<!-- ======== Exercice 1 ======== -->
+<!-- Question 1 -->
+<!-- doc A 
+    Faux : la balise après le DOCTYPE doit indiquer la balise à la racine du document.
+    Solution : changer la balise publisher en document. Autre problème : faisont un arbre
+    On a :
+    Document 
+        title
+            txt
+        Publisher
+            name
+                txt
+        txt
+    DTD : dans document on a du texte ou un titre ou un publisher, l'étoile indique "0-n : autant de fois qu'on veut"
+    Document <= OK
+        title <= OK
+            txt <= OK
+        Publisher <= OK
+            name <= OK
+                txt <= OK
+        txt <= OK
+-->
+
+<!-- doc B
+    DTD : "?" veut dire [0 ou 1]
+    Racine <= OK
+        title <= OK
+        publisher <= XX pas de name
+-->
+
+<!-- doc C
+    DTD : "CDATA #IMPLIED" == pas obligatoire 
+    Pas d'attribu num dans <titre> alors qu'il est obligatoire. 
+    Solution : <!attlist title num CDATA #Implied
+-->
+
+<!-- Doc D
+    DTD : faux car dès qu'on met du #PCDATA avec d'autre élément, on doit faire une "(|)*" 
+    + En plus c'est faux dans notre cas, même sans remplacer
+    Solution 2: <!element title (#PCDATA|title|publisher)*
+-->
+
+<!-- ======== Exercice 2 ======== -->
+
+<!-- Contenu de famille.dtd : on est pas obligé de mettre DOCTYPE-->
+<!-- + = [1-n] -->
+<!ELEMENT famille (nom, (personne)*)> <==== <!ELEMENT famille (nom, personne+ >
+<!ELEMENT nom (#PCDATA)>
+<!ELEMENT personne (prenom, age, (poids-kg | poids-lb), taille?)>
+<!ELEMENT prenom (#PCDATA)>
+<!ELEMENT age (#PCDATA)>
+<!ELEMENT poids-kg (#PCDATA)>
+<!ELEMENT poids-lb (#PCDATA)>
+<!ATTLIST personne 
+    pnumber ID #REQUIRED 
+    pere IDREF #IMPLIED
+    mere IDREF #IMPLIED
+> 
+<!-- Question 2
+    Car on a pas mis de contrainte sur le IDREF
+    Correction : le prof a dit que les clé étrangère sont flexible et simple
+-->
+<!-- Question 3
+    <!ELEMENT famille (nom, personne+, animal* >
+    <!ELEMENT animal (#PCDATA)>
+    <ATTLIST animal numeros ID #REQUIRED>
+-->
+<!-- Question 4
+    Non !! les ID sont globaux au document 
+-->
+<!-- Question 5 
+    Oui je pense.
+    Correction : En effet on ne peux pas distinguer les ID
+-->
+
+<!-- ======== Exercice 3 ======== -->
+<!-- Question 1 -->
+    <!-- Fichier "dtdLivre.dtd" -->
+    <!ELEMENT document (livre*)> 
+    <!-- Le prof a mis un +  -->
+    <!ELEMENT livre (auteur, titre, date, editeur, categorie)> 
+    <!-- Le prof a mis auteur+, et catégorie en tant qu'attribue -->
+    <!ELEMENT auteur (#PCDATA)>
+    <!ELEMENT titre (#PCDATA)>
+    <!ELEMENT date (#PCDATA)>
+    <!ELEMENT editeur (#PCDATA)>
+    <!ELEMENT categorie (#PCDATA)>
+    <ATTLIST livre isbn CDATA #IMPLIED>
+    <!-- Correction -->
+    <ATTLIST livre 
+        isbn CDATA #IMPLIED
+        categorie (Action | policier | ...) "Action"
+        <!-- Valeur par default -->
+    >
+
+                
+<!-- Question 2 -->
+<document>
+    <livre isbn="15555">
+        <auteur>Verchu<auteur/>
+        <titre>La mer<titre/>
+        <date>2001<date/>
+        <editeur>Flammarion<editeur/>
+        <categorie>Action<categorie/>
+    </livre>
+    <livre>
+        <auteur>Aragon<auteur/>
+        <titre>Le père<titre/>
+        <date>1949<date/>
+        <editeur>Hachette<editeur/>
+        <categorie>Aventure<categorie/>
+    </livre>
+</document>
+<!-- Question 3 -->
+<!ELEMENT document (livre*, editeur*)>
+<!ELEMENT editeur (nom, adresse)>
+<!ELEMENT nom (#PCDATA)>
+<!ELEMENT adresse (#PCDATA)>
+
