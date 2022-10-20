@@ -967,12 +967,12 @@ Comme en BIMA, on fenêtre avec une fonction rect qui se transforme en sinc et i
     \centering
     \begin{tabular}{|l|l|l|}
     \hline
-        Fenêtre & Bande de transition : $ \delta \Omega = \Omega _s - \Omega _p $   & Atténuation max hors bande ($ \Omega > \Omega _s $ )  \\ \hline
-        Rectangulaire & $\frac{1.8 \pi }{M}$ & $ A_s max = 21db $ \\ \hline
-        Bartlett (triangulaire) & $\frac{6.1 \pi }{M}$ & $ A_s max = 25db $ \\ \hline
-        Hanning & $\frac{6.2\pi }{M}$ & $ A_s max = 44db $ \\ \hline
-        Hamming & $\frac{6.6 \pi }{M}$ & $ A_s max = 53db $ \\ \hline
-        Blackman & $\frac{11 \pi }{M}$ & $ A_s max = 74db $ \\ \hline
+        Fenêtre & Bande de transition : $ \delta \Omega = \Omega _s - \Omega _p $   & Atténuation min hors bande ($ \Omega > \Omega _s $ )  \\ \hline
+        Rectangulaire & $ 1.8 \pi/M$ & $ A_s min = 21db $ \\ \hline
+        Bartlett (triangulaire) & $ 6.1 \pi/M$ & $ A_s min = 25db $ \\ \hline
+        Hanning & $ 6.2\pi/M$ & $ A_s min = 44db $ \\ \hline
+        Hamming & $ 6.6 \pi/M$ & $ A_s min = 53db $ \\ \hline
+        Blackman & $ 11 \pi/M$ & $ A_s min = 74db $ \\ \hline
     \end{tabular}
 \end{table}
 
@@ -1016,6 +1016,27 @@ Voir graphique sur OneNote pour la représentation des différents types c'est i
     \end{tabular}
 \end{table}
 
+\underline{Nouveau \textbf{TP5} du 20/10} \\
+\subsubsection{Conception d'un filtre FIR avec la méthode du fenêtrage}
 
+Graphique dans OneNote 
+
+\begin{xca}[]
+    Concevoir un filtre FIR avec les spécifications suivantes $ R_p = 7db, A_s = 16db, \Omega _p = 0.2 \pi, \Omega _s = 0.3 \pi $ 
+    \begin{enumerate}
+        \item Quelle fenêtre est convenable à ce filtre ? $\rightarrow$ On doit utiliser la rectangulaire car sont $ A_s min = 21db$ et nous on veut $ A_s = 16 db $. 
+        \item Quel est l'ordre du filtre ? Ici on regarde la bande de transition $ \Omega _s - \Omega _p $ pour la fenêtre rectangulaire, et par équation on peut trouver $ M $ 
+        \item Calculez et tracez les coeffs du filtre en $ f^n $ de $ n $ (utiliser la fonction matlab "stem" au lieu de plot)
+        \item Tracez le module et la phase de $ H(Z) $ (utiliser la fonction $ freqz $ pour obtenir $ H $ et $ \Omega  $ )
+        \item Proposez une implémentation matériel. On a beaucoup de coef, on peut mettre des "...". 
+        \item Composez ce filtre avec le filtre IIR conçu dans le TP précédant en terme du module, de la phase et de la complexité de l'implémentation
+        \item Répétez 2), 3) et 4) pour la fenêtre de Bartlett (fct $ bartlett(M) $ )
+        \item Répétez 2), 3) et 4) pour la fenêtre de Hanning
+        \item Répétez 2), 3) et 4) pour la fenêtre de Hamming
+        \item Répétez 2), 3) et 4) pour la fenêtre de Blackman
+    \end{enumerate}
+\end{xca}
+
+Comme le $ sinc $ a une symétrie paire, on vas concevoir un filtre de type 1 ou 2, ma
 
 \end{document}
