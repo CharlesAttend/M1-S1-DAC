@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<logic>
+    <parser-version>2.1</parser-version>
+    <description>No special descitpion..</description>
+    <rule>
+        <rule-name>NewRule</rule-name>
+        <action>
+            <action-name>createNewNode</action-name>
+            <parameter>w1</parameter>
+        </action>
+        <action>
+            <action-name>createNewNode</action-name>
+            <parameter>w2</parameter>
+        </action>
+        <action>
+            <action-name>link</action-name>
+            <parameter>w1</parameter>
+            <parameter>w2</parameter>
+            <parameter>R</parameter>
+        </action>
+        <action>
+            <action-name>add</action-name>
+            <parameter>w1</parameter>
+            <parameter>P</parameter>
+        </action>
+        <action>
+            <action-name>add</action-name>
+            <parameter>w2</parameter>
+            <parameter>P</parameter>
+        </action>
+        <action>
+            <action-name>add</action-name>
+            <parameter>w2</parameter>
+            <parameter>Q</parameter>
+        </action>
+        <rule-comment/>
+    </rule>
+    <strategy>
+        <strategy-name>DefaultStrategy</strategy-name>
+        <strategy-code>NewRule
+</strategy-code>
+        <strategy-comment>strategy w/ my rule
+</strategy-comment>
+    </strategy>
+    <main-strategy>DefaultStrategy</main-strategy>
+</logic>
