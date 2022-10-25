@@ -1,0 +1,3 @@
+[submodule "LRC/Projet"]
+	path = LRC/Projet
+	url = git@github.com:CharlesAttend/Projet_LRC_Prolog.git
