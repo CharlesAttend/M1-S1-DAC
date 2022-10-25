@@ -776,4 +776,151 @@ Edge linking and boundary detection : prologement de contour
     \item On peut trasformer les pixel en un graph et chercher les cycles de ce graph en posant certaine condition. 
     \item On peut essayer de retrouver une forme simple avec le bord (cercle, rectangle, ect) en utilisant une méthode de régression ou avec une transformé de Hough (on process par vote, mais coûteux)
 \end{itemize}
+
+
+\underline{Nouveau cours7 du 25/10} \\
+On vas chercher les autres features (descripteur) que les contours qui sont pas super robuste (au bruit). On veut qu'il soit robuste par rotation, traslation ect.
+
+\section{Point of interest}
+\subsection{Hessian detector}
+Diapo 9 : 
+\begin{itemize}
+    \item On peut voir sur l'image $ I_{xx} $ et $ I_{yy} $ certain contour ne sont pas detecter entre les deux, les image se complete 
+    \item On vas essayer de regrouper toutes les informations dans un scalaire.
+\end{itemize}
+Diapo 10 : 
+\begin{itemize}
+    \item En utilisant le determinant : on peut detecter les max local, min, point selle.
+\end{itemize}
+Diapo 11, 12, 13 : 
+\begin{itemize}
+    \item Exemple de ce qu'on obtiens en faisant le determinant + une threshold 
+    \item $\rightarrow$ On obtient un détecteur de point critique, de coin (?)
+\end{itemize}
+
+\subsection{Harris detector}
+Diapo 14 : 
+\begin{itemize}
+    \item Dix ans plus tard : harris detector, mieux que la simple matrice hessienne
+    \item Utilise un detecteur d'autocorélation : qui regarde la corelation dans un voisinage
+    \item Du coup on utlise une fenêtre gausienne et on regarde si ça bouge dans deux direction (?)
+\end{itemize}
+Diapo 15-16-17-19 : 
+\begin{itemize}
+    \item TUTO COMMENT FAIRE CA 
+    \item Les valeurs propres de la matrice $ R_i $ diagonalisé nous dise ???? Il m'a perdu 
+    \item Mais c'est beaucoup plus robuste
+\end{itemize}
+Diapo 19-20-21-22 : 
+\begin{itemize}
+    \item Robuste mais pas beaucoup au problème d'échelle, fonctionne pas trop avec les arbre dans la diapo 22 $\rightarrow$ On peut liser l'image pour se dévbarasser des petit détail
+\end{itemize}
+Diapo 23 : 
+\begin{itemize}
+    \item Ahh c'est l'histoire avec les determinants
+\end{itemize}
+
+\section{Multiscale detection}
+\subsection{Sclae selection issue}
+Diapo 24-25 : 
+\begin{itemize}
+    \item Exemple avec la tête de clown
+    \item Exemple avec l'église
+\end{itemize}
+Diapo 26 to 32: 
+\begin{itemize}
+    \item On cherche un opérateur qui réponde de la même manière pour toutes les échelles
+    \item On peut trouver la scale optimal en regardant le max des graphiques
+\end{itemize}
+Diapo 33 :
+\begin{itemize}
+    \item Avec le filtre gaussien, on fait varier la taille des object qu'on peut detecter dans l'image.
+    \item En lissant on perd les petit détail 
+\end{itemize}
+Diapo 34 : \begin{itemize}
+    \item ???????
+\end{itemize}
+
+\subsection{Harris-Laplace detector}
+Diapo 35 : 
+\begin{itemize}
+    \item idk en gros il a dit que ça marchait pas 
+\end{itemize}
+Diapo 36 : 
+\begin{itemize}
+    \item $ x' = sx$ on fait un zoom
+    \item pareil on zoom le gaussien kernel
+    \item on caunait la dérivé de la gaussienne donc c'est elle qu'on dérive en premier 
+\end{itemize}
+Diapo 37 : 
+\begin{itemize}
+    \item On se retrouve avec deux gaussienne : une qui module la taillbe pour l'intégration, et un qui mesure la différentiation .
+    \item On se retrouve avec un detecteur robuste pour toute scale
+    \item Prix à payer : perte en loc
+\end{itemize}
+Diapo 38 : 
+\begin{itemize}
+    \item illustre le problème de précision spatiale
+\end{itemize}
+Diapo 39 : 
+\begin{itemize}
+    \item On peut se donner des critères supplémentaire pour améliorer la précision 
+    \item On peut utliser une normalisation de la des dérivé 
+\end{itemize}
+Diapo 40 : 
+\begin{itemize}
+    \item Image  = toute les echelles VS echelle optimale
+    \item Il a dit d'autre truc
+\end{itemize}
+
+\subsection{Blobs detector}
+Diapo 41 : 
+\begin{itemize}
+    \item Laplacien de la gaussienne à différente echelle
+    \item Blob = une région qui resemble à une gaussienne
+    \item horrible comme il est pas clair sdgfisbgfehqg
+\end{itemize}
+Diapo 42 : 
+\begin{itemize}
+    \item jerqgujeg
+\end{itemize}
+Diapo 43 : Exemple 
+Diapo 44-45-46: 
+\begin{itemize}
+    \item Pour aller plus vite, on peut soustraire les gaussiennes pour obtenir un truc qui ressemble à un laplacien : $ Dif of Gaussian \approx Laplacien of gaussien $ 
+    \item Diapo 46 : Exemple
+\end{itemize}
+
+\section{Regions of interest}
+\subsection{MSER}
+Diapo 47-48 : 
+\begin{itemize}
+    \item On vas seuiller au maximum tout en obtenant des régions stables.
+    \item En divisant l'image en plusieurs partie, région convexe
+    \item Exemple diapo 49 assez insane
+\end{itemize}
+
+\subsection{Quantitative Evaluation}
+Diapo 51 : 
+\begin{itemize}
+    \item Pour évaluer 
+    \item Repeatability 
+    \item Overlap error : On mesure la superpostion 
+    \item On a des critères pour comparer nos algos sur différente images qu'on fait varier par certaine transformation
+\end{itemize}
+Diapo 52-54 : 
+\begin{itemize}
+    \item Les types de transformation 
+    \item Scène plus ou moin compliqué : Structure ou texture exemple diapo 57-58
+    \item Rien dit sur le 3ème points
+\end{itemize}
+Diapo 55-56 :
+\begin{itemize}
+    \item On compare les différents filtre en fonction du point de vu
+\end{itemize}
+Diapo suivant : plein d'exemple 
+Diapo CCL : 
+\begin{itemize}
+    \item Mathilde m'a déconcentré 
+\end{itemize}
 \end{document}
