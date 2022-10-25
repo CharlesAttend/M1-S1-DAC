@@ -22,10 +22,24 @@ verif_Concept(all(R, C)) :- verif_Role(R), verif_Concept(C), !.
 % Vérification syntaxique
 % Pour la Tbox
 verif_Equiv(CA, CG) :- verif_Concept(CA), verif_Concept(CG), !.
+
+autoref(NomC, and(ExpC1, ExpC2)) :- autoref(NomC, ExpC1), autoref(NomC, ExpC2).
+autoref(NomC, some(_, ExpC)) :- autoref(NomC, ExpC).
+autoref(NomC, all(_, ExpC)) :- autoref(NomC, ExpC).
+autoref(NomC, ExpC) :- 
+    NomC \== ExpC,
+    writef("NomC %t, ExpC: %t, Exp: X", [NomC, ExpC]), nl, 
+    equiv(ExpC, Exp),
+    writef("NomC %t, ExpC: %t, Exp: %t", [NomC, ExpC, Exp]), nl, 
+    autoref(NomC, Exp). % Si on tombe sur un terme qui a une definition d'équivalence, alors on remplace la definiton
+autoref(NomC, ExpC) :- NomC \== ExpC, !.
+
+
 verif_Tbox([(CA, CG) | Q]) :- 
     verif_Concept(anything), 
     verif_Concept(nothing), 
     verif_Equiv(CA, CG), 
+    autoref(CA, CG),
     verif_Tbox(Q).
 verif_Tbox([]).
 

@@ -29,6 +29,10 @@ equiv(parent,and(personne,some(aEnfant,anything))).
 % Test T-Box fausse 
 % equiv(aCree,and(personne,some(aEnfant,anything))).
 
+% Test T-Box cyclique 
+equiv(sculpture,and(personne,some(aCree,sculpteur))).
+% equiv(sculpture,and(objet,all(cree_par,sculpteur))).
+
 % A-Box
 inst(michelAnge,personne).
 inst(david,sculpture).

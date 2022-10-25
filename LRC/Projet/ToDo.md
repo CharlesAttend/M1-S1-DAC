@@ -1,5 +1,4 @@
-# Question
-- Est-ce qu'un conceptGen == conceptNonAtom
+- Faire des tests unitaires
 
 Si je comprend bien le sujet, on doit : 
 ### Partie 1
