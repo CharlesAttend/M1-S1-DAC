@@ -517,13 +517,83 @@ Comment apprendre une CM à partir d'exemple ? Comment faire de la classificatio
 
 On vas maximiser la vraissemblance, mais cette fois on a des contraintes sur les distributions de proba égal à 1 (comme avec la multinomiale). $\rightarrow$ Langrandien 
 
-Il s'est arrêté diapo 34. et rush le reste. Au final c'est comme d'habitude la moyenne d’apparition
+Il s'est arrêté diapo 34. et rush le reste. Au final c'est comme d'habitude la moyenne d'apparition.
 
+\underline{Nouveau cours du 25/10} \\
 
+\section{Procédure d'évaluation}
+Méthode d'évaluation : 
+\begin{itemize}
+    \item beaucoup de donnnée : On sépare train/Test
+    \item Le plus souvent : Cross valisation 
+    \item Leave one out : Sur un set de $ N $, on prend $ N-1 $ pour apprendre, et $ 1 $ pour évaluer puis on fait toute les permutations.
+\end{itemize}
 
+Diapo 4 : Le risque de overfiting dépends de :
+\begin{itemize}
+    \item Du nombre de données
+    \item Du nombre de paramètre aussi comme dans le TME.
+\end{itemize}
 
+\section{Chaine de Markov Cachée}
+\begin{itemize}
+    \item Séparation des observation et des états : une séquence d'observation, avec chaque observation générée par un état.
+    \item Même formalisme que pour la chaine de Markov
+    \item Pour les observation, on modélise une matrice d'observation des données $ B $ qui pour chaque état associe une proba d'observer les données. Proba d'observer $ w_i $ dans l'état $ s_i $.
+    \item Diapo 10 : en plus de ce qu'on avait avant, Pour une observation $ X_i $ une proba d'être dans l'état $ 1, 2, 3 $ (comme en RL)
+    \item Les Hypothèse importante : \begin{itemize}
+        \item On a toujours l'hypothèse de Markov 
+        \item Les observation successives sont indépendantes conditionnellement aux états. Une observation = dépend d'un état seulement.
+    \end{itemize}
+    \item Notation $ s^t_1 = s_1, \dots, s_t $ 
+\end{itemize}
+Trois problèmes pour les POMDP : 
+\begin{itemize}
+    \item Evaluation : calculer une proba pour une séquence d'observation 
+    \item Décodage : Séquence d'observation, quelle séquence d'états a généré les observation
+    \item Apprentissage : Trouver les paramètre de mon modèle à partir d'une série d'observation. 
+\end{itemize}
+Calcul de la proba des observations ? $ P(x_1^T | \lambda ) $ 
+\begin{itemize}
+    \item Diapo 22 : On peut pas utiliser une proba totale en sommant pour tous les états
+    \item $\rightarrow$ On utlise l'HP de Markov, super on peut le faire par récursion, c'est assez cohérent avec le fait qu'on travail sur une chaîne.
+    \item Voir diapo pour le détail de la récursion j'ai pas écouté
+\end{itemize}
 
+Problème du décodage : 
+\begin{itemize}
+    \item Même problème que tout à l'heure
+    \item Donc on utilise l'HP de Markov
+    \item Et on peut retrouver un truc récursif : l'algo de Viterbi
+    \item 
+\end{itemize}
 
+Problème d'apprentissage : diapo
+\begin{itemize}
+    \item Gros lien avec EM : Donnée manquante $\rightarrow$ C'est un cas particulier de EM
+    \item Algo diapo 32 
+    \item Il faut comprendre les deux problèmes précédents
+    \item Dans la suite des diapo il détails le même algo mais en plus complexe qui ne donne pas une assignation dur
+\end{itemize}
+
+Convergence de la vraissemblance : diapo 44
+\begin{itemize}
+    \item Le problème c'est qu'on optimise sur une fonction qui n'est pas convexe $\rightarrow$ On risque de tomber sur des max locaux $\rightarrow$ L'algo est sensible à l'initialisation
+    \item 
+\end{itemize}
+
+En continue : 
+\begin{itemize}
+    \item On fait pareil pour estimer les paramètres de la loi
+\end{itemize}
+
+Exemple d'application : 
+\begin{itemize}
+    \item NLP dans l'étiquetage morpho-syntaxique (verbe, sujet, ect). Observation : le corpus de mot, Etat : les propriété morpho-syntaxique (sujet, verbe, ect)
+    \item Reconnaissance de la paroles : signal audio = donnée séquentiel
+    \item Reconnaissance de l'écriture
+    \item Segmentation d'image : Mais on passe en 2D :o $\rightarrow$ ca devient super dur à calculer. Idée de chaine n'est plus existante : plus de récursion. Du coup on fait des méthode approximé ou on transforme l'image en un arbre
+\end{itemize}
 
 
 \end{document}
