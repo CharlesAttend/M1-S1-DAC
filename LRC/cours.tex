@@ -324,4 +324,99 @@ Diapo 16 : Le problème de l'omniscience logique, paragraphe du millier, en fait
 Diapo 17 : Complexité : assez forte si je comprend bien
 
 Diapo 19-20-21 : on peut avoir une équivalence entre deux modèles de Kripte. Y'a une définition formel appelé bi-simulation. Exemple dans le diapo 21
+
+\underline{Nouveau cours du 26/10} \\
+\begin{itemize}
+    \item $ E_G \phi $ = tout le groupe $ G $ sait que $ \phi  $
+    \item Diapo 5 : def G-atteignable 
+    \item Diapo 6 : Connaissance distribuée : On peut déduire $ \phi  $ en combinant les connaissances des agents du groupe $ G $. On regarde l'intersection de toutes les connaissances pour tous les agents. exemple : l'agent 1 sait que la solution est 1 ou 2, l'agent 2 sait que la solution c'est 2 ou 3 $\rightarrow$ La solution est 2. Voir figure \ref{exmp1}.
+    \item Diapo 7 : propriété assez instinctive : on ajoute ou retire des gens du groupe
+\end{itemize}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics*[width=.5\textwidth]{./exmp1.jpg}
+    \caption[]{c'est réflexif}
+    \label{exmp1}
+\end{figure}
+
+Diapo 8 : exemple
+\begin{enumerate}
+    \item On regarde tous les mondes atteignable depuis $ w_2 $ par un des membres du groupe $ G = \{1,2\}$. C'est à dire tous les mondes de la structure. Et on a toujours $ 1A \vee 1B \vee 1C $ donc c'est vrais
+    \item Vrais
+    \item On regarde les flèches avec 1 et 2 partant de $ w_2 $, ici il n'y a que $ w_2 $ par réflexivité. et la formule ici est vrais.
+    \item On doit vérifier si tous les membres du groupe savent que $ \not  1B $ Vrais
+    \item Faux
+\end{enumerate}
+Diapo 9 : Notion d'annonce publique 
+\begin{itemize}
+    \item Ca a pour effet d'éliminer tous les mondes ou $ \phi  $ est faux
+\end{itemize}
+Diapo 10-11 : Retour sur coffee logic 
+\begin{itemize}
+    \item On vas regarder ce qui se passe avec les annonces publique avec 3 agents
+    \item La réponse de la première personne vas faire disparaître la moitié des mondes. Ceux qui commence ou ne commence pas par un 1.ect ect
+\end{itemize}
+
+Diapo 13-14 : exemple enfant sale
+\begin{enumerate}
+    \item On regarde tous les monde avec la coordonnée 2 à 1. Puis $ p_2 $ est vrais dans tous les monde accessible par l'agent 1. 
+    \item On regarde tous les monde accessible à partir de 101 que je peux atteindre en un arc. Et dans chacun de ces mondes, il y a au moins un enfant sale. Donc tout le monde sait qu'il y a au moins un enfant qui est sale.
+    \item Non à cause du monde 000  
+    \item Faux dans plein de monde de ma structure
+    \item On veux que ça soit vrais dans toute la structure
+    \item Il est bien vrais à chaque fois que j'ai soit $ p_1 $ soit $ \not p_1 $ 
+\end{enumerate}
+
+Diapo 15 : avec annonce publique
+\begin{itemize}
+    \item On prend le monde 101 comme le vrais monde
+    \item Le père annonce l'un de vous est sale. $\rightarrow$ Le monde 000 devient impossible. \item Ainsi si mes deux camarades sont propre, je sais que je suis sale. $\rightarrow$ on peut éliminer tous ces mondes si les 3 enfants ne réponde pas.
+    \item Nouvelle annonce publique : Est-ce que l'un de vous sait si il est sale ?
+    \item Si je vois que les deux autres enfants sont sale, je ne peux toujours pas répondre à la question. L'enfant 1 et l'enfant 3 réponde oui $\rightarrow$élimine les monde 111, 110, 011
+    \item Il ne reste plus que le monde 101
+\end{itemize}
+
+Diapo 16 : Sujet d'exam d'il y a quelques années
+\begin{itemize}
+    \item L'épicier est capable de distinguer le poids des sphères et le magicien la magique.
+    \item On a 6 mondes possibles
+    \item Sur le graph, on peut voir que le magicien hésite entre tous les mondes ou il a la sphère magique et tous les mondes où il n'a pas la sphère. Same pour l'épicier.
+\end{itemize}
+On a des annonces publique, quel monde éliminer.
+\begin{enumerate}
+    \item "Epicier : Je ne sais pas que j'ai la sphère magique" On n'élimine aucun monde, l'épicier hésite toujours entre deux monde où il a ou pas la sphère magique.
+    \item "Epicier : Je sais que j'ai obtenu la sphère de 130 numéros 3" $\rightarrow w_3, w_4, w_0$ et $ w_1 $ aussi car l'épicier hésite quand même avec le monde $ w_3 $ 
+    \item "Magicien : Je sais que je n'ai pas la sphère magique" 
+    \item Pour la question d'opti pour le roi : \begin{itemize}
+        \item Commencer par le magicien est une mauvaise idée, ça élimine 3 mondes en haut ou en bas puis l'épicier n'hésite entre plus aucun des mondes (car il hésitait entre ceux du haut et du bas) et hop ils peuvent conclure
+        \item Si on fait d'abord parler l'épicier : \begin{itemize}
+            \item Avec un packet de 250g : $ w_2, w_5 $ donc il sait qu'il a la sphère de 130, 
+            \item Avec un packet de 230 : l'épicier est sur qu'il a la sphère de 110g (1)
+            \item Avec un packet de 240g : l'épicier ne sais pas si il a la sphère de 110, et ne sais pas si il a la sphère de 130g : $ w_1 $ ou $ w_3 $ mais il sont indistinguable par l'épicier. Et il reste encore 4 mondes possibles : $ w_0, w_1, w_3, w_4 $. Et là le magicien ne peux pas distinguer. 
+        \end{itemize}
+    \end{itemize}
+\end{enumerate}
+Diapo 19 : 
+\begin{itemize}
+    \item Remarque que, si il y a coopération, il y a une information plus informative
+    \item Mais c'est au delà de ce que la modèlisation nous permet de faire.
+\end{itemize}
+
+Diapo 20 : Nouvelle Énigmes
+\begin{itemize}
+    \item Correction en TME
+\end{itemize}
+
+Diapo 22-25 : Autre énigme : EXAM 2018-2019
+\begin{itemize}
+    \item Initialement avec 140 mondes 
+    \item Avec l'annonce de A, on tombe à 20 
+\end{itemize}
+
+Diapo 23 : Les cartes russes 
+\begin{itemize}
+    \item 
+\end{itemize}
+
+
 \end{document}
