@@ -1,0 +1,138 @@
+<!-- 
+  Ordre des séquences important
+    Cardinalité précise
+
+-->
+<!-- Exercice 1 
+    Demander a Mathilde !! mais c'est plutot ez en dessinant l'arbre et c'est assez instinctif
+  -->
+  <!-- Exercice 2  -->
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<xs:element name='magasin'>
+    <xs:complexType>
+      <xs:sequence>
+
+        <xs:element name='clients'>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name='client' type='ClType' minOccurs='0' maxOccurs='unbounded' />
+            </xs:sequence>
+          </xs:complexType>
+          
+          <!-- Question 2 : Correction-->
+          <!-- /!\ Placement important /!\ -->
+          <xs:key name="clientUnique">
+            <xs:selector xpath="client"/>
+            <xs:field xpath="@clientId"/>
+          </xs:key>
+        </xs:simpleType>
+        
+        </xs:element>
+
+        <xs:element name='commandes'>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name='commande' type='CdeType' minOccurs='0' maxOccurs='unbounded' />
+            </xs:sequence>
+          </xs:complexType>
+          
+          <!-- Question 4 -->
+          <!-- /!\ Placement important /!\ -->
+          <xs:keyref refer="clientUnique", name="refClient">
+            <xs:selector xpath="commande"/>
+            <xs:field xpath="clientId"/>
+          </xs:keyref>
+
+        </xs:element>
+
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:complexType name='ClType'>
+    <xs:sequence>
+      <xs:element name='nom' type='xs:string' />
+      <xs:element name='prenom' type='xs:string' />
+      <xs:element name='dateNaissance' type='xs:string' />
+    </xs:sequence>
+    <xs:attribute name='clientID' type='xs:integer' />
+  </xs:complexType>
+
+  <xs:complexType name='CdeType'>
+    <xs:sequence>
+      <xs:element name='clientID' type='xs:integer' />
+      <xs:element name='dateCommande' type='xs:date' />
+      <xs:element name='dateLivraison' type='xs:date' />
+      <xs:element name='article' type='xs:string' />
+      <xs:element name='cout' type='costInt' />
+    </xs:sequence>
+  </xs:complexType>
+  
+  <!-- Question 1 -->
+  <xs:simpleType name="costInt">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="10"></xs:minInclusive>
+    </xs:restriction>
+
+  </xs:simpleType>
+  
+  
+  <!-- Question 3 -->
+  <!-- Correction : Pas possible  -->
+  <xs:simpleType name="CdeLivraisonDate">
+    <xs:restriction base="xs:date">
+      <xs:minExclusive value=""></xs:minExclusive>
+      <!-- Il faudrait pourvoir faire un self.dateCommande -->
+  
+      <!-- Correction : Pas possible  -->
+    </xs:restriction>
+
+</xs:schema>
+
+<!-- Exercice 3 -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="personnes">
+    <xs:complexType>
+      <xs:sequence maxOccurs="unbounded">
+        <xs:element ref="personne" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="T-Personne">
+    <xs:sequence>
+      <xs:element name="nom" type="xs:string" />
+      <xs:element name="prénom" type="xs:string" />
+      <xs:element name="dateN" type="xs:date" />
+      <xs:element name="genre" type="T-genre" />
+      <xs:element name="enfants" type="T-enfants" />
+    </xs:sequence>
+    <xs:attribute name="idP" type="xs:string" use="required" />
+  </xs:complexType>
+
+  <xs:element name="personne" type="T-Personne" />
+
+  <!-- Question 1  -->
+  <xs:simpleType name="T-genre">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="feminin"></xs:enumeration>
+      <xs:enumeration value="masculin"></xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Question 2 -->
+  <xs:complexType name="T-enfants">
+    <xs:sequence>
+      <xs:element name='enfant' minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:element name="nom" type="xs:string" use="required"></xs:element>
+          <xs:element name="prenom" type="xs:string" use="required"></xs:element>
+          <xs:element name="age" type="xs:integer" use="required"></xs:element>
+          <xs:element name="mère"  type="xs:string" use="required"></xs:element>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

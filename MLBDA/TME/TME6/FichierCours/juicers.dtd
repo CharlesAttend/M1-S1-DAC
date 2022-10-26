@@ -1,0 +1,9 @@
+<!ELEMENT juicers (juicer)*>
+<!ELEMENT juicer (name, image, description, warranty?, weight?, cost+, retailer)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT image (#PCDATA)>
+<!ELEMENT description (#PCDATA)>
+<!ELEMENT warranty (#PCDATA)>
+<!ELEMENT weight (#PCDATA)>
+<!ELEMENT cost (#PCDATA)>
+<!ELEMENT retailer (#PCDATA)>

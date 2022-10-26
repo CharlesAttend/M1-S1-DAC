@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- <!DOCTYPE xs:schema SYSTEM "XMLSchema.dtd"> -->
+
+<!-- A Compl�ter :
+
+NOM 1: VIN
+Prenom 1: Charles
+
+Le sch�ma du guide touristique. La d�claration des �l�ments doit �tre imbriqu�e  
+
+-->
+
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<xs:element name="base">
+    <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+
+            <xs:element name="restaurant" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:sequence>
+                        <!-- Type fermeture simple -->
+                        <xs:element name="fermeture" minOccurs="0"></xs:element>
+                        
+                        <!-- Type Menu avec attribute-->
+                        <xs:element name="menu" maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:attribute name="nom" type="xs:string"></xs:attribute>
+                                <xs:attribute name="prix" type="xs:integer"></xs:attribute>
+                            </xs:complexType>
+                        </xs:element>
+
+                    </xs:sequence>
+
+                    <!-- Attribus de Restaurant -->
+                    <xs:attribute name="nom" type="xs:string"></xs:attribute>
+                    <xs:attribute name="etoile" type="xs:integer"></xs:attribute>
+                    <!-- Ref ville ? -->
+                    <xs:attribute name="ville" type="xs:string"></xs:attribute>
+
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="ville" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:sequence>
+
+                        <xs:element name="plusBeauMonument" minOccurs="0">
+                            <xs:complexType>
+                                <xs:attribute name="nom" type="xs:string"></xs:attribute>
+                                <xs:attribute name="tarif" type="xs:integer"></xs:attribute>
+                            </xs:complexType>
+                        </xs:element>
+
+                    </xs:sequence>
+
+                    <!-- Attribus de Ville -->
+                    <xs:attribute name="nom" type="xs:string"></xs:attribute>
+                    <xs:attribute name="departement" type="xs:integer"></xs:attribute>
+                </xs:complexType>
+                <!-- ???  -->
+            </xs:element>
+        </xs:choice>
+    </xs:complexType>
+</xs:element>
+
+
+
+
+</xs:schema>

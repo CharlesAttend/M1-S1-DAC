@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- <!DOCTYPE xs:schema SYSTEM "XMLSchema.dtd"> -->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<xs:element name="base">
+    <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+
+            <xs:element name="restaurant" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:sequence>
+                        <!-- Type fermeture simple -->
+                        <xs:element name="fermeture" minOccurs="0"></xs:element>
+                        
+                        <!-- Type Menu avec attribute-->
+                        <xs:element name="menu" minOccurs="2" maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:attribute name="nom" type="xs:string"></xs:attribute>
+                                <xs:attribute name="prix" type="xs:integer"></xs:attribute>
+                            </xs:complexType>
+                        </xs:element>
+
+                    </xs:sequence>
+
+                    <!-- Attribus de Restaurant -->
+                    <xs:attribute name="nom" type="xs:string"></xs:attribute>
+                    <xs:attribute name="etoile">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:integer">
+                                <xs:minInclusive value="0"></xs:minInclusive>
+                                <xs:maxInclusive value="3"></xs:maxInclusive>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="ville" type="xs:string"></xs:attribute>
+                    
+                </xs:complexType>
+
+                
+            </xs:element>
+
+            <xs:element name="ville" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:sequence>
+
+                        <xs:element name="plusBeauMonument" minOccurs="0" maxOccurs="1">
+                            <xs:complexType>
+                                <xs:attribute name="nom" type="xs:string" use="required"></xs:attribute>
+                                <xs:attribute name="tarif" type="xs:integer" use="required"></xs:attribute>
+                            </xs:complexType>
+                        </xs:element>
+
+                    </xs:sequence>
+
+                    <!-- Attribus de Ville -->
+                    <xs:attribute name="nom" type="xs:string" use="required"></xs:attribute>
+                    <xs:attribute name="departement" type="xs:integer" use="required"></xs:attribute>
+                </xs:complexType>
+                
+            </xs:element>
+            
+        </xs:choice>
+    </xs:complexType>
+    
+    <!-- Ville : Key -->
+    <xs:key name="idVille">
+        <xs:selector xpath="ville"></xs:selector>
+        <xs:field xpath="@nom"></xs:field>
+    </xs:key>
+    
+    <!-- Restaurant Ref ville -->
+    <xs:keyref refer="idVille" name="refVille">
+        <xs:selector xpath="restaurant"></xs:selector>
+        <xs:field xpath="@ville"></xs:field>
+    </xs:keyref>
+
+</xs:element>
+
+</xs:schema>
