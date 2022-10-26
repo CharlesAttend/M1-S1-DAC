@@ -1,0 +1,197 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage[french]{babel}
+
+\usepackage[default,scale=0.95]{opensans}
+\usepackage[T1]{fontenc}
+\usepackage{amssymb} %math
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{systeme}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Fiche from TD},
+    % pdfpagemode=FullScreen,
+    }
+\urlstyle{same} %\href{url}{Text}
+
+\theoremstyle{plain}% default
+\newtheorem{thm}{Théorème}[section]
+\newtheorem{lem}[thm]{Lemme}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem*{cor}{Corollaire}
+%\newtheorem*{KL}{Klein’s Lemma}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Définition}[section]
+\newtheorem{exmp}{Exemple}[section]
+% \newtheorem{xca}[exmp]{Exercise}
+
+\theoremstyle{remark}
+\newtheorem*{rem}{Remarque}
+\newtheorem*{note}{Note}
+%\newtheorem{case}{Case}
+
+
+
+\title{Ficher LRC à partir des TD}
+\author{Charles Vin}
+\date{M1-S1 2022}
+
+\begin{document}
+\maketitle
+
+\section{Formule}
+\begin{itemize}
+    \item \textbf{$ F $ insatisfiable $ \Leftrightarrow \neg F$ valide}
+    \item $ F $ satisfiable $ \Leftrightarrow \neg F$ non valide
+    \item $ \neg F $ satisfiable $ \Leftrightarrow F$ non valide
+    \item $ F $ valide $ \Leftrightarrow \neg F$ insatisfiable
+    \item \textbf{$ A \to B \equiv \neg A \vee B $ }
+    \item On développe $ \vee  $ comme un $ + $ et $ \wedge  $ comme un $ \times  $ 
+\end{itemize}
+
+\section{Méthode des tableaux}
+\begin{itemize}
+    \item S'entrainer ! TME1, exo 2
+    \item Règle $ \alpha  $ = règles conjonctive, $ \beta  $ règles disjonctive = On sépare en deux branches
+    \item On s'arrete lorsque full atome dans la boite
+    \item Feuille fermé $ \Leftrightarrow $ contradiction entre atome, 
+    \item Feuille ouverte = une solution, ce qui n'est pas précisé dans la feuille est supposé vrais
+    \item \textbf{Si toute les feuilles de l'arbre sont fermées alors $ F $ unsat} $ \Leftrightarrow $ \textbf{Une feuille ouverte $\rightarrow F$ satisfiable}
+\end{itemize}
+
+\section{Système de Hilbert}
+\subsection{Preuve dans Hilbert}
+\begin{itemize}
+    \item S'entrainer ! TME1, exo3-4
+    \item On a : 3 axiomes + Modus Ponens
+    \item Théorème de la déduction : $ A_1, \dots, A_n \models B \Leftrightarrow A_1, \dots, A_{n-1} \models A_n \to B$ 
+\end{itemize}
+
+\subsection{Traduction d'énoncé en Hilbert}
+\begin{itemize}
+    \item Les $ \exists  $ n'aime pas les $ \rightarrow  $ à cause de $ A \to B \equiv \neg A \vee B $
+\end{itemize}
+
+\section{Logique du première ordre}
+\begin{itemize}
+    \item Définition d'un modèle : fonction($ \left| M \right| \to \left| M \right|  $ ) + prédicat ($ \left| M \right| \to  $ vrais/faux)
+\end{itemize}
+
+\subsection{Preuve par résolution}
+\begin{itemize}
+    \item On ne peut simplifier qu'un truc à la fois : 
+        \[
+            \frac{\neg a \vee b \vee c \qquad a \vee \neg b \vee c }{b \vee \neg b \vee c}
+        .\]
+    \item Mieux de le faire en version Hilbert, permet de réutiliser les lignes plutôt que de les réécrire.
+        \begin{align*}
+            R_1 : R(c,d) \qquad [Res(C_2, C_4) ; \{Y\backslash d\}]
+        \end{align*}
+    \item \textbf{A refaire au moins une fois}
+\end{itemize}
+
+\subsection{Unification}
+\begin{itemize}
+    \item Classiquement, on cherche $ F_2 = \sigma (F_1) $ avec $ \sigma  $ un ensemble de substitution.
+    \item Utiliser des $ X \prime  $ pour pas se tromper
+    \item \textbf{A refaire au moins une fois}
+\end{itemize}
+
+\subsection{Transformation de formule en clause}
+Définition d'une clause : 
+\begin{itemize}
+    \item Pas de $ \exists  $ 
+    \item Pas de $ \wedge  $ 
+    \item Pas de $ \forall  $ implicite
+\end{itemize}
+\begin{enumerate}
+    \item Mettre les quantificateurs au début : 
+    \[
+        F_3 : \forall x, \forall y (R(x,y) \to \exists z (R(x,z) \wedge R(z,y)))
+    .\]
+    Deviens 
+    \[
+        F_3 : \forall x, \forall y, \exists z (\neg R(x,y) R(x,z) \wedge R(z,y))
+    .\]
+    \item Skolenisation : supprimer les $ \exists  $ en inventant des constante. \begin{align*}
+        F_1 &= \forall X, \exists Y, R(X,Y) \\
+        F_2 &= \exists X, \forall Y, R(X,Y) \\
+        F_3 &= \forall x, \forall y, \exists z (\neg R(x,y) R(x,z) \wedge R(z,y))
+    \end{align*}
+    Devient \begin{align*}
+        F_1 &= \forall X, R(X, f(X))
+        F_2 &= \forall Y, R(x_0, Y)
+        F_3 &= \begin{cases}
+        \neg R(X,Y) \vee R(X, g(X,Y)) \\
+        \neg R(X,Y) \vee R(g(X,Y), Y) \\
+        \end{cases} 
+    \end{align*}
+\end{enumerate}
+
+\section{Graph conceptuel}
+\subsection{Représentation des connaissances}
+\begin{itemize}
+    \item "Rocher : \#" = "Le" rocher
+    \item Bien choisir les relation dans les cercles
+\end{itemize}
+\subsection{Joiture et généralisation}
+\begin{itemize}
+    \item Jointure maximale : Est-ce que les deux phrases représente la même chose $\rightarrow$ Fusion ; /!\textbackslash au contradiction
+    \item Généralisation : Généralisation de ce qu'on dit, vrais pour les deux. On vas au plus générale qui rend vrais les deux
+    \item Subsumption : Un graph en subsume un autre si il est plus général
+\end{itemize}
+
+\section{Logique de description}
+\subsection{$ \mathcal{FL}^- $ }
+\begin{itemize}
+    \item \textbf{S'entrainer pas compris} TD3
+    \item TBox : Concept atomique $ C \equiv D $, $ C \subseteq D \Leftrightarrow \forall x, C(x) \to D(x)$ 
+    \item ABox : $ a : C, <a,b> : Role $ 
+    \item Grammaire : pas de variable lol
+\end{itemize}
+\subsection{$ \mathcal{ALC} $ }
+\begin{itemize}
+    \item \textbf{S'entrainer RIEN RIEN compris} TD3
+    \item Same de $ \mathcal{FL}^- $ plus : 
+    \item $ \exists R.C $ toujours role + concept atomique 
+    \item $ \neg , \bot , \top  $ autorisé $\rightarrow$ Pratique
+\end{itemize}
+
+\subsection{Interprétation}
+\begin{itemize}
+    \item On a un graph avec des flèches au sens important.
+    \item On regarde toujours les mondes de départ des flèches
+    \item $ \exists s. \neg A $ se lit "Tous les mondes qui ont une flèche $ s $ qui pointe vers un monde qui vérifie $ \neg A $ "
+\end{itemize}
+
+\subsection{Méthode des tableaux}
+TD4 mais pas beaucoup de correction
+\begin{itemize}
+    \item On veux prouver $ \phi  $  un truc vrais ou faux
+    \item On part d'une TBox acyclique
+    \item Puis notre première case du tableau contient $ Tbox \sqcap ABox \sqcap \phi  $ 
+    \item Then on cherche à appliquer les bonnes règles pour arriver rapidement à notre objectif.
+\end{itemize}
+
+\section{Logique épistémique}
+\begin{itemize}
+    \item On développe les formule $ \Box \diamond  $ comme un arbre en explorant les possibilités.
+    \item Penser que parfois les flèches de récursion ne sont pas dessiner
+    \item /!\textbackslash au implication, parfois une traduction en vaut la penne + $ a \to b $ toujours vrais pour les mondes où $ a $ est faux $\rightarrow$ vérifier surtout les mondes où $ a $ est vrais
+    \item \textbf{s'entraîner vite fait fin exo 1 TD5}
+    \item Penser au démo par l'absurde pour les trucs cons (TD5, fin exo3)
+\end{itemize}
+\textbf{Reste le TD6 à ficher}
+
+
+\end{document}
