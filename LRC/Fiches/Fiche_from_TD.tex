@@ -190,6 +190,20 @@ TD4 mais pas beaucoup de correction
     \item /!\textbackslash au implication, parfois une traduction en vaut la penne + $ a \to b $ toujours vrais pour les mondes où $ a $ est faux $\rightarrow$ vérifier surtout les mondes où $ a $ est vrais
     \item \textbf{s'entraîner vite fait fin exo 1 TD5}
     \item Penser au démo par l'absurde pour les trucs cons (TD5, fin exo3)
+    \item Savoir si $ p $ :  $ K^{Si}_p \equiv K p \vee K \neg p $ 
+    \item Savoir lequel parmi $ a,b,c \equiv K_a \vee K_b \vee K_c $ 
+    \item Loi de Morgan \begin{itemize}
+        \item $ \diamond \phi \equiv \neg \Box \neg \phi  $ 
+        \item $ \Box \phi \equiv \neg \diamond \neg \phi  $ 
+    \end{itemize}
+\end{itemize}
+Liste des axiomes logique épistémique S5 :
+\begin{itemize}
+    \item T : Réflexivité des mondes $ \forall w : (w,w) \in R $ : $ \Box \phi \to \phi  $ 
+    \item D : Sérialité des mondes = aucun monde seul $ \forall w, \exists w' : (w, w') \in R $  : $ \Box \phi \to \diamond \phi  $ 
+    \item 4 : Transitivité : classiquement en math : $ \forall x,y,z\in E\quad (x{\mathcal {R}}y\land y{\mathcal {R}}z)\Rightarrow x{\mathcal {R}}z. $ bah pareil avec les mondes: si je sais phi je sais que je sais phi : $ \Box \phi \to \Box \Box \phi  $ 
+    \item 5 : Euclidienne : $ \diamond \phi  \to  \Box \diamond \phi  $ Ca implique qu'il existe un lien entre chaque monde presque : $ \forall w, w', w'', (w, w') \in R, (w',w'') \in R \to (w',w'') \in R $. D'après le prof c'est l'introspection negative : je sais ce que je ne sais pas.
+    \item B : Symétrie des flèches : $ \phi \to \Box \diamond \phi  $ Implique qu'il existe toujours le chemin retour : $ \forall w, w', (w,w') \in R \to (w',w) \in R $ 
 \end{itemize}
 \textbf{Reste le TD6 à ficher}
 
