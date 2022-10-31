@@ -35,7 +35,7 @@ WHERE COUNT(e.nbUCommunes(e2)) = 10;
 -- Correction
 SELECT value(e1), value(e2)
 FROM LesEtudiants e1, LesEtudiants e2
-WHERE ref(e1) != ref(e2) AND e1.nbUCommunes(e2) = 10
+WHERE ref(e1) != ref(e2) AND e1.nbUCommunes(e2) = 10;
 
 -- c) EnsC1(C1('4I801', 18), C1('4I200', 16))
 SELECT c.code 

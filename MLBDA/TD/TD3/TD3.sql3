@@ -56,8 +56,8 @@ insert into lesUnité VALUES (
         6,
         Séances(
             Séance(1, 'SQL', ?), -- On met une instance vide d'étudiant
-            Séance(2, 'SQL3', Etudiant(),
-            Séance(3, 'XML', Etudiant()
+            Séance(2, 'SQL3', Etudiant()),
+            Séance(3, 'XML', Etudiant())
         ),
         EnsC2() -- Pareil ici on met une instance vide 
 );
@@ -76,11 +76,12 @@ INSERT INTO LesEtudiants VALUES Etudiant(
 );
 
 -- d)
-insert into table (
+INSERT INTO TABLE (
     SELECT s.présents FROM LesUnités u, table(u.contenu) s WHERE u.code = '4I801' AND s.numero = 3
 )
 VALUES (
     SELECT ref(e) FROM LesEtudiants e WHERE e.nom = 'Alice'
+)
 
 -- Question 3
 -- a)
