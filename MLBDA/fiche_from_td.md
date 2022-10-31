@@ -1,11 +1,12 @@
 # SQL3
 ## Schéma et modélisation
-- /!\ **Ordre important, faire des headers (déclaration vide) en cas de besoin.**
+- **/!\ Ordre important, faire des headers (déclaration vide) en cas de besoin.** `create type T_Piece;`
 - `;` à la fin
 - `create type X as object ()`
 - `varchar(20)`
 - `number(5)`
 - `Propriété ref Type` quand on veut une ref ou non 
+- - `not instantiable member function masse return number` pour dire qu'on définie que la signature
 
 ### Nested table
 ```sql
@@ -46,12 +47,13 @@ create type magasin under Etablissement(
 ```
 - `not final` si l'objet a des descendants (héritage)
 - `create type Child under Parent` Pour faire héritage
+- `overriding member function volume return number` pour override les méthodes lors d'un héritage
 
 ### Instanciation
 ```sql
 create table LesBars of Bar;
 create table LesBierre of Biere;
-create table LesConsomateur of Comsommateur
+create table LesConsomateur of Consommateur
     nested table achete store as t1,
     nested table consomme store as t2;
 ```
@@ -101,6 +103,19 @@ INSERT INTO LesEtudiants VALUES Etudiant(
     )
 );
 ```
+On peut mettre des `null` aussi
+```sql
+INSERT INTO Les_Pieces_Composites VALUES (T_Piece_composite(
+    'billard', -- nom
+    null,  -- entre dans
+    10, -- cout
+    T_contient_plusieurs(
+        T_contient((SELECT ref(p) FROM Les_Pieces_Bases p WHERE p.nom = 'boule'), 3),
+        T_contient((SELECT ref(p) FROM Les_Pieces_Bases p WHERE p.nom = 'canne'), 2)
+    )
+));
+```
+
 
 ### Méthode
 ```sql
@@ -114,6 +129,8 @@ member function notes return EnsC AS
 END;
 ```
 - ``BULD COLLECT INTO` pour affecter à une variable l’ensemble des objets retournés par une requête SQL. Entre le `SELECT` et le `FROM`.
+- `overriding member function volume return number` lors de la déclaration de type en cas d'héritage ! 
+- `not instantiable member function masse return number` pour dire qu'on définie que la signature
 - On peut faire des **récursions**, notamment en utlisant une `UNION`
 ```sql
 member function prerequisTousNiveaux return EnsU
@@ -135,6 +152,14 @@ END;
 - `+` = [1-n]
 - `*` = [0-n]  
 - `?` = [0-1]
+- On peut utiliser `EMPTY` pour un élément vide, mais en général avec des attributs
+```
+<!ELEMENT menu EMPTY>
+<!ATTLIST menu 
+    nom CDATA #REQUIRED
+    prix CDATA #REQUIRED
+>
+```
 
 ### Attribut
 ```xml
@@ -146,7 +171,7 @@ END;
 
 Liste des types :
 - **CDATA** : la valeur de l 'attribut est une chaîne de caractères
-- **ID** : identificateur d 'élément, IDREF(S) : renvoi vers un (des) ID
+- **ID** : identificateur d 'élément, **IDREF(S)** : renvoi vers un (des) ID. Ici c'est ez, **tous les ID sont uniques** donc on idref juste vers un ID existant.
 - NMTOKEN(S) : un ou des noms symboliques (sans blanc)
 - `(value1 | value2 | value3)` liste 
 - ENTITY(IES) : entités externes non XML
@@ -155,7 +180,21 @@ Liste des mode :
 - `#FIXED` une constante
 - `#REQUIRED` Attribut requis
 - `#IMPLIED` Attribut facultatif
-- **Pas serein sur les refs** Voir en fichant le TME
+- 
 
 ## XSchema
 - Au vu des annales, il faut voir le cours.
+- Les `key` et `keyref` la racine du parent commun. `@` lorsqu'on pointe sur un attribut
+```xml
+<!-- Ville : Key -->
+<xs:key name="idVille">
+    <xs:selector xpath="ville"></xs:selector>
+    <xs:field xpath="@nom"></xs:field>
+</xs:key>
+
+<!-- Restaurant Ref ville -->
+<xs:keyref refer="idVille" name="refVille">
+    <xs:selector xpath="restaurant"></xs:selector>
+    <xs:field xpath="@ville"></xs:field>
+</xs:keyref>
+```
