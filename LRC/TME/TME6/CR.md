@@ -1,6 +1,6 @@
 # Exercice 1
 ## Question 1
-Après avoir éditer le XML, on peut constater que Lotrec fait le même algo que ce que celui pratiqué à la main en TD. 
+Après avoir éditer le XML, on peut constater que Lotrec fait le même algo que ce que celui pratiqué à la main en TD (il fait un arbre).
 
 ## Question 2
 ## Question 3
@@ -15,3 +15,4 @@ Après avoir éditer le XML, on peut constater que Lotrec fait le même algo que
 - `or and P not P pos pos pos P`
 - `or imp p pos and Q not P Q`
 - `imp nec imp P Q imp nec P nec Q`
+Ce que je retiens de cette exercice, c'est que Lotrec a une démarche proche de celle pratiqué à la main lors de la vérification des formules.
