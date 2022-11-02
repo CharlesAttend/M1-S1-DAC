@@ -7,5 +7,9 @@
 % concatene([T|Q], [], Z) :- concatene(Q, [], [T|Z]).
 
 
-% concatene([], X, X).
-% concatene([T|Q], L, [T|L2]) :-  concatene(Q, L, L2).
+concatene([], X, X) :- writef("%t", [X]).
+concatene([T|Q], L, [T|L2]) :- writef("Q: %t, L: %t, L2: %t", [Q, L, L2]), nl, concatene(Q, L, L2).
+
+
+concatene([], X, X).
+concatene([T|Q], L, [T|L2]) :- concatene(Q, L, L2).
