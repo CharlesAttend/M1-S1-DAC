@@ -67,10 +67,11 @@ create table lesUnité of Unité
 ```
 
 ## Requête
+Diapo 19 :
 - `ref(*)` : Utilisé dans les insertions, lorsque qu'on veux insérer une ref
-- `unref(*)` : Utilisé dans les requêtes, pour unref l'objet pour l'afficher ou l'utiliser.
-- `table(*)` : Utilisé dans les requêtes lorsque doit accéder à un type ensembliste 
-- `value(*)` : ~~Utilisé dans les requêtes lorsqu'on doit accéder à une valeur d'un type ensembliste ????~~ **A CLARIFIER** 
+- `deref(*)` : Utilisé dans les requêtes, pour deref l'objet pour l'afficher. Lorsque qu'on veut utiliser l'objet, on peut appliquer le `.` directement, ça deref automatiquement l'objet. Attention PL/SQL force sont utilisation (voir diapo 26)
+- `table(*)` : Utilisé dans le `from` des requêtes lorsque doit accéder à un type ensembliste 
+- `value(*)` : Utilisé dans les requêtes lorsqu'on doit accéder à une valeur d'un type ensembliste (ref ou non). Car dans un type ensembliste, `table(e.ens_type)` est un nuplet du genre `(id, Object)` donc faut au moins le décomposer avec `value()`.
 
 ### Insertion
 Deux syntaxes en fonction de si on insère dans un type ensembliste ou non.
