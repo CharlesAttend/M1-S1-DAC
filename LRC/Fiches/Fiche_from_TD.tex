@@ -65,7 +65,7 @@
     \item Règle $ \alpha  $ = règles conjonctive, $ \beta  $ règles disjonctive = On sépare en deux branches
     \item On s'arrete lorsque full atome dans la boite
     \item Feuille fermé $ \Leftrightarrow $ contradiction entre atome, 
-    \item Feuille ouverte = une solution, ce qui n'est pas précisé dans la feuille est supposé vrais
+    \item Feuille ouverte = une solution, avec toutes les combinaisons possible qui respecte ce qu'il y a dans la feuille (penser à l'ensemble vide si tout est faux).
     \item \textbf{Si toute les feuilles de l'arbre sont fermées alors $ F $ unsat} $ \Leftrightarrow $ \textbf{Une feuille ouverte $\rightarrow F$ satisfiable}
     \item Indiquer quelle règle on utilise sur le coté.
 \end{itemize}
@@ -103,8 +103,12 @@
 
 \subsection{Unification}
 \begin{itemize}
-    \item Classiquement, on cherche $ F_2 = \sigma (F_1) $ avec $ \sigma  $ un ensemble de substitution.
+    \item Unification : on peut changer les variables des deux cotés. 
+    \item Filtrage : On ne peut changer que les variables de $ F_1 $ 
+    \item Classiquement, on cherche $ F_2 = \sigma (F_1) $ avec $ \sigma = \{X/X', Z/g(a, X'), \dots \}$ un ensemble de substitution.
     \item Utiliser des $ X \prime  $ pour pas se tromper
+    \item Écrire les variables en majuscule, et les constante en minuscule !
+    \item On ne peux pas changer les constantes, on ne remplace pas une constante par une variable.
     \item \textbf{A refaire au moins une fois}
 \end{itemize}
 
@@ -184,11 +188,13 @@ TD4 mais pas beaucoup de correction
     \item Then on cherche à appliquer les bonnes règles pour arriver rapidement à notre objectif.
 \end{itemize}
 
-\section{Logique épistémique}
+\section{Logique Modale}
 \begin{itemize}
-    \item On développe les formule $ \Box \diamond  $ comme un arbre en explorant les possibilités.
+    \item On développe les formule $ \Box, \diamond  $ comme un arbre en explorant les possibilités.
+    \item On peut donner des contres exemples.
+    \item Règle de necessitation : $ M \models \phi \equiv M \models \Box \Phi $ 
     \item Penser que parfois les flèches de récursion ne sont pas dessiner
-    \item /!\textbackslash au implication, parfois une traduction en vaut la penne + $ a \to b $ toujours vrais pour les mondes où $ a $ est faux $\rightarrow$ vérifier surtout les mondes où $ a $ est vrais
+    \item /!\textbackslash  au implication, parfois une traduction en vaut la penne $ a \to b $ toujours vrais pour les mondes où $ a $ est faux $\rightarrow$ vérifier surtout les mondes où $ a $ est vrais
     \item \textbf{s'entraîner vite fait fin exo 1 TD5}
     \item Penser au démo par l'absurde pour les trucs cons (TD5, fin exo3)
     \item Savoir si $ p $ :  $ K^{Si}_p \equiv K p \vee K \neg p $ 
@@ -206,7 +212,12 @@ Liste des axiomes logique épistémique S5 :
     \item 5 : Euclidienne : $ \diamond \phi  \to  \Box \diamond \phi  $ Ca implique qu'il existe un lien entre chaque monde presque : $ \forall w, w', w'', (w, w') \in R, (w',w'') \in R \to (w',w'') \in R $. D'après le prof c'est l'introspection negative : je sais ce que je ne sais pas.
     \item B : Symétrie des flèches : $ \phi \to \Box \diamond \phi  $ Implique qu'il existe toujours le chemin retour : $ \forall w, w', (w,w') \in R \to (w',w) \in R $ 
 \end{itemize}
-\textbf{Reste le TD6 à ficher}
 
-
+\subsection{logique épistémique}
+\begin{itemize}
+    \item $ M, w_1 \models K_i p \equiv M, w_1 \models \Box p $ en utilisant les flèches indicées $ i $
+    \item Croire possible $ p \equiv B_i \phi \equiv \diamond \phi \equiv \neg \Box \neg \phi \equiv \neg K \neg \phi  $ 
+    \item Savoir si $ p $ : $ K^{si} p \equiv K p \vee K \neg p $ Bien le traduire lui, il est piège
+    \item Savoir lequel parmi $ a,b,c \equiv K a \vee K v \vee K c $ 
+\end{itemize}
 \end{document}
