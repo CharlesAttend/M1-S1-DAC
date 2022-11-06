@@ -150,11 +150,12 @@
     nested <span class="hljs-keyword">table</span> noteInscrits store <span class="hljs-keyword">as</span> t4
 </div></code></pre>
 <h2 id="requête">Requête</h2>
+<p>Diapo 19 :</p>
 <ul>
 <li><code>ref(*)</code> : Utilisé dans les insertions, lorsque qu'on veux insérer une ref</li>
-<li><code>unref(*)</code> : Utilisé dans les requêtes, pour unref l'objet pour l'afficher ou l'utiliser.</li>
-<li><code>table(*)</code> : Utilisé dans les requêtes lorsque doit accéder à un type ensembliste</li>
-<li><code>value(*)</code> : <s>Utilisé dans les requêtes lorsqu'on doit accéder à une valeur d'un type ensembliste ????</s> <strong>A CLARIFIER</strong></li>
+<li><code>deref(*)</code> : Utilisé dans les requêtes, pour deref l'objet pour l'afficher. Lorsque qu'on veut utiliser l'objet, on peut appliquer le <code>.</code> directement, ça deref automatiquement l'objet. Attention PL/SQL force sont utilisation (voir diapo 26)</li>
+<li><code>table(*)</code> : Utilisé dans le <code>from</code> des requêtes lorsque doit accéder à un type ensembliste</li>
+<li><code>value(*)</code> : Utilisé dans les requêtes lorsqu'on doit accéder à une valeur d'un type ensembliste (ref ou non). Car dans un type ensembliste, <code>table(e.ens_type)</code> est un nuplet du genre <code>(id, Object)</code> donc faut au moins le décomposer avec <code>value()</code>.</li>
 </ul>
 <h3 id="insertion">Insertion</h3>
 <p>Deux syntaxes en fonction de si on insère dans un type ensembliste ou non.</p>
