@@ -76,7 +76,8 @@
     \item S'entrainer ! TME1, exo3-4
     \item On a : 3 axiomes + Modus Ponens
     \item Théorème de la déduction : $ A_1, \dots, A_n \models B \Leftrightarrow A_1, \dots, A_{n-1} \models A_n \to B$ 
-    \item Les HP de départ sont déduite à partir du théorème de la déduction : on passe tout à gauche pour n'avoir plus qu'un atome à droite et bim voilà nos HP de départ. Par exemple : $ \models (P \to Q) \to ((Q \to R) \to (P \to R)) $ devient $ (P \to Q), (Q \to R), P \models R  $  
+    \item Les HP de départ sont déduite à partir du théorème de la déduction : on passe tout à gauche pour n'avoir plus qu'un atome à droite et bim voilà nos HP de départ. Par exemple : $ \models (P \to Q) \to ((Q \to R) \to (P \to R)) $ devient $ (P \to Q), (Q \to R), P \models R  $ 
+    \item Avoir des hp de départ sous forme de clause.
 \end{itemize}
 
 \subsection{Traduction d'énoncé en Hilbert}
@@ -87,8 +88,11 @@
 \section{Logique du première ordre}
 \begin{itemize}
     \item Définition d'un modèle : fonction($ \left| M \right| \to \left| M \right|  $ ) + prédicat ($ \left| M \right| \to  $ vrais/faux)
-    \item Lors de la traduction d'énoncé en LPPO, c'est pas mal de garder des $ \forall, \exists  $ à l'intérieur de la clause, ça permet de la simplifier pas mal finalement
-    \item Dans l'annale ils se sont pas fait chier sur ça, je cherchais compliqué alors que c'était simple 
+    \item Lors de la traduction d'énoncé en LPPO, c'est pas mal de garder des $ \forall, \exists  $ à l'intérieur de la clause, ça permet de la simplifier pas mal finalement. Evite vraiment de se tromper genre pour la transformation en clause.
+    \item Dans l'annale ils se sont pas fait chier sur ça, je cherchais compliqué avec les implications alors que c'était simple 
+    \item Ne pas oublier de mettre des $ \wedge  $, pas des virgules
+    \item Pas de $ \exists ! $. Pour avoir l'unicité on utilise une implication avec égalité au bout : $ \forall x \forall y \forall z (tableau(x) \wedge a_peint(y,x) \wedge a_peit(z,x)) \to eq(y,z) $ 
+    \item On défini les variables qu'on déclare avec les précida unaire ($ tableau(x) $ ) mais pas quand on envoie un paramètre ($ tableau("LesMenines") $) t'as capté (exo1 annale 2019)
 \end{itemize}
 
 \subsection{Preuve par résolution}
@@ -102,6 +106,7 @@
             R_1 : R(c,d) \qquad [Res(C_2, C_4) ; \{Y\backslash d\}]
         \end{align*}
     \item \textbf{A refaire au moins une fois}
+    \item Pour prouver $ \models \phi $ on prouve $ \neg \phi \models \varnothing $ on prouve qu'il y a une contradiction dans les clauses 
 \end{itemize}
 
 \subsection{Unification}
@@ -181,12 +186,14 @@ Définition d'une clause :
         \exists R.C &= \{x \in \Delta | \exists y, (x,y) \in R \wedge y \in C\} \\
         \forall R.C &= \{x \in \Delta | \forall y, (x,y) \in R \to y \in C\} \text{ (comme } \mathcal{FL}^- \text{)}
     \end{align*}
+    \item Penser aux $ \sqsubseteq  $ dans la TBox 
 \end{itemize}
 
 \subsection{Interprétation}
 \begin{itemize}
-    \item On a un graph avec des flèches au sens important.
-    \item On regarde toujours les mondes de départ des flèches
+    \item On a un graph avec des flèches qui représente les appartenances aux rôles $ (x,y) \in R $ avec $ x $ monde de départ et $ y $ monde d'arrivé.
+    \item Les appartenances au concept sont les attribues des mondes.
+    \item Lister les mondes appartenant aux rôles $\rightarrow$ Peut aider a appliquer la définition du $ \forall, \exists $
     \item $ \exists s. \neg A $ se lit "Tous les mondes qui ont une flèche $ s $ qui pointe vers un monde qui vérifie $ \neg A $ "
 \end{itemize}
 
@@ -194,9 +201,10 @@ Définition d'une clause :
 TD4 mais pas beaucoup de correction
 \begin{itemize}
     \item On veux prouver $ \phi  $  un truc vrais ou faux
-    \item On part d'une TBox acyclique
-    \item Puis notre première case du tableau contient $ Tbox \sqcap ABox \sqcap \phi  $ 
+    \item On part d'une TBox acyclique + tout sous forme normale négative : Développer les $ \neg  $ 
+    \item Puis notre première case du tableau contient $ Tbox \sqcap ABox \sqcap \phi  $ avec $ \phi  $ sous FNN et \textbf{avec les definitions remplacé !} OU avec $ \neg \phi  $ il faut aller vers la contradiction  
     \item Then on cherche à appliquer les bonnes règles pour arriver rapidement à notre objectif.
+    \item On peut traduire les $ A \sqsubseteq B $ par $ i: A \sqcap B $ 
 \end{itemize}
 
 \section{Logique Modale}
