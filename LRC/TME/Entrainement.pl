@@ -38,4 +38,11 @@ palindrome(L) :- inverse(L, Z), Z==L.
 %     .
 
 palindrome2([_]).
-palindrome2(L1) :- concatene([T|Q], [T], L1),palindrome2(Q).
+palindrome2(L1) :- concatene([T|Q], [T], L1), palindrome2(Q).
+
+% Annale 2019
+appartient([], [], []).
+appartient(H, [H|T], T) :- appartient().
+
+permutatio([],[]).
+permutatio(X,Y) :- appartient(A, X, B), permutatio(X, [A|B]).
