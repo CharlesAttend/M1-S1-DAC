@@ -36,8 +36,6 @@
                     <xs:attribute name="ville" type="xs:string"></xs:attribute>
                     
                 </xs:complexType>
-
-                
             </xs:element>
 
             <xs:element name="ville" maxOccurs="unbounded">

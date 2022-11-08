@@ -12,17 +12,17 @@
 
 
 concatene([], X, X).
-concatene([T|Q], L, [T|L2]) :- concatene(Q, L, L2).
+concatene([H|T], Y, [H|Z]) :- concatene(T, Y, Z).
 
 % Inverse : 
 inverse([], []).
+inverse([H|T], Z) :- inverse(T,L), concatene(L, [H], Z).
 % inverse([T|Q], L2) :- inverse(Q, [T|L2]).
-inverse([T|Q], L2) :- inverse(Q,L), concatene(L, [T], L2).
 
 % Supprime : 
 supprime([], _, []).
-supprime([H|T], Y, [H|Z]) :- H\==Y, supprime(T, Y, Z), !.
-supprime([_|T], Y, Z) :- supprime(T, Y, Z).
+supprime([Y|T], Y, Z) :- supprime(T, Y, Z).
+supprime([H|T], Y, [H|Z]) :- H\==Y, supprime(T, Y, Z).
 
 % Filtre : 
 filtre(X, [], X).
@@ -38,11 +38,12 @@ palindrome(L) :- inverse(L, Z), Z==L.
 %     .
 
 palindrome2([_]).
-palindrome2(L1) :- concatene([T|Q], [T], L1), palindrome2(Q).
+palindrome2(X) :- concatene([H|T], [H], X), palindrome2(T).
 
 % Annale 2019
 appartient([], [], []).
 appartient(H, [H|T], T) :- appartient().
 
-permutatio([],[]).
-permutatio(X,Y) :- appartient(A, X, B), permutatio(X, [A|B]).
+permutation([],[]).
+permutation(X,[Y|Z]) :- appartient(Y, X, L), permutation(L, Z).
+
