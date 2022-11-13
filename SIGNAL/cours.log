@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.10.4)  12 NOV 2022 13:29
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.10.4)  13 NOV 2022 17:55
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -454,11 +454,6 @@ LaTeX Font Info:    Font shape `T1/opensans-TLF/b/n' will be
 (Font)              scaled to size 13.67995pt on input line 56.
 LaTeX Font Info:    Font shape `T1/opensans-TLF/b/n' will be
 (Font)              scaled to size 11.39996pt on input line 57.
-
-Overfull \hbox (4.38058pt too wide) in paragraph at lines 62--63
-[]\T1/opensans-TLF/b/n/10 J'ai de-mandé pour avoir le diapo et l'an-noté nu-mé-ri-que-ment mais comme il veux qu'on viennent
- []
-
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 65.
 [1
 
@@ -480,7 +475,7 @@ Here is how much of TeX's memory you used:
  14 hyphenation exceptions out of 8191
  34i,6n,40p,288b,425s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/opensans/a_jg4h6q.enc}</usr/share/texlive/texmf-dist/fonts/type1/ascender/opensans/OpenSans-Bold.pfb></usr/share/texlive/texmf-dist/fonts/type1/ascender/opensans/OpenSans-Regular.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on /home/charles/M1-S1-DAC/SIGNAL/cours.pdf (1 page, 35803 bytes).
+Output written on /home/charles/M1-S1-DAC/SIGNAL/cours.pdf (1 page, 36015 bytes).
 PDF statistics:
  35 PDF objects out of 1000 (max. 8388607)
  28 compressed objects within 1 object stream
