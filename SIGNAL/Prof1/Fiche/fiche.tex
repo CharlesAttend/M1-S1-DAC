@@ -1,0 +1,153 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage[french]{babel}
+
+\usepackage[default,scale=0.95]{opensans}
+\usepackage[T1]{fontenc}
+\usepackage{amssymb} %math
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{systeme}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Fiche SIGNAL},
+    % pdfpagemode=FullScreen,
+    }
+\urlstyle{same} %\href{url}{Text}
+
+\theoremstyle{plain}% default
+\newtheorem{thm}{Théorème}[section]
+\newtheorem{lem}[thm]{Lemme}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem*{cor}{Corollaire}
+%\newtheorem*{KL}{Klein’s Lemma}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Définition}[section]
+\newtheorem{exmp}{Exemple}[section]
+% \newtheorem{xca}[exmp]{Exercise}
+
+\theoremstyle{remark}
+\newtheorem*{rem}{Remarque}
+\newtheorem*{note}{Note}
+%\newtheorem{case}{Case}
+
+
+
+\title{Fiche SIGNAL}
+\author{Charles Vin}
+\date{S1-2022}
+
+\begin{document}
+\maketitle
+
+\section{Composante paire et impaire d'une fonction}
+Soit $ x(t) $ une fonction alors on peut écrire $ x(t) $ sous la forme suivante : 
+\[
+    x(t) = \frac{1}{2}(x(t) + x(-t)) + \frac{1}{2}(x(t) - x(-t))
+.\]
+Composante paire 
+\[
+    x_i(t) = \frac{1}{2}(x(t) - x(-t))
+.\]
+Composante impaire 
+\[
+    x_p(t) = \frac{1}{2}(x(t) + x(-t))
+.\]
+
+\section{Convolution}
+\begin{align*}
+    (f \star g)(t) &= \int _{-\infty }^{\infty }f(\tau )g(t-\tau )d\tau \\
+                    &= \sum_{m=-\infty }^{+\infty} f[m]g[n - m]
+\end{align*}
+
+\begin{itemize}
+    \item Inverser $ x(\tau ) $ en $ x(-\tau) $ par symétrie
+    \item Décaler $ x(-\tau) $ de $ t $ donnant alors $ x(- \tau + t ) = x(t - \tau )$ 
+    \item Différencier les différents cas possibles en croisant les graphs, \textbf{attention aux échelles de tes dessins} !!! 
+    \item Pour chaque cas : calculer la convolution en utilisant les fonctions en jeux sur les bonnes bornes
+\end{itemize}
+
+\section{Système Linéaire, homogène et invariant}
+\begin{itemize}
+    \item Linéaire = Additivité + homogène 
+    \item Additivité : \begin{itemize}
+        \item Soit $ x_1(t) \to h(t) $ et $ x_2(t) \to h(t) $ $\rightarrow$ somme des deux sorties $ = y_1(t) $
+        \item Soit $ x_1(t)+x_2(t) \to h(t) \to y_2(t) $
+        \item Additif si $ y_1(t) = y_2(t) $  
+    \end{itemize} 
+    \item Homogène \begin{itemize}
+        \item Soit $ x(t)*K \to h(t) \to y_1(t)$ 
+        \item Soit $ x(t) \to h(t) \to *K \to y_2(t)$
+        \item Homogène si $ y_1(t) = y_2(t) $
+    \end{itemize}
+    \item Invariance dans le temps \begin{itemize}
+        \item Soit $ x(t) \to (t-T) \to h(t) \to y_1(t) $ 
+        \item Soit $ x(t) \to h(t) \to t-T \to y_2(t) $ 
+        \item Invariant si $ y_1(t) = y_2(t) $
+    \end{itemize}
+\end{itemize}
+
+\section{Laplace, pôle et zéro}
+\begin{itemize}
+    \item \textbf{Convolution} : $ \mathcal{L}\{x_1(t) \star x_2(t)\} = X_1(S) X_2(S)$ 
+    \item Time shifting : $ \mathcal{L}\{x(t-t_0) u(t - t_0)\} = X(S)e^{-t_0 S}$ 
+    \item Intégrale : $ \mathcal{L}\{\int_{0}^{t}x(t)dt\} = \frac{1}{S}X(S) $ 
+\end{itemize}
+Factoriser les polynômes au dénominateur et au numérateur. Puis pour appliquer Laplace inverse, on vérifie dans le tableau si on trouve une forme adapté. \\
+Sinon on décompose en éléments simple pour obtenir une forme du type $ \frac{A}{S+c} \to _{\mathcal{L}^{-1}} A e^{-ct}u(t)$ \textbf{A vérifier dans le tableau}.\\
+Décomposition en élément simple : 3 méthodes \begin{itemize}
+    \item Identification : on remet tout sur le même dénominateur puis identification puis système d'équation
+    \item Multiplier par un des facteurs : pratique si tous les dénominateurs ont la même puissance. On multiplie par un des dénominateur $\rightarrow$ annulation ou plusieurs des dénominateurs $\rightarrow$ remplacer $ x $ par le truc qui l'annule $ x=c $ $\rightarrow$ simplifier et hop on trouve le coef tout de suite
+    \item Multiplier par $ x $  et faire la limite en $ +\infty  $  : puis appliquer le théorème du plus haut degré
+\end{itemize}
+\textbf{A voir si dans les annales il demande des décompositions en éléments simple du futur mais c'est là au cas où}
+
+\section{Diagramme de Bode}
+\begin{itemize}
+    \item Module d'un complexe : $ \left| z \right| = \left| a + ib \right| = \sqrt[]{a^2 + b^2} $ 
+    \item Argument : $ \arg z $ 
+    \item Gain = $ 20 \log_{10} \left| H(Jw) \right| $
+    \item Relire OneNote (SIGNAL/Prof1/TP2 toute fin) pour les détails du pourquoi 
+\end{itemize}
+La méthode pour une fonction $ H(s) $ 
+\begin{enumerate}
+    \item Mettre la fonction en forme normale 
+    \[
+        c * \frac{1 + \frac{S}{c_1} + \dots}{(1 + \frac{S}{c_2})(1 + \frac{S}{c_3})\dots}
+    .\]
+    \item Constante de départ \begin{itemize}
+        \item Gain : $ 20 \log_{10} c $ 
+        \item Phase : $ \begin{cases}
+        0 &\text{si } c>0 \\
+        \pi  &\text{si }c < 0 \\
+        \end{cases}  $ 
+    \end{itemize} 
+    \item Les différents type de courbe à assembler sur le graph de Bode : $ 1 + \frac{S}{c_i} $ dans le figure \ref{bode}.
+    \begin{figure}[!htbp]
+        \centering
+        \includegraphics*[width=.5\textwidth]{./bode.png}
+        \caption{Les courbes de base pour Bode}
+        \label{bode}
+    \end{figure}
+\end{enumerate}
+
+\subsection{Diagramme de Bode inverse }
+Bien observer et faire l'inverse je suppose ahah, s'entrainer pour voir 
+
+\section{Filtre Butterworts}
+
+
+\section{Filtre FIR : fenêtrage}
+
+
+
+
+\end{document}
