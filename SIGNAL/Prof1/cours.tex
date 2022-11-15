@@ -207,7 +207,7 @@ On vas écrire les fonctions de signal en utilisant cette fonction
 
 \begin{xca}[2]
     Trouvez si les systèmes suivant sont linéaire et invariant dans le temps.\begin{align}
-        y(t) = x(t)cos(2 \pi ft)\\
+        y(t) = x(t)\cos(2 \pi ft)\\
         y(t) = sin(x(t))
     \end{align}
     Réponse dans OneNote
@@ -330,7 +330,7 @@ qui devient
     Ici on montre comment les valeurs du tableau poly sont calculées.
     \begin{align*}
         \mathcal{L}\{\cos (\omega _0 t) u(t)\} &= \int_{-\infty }^{\infty }\cos (\omega _0 t) u(t)e^{St}dt \\
-        &= \int_{0}^{\infty }\cos (omega_0 t) e^{-St}dt \\
+        &= \int_{0}^{\infty }\cos (\omega_0 t) e^{-St}dt \\
         &= \int_{0}^{\infty }(\frac{e^{j \omega _0 t } + e^{-j \omega_0 t }}{2}) e^{St} dt \\
         &= \frac{1}{2} \int_{0}^{\infty } e^{t(j\omega _0 - S)} + e^{-t(j \omega _0 + S)} dt \\
         &= \frac{1}{2} [\frac{e^{t(j \omega _0 - S)}}{j \omega_0 - S} - \frac{e^{-t(j \omega _0 + S)}}{j \omega_0 + S}]_{0}^{\infty } \\
@@ -389,7 +389,7 @@ En supposant toutes les conditions initiales nulles et en appliquant la transfor
 \end{align*}
 Avec $ H(S) $ la fonction de transfert, $ z_1, \dots, z_M $  les \textbf{zéros de la fonction de transfert} et $ p_1, \dots, p_N $ les \textbf{pôles de la fonction de transfert}.
 \begin{align*}
-    H(S) &= \frac{1}{S+p_1} + \frac{B}{S+p_2} + \dots + \frac{N}{S + p_N} \\
+    H(S) &= \frac{A}{S+p_1} + \frac{B}{S+p_2} + \dots + \frac{N}{S + p_N} \\
     \mathcal{L}^{-1} \downarrow & \\
     h(t) &= Ae^{-p_1t} + Be^{-p_2t} + \dots + Ne^{-p_Nt}
 \end{align*}
@@ -432,8 +432,8 @@ Pour tracer la réponse en fréquence on remplace $ S $ par $ j \omega  $
     \begin{align*}
         H(S) &= \frac{S + 0.1}{S + 5} \\
         H(j \omega ) &= \frac{j \omega  + 0.1}{j \omega + 5} \\
-        \text{Le Modules: }\left| H(j \omega ) \right| = \frac{\sqrt[]{\omega ^2 + 0.1^2}}{\sqrt[]{\omega ^2 + 5^2}} \\ 
-        \text{La Phase: } \lfloor H(j \omega) = \arctan \frac{\omega }{0.1} - \arctan (\frac{\omega }{5})
+        \text{Le Modules: }\left| H(j \omega ) \right| &= \frac{\sqrt[]{\omega ^2 + 0.1^2}}{\sqrt[]{\omega ^2 + 5^2}} \\ 
+        \text{La Phase: } \lfloor H(j \omega) &= \arctan \frac{\omega }{0.1} - \arctan (\frac{\omega }{5})
     \end{align*}
     Graphique du module et de la phase dans OneNote. 
 \end{exmp}
@@ -470,9 +470,9 @@ Pour tracer la réponse en fréquence on remplace $ S $ par $ j \omega  $
 \end{exmp}
 \begin{exmp}[]
     Réponse en fréquence d'un pôle (ou d'un zéro) simple : $ 1 + \frac{j \omega}{b_1} $ \begin{itemize}
-        \item Pour $ \omega << b_1 \rightarrow -20 \log_{} (1 + j \omega/b_1) \approx -20 \log_{} (1) = 0$ 
-        \item Pour $ \omega >> b_1 \rightarrow -20 \log_{} (1 + j \omega/b_1) \approx -20 \log_{} (j \omega / b_1) = 0$ 
-        \item Pour $ \omega = b_1 \rightarrow -20 \log_{} (1 + j) \approx -20 \log_{} (\sqrt[]{2}) = -3 db$ 
+        \item Pour $ \omega << b_1 \rightarrow -20 \log_{} ( | 1 + j \omega/b_1 | ) \approx -20 \log_{} (1) = 0$ 
+        \item Pour $ \omega >> b_1 \rightarrow -20 \log_{} ( | 1 + j \omega/b_1 | ) \approx -20 \log_{} (j \omega / b_1) = 0$ 
+        \item Pour $ \omega = b_1 \rightarrow -20 \log_{} ( | 1 + j | ) \approx -20 \log_{} (\sqrt[]{2}) = -3 db$ 
     \end{itemize}
     Pour la phase $ \lfloor 1 + j \omega / b_1 $
     \begin{itemize}

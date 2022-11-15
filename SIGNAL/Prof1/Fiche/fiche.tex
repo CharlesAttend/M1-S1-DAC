@@ -47,6 +47,10 @@
 
 \begin{document}
 \maketitle
+Exponentiel complexe : 
+\[
+    a + jb \to e^{(a+jb)t} = e^{at}e^{jbt} = e^{at}(\cos bt + j \sin bt)
+.\]
 
 \section{Composante paire et impaire d'une fonction}
 Soit $ x(t) $ une fonction alors on peut écrire $ x(t) $ sous la forme suivante : 
@@ -95,12 +99,16 @@ Composante impaire
     \end{itemize}
 \end{itemize}
 
-\section{Laplace, pôle et zéro}
+\section{Laplace, pôle, zéro, stabilité}
 \begin{itemize}
     \item \textbf{Convolution} : $ \mathcal{L}\{x_1(t) \star x_2(t)\} = X_1(S) X_2(S)$ 
     \item Time shifting : $ \mathcal{L}\{x(t-t_0) u(t - t_0)\} = X(S)e^{-t_0 S}$ 
     \item Intégrale : $ \mathcal{L}\{\int_{0}^{t}x(t)dt\} = \frac{1}{S}X(S) $ 
 \end{itemize}
+\[
+    H(S) = \frac{Y(S)}{X(S)}
+.\]
+
 Factoriser les polynômes au dénominateur et au numérateur. Puis pour appliquer Laplace inverse, on vérifie dans le tableau si on trouve une forme adapté. \\
 Sinon on décompose en éléments simple pour obtenir une forme du type $ \frac{A}{S+c} \to _{\mathcal{L}^{-1}} A e^{-ct}u(t)$ \textbf{A vérifier dans le tableau}.\\
 Décomposition en élément simple : 3 méthodes \begin{itemize}
@@ -109,6 +117,18 @@ Décomposition en élément simple : 3 méthodes \begin{itemize}
     \item Multiplier par $ x $  et faire la limite en $ +\infty  $  : puis appliquer le théorème du plus haut degré
 \end{itemize}
 \textbf{A voir si dans les annales il demande des décompositions en éléments simple du futur mais c'est là au cas où}
+
+\subsection{Stabilité}
+Soit $ H(S) = \frac{1}{(S+z_1)(S+z_2)\dots} $ une forme factorisé $ \to_{\mathcal{L}^{-1}} h(S)=\dots$. On définis la stabilité par en regardant si $ h(S) $ converge. $ \Leftrightarrow $ \begin{itemize}
+    \item Stable : Si tous les pôles sont dans la partie gauche du plans complexe
+    \item Instable : \begin{itemize}
+        \item Au moins un pôle dans la partie droite du plan complexe
+        \item Il existe au moins un pôle multiple sur l'axe imaginaire
+    \end{itemize}
+    \item Conditionnellement stable : Il existe un pôle simple sur l'axe imaginaire ($a=0$)
+    \item Comme d'hab dessin dans OneNote
+\end{itemize}
+
 
 \section{Diagramme de Bode}
 \begin{itemize}
@@ -120,9 +140,11 @@ Décomposition en élément simple : 3 méthodes \begin{itemize}
 La méthode pour une fonction $ H(s) $ 
 \begin{enumerate}
     \item Mettre la fonction en forme normale 
-    \[
-        c * \frac{1 + \frac{S}{c_1} + \dots}{(1 + \frac{S}{c_2})(1 + \frac{S}{c_3})\dots}
-    .\]
+    \begin{align*}
+        H(S) &= K \frac{(S + a_1)(S+a_2)}{S(S+b_1)(S^2 + b_2 S + b_3)} \\
+            &= \frac{K a_1 a_2}{b_1 b_3} * \frac{(1 + S/a_1)(1+S/a_2)}{S(1+S/b_1)(1 + S*b_2/b_2 + S^2/b_3)} \\ 
+            &= c * \frac{1 + \frac{S}{c_1} + \dots}{(1 + \frac{S}{c_2})(1 + \frac{S}{c_3})\dots}
+    \end{align*}
     \item Constante de départ \begin{itemize}
         \item Gain : $ 20 \log_{10} c $ 
         \item Phase : $ \begin{cases}
@@ -140,7 +162,8 @@ La méthode pour une fonction $ H(s) $
 \end{enumerate}
 
 \subsection{Diagramme de Bode inverse }
-Bien observer et faire l'inverse je suppose ahah, s'entrainer pour voir 
+Bien observer et faire l'inverse je suppose ahah, s'entraîner pour voir \\
+Dans le cours il a parlé de plein de truc, mais je sais pas si c'est nécessaire
 
 \section{Filtre Butterworts}
 
