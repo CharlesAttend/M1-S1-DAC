@@ -47,6 +47,8 @@
 
 \begin{document}
 \maketitle
+\tableofcontents
+
 Exponentiel complexe : 
 \[
     a + jb \to e^{(a+jb)t} = e^{at}e^{jbt} = e^{at}(\cos bt + j \sin bt)
@@ -99,18 +101,27 @@ Composante impaire
     \end{itemize}
 \end{itemize}
 
-\section{Laplace, pôle, zéro, stabilité}
+\section{Signaux continue}
+\subsection{Transformé de Laplace, pôle, zéro, stabilité}
+Transformé de Laplace
+\begin{align*}
+    X(S) &= \mathcal{L}\{x(t)\} \\
+        &= \int_{-\infty }^{\infty }x(t)e^{-St}dt
+\end{align*}
+
+\begin{align*}
+    X[Z] \to H[Z] \to &Y[Z] = X[Z]H[Z] \\
+    \Leftrightarrow & H[Z] = \frac{Y[Z]}{X[Z]}
+\end{align*}
+
 \begin{itemize}
     \item \textbf{Convolution} : $ \mathcal{L}\{x_1(t) \star x_2(t)\} = X_1(S) X_2(S)$ 
     \item Time shifting : $ \mathcal{L}\{x(t-t_0) u(t - t_0)\} = X(S)e^{-t_0 S}$ 
     \item Intégrale : $ \mathcal{L}\{\int_{0}^{t}x(t)dt\} = \frac{1}{S}X(S) $ 
 \end{itemize}
-\[
-    H(S) = \frac{Y(S)}{X(S)}
-.\]
-
 Factoriser les polynômes au dénominateur et au numérateur. Puis pour appliquer Laplace inverse, on vérifie dans le tableau si on trouve une forme adapté. \\
 Sinon on décompose en éléments simple pour obtenir une forme du type $ \frac{A}{S+c} \to _{\mathcal{L}^{-1}} A e^{-ct}u(t)$ \textbf{A vérifier dans le tableau}.\\
+
 Décomposition en élément simple : 3 méthodes \begin{itemize}
     \item Identification : on remet tout sur le même dénominateur puis identification puis système d'équation
     \item Multiplier par un des facteurs : pratique si tous les dénominateurs ont la même puissance. On multiplie par un des dénominateur $\rightarrow$ annulation ou plusieurs des dénominateurs $\rightarrow$ remplacer $ x $ par le truc qui l'annule $ x=c $ $\rightarrow$ simplifier et hop on trouve le coef tout de suite
@@ -118,7 +129,9 @@ Décomposition en élément simple : 3 méthodes \begin{itemize}
 \end{itemize}
 \textbf{A voir si dans les annales il demande des décompositions en éléments simple du futur mais c'est là au cas où}
 
-\subsection{Stabilité}
+\textbf{Completer avec les possibilités lorsqu'on a un polynôme en haut !!! }
+
+\subsubsection{Stabilité}
 Soit $ H(S) = \frac{1}{(S+z_1)(S+z_2)\dots} $ une forme factorisé $ \to_{\mathcal{L}^{-1}} h(S)=\dots$. On définis la stabilité par en regardant si $ h(S) $ converge. $ \Leftrightarrow $ \begin{itemize}
     \item Stable : Si tous les pôles sont dans la partie gauche du plans complexe
     \item Instable : \begin{itemize}
@@ -130,7 +143,11 @@ Soit $ H(S) = \frac{1}{(S+z_1)(S+z_2)\dots} $ une forme factorisé $ \to_{\mathc
 \end{itemize}
 
 
-\section{Diagramme de Bode}
+\subsection{Réponse en fréquence}
+Soit $ H(S) $ une fonction de transfert, on remplace $ S = -j \omega $ puis phase $ \left| H(S) \right|  $ et gain $ \lfloor H(j \omega ) $ 
+\textbf{Décrire la méthode de calcul ici}
+
+\paragraph*{Diagramme de Bode}
 \begin{itemize}
     \item Module d'un complexe : $ \left| z \right| = \left| a + ib \right| = \sqrt[]{a^2 + b^2} $ 
     \item Argument : $ \arg z $ 
@@ -161,16 +178,94 @@ La méthode pour une fonction $ H(s) $
     \end{figure}
 \end{enumerate}
 
-\subsection{Diagramme de Bode inverse }
+\paragraph*{Diagramme de Bode inverse}
 Bien observer et faire l'inverse je suppose ahah, s'entraîner pour voir \\
 Dans le cours il a parlé de plein de truc, mais je sais pas si c'est nécessaire
 
-\section{Filtre Butterworts}
+\subsection{Type de filtre}
+Pour determiner le type de filtre d'une fonction de transfert $ H(S) $ , on regarde son gain $ \left| H(S) \right| $.
+
+On peut éviter un diagramme de Bode en faisant :
+\begin{enumerate}
+    \item Remplacer $ S=j \omega  $ 
+    \item Observer le comportement de $ \left| H(j \omega ) \right|  $ pour $ \omega = 0, \omega =+\infty  $  et pour d'autre valeur évidente qui pourrait être valuable
+    \item Déduire une pseudo forme du graphique du module
+\end{enumerate}
+
+\subsection{Réalisation}
+Utiliser une forme factorisé de $ H(Z) $ 
+\textbf{Je comprend pas les boucles dans les circuits pfffff}
+
+\subsection{Filtre Butterworts}
+\begin{align*}
+    \left| H(jw)^2 \right| &= \frac{1}{1+ (\frac{w}{w_c})^{2N}} \\
+    \left| H(S) \right| &= \frac{w_c^N}{(S-p_1)(S-p_2)\dots(S-p_N)}
+\end{align*}
+\begin{align*}
+    R_p &= -10 \log_{10} \frac{1}{1 + (\frac{w_p}{w_c})^{2N}} \\
+    A_s &= -10 \log_{10} \frac{1}{1 + (\frac{w_s}{w_c})^{2N}} \\
+    \rightarrow N &= \left\lceil \log_{10} \frac{(10^{R_p/10} - 1)(10^{A_s/10} - 1)}{2 \log_{10} \frac{w_p}{w_s}}\right\rceil \\
+    w_{cp} &= \frac{w_p}{(10^{R_p/10} - 1)^{1/2N}} \\
+    w_{cs} &= \frac{w_w}{(10^{A_p/10} - 1)^{1/2N}} \\
+    \rightarrow w_c &= \frac{w_{cp} + w_{cs}}{2}
+\end{align*}
+N = nombre de pôle = nombre de racine. Les pôles sont sur le cercle de rayon $ w_c $. La fonction de 
+\begin{itemize}
+    \item On prend $ 2N $ pôle mais on se serre que de la moitier : les stables à gauche de l'ordonnée. On divise donc $ \frac{2 \pi }{2N} $ ou $ \frac{360}{2N} $. Si $ N $ paire, penser à pivoter les pôles pour ne pas qu'il soit sur l'axe des ordonnés (conditionnellement stable)
+    \item chaque pôle : $ p_i = w_c * e^{j * i \frac{2 \pi}{2N}} $ On prend que ceux au dessus de $ \pi /2 $ ou $ 90 $. On peut éventuellement simplifier avec la formule de l'exp complexe.
+\end{itemize}
 
 
-\section{Filtre FIR : fenêtrage}
 
 
+
+
+\section{Signaux discret}
+\subsection{Transformé en Z}
+Transformé en Z (fonction discrète) \begin{align*}
+    X[Z] &= z\{x[n]\} \\ 
+        &= \sum_{n=-\infty }^{+\infty }x[n]e^{j \Omega }
+        &= \sum_{n=-\infty }^{+\infty }x[n]e^{j \omega T }
+\end{align*}
+On remplace $ \Omega  $ par $ \Omega = \omega T $ avec $ T = \frac{1}{Fs}$ la période = inverse de la fréquence d'échantillonnage.
+
+\subsection{Pôles et zéros}
+?????
+
+\subsection{Réponse en fréquence}
+Soit $ H[Z] $ une fonction de transfert, on remplace $ Z = e^{-j \Omega } = \cos \Omega - j \sin Omega $ puis phase $ \left| H[Z] \right|  $ et gain $ \lfloor H[e^{j \Omega }] $ 
+$\rightarrow$ Réponse en fréquence périodique par le $ \cos  $ et le $ \sin  $ 
+
+
+\subsection{Stabilité}
+Plot partie réel $ \mathcal{R} $ et partie imaginaire $ Im $ 
+\begin{itemize}
+    \item Un système T.D. est stable si $\rightarrow$ touts les pôles sont à l'intérieur du cercle unitaire.
+    \item Un système T.D. est instable si \begin{itemize}
+        \item Au moins un pôle est à l'extérieur du cercle unitaire
+        \item Il existe des pôles multiples sur le cercle unitaire
+    \end{itemize}
+    \item Un système T.D. est conditionnellement stable si $\rightarrow$ il existe des pôles simples sur le cercle unitaire.
+\end{itemize}
+
+\subsection{Type de filtre}
+On doit regarder $ \left| H[Z] \right| = \left| H[e^{j \Omega }] \right| = \left| H[e^{2 \pi f}] \right| $ qui serait caractérisé par la distance des pôles (et zéros ?) à un point sur le cercle dans le plans. On regarde le graphique de l'argument de ce point en abscise et du module en ordonné.
+
+\textbf{Pourquoi il met $ \left| H(e^{j \Omega }) \right|  = \frac{r_1\dots r_M}{d_1\dots d_M} = \frac{1}{d_1}$ ??? } Si la phase est constante y'a pas de filtre ? Il doit y avoir un problème avec ce calcul
+
+\subsection{Filtre IIR :}
+\subsubsection{Filtre IIR : Transformation bilinéaire}
+On passe d'un truc discret pour retourner vers le continue où on sait faire 
+\[
+    S = \frac{2}{T} \frac{1 - Z^{-1}}{1 + Z^{-1}}
+    .\]
+    
+    \[
+        \frac{2}{T} \tan \frac{\Omega }{2} = w
+        .\]
+        Pour les deux $ \omega _s, \omega _r $ 
+        
+\subsection{Filtre FIR : fenêtrage}
 
 
 \end{document}
