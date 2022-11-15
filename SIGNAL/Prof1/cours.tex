@@ -647,8 +647,8 @@ Réponse d'un système temps-discret à une entrée externe
 \subsection{Transformé en Z inverse}
 \begin{defn}[]
     \begin{align*}
-        X[Z] \to H[Z] \to &Y[Z] = X[Z]H[Z]
-       \Leftrightarrow & H[Z] = \frac{Y[Z]}{X[Z]}
+        X[Z] \to H[Z] \to &Y[Z] = X[Z]H[Z] \\
+        \Leftrightarrow & H[Z] = \frac{Y[Z]}{X[Z]}
     \end{align*}
     bref idk mais on regarde dans le tableau pour trouver un truc qui ressemble.
 \end{defn}
@@ -679,7 +679,7 @@ Réponse d'un système temps-discret à une entrée externe
 
     On remplace $ Z = e^{j \Omega } $  \begin{align*}
         H[Z] &= \frac{1}{1-0.8 e^{-j \Omega }} \\ 
-            &= \frac{1}{1 - 0.8(\cos \Omega - j \sin \Omega} \\
+            &= \frac{1}{1 - 0.8(\cos \Omega - j \sin \Omega)} \\
             &= \frac{1}{(1 - 0.8 \cos \Omega ) + j (0.8 \sin \Omega )} \\ 
         \left| H(Z) \right| &= \frac{1}{\sqrt[]{(1 - 0.8 \cos \Omega )^2 + (0.8 \sin \Omega )^2}} \\
         \lfloor H(e^{j \Omega }) &= - \arctan ( \frac{0.8 \sin \Omega }{1 - 0.8 \cos \Omega })
@@ -732,7 +732,7 @@ Comparaison entre les deux graphiques dans OneNote.
     \item Un système T.D. est conditionnellement stable si $\rightarrow$ il existe des pôles simples sur le cercle unitaire.
 \end{itemize}
 
-\subsection{Placement des pôles et des éros dans le plan complexe $ Z $ }
+\subsection{Placement des pôles et des zéros dans le plan complexe $ Z $ }
 \begin{align*}
     H(Z) &= \frac{(Z + z_1)\dots(Z + z_M)}{(Z + p_1)\dots(Z + p_n)} \\
     H(e^{i \Omega }) &= \frac{r_1 e^{j \phi _1} \dots (r_M e^{j \phi _M})}{(d_1 e^{j \theta _1})\dots(d_N e^{j \theta _N})} \\
@@ -849,7 +849,7 @@ Ici $ N $ donne l'ordre (= le nombre de pôles), et les trois $ w $ le rayon du 
         \item Calculer les valeurs de $ N $ et $ w_c $ 
         \item Trouvez la position des pôles dans le plan complexe $ S $ 
         \item Ecrire une relation pour la fonction de transfert $ H(S) $ 
-        \item Trancez le schéma en bloc pour la réalisation du filtre
+        \item Tracez le schéma en bloc pour la réalisation du filtre
         \item Tracer le module et la phase de $ H(S) $ 
     \end{enumerate}
 
@@ -898,7 +898,7 @@ La transformation bilinéaire ne change pas le module. Donc $ R_p (T.D.) = R_p(T
 La transformation bilinéaire ne change pas les fréquences avec la relation suivante : $ \frac{2}{T} \tan \frac{\Omega }{2} = w $ \\
 Donc $ \frac{2}{T}\tan (\frac{\Omega_p}{2}) = w_p $ et $ \frac{2}{T} \tan (\frac{\Omega _s}{2}) $ 
 
-\underline{Nouveau \textbf{TP} du 13/10} \\
+\underline{Nouveau \textbf{TP4} du 13/10} \\
 Rappel de l'arborescence des types de filtre
 \begin{itemize}
     \item Temps discret \begin{itemize}
