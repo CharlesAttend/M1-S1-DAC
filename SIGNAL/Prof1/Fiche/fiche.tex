@@ -251,6 +251,8 @@ Plot partie réel $ \mathcal{R} $ et partie imaginaire $ Im $
 \subsection{Type de filtre}
 On doit regarder $ \left| H[Z] \right| = \left| H[e^{j \Omega }] \right| = \left| H[e^{2 \pi f}] \right| $ qui serait caractérisé par la distance des pôles (et zéros ?) à un point sur le cercle dans le plans. On regarde le graphique de l'argument de ce point en abscise et du module en ordonné.
 
+J'ai l'impression on regarde souvent par rapport à $ \pi  $ 
+
 \textbf{Pourquoi il met $ \left| H(e^{j \Omega }) \right|  = \frac{r_1\dots r_M}{d_1\dots d_M} = \frac{1}{d_1}$ ??? } Si la phase est constante y'a pas de filtre ? Il doit y avoir un problème avec ce calcul
 
 \subsection{Filtre IIR :}
@@ -266,6 +268,28 @@ On passe d'un truc discret pour retourner vers le continue où on sait faire
         Pour les deux $ \omega _s, \omega _r $ 
         
 \subsection{Filtre FIR : fenêtrage}
+Classiquement on aura $ \Omega _s - \Omega _p = \frac{c*\pi }{M} $ avec $ M $ le nombre de coefficient à déterminer, et une attenuation \textbf{min} hors bande $ \Omega > \Omega _s $ associé.
 
+Les coefficients sont symétrique, donc la phase du filtre est linéaire ($ \lfloor H(e^{j \Omega }) = -2 \Omega $ )
+
+\subsubsection{Type de filtre FIR}
+Voir graphique sur OneNote pour la représentation des différents types c'est intéressant.
+\begin{itemize}
+    \item \textbf{Type 1:} On peut réaliser tous les types de filtres passe-bas, passe-bande, passe-haut
+    \item \textbf{Type 2:} Il existe un zéro à $ \Omega = \pi  $ $\rightarrow$ On ne peut pas réaliser un filtre passe-haut
+    \item \textbf{Type 3:} Il existe un zéro à $ \Omega = 0 $ et à $ \Omega = \pi  $ $\rightarrow$ One ne peut pas réaliser un filtre passe-bas, ni un filtre passe-haut.
+    \item \textbf{Type 4:} Il existe un zéro à $ \Omega = 0 $ $\rightarrow$ on ne peut pas réaliser un filtre passe-bas
+\end{itemize}
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{|l|l|l|}
+    \hline
+        Symétrie de $h[n]$ & Nombre de coefficients $M$ & Type \\ \hline
+        Symétrie positive $ h_n = - h_{M-1-n} $ & Impaire & 1 \\ \hline
+        ~ & Paire & 2 \\ \hline
+        Symétrie négative : $ h_n = - h_{M-1-n} $  & Impaire & 3 \\ \hline
+        ~ & Paire & 4 \\ \hline
+    \end{tabular}
+\end{table}
 
 \end{document}
