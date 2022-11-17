@@ -49,11 +49,24 @@
 \maketitle
 \tableofcontents
 
-Exponentiel complexe : 
-\[
-    a + jb \to e^{(a+jb)t} = e^{at}e^{jbt} = e^{at}(\cos bt + j \sin bt)
-.\]
 
+. \\
+. \\
+Formule complexe : 
+\begin{align*}
+    a + jb \to e^{(a+jb)t} &= e^{at}e^{jbt} = e^{at}(\cos bt + j \sin bt) \\
+    z = a + jb \to \left| z \right| * e^{i \arg z} \\
+    \tan(\arg z)&={\frac {\Im (z)}{\Re (z)}}={\frac {z-{\bar {z}}}{\mathrm {i} \left(z+{\bar {z}}\right)}} \\
+    \arg z_1z_2 &= \arg z_1 + \arg z_2 \\
+    \arg z_1^n &= n\arg z_1 \\
+    \arg(az) &\equiv {\begin{cases}\arg z&{\text{si }}a>0\\(\arg z)+\pi &{\text{si }}a<0{\text{ ;}}\end{cases}}
+\end{align*}
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics*[width=0.35\textwidth]{cercle_trigo.png}
+\end{figure}
+    
 \section{Composante paire et impaire d'une fonction}
 Soit $ x(t) $ une fonction alors on peut écrire $ x(t) $ sous la forme suivante : 
 \[
@@ -103,6 +116,8 @@ Composante impaire
 
 \section{Signaux continue}
 \subsection{Transformé de Laplace, pôle, zéro, stabilité}
+On trace les pôles et les zéros dans le plans complexe ! 
+
 Transformé de Laplace
 \begin{align*}
     X(S) &= \mathcal{L}\{x(t)\} \\
@@ -120,37 +135,34 @@ Transformé de Laplace
     \item Intégrale : $ \mathcal{L}\{\int_{0}^{t}x(t)dt\} = \frac{1}{S}X(S) $ 
 \end{itemize}
 Factoriser les polynômes au dénominateur et au numérateur. Puis pour appliquer Laplace inverse, on vérifie dans le tableau si on trouve une forme adapté. \\
-Sinon on décompose en éléments simple pour obtenir une forme du type $ \frac{A}{S+c} \to _{\mathcal{L}^{-1}} A e^{-ct}u(t)$ \textbf{A vérifier dans le tableau}.\\
+Sinon on décompose en éléments simple pour obtenir une forme du type $ \frac{A}{S+c} \to _{\mathcal{L}^{-1}} A e^{-ct}u(t)$.
 
-Décomposition en élément simple : 3 méthodes \begin{itemize}
-    \item Identification : on remet tout sur le même dénominateur puis identification puis système d'équation
-    \item Multiplier par un des facteurs : pratique si tous les dénominateurs ont la même puissance. On multiplie par un des dénominateur $\rightarrow$ annulation ou plusieurs des dénominateurs $\rightarrow$ remplacer $ x $ par le truc qui l'annule $ x=c $ $\rightarrow$ simplifier et hop on trouve le coef tout de suite
-    \item Multiplier par $ x $  et faire la limite en $ +\infty  $  : puis appliquer le théorème du plus haut degré
-\end{itemize}
-\textbf{A voir si dans les annales il demande des décompositions en éléments simple du futur mais c'est là au cas où}
-
-\textbf{Completer avec les possibilités lorsqu'on a un polynôme en haut !!! }
+Décomposition en élément simple $ \frac{A(X)}{B(X)} $ : \begin{enumerate}
+    \item $ \deg A < \deg B $ sinon division euclidienne
+    \item Si polynôme du second degrés sans racine réel au dénominateur, \textit{normalement} on le laisse et à la place d'une constante en haut on met une fonction affine. 
+    \item 3 méthodes \begin{itemize}
+        \item Identification : on remet tout sur le même dénominateur puis identification puis système d'équation
+        \item Multiplier par un des facteurs : pratique si tous les dénominateurs ont la même puissance. On multiplie par un des dénominateur $\rightarrow$ annulation ou plusieurs des dénominateurs $\rightarrow$ remplacer $ x $ par le truc qui l'annule $ x=c $ $\rightarrow$ simplifier et hop on trouve le coef tout de suite
+        \item Multiplier par $ x $  et faire la limite en $ +\infty  $  : puis appliquer le théorème du plus haut degré
+    \end{itemize}
+\end{enumerate}
 
 \subsubsection{Stabilité}
-Soit $ H(S) = \frac{1}{(S+z_1)(S+z_2)\dots} $ une forme factorisé $ \to_{\mathcal{L}^{-1}} h(S)=\dots$. On définis la stabilité par en regardant si $ h(S) $ converge. $ \Leftrightarrow $ \begin{itemize}
+Soit $ H(S) = \frac{1}{(S+p_1)(S+p_2)\dots} $ une forme factorisé $ \to_{\mathcal{L}^{-1}} h(S)=\dots$. On définis la stabilité par en regardant si $ h(S) $ converge. $ \Leftrightarrow $ \begin{itemize}
     \item Stable : Si tous les pôles sont dans la partie gauche du plans complexe
     \item Instable : \begin{itemize}
         \item Au moins un pôle dans la partie droite du plan complexe
         \item Il existe au moins un pôle multiple sur l'axe imaginaire
     \end{itemize}
     \item Conditionnellement stable : Il existe un pôle simple sur l'axe imaginaire ($a=0$)
-    \item Comme d'hab dessin dans OneNote
 \end{itemize}
 
 
 \subsection{Réponse en fréquence}
 Soit $ H(S) $ une fonction de transfert, on remplace $ S = -j \omega $ puis phase $ \left| H(S) \right|  $ et gain $ \lfloor H(j \omega ) $ 
-\textbf{Décrire la méthode de calcul ici}
 
 \paragraph*{Diagramme de Bode}
 \begin{itemize}
-    \item Module d'un complexe : $ \left| z \right| = \left| a + ib \right| = \sqrt[]{a^2 + b^2} $ 
-    \item Argument : $ \arg z $ 
     \item Gain = $ 20 \log_{10} \left| H(Jw) \right| $
     \item Relire OneNote (SIGNAL/Prof1/TP2 toute fin) pour les détails du pourquoi 
 \end{itemize}
@@ -185,46 +197,47 @@ Dans le cours il a parlé de plein de truc, mais je sais pas si c'est nécessair
 \subsection{Type de filtre}
 Pour determiner le type de filtre d'une fonction de transfert $ H(S) $ , on regarde son gain $ \left| H(S) \right| $.
 
-On peut éviter un diagramme de Bode en faisant :
+On peut éviter un diagramme de Bode en faisant : 
 \begin{enumerate}
     \item Remplacer $ S=j \omega  $ 
     \item Observer le comportement de $ \left| H(j \omega ) \right|  $ pour $ \omega = 0, \omega =+\infty  $  et pour d'autre valeur évidente qui pourrait être valuable
     \item Déduire une pseudo forme du graphique du module
 \end{enumerate}
 
+\textbf{NON FAIRE UN BODE VITE FAIT si pas de $ \mathbb{C} $ } $ \uparrow  $ NE FONCTIONNE PAS DE OUF 
+
 \subsection{Réalisation}
-Utiliser une forme factorisé de $ H(Z) $ 
+Utiliser une forme factorisé de $ H(S) $. \begin{itemize}
+    \item Intégrateur : $ 1/S $ 
+    \item $ \oplus $ : additions
+    \item $ \rhd $ : gains
+\end{itemize}
 \textbf{Je comprend pas les boucles dans les circuits pfffff}
 
 \subsection{Filtre Butterworts}
 \begin{align*}
     \left| H(jw)^2 \right| &= \frac{1}{1+ (\frac{w}{w_c})^{2N}} \\
-    \left| H(S) \right| &= \frac{w_c^N}{(S-p_1)(S-p_2)\dots(S-p_N)}
-\end{align*}
-\begin{align*}
+    \left| H(S) \right| &= \frac{w_c^N}{(S-p_1)(S-p_2)\dots(S-p_N)}\\
     R_p &= -10 \log_{10} \frac{1}{1 + (\frac{w_p}{w_c})^{2N}} \\
     A_s &= -10 \log_{10} \frac{1}{1 + (\frac{w_s}{w_c})^{2N}} \\
-    \rightarrow N &= \left\lceil \log_{10} \frac{(10^{R_p/10} - 1)(10^{A_s/10} - 1)}{2 \log_{10} \frac{w_p}{w_s}}\right\rceil \\
+    \rightarrow N &= \left\lceil \frac{\log_{10} [(10^{R_p/10} - 1)(10^{A_s/10} - 1)]}{2 \log_{10} \frac{w_p}{w_s}}\right\rceil \\
     w_{cp} &= \frac{w_p}{(10^{R_p/10} - 1)^{1/2N}} \\
     w_{cs} &= \frac{w_w}{(10^{A_p/10} - 1)^{1/2N}} \\
     \rightarrow w_c &= \frac{w_{cp} + w_{cs}}{2}
 \end{align*}
-N = nombre de pôle = nombre de racine. Les pôles sont sur le cercle de rayon $ w_c $. La fonction de 
+N = nombre de pôle = nombre de racine. Si complexe, prendre uniquement partie réelle ou inverser la division $ \frac{\omega _p}{\omega _s} $ en $ \frac{\omega _s}{\omega _p} $ \\
+Les pôles sont sur le cercle de rayon $ w_c $. La fonction de 
 \begin{itemize}
-    \item On prend $ 2N $ pôle mais on se serre que de la moitier : les stables à gauche de l'ordonnée. On divise donc $ \frac{2 \pi }{2N} $ ou $ \frac{360}{2N} $. Si $ N $ paire, penser à pivoter les pôles pour ne pas qu'il soit sur l'axe des ordonnés (conditionnellement stable)
+    \item On prend $ 2N $ pôle mais on se serre que de la moiter : les stables à gauche de l'ordonnée. On divise donc $ \frac{2 \pi }{2N} $ ou $ \frac{360}{2N} $. Si $ N $ paire, penser à pivoter les pôles pour ne pas qu'il soit sur l'axe des ordonnés (conditionnellement stable)
     \item chaque pôle : $ p_i = w_c * e^{j * i \frac{2 \pi}{2N}} $ On prend que ceux au dessus de $ \pi /2 $ ou $ 90 $. On peut éventuellement simplifier avec la formule de l'exp complexe.
 \end{itemize}
-
-
-
-
 
 
 \section{Signaux discret}
 \subsection{Transformé en Z}
 Transformé en Z (fonction discrète) \begin{align*}
     X[Z] &= z\{x[n]\} \\ 
-        &= \sum_{n=-\infty }^{+\infty }x[n]e^{j \Omega }
+        &= \sum_{n=-\infty }^{+\infty }x[n]e^{j \Omega } \\
         &= \sum_{n=-\infty }^{+\infty }x[n]e^{j \omega T }
 \end{align*}
 On remplace $ \Omega  $ par $ \Omega = \omega T $ avec $ T = \frac{1}{Fs}$ la période = inverse de la fréquence d'échantillonnage.
@@ -259,18 +272,19 @@ J'ai l'impression on regarde souvent par rapport à $ \pi  $
 \subsubsection{Filtre IIR : Transformation bilinéaire}
 On passe d'un truc discret pour retourner vers le continue où on sait faire 
 \[
-    S = \frac{2}{T} \frac{1 - Z^{-1}}{1 + Z^{-1}}
-    .\]
-    
-    \[
-        \frac{2}{T} \tan \frac{\Omega }{2} = w
-        .\]
-        Pour les deux $ \omega _s, \omega _r $ 
+    H(z) = H(S) \text{ avec } S = \frac{2}{T} \frac{1 - Z^{-1}}{1 + Z^{-1}}
+.\]
+Où $ Z = e^{j \omega } $ 
+\[
+    \frac{2}{T} \tan \frac{\Omega }{2} = w \text{ pour les deux }\omega _s, \omega _r
+.\]
         
 \subsection{Filtre FIR : fenêtrage}
-Classiquement on aura $ \Omega _s - \Omega _p = \frac{c*\pi }{M} $ avec $ M $ le nombre de coefficient à déterminer, et une attenuation \textbf{min} hors bande $ \Omega > \Omega _s $ associé.
+Classiquement on aura $ \Omega _s - \Omega _p = \frac{c*\pi }{M} $ avec $ M $ le nombre de coefficient à déterminer, et une attenuation \textbf{min} hors bande $ A_s \min  $ associé.
 
 Les coefficients sont symétrique, donc la phase du filtre est linéaire ($ \lfloor H(e^{j \Omega }) = -2 \Omega $ )
+
+Dans ce cas, l'ordre du filtre est $ M - 1 $.
 
 \subsubsection{Type de filtre FIR}
 Voir graphique sur OneNote pour la représentation des différents types c'est intéressant.
