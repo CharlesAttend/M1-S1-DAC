@@ -220,7 +220,7 @@ Utiliser une forme factorisé de $ H(S) $. \begin{itemize}
     \left| H(S) \right| &= \frac{w_c^N}{(S-p_1)(S-p_2)\dots(S-p_N)}\\
     R_p &= -10 \log_{10} \frac{1}{1 + (\frac{w_p}{w_c})^{2N}} \\
     A_s &= -10 \log_{10} \frac{1}{1 + (\frac{w_s}{w_c})^{2N}} \\
-    \rightarrow N &= \left\lceil \frac{\log_{10} [(10^{R_p/10} - 1)(10^{A_s/10} - 1)]}{2 \log_{10} \frac{w_p}{w_s}}\right\rceil \\
+    \rightarrow N &= \left\lceil \frac{\log_{10} [(10^{R_p/10} - 1)/(10^{A_s/10} - 1)]}{2 \log_{10} \frac{w_p}{w_s}}\right\rceil \\
     w_{cp} &= \frac{w_p}{(10^{R_p/10} - 1)^{1/2N}} \\
     w_{cs} &= \frac{w_w}{(10^{A_p/10} - 1)^{1/2N}} \\
     \rightarrow w_c &= \frac{w_{cp} + w_{cs}}{2}
@@ -271,10 +271,12 @@ J'ai l'impression on regarde souvent par rapport à $ \pi  $
 \subsection{Filtre IIR :}
 \subsubsection{Filtre IIR : Transformation bilinéaire}
 On passe d'un truc discret pour retourner vers le continue où on sait faire 
-\[
+\begin{align*}    
     H(z) = H(S) \text{ avec } S = \frac{2}{T} \frac{1 - Z^{-1}}{1 + Z^{-1}}
-.\]
-Où $ Z = e^{j \omega } $ 
+    \Leftrightarrow Z = \frac{ S/2 + 1}{1 - S/2}
+\end{align*}
+$\rightarrow$ Permet de transformer nos pôles continue en pôles discret. On peut alors les dessiner dans le plans complexe avec le cercle unitaire et remarquer que c'est stable si dans le cercle.
+    Où $ Z = e^{j \omega } $ 
 \[
     \frac{2}{T} \tan \frac{\Omega }{2} = w \text{ pour les deux }\omega _s, \omega _r
 .\]
