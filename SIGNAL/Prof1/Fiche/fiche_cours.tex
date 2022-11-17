@@ -191,7 +191,7 @@ La méthode pour une fonction $ H(s) $
 \end{enumerate}
 
 \paragraph*{Diagramme de Bode inverse}
-Bien observer et faire l'inverse je suppose ahah, s'entraîner pour voir \\
+Bien observer et faire l'inverse je suppose ahah, s'entraîner pour voir $\rightarrow$ EZ\\
 Dans le cours il a parlé de plein de truc, mais je sais pas si c'est nécessaire
 
 \subsection{Type de filtre}
@@ -200,17 +200,22 @@ Pour determiner le type de filtre d'une fonction de transfert $ H(S) $ , on rega
 On peut éviter un diagramme de Bode en faisant : 
 \begin{enumerate}
     \item Remplacer $ S=j \omega  $ 
-    \item Observer le comportement de $ \left| H(j \omega ) \right|  $ pour $ \omega = 0, \omega =+\infty  $  et pour d'autre valeur évidente qui pourrait être valuable
-    \item Déduire une pseudo forme du graphique du module
+    \item Placer les pôles dans le plans complexe et 
+    \item $ \left| H(j \omega ) \right| = \left| \frac{z_1\dots z_n}{p_1 \dots p_n} \right|  $ on observe la distance entre $ \omega $ et les pôles et zéros
+    \item Classiquement : \begin{itemize}
+        \item Vers $ \omega = \infty  $ on a $ \left| H(j \omega ) \right| = 1 $ 
+        \item Avec $ \omega =  $ un zéros, il annule la fraction donc $ = 0 $ 
+        \item En $ \omega = 0 $ on a le module des pôles et des zéros
+    \end{itemize}
 \end{enumerate}
 
 \textbf{NON FAIRE UN BODE VITE FAIT si pas de $ \mathbb{C} $ } $ \uparrow  $ NE FONCTIONNE PAS DE OUF 
 
 \subsection{Réalisation}
 Utiliser une forme factorisé de $ H(S) $. \begin{itemize}
-    \item Intégrateur : $ 1/S $ 
+    \item Intégrateur/retard : $ 1/S $ 
     \item $ \oplus $ : additions
-    \item $ \rhd $ : gains
+    \item $ \rhd $ : gains/multi
 \end{itemize}
 \textbf{Je comprend pas les boucles dans les circuits pfffff}
 
@@ -246,7 +251,7 @@ On remplace $ \Omega  $ par $ \Omega = \omega T $ avec $ T = \frac{1}{Fs}$ la p�
 ?????
 
 \subsection{Réponse en fréquence}
-Soit $ H[Z] $ une fonction de transfert, on remplace $ Z = e^{-j \Omega } = \cos \Omega - j \sin Omega $ puis phase $ \left| H[Z] \right|  $ et gain $ \lfloor H[e^{j \Omega }] $ 
+Soit $ H[Z] $ une fonction de transfert, on remplace $ Z = e^{-j \Omega } = \cos \Omega - j \sin \Omega $ puis phase $ \left| H[Z] \right|  $ et gain $ \lfloor H[e^{j \Omega }] $ 
 $\rightarrow$ Réponse en fréquence périodique par le $ \cos  $ et le $ \sin  $ 
 
 

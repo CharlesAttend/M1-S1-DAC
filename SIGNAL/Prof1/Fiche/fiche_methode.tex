@@ -1,6 +1,6 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
-\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage[a4paper, margin=1cm]{geometry}
 \usepackage{graphicx}
 \usepackage[french]{babel}
 
@@ -80,11 +80,11 @@ On a $ \Omega _p, \Omega _s, R_p, A_s $
     \item Ordre du filtre $ \Omega _s - \Omega _p = \frac{1.8 \pi }{M} $ puis partie supérieur. $ M - 1 =  $ ordre du filtre
     \item Coef du filtre : \begin{itemize}
         \item On vas fenêtrer sur l'intervale $ [-\frac{M-1}{2} ; \frac{M-1}{2}] $ en le divisant en $ M $ point.
-        \item Coef 
+        \item Coef : $ \Omega _c = \Omega _s - \Omega _p $ fréquence de coupure 
         \[
             h_i = \begin{cases}
-                1 &\text{ si } x = 0\\
-                \frac{\sin nx}{n*\pi } &\text{ sinon}\\
+                1s &\text{ si } x = 0\\
+                \frac{\sin x \Omega _c}{x*\pi } &\text{ sinon}\\
                 \end{cases}  
         .\]
         Utiliser la symétrie pour ne calculer que la moitié des points !

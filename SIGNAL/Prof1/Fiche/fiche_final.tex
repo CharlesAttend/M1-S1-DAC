@@ -1,0 +1,224 @@
+\documentclass[9pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper, margin=1cm]{geometry}
+\usepackage{graphicx}
+\usepackage[french]{babel}
+
+% \usepackage[default,scale=0.30]{opensans}
+\usepackage[T1]{fontenc}
+\usepackage{amssymb} %math                                                                                                                                                  w
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{systeme}
+\usepackage{bbm}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{sectsty}
+\usepackage{titlesec}
+
+
+% \titleformat{\section}[runin]{\footnotesize\bfseries\sffamily}{\thesection}{1em}{}
+
+% \titleformat{\subsection}[runin]{\footnotesize\bfseries\sffamily}{\thesubsection}{1em}{}[]
+% \titleformat{\subsubsection}[runin]{\footnotesize\bfseries\sffamily}{\thesubsubsection}{1em}{}[]
+% \titleformat{\paragraph}[runin]{\footnotesize\bfseries\sffamily}{\theparagraph}{1em}{}[]
+% \titleformat{\subparagraph}[runin]{\footnotesize\bfseries\sffamily}{\thesubparagraph}{1em}{}[]
+
+\titleformat{\section}[runin]{\normalfont\footnotesize\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}[runin]{\normalfont\footnotesize\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}[runin]{\normalfont\footnotesize\bfseries}{\thesubsubsection}{1em}{}
+\titleformat{\paragraph}[runin]{\normalfont\footnotesize\bfseries}{\theparagraph}{1em}{}
+\titleformat{\subparagraph}[runin]{\normalfont\footnotesize\bfseries}{\thesubparagraph}{1em}{}
+
+\titlespacing*{\section}{0pt}{0.8mm}{0.1mm}
+\titlespacing*{\subsection}{0pt}{0.1mm}{0.1mm}
+
+\begin{document}
+
+\footnotesize   
+\begin{multicols}{3}
+\textbf{Manque : table type de filtre FIR, image bode, image gain FIR IIR, cercle trigo ?}
+\subsection{Formule complexe}
+\begin{align*}
+    a + jb \to e^{(a+jb)t} &= e^{at}e^{jbt} = e^{at}(\cos bt + j \sin bt) \\
+    z = a + jb \to \left| z \right| * e^{i \arg z} \\
+    \tan(\arg z)&={\frac {\Im (z)}{\Re (z)}}={\frac {z-{\bar {z}}}{\mathrm {i} \left(z+{\bar {z}}\right)}} \\
+    \arg z_1z_2 &= \arg z_1 + \arg z_2 \\
+    \arg z_1^n &= n\arg z_1 \\
+    \arg(az) &\equiv {\begin{cases}\arg z&{\text{si }}a>0\\(\arg z)+\pi &{\text{si }}a<0{\text{ ;}}\end{cases}}
+\end{align*}
+
+\subsection{Convolution}
+\begin{align*}
+    (f \star g)(t) &= \int _{-\infty }^{\infty }f(\tau )g(t-\tau )d\tau \\
+                    &= \sum_{m=-\infty }^{+\infty} f[m]g[n - m]
+\end{align*}
+
+\subsection{Transformé de Laplace}
+\begin{align*}
+    X(S) &= \mathcal{L}\{x(t)\} \\
+        &= \int_{-\infty }^{\infty }x(t)e^{-St}dt
+\end{align*}
+
+\begin{align*}
+    X[Z] \to H[Z] \to &Y[Z] = X[Z]H[Z] \\
+    \Leftrightarrow & H[Z] = \frac{Y[Z]}{X[Z]}
+\end{align*}
+
+\begin{itemize}
+    \item \textbf{Convolution} : $ \mathcal{L}\{x_1(t) \star x_2(t)\} = X_1(S) X_2(S)$ 
+    \item Time shifting : $ \mathcal{L}\{x(t-t_0) u(t - t_0)\} = X(S)e^{-t_0 S}$ 
+    \item Intégrale : $ \mathcal{L}\{\int_{0}^{t}x(t)dt\} = \frac{1}{S}X(S) $ 
+\end{itemize}
+Factoriser les polynômes au dénominateur et au numérateur. Puis pour appliquer Laplace inverse, on vérifie dans le tableau si on trouve une forme adapté. \\
+Sinon on décompose en éléments simple pour obtenir une forme du type $ \frac{A}{S+c} \to _{\mathcal{L}^{-1}} A e^{-ct}u(t)$.
+
+Décomposition en élément simple $ \frac{A(X)}{B(X)} $ : \begin{enumerate}
+    \item $ \deg A < \deg B $ sinon division euclidienne
+    \item Si polynôme du second degrés sans racine réel au dénominateur, \textit{normalement} on le laisse et à la place d'une constante en haut on met une fonction affine. 
+    \item 3 méthodes \begin{itemize}
+        \item Identification : on remet tout sur le même dénominateur puis identification puis système d'équation
+        \item Multiplier par un des facteurs : pratique si tous les dénominateurs ont la même puissance. On multiplie par un des dénominateur $\rightarrow$ annulation ou plusieurs des dénominateurs $\rightarrow$ remplacer $ x $ par le truc qui l'annule $ x=c $ $\rightarrow$ simplifier et hop on trouve le coef tout de suite
+        \item Multiplier par $ x $  et faire la limite en $ +\infty  $  : puis appliquer le théorème du plus haut degré
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Composante paire et impaire d'une fonction}
+Soit $ x(t) $ une fonction alors on peut écrire $ x(t) $ sous la forme suivante : 
+\[
+    x(t) = \frac{1}{2}(x(t) + x(-t)) + \frac{1}{2}(x(t) - x(-t))
+.\]
+Composante paire 
+\[
+    x_i(t) = \frac{1}{2}(x(t) - x(-t))
+.\]
+Composante impaire 
+\[
+    x_p(t) = \frac{1}{2}(x(t) + x(-t))
+.\]
+\subsection{Réalisation}
+Utiliser une forme factorisé de $ H(S) $. \begin{itemize}
+    \item Intégrateur/retard : $ 1/S $ 
+    \item $ \oplus $ : additions
+    \item $ \rhd $ : gains/multi
+\end{itemize}
+
+\paragraph*{Diagramme de Bode}
+\begin{itemize}
+    \item Gain = $ 20 \log_{10} \left| H(Jw) \right| $
+    \item Relire OneNote (SIGNAL/Prof1/TP2 toute fin) pour les détails du pourquoi 
+\end{itemize}
+La méthode pour une fonction $ H(s) $ 
+\begin{enumerate}
+    \item Mettre la fonction en forme normale 
+    \begin{align*}
+        H(S) &= K \frac{(S + a_1)(S+a_2)}{S(S+b_1)(S^2 + b_2 S + b_3)} \\
+            &= \frac{K a_1 a_2}{b_1 b_3} * \frac{(1 + S/a_1)(1+S/a_2)}{S(1+S/b_1)(1 + S*b_2/b_2 + S^2/b_3)} \\ 
+            &= c * \frac{1 + \frac{S}{c_1} + \dots}{(1 + \frac{S}{c_2})(1 + \frac{S}{c_3})\dots}
+    \end{align*}
+    \item Constante de départ \begin{itemize}
+        \item Gain : $ 20 \log_{10} c $ 
+        \item Phase : $ \begin{cases}
+        0 &\text{si } c>0 \\
+        \pi  &\text{si }c < 0 \\
+        \end{cases}  $ 
+    \end{itemize} 
+
+\end{enumerate}
+
+\subsection{Type de filtre}
+On peut éviter un diagramme de Bode en faisant : 
+\begin{enumerate}
+    \item Remplacer $ S=j \omega  $ 
+    \item Placer les pôles dans le plans complexe et 
+    \item $ \left| H(j \omega ) \right| = \left| \frac{z_1\dots z_n}{p_1 \dots p_n} \right|  $ on observe la distance entre $ \omega $ et les pôles et zéros
+    \item Classiquement : \begin{itemize}
+        \item Vers $ \omega = \infty  $ on a $ \left| H(j \omega ) \right| = 1 $ 
+        \item Avec $ \omega =  $ un zéros, il annule la fraction donc $ = 0 $ 
+        \item En $ \omega = 0 $ on a le module des pôles et des zéros
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Filtre IIR : transformation bilinéaire}
+On a $ \Omega _p, \Omega _s, R_p, A_s $ 
+\begin{enumerate}
+    \item Ordre du filtre : calculer toutes les constantes + les pôles + la fonction de transfert 
+        \begin{itemize}
+            \item Constante :
+                \begin{align*}
+                    w_p &= \frac{2}{T} \tan \frac{\Omega_p }{2} \\
+                    w_s &= \frac{2}{T} \tan \frac{\Omega_s }{2} \\
+                    N &= \left\lceil \frac{\log_{10} [(10^{R_p/10} - 1)/(10^{A_s/10} - 1)]}{2 \log_{10} \frac{w_p}{w_s}}\right\rceil \\
+                    w_{cp} &= \frac{w_p}{(10^{R_p/10} - 1)^{1/2N}} \\
+                    w_{cs} &= \frac{w_s}{(10^{A_s/10} - 1)^{1/2N}} \\
+                    w_c &= \frac{w_{cp} + w_{cs}}{}
+                \end{align*}
+            \item Les pôles de $ H(S) $ 
+                \begin{itemize}
+                    \item $ N $ est impaire $\rightarrow$ On a l'argument de nos pôles $ \theta = \frac{k \pi }{N} \forall k \in \{0, \dots, 2N-1\} $ 
+                    \item Si $ N $ paire $ \theta = \frac{(2k+1)\pi }{2N} $ 
+                    \item $ p_i = w_c e^{j \theta_i } = w_c (\cos (\theta _i) + j \sin \theta _i)$ à calculer ! 
+                    \item Tracer un plan avec le cercle de taille $ w_c $  et ne garder que les pôles stable à droite de l'ordonnée 
+                \end{itemize}
+            \item Écrire la fonction de transfert $ \frac{w_c^N}{(S-p_1)(S-p_2)\dots} $ avec les valeurs des $ p_i \in \mathbb{C}$ 
+        \end{itemize}
+    \item Position des pôles dans le plan $ Z $ : Conversion des pôles 
+    \[
+        S = \frac{2}{T} \frac{1 - Z^{-1}}{1 + Z^{-1}} \Leftrightarrow Z = \frac{ST + 2}{2 - ST}
+    .\]
+    On trouve des nouveaux pôles $ z_i = \frac{p_i*T + 2}{2 - p_i *T} $. Les tracer dans le plans complexe avec le cercle unitaire $\rightarrow$ montrer la stabilité.
+    \item Écrire $ H(S) $ en replaçant $ S $ par $ S = \frac{2}{T} \frac{1 - Z^{-1}}{1 + Z^{-1}} $ puis simplifier le dénominateur à fond pour obtenir un polynôme. Vérifier que les racine de ce polynôme sont bien les pôles $ z_i $ calculé précédemment.
+    \item Tracer approximativement la réponses en fréquence : voir figure \ref{rep_freq_iir_fir}
+    % \begin{figure}[htbp]
+    %     \centering
+    %     \includegraphics*[width=.5\textwidth]{rep_freq_FIR_IIR.png}
+    %     \caption{Réponse en fréquence filtre FIR et IIR}
+    %     \label{rep_freq_iir_fir}
+    % \end{figure}
+    \item Proposer une réalisation matériel pour $ H(Z) $ : 
+        \begin{itemize}
+            \item Écrire $ H(Z) $ calculé à la question 3 sous une forme factorisé $ b_0 \frac{(1+ a_0 Z^{-1})\dots}{(1 + a_1 Z^{-1})\dots} $ On déclare des constantes. 
+            \item Le numérateur = la sortie ; le dénominateur = l'entrée
+            \item Faire le circuit : penser à développer les constantes au numérateur pour ne pas oublier de multiplieur
+        \end{itemize}
+\end{enumerate}
+
+\subsection{Filtre FIR : Fenêtrage}
+\begin{enumerate}
+    \item Choisir la fenêtre : toujours rectangulaire je pense lol
+    \item Ordre du filtre $ \Omega _s - \Omega _p = \frac{1.8 \pi }{M} $ puis partie supérieur. $ M - 1 =  $ ordre du filtre
+    \item Coef du filtre : \begin{itemize}
+        \item On vas fenêtrer sur l'intervale $ [-\frac{M-1}{2} ; \frac{M-1}{2}] $ en le divisant en $ M $ point.
+        \item Coef : $ \Omega _c = \Omega _s - \Omega _p $ fréquence de coupure 
+        \[
+            h_i = \begin{cases}
+                1s &\text{ si } x = 0\\
+                \frac{\sin x \Omega _c}{x*\pi } &\text{ sinon}\\
+                \end{cases}  
+        .\]
+        Utiliser la symétrie pour ne calculer que la moitié des points !
+        \item Conclure en écrivant $ H(Z) $ et en factorisant les coefs symétrique
+    \end{itemize}
+    \item Réalisation matériel : On obtient un $ H(Z) = h_0(1+Z^{-3}) + h_1 (Z^{-1} + Z^{-2})$ Construire ce qu'il y a entre parenthèse puis multiplier par les facteurs avant de sommer le tout.
+    \item Comparaison : FIR plus coûteux mais évite les problèmes de stabilité des pôles, n'a pas de boucle et est plus performant.
+\end{enumerate}
+\subsubsection{Type de filtre FIR}
+\begin{itemize}
+    \item \textbf{Type 1:} On peut réaliser tous les types de filtres passe-bas, passe-bande, passe-haut
+    \item \textbf{Type 2:} Il existe un zéro à $ \Omega = \pi  $ $\rightarrow$ On ne peut pas réaliser un filtre passe-haut
+    \item \textbf{Type 3:} Il existe un zéro à $ \Omega = 0 $ et à $ \Omega = \pi  $ $\rightarrow$ One ne peut pas réaliser un filtre passe-bas, ni un filtre passe-haut.
+    \item \textbf{Type 4:} Il existe un zéro à $ \Omega = 0 $ $\rightarrow$ on ne peut pas réaliser un filtre passe-bas
+\end{itemize}
+% \begin{table}[!ht]
+%     \centering
+%     \begin{tabular}{|l|l|l|}
+%     \hline
+%         Symétrie de $h[n]$ & Nombre de coefficients $M$ & Type \\ \hline
+%         Symétrie positive $ h_n = - h_{M-1-n} $ & Impaire & 1 \\ \hline
+%         ~ & Paire & 2 \\ \hline
+%         Symétrie négative : $ h_n = - h_{M-1-n} $  & Impaire & 3 \\ \hline
+%         ~ & Paire & 4 \\ \hline
+%     \end{tabular}
+% \end{table}
+\end{multicols}
+\end{document}
