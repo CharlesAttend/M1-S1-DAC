@@ -1,0 +1,98 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage[french]{babel}
+
+\usepackage[default,scale=0.95]{opensans}
+\usepackage[T1]{fontenc}
+\usepackage{amssymb} %math
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{systeme}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Méthode SIGNAL},
+    % pdfpagemode=FullScreen,
+    }
+\urlstyle{same} %\href{url}{Text}
+
+\title{Fiche méthode SIGNAL}
+\author{Charles Vin}
+\date{M1-S1-2022}
+
+\begin{document}
+\maketitle
+
+\section{Exo type 2018}
+\subsection{Filtre IIR : transformation bilinéaire}
+On a $ \Omega _p, \Omega _s, R_p, A_s $ 
+\begin{enumerate}
+    \item Ordre du filtre : calculer toutes les constantes + les pôles + la fonction de transfert 
+        \begin{itemize}
+            \item Constante :
+                \begin{align*}
+                    w_p &= \frac{2}{T} \tan \frac{\Omega_p }{2} \\
+                    w_s &= \frac{2}{T} \tan \frac{\Omega_s }{2} \\
+                    N &= \left\lceil \frac{\log_{10} [(10^{R_p/10} - 1)/(10^{A_s/10} - 1)]}{2 \log_{10} \frac{w_p}{w_s}}\right\rceil \\
+                    w_{cp} &= \frac{w_p}{(10^{R_p/10} - 1)^{1/2N}} \\
+                    w_{cs} &= \frac{w_s}{(10^{A_s/10} - 1)^{1/2N}} \\
+                    w_c &= \frac{w_{cp} + w_{cs}}{}
+                \end{align*}
+            \item Les pôles de $ H(S) $ 
+                \begin{itemize}
+                    \item $ N $ est impaire $\rightarrow$ On a l'argument de nos pôles $ \theta = \frac{k \pi }{N} \forall k \in \{0, \dots, 2N-1\} $ 
+                    \item Si $ N $ paire $ \theta = \frac{(2k+1)\pi }{2N} $ 
+                    \item $ p_i = w_c e^{j \theta_i } = w_c (\cos (\theta _i) + j \sin \theta _i)$ à calculer ! 
+                    \item Tracer un plan avec le cercle de taille $ w_c $  et ne garder que les pôles stable à droite de l'ordonnée 
+                \end{itemize}
+            \item Écrire la fonction de transfert $ \frac{w_c^N}{(S-p_1)(S-p_2)\dots} $ avec les valeurs des $ p_i \in \mathbb{C}$ 
+        \end{itemize}
+    \item Position des pôles dans le plan $ Z $ : Conversion des pôles 
+    \[
+        S = \frac{2}{T} \frac{1 - Z^{-1}}{1 + Z^{-1}} \Leftrightarrow Z = \frac{ST + 2}{2 - ST}
+    .\]
+    On trouve des nouveaux pôles $ z_i = \frac{p_i*T + 2}{2 - p_i *T} $. Les tracer dans le plans complexe avec le cercle unitaire $\rightarrow$ montrer la stabilité.
+    \item Écrire $ H(S) $ en replaçant $ S $ par $ S = \frac{2}{T} \frac{1 - Z^{-1}}{1 + Z^{-1}} $ puis simplifier le dénominateur à fond pour obtenir un polynôme. Vérifier que les racine de ce polynôme sont bien les pôles $ z_i $ calculé précédemment.
+    \item Tracer approximativement la réponses en fréquence : voir figure \ref{rep_freq_iir_fir}
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics*[width=.5\textwidth]{rep_freq_FIR_IIR.png}
+        \caption{Réponse en fréquence filtre FIR et IIR}
+        \label{rep_freq_iir_fir}
+    \end{figure}
+    \item Proposer une réalisation matériel pour $ H(Z) $ : 
+        \begin{itemize}
+            \item Écrire $ H(Z) $ calculé à la question 3 sous une forme factorisé $ b_0 \frac{(1+ a_0 Z^{-1})\dots}{(1 + a_1 Z^{-1})\dots} $ On déclare des constantes. 
+            \item Le numérateur = la sortie ; le dénominateur = l'entrée
+            \item Faire le circuit : penser à développer les constantes au numérateur pour ne pas oublier de multiplieur
+        \end{itemize}
+\end{enumerate}
+
+\subsection{Filtre FIR : Fenêtrage}
+\begin{enumerate}
+    \item Choisir la fenêtre : toujours rectangulaire je pense lol
+    \item Ordre du filtre $ \Omega _s - \Omega _p = \frac{1.8 \pi }{M} $ puis partie supérieur. $ M - 1 =  $ ordre du filtre
+    \item Coef du filtre : \begin{itemize}
+        \item On vas fenêtrer sur l'intervale $ [-\frac{M-1}{2} ; \frac{M-1}{2}] $ en le divisant en $ M $ point.
+        \item Coef 
+        \[
+            h_i = \begin{cases}
+                1 &\text{ si } x = 0\\
+                \frac{\sin nx}{n*\pi } &\text{ sinon}\\
+                \end{cases}  
+        .\]
+        Utiliser la symétrie pour ne calculer que la moitié des points !
+        \item Conclure en écrivant $ H(Z) $ et en factorisant les coefs symétrique
+    \end{itemize}
+    \item Réalisation matériel : On obtient un $ H(Z) = h_0(1+Z^{-3}) + h_1 (Z^{-1} + Z^{-2})$ Construire ce qu'il y a entre parenthèse puis multiplier par les facteurs avant de sommer le tout.
+    \item Comparaison : FIR plus coûteux mais évite les problèmes de stabilité des pôles, n'a pas de boucle et est plus performant.
+\end{enumerate}
+
+
+\end{document}
