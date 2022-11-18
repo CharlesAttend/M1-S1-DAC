@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.10.4)  17 NOV 2022 21:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.10.4)  18 NOV 2022 11:32
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -494,52 +494,39 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 42.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Overfull \hbox (38.35701pt too wide) detected at line 49
-[]
- []
 
+LaTeX Warning: Reference `rep_freq_iir_fir' on page 1 undefined on input line 192.
 
-Overfull \hbox (56.588pt too wide) detected at line 118
-[]
- []
-
-
-Overfull \hbox (39.61035pt too wide) detected at line 155
-[]
- []
-
-
-LaTeX Warning: Reference `rep_freq_iir_fir' on page 1 undefined on input line 171.
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 224.
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 224.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 245.
+ [2]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 245.
  (/home/charles/M1-S1-DAC/SIGNAL/Prof1/Fiche/fiche_final.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 224.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 224.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 245.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 245.
 Package rerunfilecheck Info: File `fiche_final.out' has not changed.
-(rerunfilecheck)             Checksum: FA015B49E0F7F4706B22FBB3C738C73B;584.
+(rerunfilecheck)             Checksum: B56EBE51C9127DB5734FF8BF02553625;726.
 
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 224.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 245.
  ) 
 Here is how much of TeX's memory you used:
- 9289 strings out of 483154
- 135146 string characters out of 5965023
- 484259 words of memory out of 5000000
- 24113 multiletter control sequences out of 15000+600000
+ 9294 strings out of 483154
+ 135222 string characters out of 5965023
+ 442259 words of memory out of 5000000
+ 24115 multiletter control sequences out of 15000+600000
  540604 words of font info for 45 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 34i,18n,35p,406b,506s stack positions out of 5000i,500n,10000p,200000b,80000s
- </home/charles/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home/charles/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti0800.600pk> </home/charles/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.600pk> </home/charles/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx0800.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on /home/charles/M1-S1-DAC/SIGNAL/Prof1/Fiche/fiche_final.pdf (1 page, 156818 bytes).
+ 34i,18n,35p,406b,676s stack positions out of 5000i,500n,10000p,200000b,80000s
+ </home/charles/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home/charles/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0600.600pk> </home/charles/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti0800.600pk> </home/charles/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.600pk> </home/charles/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx0800.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on /home/charles/M1-S1-DAC/SIGNAL/Prof1/Fiche/fiche_final.pdf (2 pages, 169678 bytes).
 PDF statistics:
- 267 PDF objects out of 1000 (max. 8388607)
- 122 compressed objects within 2 object streams
- 30 named destinations out of 1000 (max. 500000)
- 73 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 306 PDF objects out of 1000 (max. 8388607)
+ 141 compressed objects within 2 object streams
+ 33 named destinations out of 1000 (max. 500000)
+ 89 words of extra memory for PDF output out of 10000 (max. 10000000)
 

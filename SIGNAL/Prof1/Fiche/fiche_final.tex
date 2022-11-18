@@ -36,7 +36,7 @@
 \begin{document}
 
 \footnotesize   
-\begin{multicols}{3}
+\begin{multicols}{2}
 \textbf{Manque : table type de filtre FIR, image bode, image gain FIR IIR, cercle trigo ?}
 \subsection{Formule complexe}
 \begin{align*}
@@ -126,12 +126,33 @@ La méthode pour une fonction $ H(s) $
 
 \end{enumerate}
 
+\subsubsection{Stabilité continue}
+On regarde uniquement les pôles pour la stabilité 
+Plot partie réel $ \mathcal{R} $ et partie imaginaire $ Im $ 
+\begin{itemize}
+    \item Stable : Si tous les pôles sont dans la partie gauche du plans complexe
+    \item Instable : \begin{itemize}
+        \item Au moins un pôle dans la partie droite du plan complexe
+        \item Il existe au moins un pôle multiple sur l'axe imaginaire
+    \end{itemize}
+    \item Conditionnellement stable : Il existe un pôle simple sur l'axe imaginaire ($a=0$)
+\end{itemize}
+
+\subsection{Stabilité discret}
+\begin{itemize}
+    \item Un système T.D. est stable si $\rightarrow$ touts les pôles sont à l'intérieur du cercle unitaire.
+    \item Un système T.D. est instable si \begin{itemize}
+        \item Au moins un pôle est à l'extérieur du cercle unitaire
+        \item Il existe des pôles multiples sur le cercle unitaire
+    \end{itemize}
+    \item Un système T.D. est conditionnellement stable si $\rightarrow$ il existe des pôles simples sur le cercle unitaire.
+\end{itemize}
 \subsection{Type de filtre}
 On peut éviter un diagramme de Bode en faisant : 
 \begin{enumerate}
     \item Remplacer $ S=j \omega  $ 
     \item Placer les pôles dans le plans complexe et 
-    \item $ \left| H(j \omega ) \right| = \left| \frac{z_1\dots z_n}{p_1 \dots p_n} \right|  $ on observe la distance entre $ \omega $ et les pôles et zéros
+    \item $ \left| H(j \omega ) \right| = \frac{\prod_{}^{}\text{produit de la distance aux zéros}}{\prod_{}^{}\text{produit de la distance aux pôles}}  $ on observe la distance entre $ \omega $ et les pôles et zéros
     \item Classiquement : \begin{itemize}
         \item Vers $ \omega = \infty  $ on a $ \left| H(j \omega ) \right| = 1 $ 
         \item Avec $ \omega =  $ un zéros, il annule la fraction donc $ = 0 $ 

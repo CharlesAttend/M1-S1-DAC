@@ -148,7 +148,9 @@ Décomposition en élément simple $ \frac{A(X)}{B(X)} $ : \begin{enumerate}
 \end{enumerate}
 
 \subsubsection{Stabilité}
-Soit $ H(S) = \frac{1}{(S+p_1)(S+p_2)\dots} $ une forme factorisé $ \to_{\mathcal{L}^{-1}} h(S)=\dots$. On définis la stabilité par en regardant si $ h(S) $ converge. $ \Leftrightarrow $ \begin{itemize}
+Soit $ H(S) = \frac{1}{(S+p_1)(S+p_2)\dots} $ une forme factorisé $ \to_{\mathcal{L}^{-1}} h(S)=\dots$. On définis la stabilité par en regardant si $ h(S) $ converge. $ \Leftrightarrow $ \\
+On regarde uniquement les pôles pour la stabilité 
+\begin{itemize}
     \item Stable : Si tous les pôles sont dans la partie gauche du plans complexe
     \item Instable : \begin{itemize}
         \item Au moins un pôle dans la partie droite du plan complexe
@@ -201,7 +203,7 @@ On peut éviter un diagramme de Bode en faisant :
 \begin{enumerate}
     \item Remplacer $ S=j \omega  $ 
     \item Placer les pôles dans le plans complexe et 
-    \item $ \left| H(j \omega ) \right| = \left| \frac{z_1\dots z_n}{p_1 \dots p_n} \right|  $ on observe la distance entre $ \omega $ et les pôles et zéros
+    \item $ \left| H(j \omega ) \right| = \frac{\prod_{}^{}\text{produit de la distance aux zéros}}{\prod_{}^{}\text{produit de la distance aux pôles}}  $ on observe la distance entre $ \omega $ et les pôles et zéros
     \item Classiquement : \begin{itemize}
         \item Vers $ \omega = \infty  $ on a $ \left| H(j \omega ) \right| = 1 $ 
         \item Avec $ \omega =  $ un zéros, il annule la fraction donc $ = 0 $ 
