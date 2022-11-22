@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.10.4)  25 OCT 2022 14:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.10.2)  22 NOV 2022 20:57
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -489,15 +489,15 @@ Underfull \hbox (badness 10000) in paragraph at lines 680--681
  []
 
 [10] [11] [12] [13]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 926.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 934.
  [14]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 926.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 934.
  (/home/charles/M1-S1-DAC/BIMA/cours.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 926.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 926.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 934.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 934.
 Package rerunfilecheck Info: File `cours.out' has not changed.
 (rerunfilecheck)             Checksum: 9500AC268D55A07609C09FF6112B0151;3044.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 926.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 934.
  ) 
 Here is how much of TeX's memory you used:
  9443 strings out of 483154
@@ -508,7 +508,7 @@ Here is how much of TeX's memory you used:
  14 hyphenation exceptions out of 8191
  34i,9n,40p,366b,535s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/opensans/a_jg4h6q.enc}</usr/share/texlive/texmf-dist/fonts/type1/ascender/opensans/OpenSans-Bold.pfb></usr/share/texlive/texmf-dist/fonts/type1/ascender/opensans/OpenSans-Italic.pfb></usr/share/texlive/texmf-dist/fonts/type1/ascender/opensans/OpenSans-Regular.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on /home/charles/M1-S1-DAC/BIMA/cours.pdf (14 pages, 153876 bytes).
+Output written on /home/charles/M1-S1-DAC/BIMA/cours.pdf (14 pages, 154027 bytes).
 PDF statistics:
  368 PDF objects out of 1000 (max. 8388607)
  337 compressed objects within 4 object streams
