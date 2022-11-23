@@ -926,7 +926,47 @@ Diapo CCL :
 
 
 \underline{Nouveau cours du 22/11} \\
-Je suis pas aller en cours pour réviser et parce que j'ouvre jamais ce document il sere à rien
+Je suis pas aller en cours pour réviser et parce que j'ouvre jamais ce document il sere à rien.
+
+Mais du coup je vais relire le diapo et prendre des notes de ce que je comprends:
+\begin{itemize}
+    \item Mumford and Shah model :
+    \begin{itemize}
+        \item Optimization based methods 
+        \item Principe : on vas minimiser une fonction mesurant la distance entre l'image segmenté et l'originale
+        \item On définis l'energie de l'image segmenté comme la distance euclidienne entre chaque pixel de l'image segmentée $ I $  et les valeurs moyenne des pixels de l'image originale $ R $ 
+        \item Par magie mathématique ça donne finalement la somme des valeurs propres de la matrice de variance covariance des couleurs pixel (3x3)
+        \item Facile à optimiser comme un problème de dual + lagrange
+    \end{itemize}
+    \item Clustering based methods 
+    \begin{itemize}
+        \item On peut binary threshold comme on a fait en TME sur des images en noir et blanc: 6 catégories de méthdes diapo 18
+        \item Mais c'est pas de la segmentation : on a pas forcement des zones connectées entre elles $\rightarrow$ Spacial analysis
+        \begin{itemize}
+            \item On divise l'histogramme en plusieurs parties 
+            \item Pour chaque partie on trouve la meilleurs threshold pour diviser l'image en la plus grosse section
+        \end{itemize}
+        \item Sur des image en couleurs on vas clusteriser dans $ \mathbb{R}^3 $, par exemple avec k-means : pros and cons diapo 34
+        \item Mean shift algo : 
+        \begin{itemize}
+            \item Finalement proche d'un k-mean mais au lieux de prendre les tous les points les plus proche, on prend uniquement ceux dans un certain rayon. Puis centroide puis boucle
+            \item On fait ça dans l'espace des features (colors, gradiant, texture, ?)
+            \item Un point par feature, donc pas dimention je crois ? 
+            \item On merge les points proche à la fin
+            \item pros and cons diapo 41
+        \end{itemize}
+    \end{itemize}
+    \item Region based segmentation
+    \begin{itemize}
+        \item 2 approches : soit on part d'un cluster de la taille de l'image pour le réduire, soit on part de clusters de la taille de pixels (des seeds) puis qu'on aggrandi : fusion or division
+        \item Fusion : pro and cons diapo 48
+        \item Division : on part d'un zone de la taille de l'image, qu'on divise par exemple en 4, puis encore, puis jusqu'à qu'il n'y ai plus de régions non homogène à diviser
+        \item Bien sur on utilise un critère d'homogénéité choisi à l'avance 
+        \item Algo split and merge == fusion des deux méthodes
+        \item On peut aussi couper le graph en plusieurs morceaux en fonction de la valeurs d'une fonction de cout (?)
+    \end{itemize}
+    \item Il y a encore beaucoup beaucoup d'autre méthode : chacune avec leurs avantage et inconvéniant en fonction du type d'image 
+\end{itemize}
 
 
 
