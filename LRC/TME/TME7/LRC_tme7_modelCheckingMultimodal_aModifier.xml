@@ -1,0 +1,582 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<logic>
+    <parser-version>2.1</parser-version>
+    <description>
+Author: LILaC Team
+Last update: March 2009</description>
+    <connector>
+        <connector-name>not</connector-name>
+        <arity>1</arity>
+        <associative>false</associative>
+        <output-format>~ _</output-format>
+        <priority>0</priority>
+        <connector-comment/>
+    </connector>
+    <connector>
+        <connector-name>and</connector-name>
+        <arity>2</arity>
+        <associative>false</associative>
+        <output-format>_ &amp; _</output-format>
+        <priority>0</priority>
+        <connector-comment/>
+    </connector>
+    <connector>
+        <connector-name>or</connector-name>
+        <arity>2</arity>
+        <associative>false</associative>
+        <output-format>_ v _</output-format>
+        <priority>0</priority>
+        <connector-comment/>
+    </connector>
+    <connector>
+        <connector-name>isItTrue</connector-name>
+        <arity>1</arity>
+        <associative>false</associative>
+        <output-format>isItTrue_?</output-format>
+        <priority>0</priority>
+        <connector-comment/>
+    </connector>
+    <connector>
+        <connector-name>nec</connector-name>
+        <arity>2</arity>
+        <associative>false</associative>
+        <output-format>[_] _</output-format>
+        <priority>0</priority>
+        <connector-comment/>
+    </connector>
+    <connector>
+        <connector-name>pos</connector-name>
+        <arity>2</arity>
+        <associative>false</associative>
+        <output-format>&lt;_&gt;_</output-format>
+        <priority>0</priority>
+        <connector-comment/>
+    </connector>
+    <rule>
+        <rule-name>ExampleOfModelAndFormula</rule-name>
+        <action>
+            <action-name>createNewNode</action-name>
+            <parameter>w</parameter>
+        </action>
+        <action>
+            <action-name>createNewNode</action-name>
+            <parameter>u</parameter>
+        </action>
+        <action>
+            <action-name>createNewNode</action-name>
+            <parameter>v</parameter>
+        </action>
+        <action>
+            <action-name>createNewNode</action-name>
+            <parameter>x</parameter>
+        </action>
+        <action>
+            <action-name>link</action-name>
+            <parameter>w</parameter>
+            <parameter>u</parameter>
+            <parameter>R</parameter>
+        </action>
+        <action>
+            <action-name>link</action-name>
+            <parameter>w</parameter>
+            <parameter>v</parameter>
+            <parameter>R</parameter>
+        </action>
+        <action>
+            <action-name>link</action-name>
+            <parameter>v</parameter>
+            <parameter>u</parameter>
+            <parameter>R</parameter>
+        </action>
+        <action>
+            <action-name>link</action-name>
+            <parameter>v</parameter>
+            <parameter>x</parameter>
+            <parameter>R</parameter>
+        </action>
+        <action>
+            <action-name>add</action-name>
+            <parameter>w</parameter>
+            <parameter>P</parameter>
+        </action>
+        <action>
+            <action-name>add</action-name>
+            <parameter>v</parameter>
+            <parameter>P</parameter>
+        </action>
+        <action>
+            <action-name>add</action-name>
+            <parameter>v</parameter>
+            <parameter>Q</parameter>
+        </action>
+        <action>
+            <action-name>add</action-name>
+            <parameter>x</parameter>
+            <parameter>Q</parameter>
+        </action>
+        <action>
+            <action-name>add</action-name>
+            <parameter>w</parameter>
+            <parameter>isItTrue pos R nec R or P Q</parameter>
+        </action>
+        <rule-comment/>
+    </rule>
+    <rule>
+        <rule-name>Not_Top_Down</rule-name>
+        <condition>
+            <condition-name>hasElement</condition-name>
+            <parameter>w</parameter>
+            <parameter>isItTrue not variable A</parameter>
+        </condition>
+        <action>
+            <action-name>add</action-name>
+            <parameter>w</parameter>
+            <parameter>isItTrue variable A</parameter>
+        </action>
+        <rule-comment/>
+    </rule>
+    <rule>
+        <rule-name>And_Top_Down</rule-name>
+        <condition>
+            <condition-name>hasElement</condition-name>
+            <parameter>w</parameter>
+            <parameter>isItTrue and variable A variable B</parameter>
+        </condition>
+        <action>
+            <action-name>add</action-name>
+            <parameter>w</parameter>
+            <parameter>isItTrue variable A</parameter>
+        </action>
+        <action>
+            <action-name>add</action-name>
+            <parameter>w</parameter>
+            <parameter>isItTrue variable B</parameter>
+        </action>
+        <rule-comment/>
+    </rule>
+    <rule>
+        <rule-name>Or_Top_Down</rule-name>
+        <condition>
+            <condition-name>hasElement</condition-name>
+            <parameter>w</parameter>
+            <parameter>isItTrue or variable A variable B</parameter>
+        </condition>
+        <action>
+            <action-name>add</action-name>
+            <parameter>w</parameter>
+            <parameter>isItTrue variable A</parameter>
+        </action>
+        <action>
+            <action-name>add</action-name>
+            <parameter>w</parameter>
+            <parameter>isItTrue variable B</parameter>
+        </action>
+        <rule-comment/>
+    </rule>
+    <rule>
+        <rule-name>Nec_Top_Down</rule-name>
+        <condition>
+            <condition-name>hasElement</condition-name>
+            <parameter>w</parameter>
+            <parameter>isItTrue nec variable R variable A</parameter>
+        </condition>
+        <condition>
+            <condition-name>isLinked</condition-name>
+            <parameter>w</parameter>
+            <parameter>u</parameter>
+            <parameter>variable R</parameter>
+        </condition>
+        <action>
+            <action-name>add</action-name>
+            <parameter>u</parameter>
+            <parameter>isItTrue variable A</parameter>
+        </action>
+        <rule-comment/>
+    </rule>
+    <rule>
+        <rule-name>Pos_Top_Down</rule-name>
+        <condition>
+            <condition-name>hasElement</condition-name>
+            <parameter>w</parameter>
+            <parameter>isItTrue pos variable R variable A</parameter>
+        </condition>
+        <condition>
+            <condition-name>isLinked</condition-name>
+            <parameter>w</parameter>
+            <parameter>u</parameter>
+            <parameter>variable R</parameter>
+        </condition>
+        <action>
+            <action-name>add</action-name>
+            <parameter>u</parameter>
+            <parameter>isItTrue variable A</parameter>
+        </action>
+        <rule-comment/>
+    </rule>
+    <rule>
+        <rule-name>Atom_True_Bottom_Up</rule-name>
+        <condition>
+            <condition-name>hasElement</condition-name>
+            <parameter>w</parameter>
+            <parameter>isItTrue variable A</parameter>
+        </condition>
+        <condition>
+            <condition-name>isAtomic</condition-name>
+            <parameter>variable A</parameter>
+        </condition>
+        <condition>
+            <condition-name>hasElement</condition-name>
+            <parameter>w</parameter>
+            <parameter>variable A</parameter>
+        </condition>
+        <action>
+            <action-name>markExpressions</action-name>
+            <parameter>w</parameter>
+            <parameter>isItTrue variable A</parameter>
+            <parameter>Yes</parameter>
+        </action>
+        <rule-comment/>
+    </rule>
+    <rule>
+        <rule-name>Atom_Not_True_Bottom_Up</rule-name>
+        <condition>
+            <condition-name>hasElement</condition-name>
+            <parameter>w</parameter>
+            <parameter>isItTrue variable A</parameter>
+        </condition>
+        <condition>
+            <condition-name>isAtomic</condition-name>
+            <parameter>variable A</parameter>
+        </condition>
+        <condition>
+            <condition-name>hasNotElement</condition-name>
+            <parameter>w</parameter>
+            <parameter>variable A</parameter>
+        </condition>
+        <action>
+            <action-name>markExpressions</action-name>
+            <parameter>w</parameter>
+            <parameter>isItTrue variable A</parameter>
+            <parameter>No</parameter>
+        </action>
+        <rule-comment/>
+    </rule>
+    <rule>
+        <rule-name>Not_True_Bottom_Up</rule-name>
+        <condition>
+            <condition-name>hasElement</condition-name>
+            <parameter>w</parameter>
+            <parameter>isItTrue not variable A</parameter>
+        </condition>
+        <condition>
+            <condition-name>isMarkedExpression</condition-name>
+            <parameter>w</parameter>
+            <parameter>isItTrue variable A</parameter>
+            <parameter>No</parameter>
+        </condition>
+        <action>
+            <action-name>markExpressions</action-name>
+            <parameter>w</parameter>
+            <parameter>isItTrue not variable A</parameter>
+            <parameter>Yes</parameter>
+        </action>
+        <rule-comment/>
+    </rule>
+    <rule>
+        <rule-name>Not_Not_True_Bottom_Up</rule-name>
+        <condition>
+            <condition-name>hasElement</condition-name>
+            <parameter>w</parameter>
+            <parameter>isItTrue not variable A</parameter>
+        </condition>
+        <condition>
+            <condition-name>isMarkedExpression</condition-name>
+            <parameter>w</parameter>
+            <parameter>isItTrue variable A</parameter>
+            <parameter>Yes</parameter>
+        </condition>
+        <action>
+            <action-name>markExpressions</action-name>
+            <parameter>w</parameter>
+            <parameter>isItTrue not variable A</parameter>
+            <parameter>No</parameter>
+        </action>
+        <rule-comment/>
+    </rule>
+    <rule>
+        <rule-name>And_True_Bottom_Up</rule-name>
+        <condition>
+            <condition-name>hasElement</condition-name>
+            <parameter>w</parameter>
+            <parameter>isItTrue and variable A variable B</parameter>
+        </condition>
+        <condition>
+            <condition-name>isMarkedExpression</condition-name>
+            <parameter>w</parameter>
+            <parameter>isItTrue variable A</parameter>
+            <parameter>Yes</parameter>
+        </condition>
+        <condition>
+            <condition-name>isMarkedExpression</condition-name>
+            <parameter>w</parameter>
+            <parameter>isItTrue variable B</parameter>
+            <parameter>Yes</parameter>
+        </condition>
+        <action>
+            <action-name>markExpressions</action-name>
+            <parameter>w</parameter>
+            <parameter>isItTrue and variable A variable B</parameter>
+            <parameter>Yes</parameter>
+        </action>
+        <rule-comment/>
+    </rule>
+    <rule>
+        <rule-name>And_Left_Not_True_Bottom_Up</rule-name>
+        <condition>
+            <condition-name>hasElement</condition-name>
+            <parameter>w</parameter>
+            <parameter>isItTrue and variable A variable B</parameter>
+        </condition>
+        <condition>
+            <condition-name>isMarkedExpression</condition-name>
+            <parameter>w</parameter>
+            <parameter>isItTrue variable A</parameter>
+            <parameter>No</parameter>
+        </condition>
+        <action>
+            <action-name>markExpressions</action-name>
+            <parameter>w</parameter>
+            <parameter>isItTrue and variable A variable B</parameter>
+            <parameter>No</parameter>
+        </action>
+        <rule-comment/>
+    </rule>
+    <rule>
+        <rule-name>And_Right_Not_True_Bottom_Up</rule-name>
+        <condition>
+            <condition-name>hasElement</condition-name>
+            <parameter>w</parameter>
+            <parameter>isItTrue and variable A variable B</parameter>
+        </condition>
+        <condition>
+            <condition-name>isMarkedExpression</condition-name>
+            <parameter>w</parameter>
+            <parameter>isItTrue variable B</parameter>
+            <parameter>No</parameter>
+        </condition>
+        <action>
+            <action-name>markExpressions</action-name>
+            <parameter>w</parameter>
+            <parameter>isItTrue and variable A variable B</parameter>
+            <parameter>No</parameter>
+        </action>
+        <rule-comment/>
+    </rule>
+    <rule>
+        <rule-name>Or_Not_True_Bottom_Up</rule-name>
+        <condition>
+            <condition-name>hasElement</condition-name>
+            <parameter>w</parameter>
+            <parameter>isItTrue or variable A variable B</parameter>
+        </condition>
+        <condition>
+            <condition-name>isMarkedExpression</condition-name>
+            <parameter>w</parameter>
+            <parameter>isItTrue variable A</parameter>
+            <parameter>No</parameter>
+        </condition>
+        <condition>
+            <condition-name>isMarkedExpression</condition-name>
+            <parameter>w</parameter>
+            <parameter>isItTrue variable B</parameter>
+            <parameter>No</parameter>
+        </condition>
+        <action>
+            <action-name>markExpressions</action-name>
+            <parameter>w</parameter>
+            <parameter>isItTrue or variable A variable B</parameter>
+            <parameter>No</parameter>
+        </action>
+        <rule-comment/>
+    </rule>
+    <rule>
+        <rule-name>Or_Left_True_Bottom_Up</rule-name>
+        <condition>
+            <condition-name>hasElement</condition-name>
+            <parameter>w</parameter>
+            <parameter>isItTrue or variable A variable B</parameter>
+        </condition>
+        <condition>
+            <condition-name>isMarkedExpression</condition-name>
+            <parameter>w</parameter>
+            <parameter>isItTrue variable A</parameter>
+            <parameter>Yes</parameter>
+        </condition>
+        <action>
+            <action-name>markExpressions</action-name>
+            <parameter>w</parameter>
+            <parameter>isItTrue or variable A variable B</parameter>
+            <parameter>Yes</parameter>
+        </action>
+        <rule-comment/>
+    </rule>
+    <rule>
+        <rule-name>Or_Right_True_Bottom_Up</rule-name>
+        <condition>
+            <condition-name>hasElement</condition-name>
+            <parameter>w</parameter>
+            <parameter>isItTrue or variable A variable B</parameter>
+        </condition>
+        <condition>
+            <condition-name>isMarkedExpression</condition-name>
+            <parameter>w</parameter>
+            <parameter>isItTrue variable B</parameter>
+            <parameter>Yes</parameter>
+        </condition>
+        <action>
+            <action-name>markExpressions</action-name>
+            <parameter>w</parameter>
+            <parameter>isItTrue or variable A variable B</parameter>
+            <parameter>Yes</parameter>
+        </action>
+        <rule-comment/>
+    </rule>
+    <rule>
+        <rule-name>Nec_True_Bottom_Up</rule-name>
+        <condition>
+            <condition-name>hasElement</condition-name>
+            <parameter>w</parameter>
+            <parameter>isItTrue nec variable R variable A</parameter>
+        </condition>
+        <condition>
+            <condition-name>isMarkedExpressionInAllChildren</condition-name>
+            <parameter>w</parameter>
+            <parameter>isItTrue variable A</parameter>
+            <parameter>variable R</parameter>
+            <parameter>Yes</parameter>
+        </condition>
+        <action>
+            <action-name>markExpressions</action-name>
+            <parameter>w</parameter>
+            <parameter>isItTrue nec variable R variable A</parameter>
+            <parameter>Yes</parameter>
+        </action>
+        <rule-comment/>
+    </rule>
+    <rule>
+        <rule-name>Nec_Not_True_Bottom_Up</rule-name>
+        <condition>
+            <condition-name>hasElement</condition-name>
+            <parameter>w</parameter>
+            <parameter>isItTrue nec variable R variable A</parameter>
+        </condition>
+        <condition>
+            <condition-name>isLinked</condition-name>
+            <parameter>w</parameter>
+            <parameter>u</parameter>
+            <parameter>variable R</parameter>
+        </condition>
+        <condition>
+            <condition-name>isMarkedExpression</condition-name>
+            <parameter>u</parameter>
+            <parameter>isItTrue variable A</parameter>
+            <parameter>No</parameter>
+        </condition>
+        <action>
+            <action-name>markExpressions</action-name>
+            <parameter>w</parameter>
+            <parameter>isItTrue nec variable R variable A</parameter>
+            <parameter>No</parameter>
+        </action>
+        <rule-comment/>
+    </rule>
+    <rule>
+        <rule-name>Pos_Not_True_Bottom_Up</rule-name>
+        <condition>
+            <condition-name>hasElement</condition-name>
+            <parameter>w</parameter>
+            <parameter>isItTrue pos variable R variable A</parameter>
+        </condition>
+        <condition>
+            <condition-name>isMarkedExpressionInAllChildren</condition-name>
+            <parameter>w</parameter>
+            <parameter>isItTrue variable A</parameter>
+            <parameter>variable R</parameter>
+            <parameter>No</parameter>
+        </condition>
+        <action>
+            <action-name>markExpressions</action-name>
+            <parameter>w</parameter>
+            <parameter>isItTrue pos variable R variable A</parameter>
+            <parameter>No</parameter>
+        </action>
+        <rule-comment/>
+    </rule>
+    <rule>
+        <rule-name>Pos_True_Bottom_Up</rule-name>
+        <condition>
+            <condition-name>hasElement</condition-name>
+            <parameter>w</parameter>
+            <parameter>isItTrue pos variable R variable A</parameter>
+        </condition>
+        <condition>
+            <condition-name>isLinked</condition-name>
+            <parameter>w</parameter>
+            <parameter>u</parameter>
+            <parameter>variable R</parameter>
+        </condition>
+        <condition>
+            <condition-name>isMarkedExpression</condition-name>
+            <parameter>u</parameter>
+            <parameter>isItTrue variable A</parameter>
+            <parameter>Yes</parameter>
+        </condition>
+        <action>
+            <action-name>markExpressions</action-name>
+            <parameter>w</parameter>
+            <parameter>isItTrue pos variable R variable A</parameter>
+            <parameter>Yes</parameter>
+        </action>
+        <rule-comment/>
+    </rule>
+    <strategy>
+        <strategy-name>Top_Down_Strategy</strategy-name>
+        <strategy-code>repeat
+  Not_Top_Down
+  And_Top_Down
+  Or_Top_Down
+  Nec_Top_Down
+  Pos_Top_Down
+end</strategy-code>
+        <strategy-comment/>
+    </strategy>
+    <strategy>
+        <strategy-name>Bottom_Up_Strategy</strategy-name>
+        <strategy-code>repeat
+  Atom_True_Bottom_Up
+  Atom_Not_True_Bottom_Up
+  Not_True_Bottom_Up
+  Not_Not_True_Bottom_Up
+  And_True_Bottom_Up
+  And_Left_Not_True_Bottom_Up
+  And_Right_Not_True_Bottom_Up
+  Or_Not_True_Bottom_Up
+  Or_Left_True_Bottom_Up
+  Or_Right_True_Bottom_Up
+  Nec_True_Bottom_Up
+  Nec_Not_True_Bottom_Up
+  Pos_Not_True_Bottom_Up
+  Pos_True_Bottom_Up
+end</strategy-code>
+        <strategy-comment/>
+    </strategy>
+    <strategy>
+        <strategy-name>Model_Checking_Strategy</strategy-name>
+        <strategy-code>  ExampleOfModelAndFormula
+  Top_Down_Strategy
+  Bottom_Up_Strategy
+</strategy-code>
+        <strategy-comment/>
+    </strategy>
+    <main-strategy>Model_Checking_Strategy</main-strategy>
+</logic>
