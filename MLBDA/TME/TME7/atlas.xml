@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!DOCTYPE atlas SYSTEM "atlas.dtd">
+
+<atlas>
+  <pays n="p2" population="82" continent="c1">
+    <nom>Allemagne</nom>
+    <langue>Allemand</langue>
+    <frontière pays="p1"/>
+  </pays>
+
+  <pays n="p1" population="60" continent="c1" >
+    <nom>France</nom>
+    <langue pourcentage="100">Français</langue>
+    <langue pourcentage="1">Corse</langue>
+    <frontière pays="p2"/>
+    <frontière pays="p3"/>
+  </pays>
+
+  <pays n="p3" population="40" continent="c1">
+    <nom>Espagne</nom>
+    <langue pourcentage="74">Espagnol</langue>
+    <langue pourcentage="17">Catalan</langue>
+    <langue pourcentage="7">Galicien</langue>
+    <frontière pays="p1"/>
+  </pays>
+  
+  <pays n="p4" population="76" continent="c2">
+    <nom>Egypte</nom>
+    <langue>Arabe</langue>
+  </pays>
+
+  <continent n="c1" nom="Europe" superficie="10"/>
+  <continent n="c2" nom="Afrique" superficie="30"/>
+
+  <mer n="m1" nom="Mer Méditerranée" profondeur="5120">
+    <situation pays="p1"/> <situation pays="p3"/> <situation pays="p4"/>
+  </mer>
+  
+  <montagne n="M1" nom="Alpes" altitude="4810">
+    <situation pays="p1"/> <situation pays="p2"/>
+  </montagne>
+  
+  <montagne n="M2" nom="Cévennes" altitude="1700">
+    <situation pays="p1"/>
+  </montagne>
+  
+</atlas>

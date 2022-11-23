@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+
+<!-- avec la contrainte de référence :
+   restau vers ville -->
+
+<!ELEMENT base (restaurant|ville)*>
+<!ELEMENT restaurant ((fermeture)?,(menu)*)>
+<!ATTLIST restaurant nom CDATA #REQUIRED>
+<!ATTLIST restaurant ville IDREF #REQUIRED>
+<!ATTLIST restaurant etoile CDATA #REQUIRED>
+
+<!ELEMENT fermeture (#PCDATA)>
+
+<!ELEMENT menu EMPTY>
+<!ATTLIST menu nom CDATA #REQUIRED>
+<!ATTLIST menu prix CDATA #REQUIRED>
+
+<!ELEMENT ville (plusBeauMonument)?>
+<!ATTLIST ville nom ID #REQUIRED>
+<!ATTLIST ville departement CDATA #REQUIRED>
+
+<!ELEMENT plusBeauMonument EMPTY>
+<!ATTLIST plusBeauMonument nom CDATA #REQUIRED>
+<!ATTLIST plusBeauMonument tarif CDATA #REQUIRED>

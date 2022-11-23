@@ -1,0 +1,40 @@
+# General Options
+DEBUG = false
+DBPATH = \\wsl$\Ubuntu\home\charles\M1-S1-DAC\MLBDA\TME\TME7\basex\data
+LOGPATH = .logs
+REPOPATH = \\wsl$\Ubuntu\home\charles\M1-S1-DAC\MLBDA\TME\TME7\basex\repo
+LANG = English
+LANGKEYS = false
+FAIRLOCK = false
+CACHETIMEOUT = 3600
+
+# Client/Server Architecture
+HOST = localhost
+PORT = 1984
+SERVERPORT = 1984
+USER = 
+PASSWORD = 
+SERVERHOST = 
+PROXYHOST = 
+PROXYPORT = 0
+NONPROXYHOSTS = 
+IGNORECERT = false
+TIMEOUT = 30
+KEEPALIVE = 600
+PARALLEL = 8
+LOG = true
+LOGMSGMAXLEN = 1000
+LOGTRACE = true
+
+# HTTP Services
+WEBPATH = \\wsl$\Ubuntu\home\charles\M1-S1-DAC\MLBDA\TME\TME7\basex\webapp
+GZIP = false
+RESTPATH = 
+RESTXQPATH = 
+PARSERESTXQ = 3
+RESTXQERRORS = true
+HTTPLOCAL = false
+STOPPORT = 8081
+AUTHMETHOD = Basic
+
+# Local Options

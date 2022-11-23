@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+# Path to this script
+FILE="${BASH_SOURCE[0]}"
+while [ -h "$FILE" ] ; do
+  SRC="$(readlink "$FILE")"
+  FILE="$( cd -P "$(dirname "$FILE")" && \
+           cd -P "$(dirname "$SRC")" && pwd )/$(basename "$SRC")"
+done
+MAIN="$( cd -P "$(dirname "$FILE")/.." && pwd )"
+
+# Core and library classes
+CP=$MAIN/BaseX.jar:$MAIN/lib/custom/*:$MAIN/lib/*:$CLASSPATH
+
+# Options for virtual machine (can be extended by global options)
+BASEX_JVM="-Xmx2g $BASEX_JVM"
+
+# Run code
+exec java -cp "$CP" $BASEX_JVM org.basex.BaseXGUI "$@"

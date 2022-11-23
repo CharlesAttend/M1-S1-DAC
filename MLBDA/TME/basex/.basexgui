@@ -1,0 +1,105 @@
+# Version
+UPDATEVERSION = 10.3
+CHECKUPDATES = false
+
+# Paths
+INPUTPATH = //wsl$/Ubuntu/home/charles/M1-S1-DAC/MLBDA/TME/TME7/Film.xml
+DATAPATH = \\wsl$\Ubuntu\home\charles\M1-S1-DAC\MLBDA\TME\TME7\basex\
+WORKPATH = //wsl$/Ubuntu/home/charles/M1-S1-DAC/MLBDA/TME/TME7/basex/
+PROJECTPATH = //wsl$/Ubuntu/home/charles/M1-S1-DAC/MLBDA/TME/
+
+# Layout
+FONT = SansSerif
+MONOFONT = Consolas
+FONTTYPE = 0
+FONTSIZE = 15
+ONLYMONO = false
+COLORRED = 21
+COLORGREEN = 14
+COLORBLUE = 7
+
+# Windows
+VIEWS = V H editor folder map plot - H text info table tree explore - - 
+GUISIZE0 = 1004
+GUISIZE1 = 748
+GUILOC0 = 10
+GUILOC1 = 10
+MAXSTATE = true
+SHOWBUTTONS = true
+SHOWINPUT = true
+SHOWSTATUS = true
+SHOWINFO = true
+SHOWMAP = true
+SHOWTABLE = false
+SHOWTEXT = true
+SHOWFOLDER = false
+SHOWEXPLORE = false
+SHOWPLOT = false
+SHOWEDITOR = true
+SHOWTREE = false
+SHOWPROJECT = true
+PREFTAB = 0
+LOOKANDFEEL = 
+LABELS = name,label,id
+SCROLLTABS = true
+MOUSEFOCUS = false
+XMLSUFFIXES = xml,xsd,svg,rdf,rss,rng,sch,xhtml
+ASCSORT = true
+CASESORT = true
+MERGEDUPL = false
+COLUMN = 1
+UNICODE = true
+SHOWMARGIN = true
+MARGIN = 80
+TABSPACES = true
+INDENT = 2
+SHOWINVISIBLE = true
+SHOWNL = false
+SHOWLINES = true
+MARKLINE = true
+SAVERUN = false
+PARSEPROJ = true
+AUTO = true
+FILES = *.xml, *.xq*
+SHOWHIDDEN = false
+SEARCHMODE = 0
+FILTERRT = false
+EXECRT = false
+DBNAME = Film
+LASTINSERT = 1
+
+# Visualizations
+MAPATTS = false
+MAPOFFSETS = 3
+MAPALGO = 0
+MAPWEIGHT = 0
+TREESLIM = true
+TREEATTS = false
+PLOTDOTS = 0
+PLOTXLOG = false
+PLOTYLOG = false
+MAXTEXT = 8388608
+MAXRESULTS = 500000
+
+# Search
+SEARCHED = 0
+REPLACED = 0
+
+# History
+COMMANDS = 0
+SEARCH = 0
+XQUERY = 0
+
+# Files
+EDITOR = 0
+INPUTS = 2
+INPUTS1 = //wsl$/Ubuntu/home/charles/M1-S1-DAC/MLBDA/TME/TME7/Film.xml
+INPUTS2 = \\wsl$\Ubuntu\home\charles\M1-S1-DAC\MLBDA\TME\TME7\
+OPEN = 0
+PROJECTS = 2
+PROJECTS1 = //wsl$/Ubuntu/home/charles/M1-S1-DAC/MLBDA/TME/
+PROJECTS2 = //wsl$/Ubuntu/home/charles/M1-S1-DAC/MLBDA/TME/TME7/
+PROJFILES = 0
+PROJCONTS = 0
+
+# Local Options

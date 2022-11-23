@@ -1,0 +1,12 @@
+<package xmlns="http://cxan.org/ns/package"
+         id="functx"
+         name="http://www.functx.com"
+         version="1.0">
+
+   <author id="pwalmsley">Priscilla Walmsley</author>
+
+   <category id="tools">Tools</category>
+
+   <tag>stdlib</tag>
+
+</package>

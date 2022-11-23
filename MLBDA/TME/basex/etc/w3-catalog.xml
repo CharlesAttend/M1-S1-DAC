@@ -1,0 +1,5 @@
+<catalog prefer="system" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+  <rewriteSystem systemIdStartString="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd" rewritePrefix="xhtml1-strict.dtd" />
+  <rewriteSystem systemIdStartString="http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd" rewritePrefix="xhtml1-frameset.dtd" />
+  <rewriteSystem systemIdStartString="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" rewritePrefix="xhtml1-transitional.dtd" />
+</catalog>

@@ -1,0 +1,1125 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<FILMS>
+  <FILM annee="1958">
+    <TITRE>Vertigo</TITRE>
+    <GENRE>Drame</GENRE>
+    <PAYS>USA</PAYS>
+    <MES idref="3"/>
+    <ROLES>
+      <ROLE>
+        <PRENOM>James</PRENOM>
+        <NOM>Stewart</NOM>
+        <INTITULE>John Ferguson</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Kim</PRENOM>
+        <NOM>Novak</NOM>
+        <INTITULE>Madeleine Elster</INTITULE>
+      </ROLE>
+    </ROLES>
+    <RESUME>Scottie Ferguson, ancien inspecteur de police, est sujet
+au vertige depuis qu'il a vu mourir son
+ collègue. Elster, son ami, le charge de surveiller sa femme, Madeleine, ayant des tendances
+ suicidaires. Amoureux de la jeune femme Scottie ne remarque pas le piège qui se trame autour
+ de lui et dont il va être la victime... </RESUME>
+  </FILM>
+  <FILM annee="1979">
+    <TITRE>Alien</TITRE>
+    <GENRE>Science-fiction</GENRE>
+    <PAYS>USA</PAYS>
+    <MES idref="4"/>
+    <ROLES>
+      <ROLE>
+        <PRENOM>Sigourney</PRENOM>
+        <NOM>Stewart</NOM>
+        <INTITULE>Ripley</INTITULE>
+      </ROLE>
+    </ROLES>
+    <RESUME>Près d'un vaisseau spatial échoué sur une lointaine planète, des Terriens en mission découvrent
+ de bien étranges 'oeufs'. Ils en ramènent un à bord, ignorant qu'ils viennent d'introduire parmi
+ eux un huitième passager particulièrement féroce et meurtrier. </RESUME>
+  </FILM>
+  <FILM annee="1997">
+    <TITRE>Titanic</TITRE>
+    <GENRE>Drame</GENRE>
+    <PAYS>USA</PAYS>
+    <MES idref="6"/>
+    <ROLES>
+      <ROLE>
+        <PRENOM>Kate</PRENOM>
+        <NOM>Winslet</NOM>
+        <INTITULE>Rose DeWitt Bukater</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Leonardo</PRENOM>
+        <NOM>DiCaprio</NOM>
+        <INTITULE>Jack Dawson</INTITULE>
+      </ROLE>
+    </ROLES>
+    <RESUME>Conduite par Brock Lovett, une expédition américaine fouillant l'épave du Titanic remonte à la
+ surface le croquis d'une femme nue. Alertée par les médias la dame en question, Rose DeWitt
+ Bukater, aujourd'hui centenaire, rejoint les lieux du naufrage, d'oÃ¹ elle entreprend de conter le
+ récit de son fascinant, étrange et tragique voyage... </RESUME>
+  </FILM>
+  <FILM annee="1986">
+    <TITRE>Sacrifice</TITRE>
+    <GENRE>Drame</GENRE>
+    <PAYS>FR</PAYS>
+    <MES idref="9"/>
+    <ROLES>
+</ROLES>
+  </FILM>
+  <FILM annee="1997">
+    <TITRE>Volte/Face</TITRE>
+    <GENRE>Action</GENRE>
+    <PAYS>USA</PAYS>
+    <MES idref="10"/>
+    <ROLES>
+      <ROLE>
+        <PRENOM>John</PRENOM>
+        <NOM>Travolta</NOM>
+        <INTITULE>Sean Archer/Castor Troy</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Nicolas</PRENOM>
+        <NOM>Cage</NOM>
+        <INTITULE>Castor Troy/Sean Archer</INTITULE>
+      </ROLE>
+    </ROLES>
+    <RESUME>Directeur d'une unité anti-terroriste, Sean Archer recherche Castor Troy, un criminel responsable de la
+ mort de son fils six ans plus tÃ´t. Il parvient à l'arrêter mais apprend que Troy a caché une bombe au Palais
+ des Congrès de Los Angeles. Seul le frère de Troy peut la désamorcer et, pour l'approcher, Archer se fait
+ greffer le visage de Troy. </RESUME>
+  </FILM>
+  <FILM annee="1999">
+    <TITRE>Sleepy Hollow</TITRE>
+    <GENRE>Fantastique</GENRE>
+    <PAYS>USA</PAYS>
+    <MES idref="13"/>
+    <ROLES>
+      <ROLE>
+        <PRENOM>Johnny</PRENOM>
+        <NOM>Depp</NOM>
+        <INTITULE>Constable Ichabod Crane</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Christina</PRENOM>
+        <NOM>Ricci</NOM>
+        <INTITULE>Katrina Anne Van Tassel</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Christopher</PRENOM>
+        <NOM>Walken</NOM>
+        <INTITULE>Le cavalier</INTITULE>
+      </ROLE>
+    </ROLES>
+    <RESUME>Nouvelle Angleterre, 1799. A Sleepy Hollow, plusieurs cadavres sont retrouvés décapités. La
+                                      rumeur attribue ces meurtres à un cavalier lui-même sans tête. Mais le fin limier
+                                      new-yorkais Ichabod Crane ne croit pas en ses aberrations. Tombé sous le charme de la
+                                      vénéneuse Katrina, il mène son enquête au coeur des sortilèges de Sleepy Hollow.. </RESUME>
+  </FILM>
+  <FILM annee="1999">
+    <TITRE>American Beauty</TITRE>
+    <GENRE>Comédie</GENRE>
+    <PAYS>USA</PAYS>
+    <MES idref="17"/>
+    <ROLES>
+      <ROLE>
+        <PRENOM>Kevin</PRENOM>
+        <NOM>Spacey</NOM>
+        <INTITULE>Lester Burnham</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Anette</PRENOM>
+        <NOM>Bening</NOM>
+        <INTITULE>Carolyn Burnham</INTITULE>
+      </ROLE>
+    </ROLES>
+    <RESUME>Lester Burnham, sa femme Carolyn et leur fille Jane mènent apparemment une vie des plus
+ heureuses dans leur belle banlieue. Mais derrière cette respectable faÃ§ade se tisse une étrange
+ et grinÃ§ante tragi-comédie familiale oÃ¹ désirs inavoués, frustrations et violences refoulées
+ conduiront inexorablement un homme vers la mort. </RESUME>
+  </FILM>
+  <FILM annee="1992">
+    <TITRE>Impitoyable</TITRE>
+    <GENRE>Western</GENRE>
+    <PAYS>USA</PAYS>
+    <MES idref="20"/>
+    <ROLES>
+      <ROLE>
+        <PRENOM>Clint</PRENOM>
+        <NOM>Eastwood</NOM>
+        <INTITULE>William Munny</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Gene</PRENOM>
+        <NOM>Hackman</NOM>
+        <INTITULE>Little Bill Dagget</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Morgan</PRENOM>
+        <NOM>Freeman</NOM>
+        <INTITULE>Ned Logan</INTITULE>
+      </ROLE>
+    </ROLES>
+    <RESUME>Légendaire hors-la-loi, William Munny s'est reconverti depuis onze ans en paisible fermier. Il
+ reprend néanmoins les armes pour traquer deux tueurs en compagnie de son vieil ami Ned
+ Logan. Mais ce dernier est capturé, puis éxécute. L'honneur et l'amitié imposent dès lors à
+ Munny de redevenir une dernière fois le héros qu'il fut jadis... </RESUME>
+  </FILM>
+  <FILM annee="2000">
+    <TITRE>Gladiator</TITRE>
+    <GENRE>Drame</GENRE>
+    <PAYS>USA</PAYS>
+    <MES idref="4"/>
+    <ROLES>
+      <ROLE>
+        <PRENOM>Russell</PRENOM>
+        <NOM>Crowe</NOM>
+        <INTITULE>Maximus</INTITULE>
+      </ROLE>
+    </ROLES>
+    <RESUME>Le général romain Maximus est le plus fidèle
+                    soutien de l'empereur Marc Aurèle, qu'il a
+                    conduit de victoire en victoire avec une
+                    bravoure et un dévouement exemplaires.
+                    Jaloux du prestige de Maximus, et plus
+                    encore de l'amour que lui voue l'empereur,
+                    le fils de Marc-Aurèle, Commode, s'arroge
+                    brutalement le pouvoir, puis ordonne
+                    l'arrestation du général et son exécution.
+                    Maximus échappe à ses assassins mais ne peut
+                    empêcher le massacre de sa famille. Capturé
+                    par un marchand d'esclaves, il devient
+                    gladiateur et prépare sa vengeance.</RESUME>
+  </FILM>
+  <FILM annee="1982">
+    <TITRE>Blade Runner</TITRE>
+    <GENRE>Action</GENRE>
+    <PAYS>USA</PAYS>
+    <MES idref="4"/>
+    <ROLES>
+      <ROLE>
+        <PRENOM>Harrison</PRENOM>
+        <NOM>Ford</NOM>
+        <INTITULE>Deckard</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Rutger</PRENOM>
+        <NOM>Hauer</NOM>
+        <INTITULE>Batty</INTITULE>
+      </ROLE>
+    </ROLES>
+    <RESUME>En 2019, lors de la décadence de Los Angeles, des êtres synthétiques, sans pensée, sans
+ émotions, suffisent aux différents travaux d'entretien. Leur durée de vie n'excède pas 4 années.
+ Un jour, ces ombres humaines se révoltent et on charge les tueurs, appelés Blade Runner, de
+ les abattre... </RESUME>
+  </FILM>
+  <FILM annee="1988">
+    <TITRE>Piège de cristal</TITRE>
+    <GENRE>Action</GENRE>
+    <PAYS>USA</PAYS>
+    <MES idref="26"/>
+    <ROLES>
+      <ROLE>
+        <PRENOM>Bruce</PRENOM>
+        <NOM>Willis</NOM>
+        <INTITULE>McClane</INTITULE>
+      </ROLE>
+    </ROLES>
+    <RESUME>John Mc Clane, policier new-yorkais, vient passer Noel a Los Angeles aupres de sa femme.
+ Dans le building ou elle travaille, il se retrouve temoin de la prise en otage de tout le personnel
+ par 12 terroristes. Objectif de ces derniers, vider les coffres de la societe. Cache mais isole, il
+ entreprend de prevenir l'exterieur...</RESUME>
+  </FILM>
+  <FILM annee="1990">
+    <TITRE>58 minutes pour vivre</TITRE>
+    <GENRE>Action</GENRE>
+    <PAYS>USA</PAYS>
+    <MES idref="28"/>
+    <ROLES>
+      <ROLE>
+        <PRENOM>Bruce</PRENOM>
+        <NOM>Willis</NOM>
+        <INTITULE>McLane</INTITULE>
+      </ROLE>
+    </ROLES>
+    <RESUME>
+
+
+
+
+
+
+
+ Venu attendre sa femme a l'aéroport, le policier John McClane remarque la présence de
+ terroristes qui ont pris le contrÃ´le des pistes, empêchant tout avion d'atterrir et menaÃ§ant de
+ laisser les appareils en vol tourner jusqu'à épuisement de leur kérosène. John n'a devant lui que
+ 58 minutes pour éviter la catastrophe... </RESUME>
+  </FILM>
+  <FILM annee="1990">
+    <TITRE>Van Gogh</TITRE>
+    <GENRE>Drame</GENRE>
+    <PAYS>FR</PAYS>
+    <MES idref="29"/>
+    <ROLES>
+      <ROLE>
+        <PRENOM>Jacques</PRENOM>
+        <NOM>Dutronc</NOM>
+        <INTITULE>Van Gogh</INTITULE>
+      </ROLE>
+    </ROLES>
+    <RESUME>Les derniers jours de la vie de Vincent Van Gogh, réfugié à Auvers-sur-Oise, près de chez son
+ ami et protecteur le docteur Gachet, un ami de son frère Théo. Ce peintre maudit, que les
+ villageois surnommaient 'le fou', n'avait alors plus que deux mois à vivre, qu'il passa en
+ peignant un tableau par jour. </RESUME>
+  </FILM>
+  <FILM annee="1995">
+    <TITRE>Seven</TITRE>
+    <GENRE>Policier</GENRE>
+    <PAYS>USA</PAYS>
+    <MES idref="31"/>
+    <ROLES>
+      <ROLE>
+        <PRENOM>Kevin</PRENOM>
+        <NOM>Spacey</NOM>
+        <INTITULE>Doe</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Morgan</PRENOM>
+        <NOM>Freeman</NOM>
+        <INTITULE>Somerset</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Brad</PRENOM>
+        <NOM>Pitt</NOM>
+        <INTITULE>Mills</INTITULE>
+      </ROLE>
+    </ROLES>
+    <RESUME>A New York, un criminel anonyme a décidé de commettre 7 meurtres basés sur les 7 pêchés
+ capitaux énoncés dans la Bible : gourmandise, avarice, paresse, orgueil, luxure, envie et colère.
+ Vieux flic blasé à 7 jours de la retraite, l'inspecteur Somerset mène l'enquête tout en formant
+ son remplaÃ§ant, l'ambitieux inspecteur David Mills... </RESUME>
+  </FILM>
+  <FILM annee="1995">
+    <TITRE>L'armée des douze singes</TITRE>
+    <GENRE>Science-fiction</GENRE>
+    <PAYS>USA</PAYS>
+    <MES idref="33"/>
+    <ROLES>
+      <ROLE>
+        <PRENOM>Bruce</PRENOM>
+        <NOM>Willis</NOM>
+        <INTITULE>Cole</INTITULE>
+      </ROLE>
+    </ROLES>
+  </FILM>
+  <FILM annee="1986">
+    <TITRE>Le nom de la rose</TITRE>
+    <GENRE>Policier</GENRE>
+    <PAYS>FR</PAYS>
+    <MES idref="34"/>
+    <ROLES>
+      <ROLE>
+        <PRENOM>Sean</PRENOM>
+        <NOM>Connery</NOM>
+        <INTITULE>Baskerville</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Christian</PRENOM>
+        <NOM>Slater</NOM>
+        <INTITULE>de Melk</INTITULE>
+      </ROLE>
+    </ROLES>
+    <RESUME>En l'an 1327, dans une abbaye bénédictine, le moine franciscain Guillaume de Baskerville,
+ accompagné de son jeune novice Adso, enquête sur de mystérieuses morts qui frappent la
+ confrérie. Le secret semble résider dans la bibliothèque, oÃ¹ le vieux Jorge garde jalousement un
+ livre jugé maudit. </RESUME>
+  </FILM>
+  <FILM annee="1994">
+    <TITRE>Pulp fiction</TITRE>
+    <GENRE>Action</GENRE>
+    <PAYS>USA</PAYS>
+    <MES idref="37"/>
+    <ROLES>
+      <ROLE>
+        <PRENOM>John</PRENOM>
+        <NOM>Travolta</NOM>
+        <INTITULE>Vincent Vega</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Bruce</PRENOM>
+        <NOM>Willis</NOM>
+        <INTITULE>Butch Coolidge</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Samuel L.</PRENOM>
+        <NOM>Jackson</NOM>
+        <INTITULE>Jules Winnfield</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Rosanna</PRENOM>
+        <NOM>Arquette</NOM>
+        <INTITULE>Jody</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Uma</PRENOM>
+        <NOM>Thurman</NOM>
+        <INTITULE>Mia Wallace</INTITULE>
+      </ROLE>
+    </ROLES>
+    <RESUME>Pulp Fiction décrit l'odyssée sanglante et burlesque de petits malfrats dans la jungle de
+ Hollywood, ou s'entrecroisent les destins de deux petits tueurs, d'un dangereux gangster marié
+ à une camée, d'un boxeur roublard, de prêteurs sur gages sadiques, d'un caÃ¯d élégant et
+ dévoué, d'un dealer bon mari et de deux tourtereaux à la gachette facile... </RESUME>
+  </FILM>
+  <FILM annee="1998">
+    <TITRE>Mary à tout prix</TITRE>
+    <GENRE>Comédie</GENRE>
+    <PAYS>USA</PAYS>
+    <MES idref="41"/>
+    <ROLES>
+      <ROLE>
+        <PRENOM>Cameron</PRENOM>
+        <NOM>Diaz</NOM>
+        <INTITULE>Mary Jensen Matthews</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Mat</PRENOM>
+        <NOM>Dillon</NOM>
+        <INTITULE>Pat Healy</INTITULE>
+      </ROLE>
+    </ROLES>
+    <RESUME>Pour retrouver l'amour de sa jeunesse, la belle Mary, Ted-le-looser engage Pat Healy, un
+ privé. Subjugé par la jeune femme, ce dernier tente de la séduire en se faisant passer pour un
+ architecte. Il cache la vérité à Ted et fait cause commune avec Tucker, un autre prétendant,
+ pour se débarrasser de l'encombrant Ted... </RESUME>
+  </FILM>
+  <FILM annee="1984">
+    <TITRE>Terminator</TITRE>
+    <GENRE>Science-fiction</GENRE>
+    <PAYS>USA</PAYS>
+    <MES idref="6"/>
+    <ROLES>
+      <ROLE>
+        <PRENOM>Arnold</PRENOM>
+        <NOM>Schwartzenegger</NOM>
+        <INTITULE>Terminator</INTITULE>
+      </ROLE>
+    </ROLES>
+    <RESUME>Deux creatures venues du futur debarquent sur terre. L'une d'entre elles, le Terminator, doit
+ eliminer une certaine Sarah Connor, qui doit enfanter celui qui sera le chef d'un groupe de
+ resistants. L'autre, Kyle Reese, est charge par les rebelles de defendre Sarah... </RESUME>
+  </FILM>
+  <FILM annee="1975">
+    <TITRE>Les dents de la mer</TITRE>
+    <GENRE>Horreur</GENRE>
+    <PAYS>FR</PAYS>
+    <MES idref="45"/>
+    <ROLES>
+      <ROLE>
+        <PRENOM>Roy</PRENOM>
+        <NOM>Sheider</NOM>
+        <INTITULE>Martin Brody</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Robert</PRENOM>
+        <NOM>Shaw</NOM>
+        <INTITULE>Quint</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Richard</PRENOM>
+        <NOM>Dreyfus</NOM>
+        <INTITULE>Matt Hooper</INTITULE>
+      </ROLE>
+    </ROLES>
+    <RESUME>Dans la station balnéaire d'Amityville, un requin géant frappe à plusieurs reprises. Soucieux
+ d'une bonne saison touristique, le maire interdit au sherif Brody de fermer les plages. Une prime
+ est offerte et le célèbre chasseur de requin Quint se lance avec Brody et l'ichtyologue Hooper à
+ la poursuite du monstre... </RESUME>
+  </FILM>
+  <FILM annee="1990">
+    <TITRE>Le silence des agneaux</TITRE>
+    <GENRE>Policier</GENRE>
+    <PAYS>USA</PAYS>
+    <MES idref="49"/>
+    <ROLES>
+      <ROLE>
+        <PRENOM>Anthony</PRENOM>
+        <NOM>Hopkins</NOM>
+        <INTITULE>Dr. Hannibal Lecter</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Jodie</PRENOM>
+        <NOM>Foster</NOM>
+        <INTITULE>Clarice Starling</INTITULE>
+      </ROLE>
+    </ROLES>
+    <RESUME>Afin de retrouver la piste d'un tueur surnommé Buffalo Bill car il scalpe les femmes qu'il
+ assassine, la jeune stagiaire du FBI Clarice Starling est dépêchée auprès d'Hannibal Lecter,
+ prisonnier pour avoir dévoré ses victimes. La coopération de ce dernier devrait permettre à
+ Clarice de saisir et d'anticiper le comportement de Buffalo... </RESUME>
+  </FILM>
+  <FILM annee="1998">
+    <TITRE>Le prince d'Egypte</TITRE>
+    <GENRE>Dessin animé</GENRE>
+    <PAYS>USA</PAYS>
+    <MES idref="52"/>
+    <ROLES>
+      <ROLE>
+        <PRENOM>Val</PRENOM>
+        <NOM>Kilmer</NOM>
+        <INTITULE>Moise</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Ralph</PRENOM>
+        <NOM>Fiennes</NOM>
+        <INTITULE>Ramses</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Michelle</PRENOM>
+        <NOM>Pfeiffer</NOM>
+        <INTITULE>
+</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Sandra</PRENOM>
+        <NOM>Bullock</NOM>
+        <INTITULE>Miriam</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Jeff</PRENOM>
+        <NOM>Goldblum</NOM>
+        <INTITULE>Aaron</INTITULE>
+      </ROLE>
+    </ROLES>
+  </FILM>
+  <FILM annee="1998">
+    <TITRE>Godzilla</TITRE>
+    <GENRE>Action</GENRE>
+    <PAYS>USA</PAYS>
+    <MES idref="58"/>
+    <ROLES>
+      <ROLE>
+        <PRENOM>Matthew</PRENOM>
+        <NOM>Broderick</NOM>
+        <INTITULE>Dr. Nikos Tatopoulos</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Jean</PRENOM>
+        <NOM>Reno</NOM>
+        <INTITULE>Philippe Roaché</INTITULE>
+      </ROLE>
+    </ROLES>
+    <RESUME>Issu des radiations atomiques engendrées par les essais nucléaires en Polynésie, un monstre
+ gigantesque, aussi haut qu'un building, se dirige vers New York, semant le chaos sur son
+ passage. Pour tenter de stopper cette créature destructrice, l'armée s'associe à une équipe de
+ scientifiques américains et à un énigmatique enquêteur franÃ§ais... </RESUME>
+  </FILM>
+  <FILM annee="1999">
+    <TITRE>Matrix</TITRE>
+    <GENRE>Science-fiction</GENRE>
+    <PAYS>USA</PAYS>
+    <MES idref="61"/>
+    <ROLES>
+      <ROLE>
+        <PRENOM>Keanu</PRENOM>
+        <NOM>Reeves</NOM>
+        <INTITULE>Neo</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Laurence</PRENOM>
+        <NOM>Fishburne</NOM>
+        <INTITULE>Morpheus</INTITULE>
+      </ROLE>
+    </ROLES>
+    <RESUME>Dans un monde oÃ¹ tout ce qui semble réel est en fait élaboré par l'univers électronique baptisé
+ la Matrice, Néo, un programmeur, est contacté par un certain Morpheus. D'après lui, Néo
+ serait le Libérateur tant attendu, le seul capable de mettre en échec l'omnipotence de la
+ Matrice et rendre ses droits à la réalité... </RESUME>
+  </FILM>
+  <FILM annee="1996">
+    <TITRE>Mission: Impossible</TITRE>
+    <GENRE>Action</GENRE>
+    <PAYS>USA</PAYS>
+    <MES idref="64"/>
+    <ROLES>
+      <ROLE>
+        <PRENOM>Jean</PRENOM>
+        <NOM>Reno</NOM>
+        <INTITULE>Franz Krieger</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Tom</PRENOM>
+        <NOM>Cruise</NOM>
+        <INTITULE>Ethan Hunt</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>John</PRENOM>
+        <NOM>Voight</NOM>
+        <INTITULE>Jim Phelps</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Emmanuelle</PRENOM>
+        <NOM>Béart</NOM>
+        <INTITULE>Claire Phelps</INTITULE>
+      </ROLE>
+    </ROLES>
+    <RESUME>Chargé d'une nouvelle mission, l'agent du contre espionnage Ethan Hunt tombe avec son
+ équipe dans un piège sanglant. Seul survivant avec Claire, la jeune épouse de son regretté chef
+ Jim Phelps, Ethan se retrouve accusé de trahison. En fuite, il prépare sa contre-attaque,
+ recrutant l'homme de main Krieger et le pirate informatique Luther... </RESUME>
+  </FILM>
+  <FILM annee="1980">
+    <TITRE>Kagemusha</TITRE>
+    <GENRE>Guerre</GENRE>
+    <PAYS>JP</PAYS>
+    <MES idref="68"/>
+    <ROLES>
+</ROLES>
+    <RESUME>Au XVIe siecle, Takeda, grand seigneur trouble par les guerres civiles de son pays, fait appel a
+ un Kagemusha pour l'aider dans ses batailles. Takeda est blesse et avant de mourir, il exige que
+ sa mort soit tenue secrete pendant trois ans afin d'eviter un eclatement du clan. Le Kagemusha
+ devra le remplacer... </RESUME>
+  </FILM>
+  <FILM annee="1997">
+    <TITRE>Les pleins pouvoirs</TITRE>
+    <GENRE>Policier</GENRE>
+    <PAYS>USA</PAYS>
+    <MES idref="20"/>
+    <ROLES>
+      <ROLE>
+        <PRENOM>Clint</PRENOM>
+        <NOM>Eastwood</NOM>
+        <INTITULE>Luther Whitney</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Gene</PRENOM>
+        <NOM>Hackman</NOM>
+        <INTITULE>Le président Richmond</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Ed</PRENOM>
+        <NOM>Harris</NOM>
+        <INTITULE>Seth Frank</INTITULE>
+      </ROLE>
+    </ROLES>
+    <RESUME>Luther Whitney est l'as des cambrioleurs. Occupé à vider le coffre de l'influent Walter Sullivan,
+ il est témoin d'un meurtre sadique impliquant le Président des Etats-Unis et les services
+ secrets. SoupÃ§onné par la police d'en être l'auteur, il se retrouve également traqué par les
+ tueurs, qui ont compris qu'ils ont été observés.</RESUME>
+  </FILM>
+  <FILM annee="1978">
+    <TITRE>Le gendarme et les extra-terrestres</TITRE>
+    <GENRE>Comédie</GENRE>
+    <PAYS>FR</PAYS>
+    <MES idref="71"/>
+    <ROLES>
+      <ROLE>
+        <PRENOM>Louis</PRENOM>
+        <NOM>De Funès</NOM>
+        <INTITULE>Inspecteur Cruchot</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Michel</PRENOM>
+        <NOM>Galabru</NOM>
+        <INTITULE>Adjudant Gerber</INTITULE>
+      </ROLE>
+    </ROLES>
+  </FILM>
+  <FILM annee="1986">
+    <TITRE>Les frères pétards</TITRE>
+    <GENRE>Comédie</GENRE>
+    <PAYS>FR</PAYS>
+    <MES idref="74"/>
+    <ROLES>
+      <ROLE>
+        <PRENOM>Michel</PRENOM>
+        <NOM>Galabru</NOM>
+        <INTITULE>Momo's Father</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Josiane</PRENOM>
+        <NOM>Balasko</NOM>
+        <INTITULE>Aline</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Dominique</PRENOM>
+        <NOM>Lavanant</NOM>
+        <INTITULE>Une policière</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Gérard</PRENOM>
+        <NOM>Lanvin</NOM>
+        <INTITULE>Manu</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Jacques</PRENOM>
+        <NOM>Villeret</NOM>
+        <INTITULE>Momo</INTITULE>
+      </ROLE>
+    </ROLES>
+  </FILM>
+  <FILM annee="1997">
+    <TITRE>Le monde perdu</TITRE>
+    <GENRE>Horreur</GENRE>
+    <PAYS>USA</PAYS>
+    <MES idref="45"/>
+    <ROLES>
+      <ROLE>
+        <PRENOM>Jeff</PRENOM>
+        <NOM>Goldblum</NOM>
+        <INTITULE>Dr. Ian Malcolm</INTITULE>
+      </ROLE>
+    </ROLES>
+  </FILM>
+  <FILM annee="1988">
+    <TITRE>Rain Man</TITRE>
+    <GENRE>Drame</GENRE>
+    <PAYS>USA</PAYS>
+    <MES idref="79"/>
+    <ROLES>
+      <ROLE>
+        <PRENOM>Tom</PRENOM>
+        <NOM>Cruise</NOM>
+        <INTITULE>Charlie Babbitt</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Dustin</PRENOM>
+        <NOM>Hoffman</NOM>
+        <INTITULE>Raymond Babbitt</INTITULE>
+      </ROLE>
+    </ROLES>
+    <RESUME>A la mort de son père, Charlie se voit déposséder de son héritage par un frère dont il ignorait
+ l'existence, Raymond. Celui-ci est autiste et vit dans un hÃ´pital psychiatrique. Charlie enlève
+ Raymond afin de prouver qu'il est capable de s'en occuper et de toucher l'héritage. </RESUME>
+  </FILM>
+  <FILM annee="1986">
+    <TITRE>Top Gun</TITRE>
+    <GENRE>Action</GENRE>
+    <PAYS>USA</PAYS>
+    <MES idref="81"/>
+    <ROLES>
+      <ROLE>
+        <PRENOM>Val</PRENOM>
+        <NOM>Kilmer</NOM>
+        <INTITULE>Iceman</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Tom</PRENOM>
+        <NOM>Cruise</NOM>
+        <INTITULE>Lt. Pete 'Maverick' Mitchell</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Kelly</PRENOM>
+        <NOM>McGillis</NOM>
+        <INTITULE>Charlotte Blackwood</INTITULE>
+      </ROLE>
+    </ROLES>
+    <RESUME>
+ Pilote de chasse émérite mais casse-cou Maverick Mitchell est admis à Top Gun, l'école de
+ l'élite de l'aéronavale. Son manque de prudence lui attire les foudres de ses supérieurs et la
+ haine de certains coéquipiers. Il perd subitement la foi et confiance en lui quand son ami de
+ toujours meurt en vol et qu'il s'en croit responsable... </RESUME>
+  </FILM>
+  <FILM annee="1979">
+    <TITRE>Les bronzés font du ski</TITRE>
+    <GENRE>Comédie</GENRE>
+    <PAYS>FR</PAYS>
+    <MES idref="83"/>
+    <ROLES>
+      <ROLE>
+        <PRENOM>Josiane</PRENOM>
+        <NOM>Balasko</NOM>
+        <INTITULE>Nathalie Morin</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Dominique</PRENOM>
+        <NOM>Lavanant</NOM>
+        <INTITULE>Christiane</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Michel</PRENOM>
+        <NOM>Blanc</NOM>
+        <INTITULE>Jean-Claude Dus</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Christian</PRENOM>
+        <NOM>Clavier</NOM>
+        <INTITULE>JérÃ´me</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Thierry</PRENOM>
+        <NOM>Lhermite</NOM>
+        <INTITULE>Popeye</INTITULE>
+      </ROLE>
+    </ROLES>
+    <RESUME>Apres avoir passe des vacances d'ete ensemble, Bernard, Nathalie, Gigi, Jerome, Popeye,
+ Jean-Claude et Christiane se retrouvent aux sports d'hiver. Tous ont leurs problemes de coeur
+ ou d'argent, mais il faut bien vivre avec. Avant de se separer, se perdre dans la montagne leur
+ permet de gouter aux joies de la 'vraie vie' paysanne... </RESUME>
+  </FILM>
+  <FILM annee="1996">
+    <TITRE>MICROCOSMOS</TITRE>
+    <GENRE>Documentaire</GENRE>
+    <PAYS>FR</PAYS>
+    <MES idref="87"/>
+    <ROLES>
+</ROLES>
+    <RESUME> 
+
+Une heure quinze sur une planète inconnue : la Terre, redécouverte à l'echelle du centimètre. Ses habitants,
+ des créatures fantastiques : les insectes et autres animaux de l'herbe et de l'eau. Ses paysages : les forêts
+ impenétrables que sont les touffes d'herbe, ou des gouttes de rosée grosses comme des ballons... </RESUME>
+  </FILM>
+  <FILM annee="1960">
+    <TITRE>Psychose</TITRE>
+    <GENRE/>
+    <PAYS>USA</PAYS>
+    <MES idref="3"/>
+    <ROLES>
+      <ROLE>
+        <PRENOM>Anthony</PRENOM>
+        <NOM>Perkins</NOM>
+        <INTITULE>Norman Bates</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Vera</PRENOM>
+        <NOM>Miles</NOM>
+        <INTITULE>Lila Crane</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Janet</PRENOM>
+        <NOM>Leigh</NOM>
+        <INTITULE>Marion Crane</INTITULE>
+      </ROLE>
+    </ROLES>
+    <RESUME>Après avoir volé 40 000 dollars, Marion Crane se rend dans un motel tenu par Norman Bates. Elle est
+ poignardée sous sa douche par une femme. Norman fait disparaitre le corps et les affaires de la jeune
+ femme. Mais Sam, le fiancé de Marion, inquiet de ne pas avoir de nouvelles, engage un détective pour la
+ retrouver... </RESUME>
+  </FILM>
+  <FILM annee="1983">
+    <TITRE>Le retour du Jedi</TITRE>
+    <GENRE>Science-fiction</GENRE>
+    <PAYS>USA</PAYS>
+    <MES idref="91"/>
+    <ROLES>
+      <ROLE>
+        <PRENOM>Harrison</PRENOM>
+        <NOM>Ford</NOM>
+        <INTITULE>Han Solo</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Mark</PRENOM>
+        <NOM>Hamill</NOM>
+        <INTITULE>Luke Skywalker</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Carrie</PRENOM>
+        <NOM>Fisher</NOM>
+        <INTITULE>Princesse Leia</INTITULE>
+      </ROLE>
+    </ROLES>
+    <RESUME>Luke Skywalker s'introduit chez Jabba pour delivrer Han Solo et la princesse Leia, tandis que l'Empire
+ reconstruit une deuxieme 'Etoile de la Mort'. Luke se rend ensuite au chevet de Yoda qui est mourant. Il lui
+ apprend que Leia est sa soeur. Luke forme un commando pour attaquer l'Etoile, tandis qu'il affronte son
+ pere, Darth Vador... </RESUME>
+  </FILM>
+  <FILM annee="1963">
+    <TITRE>Les oiseaux</TITRE>
+    <GENRE>Horreur</GENRE>
+    <PAYS>USA</PAYS>
+    <MES idref="3"/>
+    <ROLES>
+      <ROLE>
+        <PRENOM>Rod</PRENOM>
+        <NOM>Taylor</NOM>
+        <INTITULE>Mitch Brenner</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Tippi</PRENOM>
+        <NOM>Hedren</NOM>
+        <INTITULE>Melanie Daniels</INTITULE>
+      </ROLE>
+    </ROLES>
+    <RESUME>Melanie Daniels se rend à Bodega Bay pour offrir deux perruches en cage à Cathy, la soeur de l'avocat
+ Mitch Brenner. Attaquée par une mouette, Melanie reste chez les Brenner pour la nuit. Mais d'autres
+ évènements étranges se produisent: des enfants sont blessés par des corbeaux et la maison de Mitch est
+ envahie par des milliers d'oiseaux. </RESUME>
+  </FILM>
+  <FILM annee="1992">
+    <TITRE>Reservoir dogs</TITRE>
+    <GENRE>Policier</GENRE>
+    <PAYS>USA</PAYS>
+    <MES idref="37"/>
+    <ROLES>
+      <ROLE>
+        <PRENOM>Quentin</PRENOM>
+        <NOM>Tarantino</NOM>
+        <INTITULE>Mr. Brown</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Harvey</PRENOM>
+        <NOM>Keitel</NOM>
+        <INTITULE>Mr. White/Larry</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Tim</PRENOM>
+        <NOM>Roth</NOM>
+        <INTITULE>Freddy Newendyke/Mr. Orange</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Chris</PRENOM>
+        <NOM>Penn</NOM>
+        <INTITULE>Nice Guy Eddie</INTITULE>
+      </ROLE>
+    </ROLES>
+    <RESUME>
+ Voleurs de profession, Joe Cabot et son fils Eddie engagent un groupe de six criminels pour le cambriolage
+ d'un diamantaire. Malgré toutes les précautions prises, la police est sur place le jour J, et l'opération se
+ solde par un massacre. Les survivants du gang se réunissent pour règler leurs comptes, chacun
+ soupÃ§onnant l'autre d'avoir trahi. </RESUME>
+  </FILM>
+  <FILM annee="1999">
+    <TITRE>Eyes Wide Shut</TITRE>
+    <GENRE/>
+    <PAYS>USA</PAYS>
+    <MES idref="101"/>
+    <ROLES>
+      <ROLE>
+        <PRENOM>Tom</PRENOM>
+        <NOM>Cruise</NOM>
+        <INTITULE>Docteur William 'Bill' Harford</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Nicole</PRENOM>
+        <NOM>Kidman</NOM>
+        <INTITULE>Alice Harford</INTITULE>
+      </ROLE>
+    </ROLES>
+    <RESUME>Un couple de bourgeois, cédant à la jalousie et à l'obsession sexuelle, entreprend un voyage psychologique
+ à la recherche de son identité. Le mari, au bout de son périple nocturne, revenu de ses désirs, ne trouvera
+ finalement auprès de son épouse qu'un compromis banal mais complice, les yeux ouverts à tout jamais sur
+ un rêve impossible. </RESUME>
+  </FILM>
+  <FILM annee="1980">
+    <TITRE>Shining</TITRE>
+    <GENRE>Horreur</GENRE>
+    <PAYS>FR</PAYS>
+    <MES idref="101"/>
+    <ROLES>
+      <ROLE>
+        <PRENOM>Jack</PRENOM>
+        <NOM>Nicholson</NOM>
+        <INTITULE>Jack Torrance</INTITULE>
+      </ROLE>
+    </ROLES>
+    <RESUME>Jack Torrance s'installe avec sa femme et son fils Danny dans un hÃ´tel fermé à la morte saison afin d'écrire
+ un roman. Il apprend que le gardien précédent a tué sa femme et ses deux filles avant de se suicider. Très
+ vite, Jack va s'apercevoir que des choses étranges se passent autour de lui et que son fils a des pouvoirs
+ extrasensoriels... </RESUME>
+  </FILM>
+  <FILM annee="1964">
+    <TITRE>Pas de printemps pour Marnie</TITRE>
+    <GENRE/>
+    <PAYS>USA</PAYS>
+    <MES idref="3"/>
+    <ROLES>
+      <ROLE>
+        <PRENOM>Sean</PRENOM>
+        <NOM>Connery</NOM>
+        <INTITULE>
+                       Mark R</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Tippi</PRENOM>
+        <NOM>Hedren</NOM>
+        <INTITULE>Marnie Edgar</INTITULE>
+      </ROLE>
+    </ROLES>
+    <RESUME>Marnie est engagée comme secrétaire chez un editeur, Mark Rutland. Celui-ci amoureux d'elle, découvre
+ qu'elle est kleptomane et l'oblige à l'épouser en la menaÃ§ant de la dénoncer. En s'apercevant que Marnie a
+ la phobie de la cou leur rouge, Mark tente de remonter dans le passé de la jeune femme afin de comprendre
+ les raisons de sa névrose. </RESUME>
+  </FILM>
+  <FILM annee="1954">
+    <TITRE>Fenêtre sur cour</TITRE>
+    <GENRE>Suspense</GENRE>
+    <PAYS>USA</PAYS>
+    <MES idref="3"/>
+    <ROLES>
+</ROLES>
+    <RESUME>En repos forcé à cause d'une jambe plÃ¢trée, le reporter L.B. Jefferies observe au téléobjectif les voisins de
+ l'immeuble d'en face. C'est ainsi qu'il remarque le curieux manège d'un représentant de commerce, M.
+ Thorwald, qu'il soupconne très vite d'avoir assassiné sa femme... </RESUME>
+  </FILM>
+  <FILM annee="1959">
+    <TITRE>La mort aux trousses</TITRE>
+    <GENRE>Suspense</GENRE>
+    <PAYS>USA</PAYS>
+    <MES idref="3"/>
+    <ROLES>
+      <ROLE>
+        <PRENOM>Cary</PRENOM>
+        <NOM>Grant</NOM>
+        <INTITULE>Roger O. Thornhill</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Eva Marie</PRENOM>
+        <NOM>Saint</NOM>
+        <INTITULE>Eve Kendall</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>James</PRENOM>
+        <NOM>Mason</NOM>
+        <INTITULE>Philipp Vandamm</INTITULE>
+      </ROLE>
+    </ROLES>
+    <RESUME>Roger Thornhill, publiciste, est pris dans le hall de son hÃ´tel pour un certain Kaplan, un espion. Deux
+ hommes tentent de le tuer et quand il retrouve l'un de ses agresseurs, celui-ci est assassiné devant ses
+ yeux. Pris pour un meurtrier, il est obligé de fuir vers Chicago... </RESUME>
+  </FILM>
+  <FILM annee="1999">
+    <TITRE>Jeanne d'Arc</TITRE>
+    <GENRE>Guerre</GENRE>
+    <PAYS>FR</PAYS>
+    <MES idref="111"/>
+    <ROLES>
+      <ROLE>
+        <PRENOM>Dustin</PRENOM>
+        <NOM>Hoffman</NOM>
+        <INTITULE/>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Milla</PRENOM>
+        <NOM>Jovovich</NOM>
+        <INTITULE>Jeanne d'Arc</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Fane</PRENOM>
+        <NOM>Dunaway</NOM>
+        <INTITULE>Yolande d'Aragon</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>John</PRENOM>
+        <NOM>Malkovitch</NOM>
+        <INTITULE>Charles VII</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Tchéky</PRENOM>
+        <NOM>Karyo</NOM>
+        <INTITULE>Dunois</INTITULE>
+      </ROLE>
+    </ROLES>
+  </FILM>
+  <FILM annee="1997">
+    <TITRE>Le cinquième élément</TITRE>
+    <GENRE>Science-fiction</GENRE>
+    <PAYS>FR</PAYS>
+    <MES idref="111"/>
+    <ROLES>
+      <ROLE>
+        <PRENOM>Bruce</PRENOM>
+        <NOM>Willis</NOM>
+        <INTITULE>Major Korben Dalla</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Milla</PRENOM>
+        <NOM>Jovovich</NOM>
+        <INTITULE>Leeloo</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Gary</PRENOM>
+        <NOM>Oldman</NOM>
+        <INTITULE>Jean-Baptiste Emmanuel Zorg</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Ian</PRENOM>
+        <NOM>Holm</NOM>
+        <INTITULE>Vito Cornelius</INTITULE>
+      </ROLE>
+    </ROLES>
+    <RESUME>Au XXIIIème siècle, dans un univers étrange et coloré, oÃ¹ tout espoir de survie est impossible sans la
+ découverte du Cinquième Elément, un héros peu ordinaire affronte le mal pour sauver l'humanité. </RESUME>
+  </FILM>
+  <FILM annee="1994">
+    <TITRE>Léon</TITRE>
+    <GENRE>Action</GENRE>
+    <PAYS>FR</PAYS>
+    <MES idref="111"/>
+    <ROLES>
+      <ROLE>
+        <PRENOM>Jean</PRENOM>
+        <NOM>Reno</NOM>
+        <INTITULE>Léon</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Gary</PRENOM>
+        <NOM>Oldman</NOM>
+        <INTITULE>Norman Stansfield</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Natalie</PRENOM>
+        <NOM>Portman</NOM>
+        <INTITULE>Mathilda</INTITULE>
+      </ROLE>
+    </ROLES>
+    <RESUME>Léon est un tueur. Un de la pire espèce. Il est introuvable, indétectable, pire qu'un sous-marin. Son ombre
+ est comme une menace de danger permanent sur New York. Indestructible Léon ? Oui, jusqu'à ce qu'une
+ petite souris pénètre son univers. Une toute petite souris aux yeux immenses... </RESUME>
+  </FILM>
+  <FILM annee="1990">
+    <TITRE>Nikita</TITRE>
+    <GENRE>Thriller</GENRE>
+    <PAYS>FR</PAYS>
+    <MES idref="111"/>
+    <ROLES>
+      <ROLE>
+        <PRENOM>Tchéky</PRENOM>
+        <NOM>Karyo</NOM>
+        <INTITULE>Bob</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Anne</PRENOM>
+        <NOM>Parillaud</NOM>
+        <INTITULE>Nikita</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Jean-Hughes</PRENOM>
+        <NOM>Anglade</NOM>
+        <INTITULE>Marco</INTITULE>
+      </ROLE>
+    </ROLES>
+    <RESUME>Nikita, droguée et violente, est prise en mains par des psychiatres qui la rééduquent, la conditionnent, afin
+ d'en faire une tueuse à la botte des Services Secrets. Plus tard, réalisant ce qu'elle est devenue, un pion
+ sans vie privée que l'on manipule, elle tente d'échapper à ses commanditaires. </RESUME>
+  </FILM>
+  <FILM annee="1988">
+    <TITRE>Le grand bleu</TITRE>
+    <GENRE>Drame</GENRE>
+    <PAYS>FR</PAYS>
+    <MES idref="111"/>
+    <ROLES>
+      <ROLE>
+        <PRENOM>Rosanna</PRENOM>
+        <NOM>Arquette</NOM>
+        <INTITULE>Johanna</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Jean</PRENOM>
+        <NOM>Reno</NOM>
+        <INTITULE>Enzo Molinari</INTITULE>
+      </ROLE>
+      <ROLE>
+        <PRENOM>Jean-Marc</PRENOM>
+        <NOM>Barr</NOM>
+        <INTITULE>Jacques Mayol</INTITULE>
+      </ROLE>
+    </ROLES>
+    <RESUME>Jacques Mayol et Enzo Molinari se connaissent depuis l'enfance. Tous deux experts en apnée, s'affrontent
+ continuellement pour obtenir le record du monde de plongée. Toujours en rivalité, les deux hommes
+ descendent de plus en plus profond, au risque de leurs vies. Le film est ressorti en janvier 89 en version
+ longue d'une durée de 2h40. </RESUME>
+  </FILM>
+</FILMS>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!-- atlas est la racine -->
+<!ELEMENT atlas (pays+, continent+, (montagne*, mer*)*) >
+
+<!ELEMENT pays (nom, langue+, frontière*) >
+<!ATTLIST pays    n          ID    #REQUIRED
+                  continent  IDREF #REQUIRED
+                  population CDATA #REQUIRED>   <!-- en millions d'habitants-->
+
+<!ELEMENT nom (#PCDATA) >
+
+<!ELEMENT langue (#PCDATA) >
+<!ATTLIST langue pourcentage CDATA #IMPLIED>   <!-- entre 0 et 100 -->
+
+<!ELEMENT frontière EMPTY >
+<!ATTLIST frontière pays      IDREF #REQUIRED
+                    longueur  CDATA #IMPLIED>
+
+<!ELEMENT continent EMPTY >
+<!ATTLIST continent n        ID    #REQUIRED
+                  nom        CDATA #REQUIRED
+                  superficie CDATA #IMPLIED>   <!-- en millions de km2-->
+
+<!ELEMENT montagne (situation*) >
+<!ATTLIST montagne n         ID    #REQUIRED
+                   nom       CDATA #REQUIRED
+                   altitude  CDATA #IMPLIED>   <!-- en mètres -->
+
+<!ELEMENT mer (situation*) >
+<!ATTLIST mer     n           ID     #REQUIRED
+                  nom         CDATA  #REQUIRED
+                  profondeur  CDATA  #IMPLIED>
+
+<!-- la situation représente l'appartenance d'un élément (montagne, mer, ...) à un pays -->
+<!ELEMENT situation EMPTY >
+<!ATTLIST situation pays IDREF #REQUIRED>
