@@ -61,5 +61,40 @@ Again note sur le poly.
 
 \textbf{J'ai demandé pour avoir le diapo et l'annoté numériquement mais y'a des choses issus de livre payant donc ça passe pas trop}. Il y aura donc plus rien ici lol
 
+\underline{Nouveau cours du 25/11} \\
+Je vais essayer de noter les démonstrations ici. Mais je pense qu'il vas rester des indications dans le poly.
+\subsubsection{Diapo 33}
+\begin{proof}[Preuve Changement d'échelle ]
+\begin{align*}
+    TF\{x(\alpha t)\} &= \int_{-\infty }^{+\infty x(\alpha t) e^{-j2 \pi ft}}dt \\
+        \text{Changement de variable }t ' = \alpha t &\Leftrightarrow t = \frac{1}{\alpha }t' ; \frac{dt}{dt ' } = \frac{1}{\alpha } \\
+        &= \begin{cases}
+            \int_{t ' = - \infty }^{t ' = + \infty } x(t ' )e^{-j 2 \pi f \frac{t ' }{\alpha }} &\text{ si } \alpha > 0\\
+            \int_{t ' = + \infty }^{t ' = - \infty } x(t ' )e^{-j 2 \pi f \frac{t ' }{\alpha }} &\text{ si } \alpha < 0\\
+        \end{cases} \\
+        &= \begin{cases}
+            \frac{1}{\alpha } \int_{-\infty }^{+\infty }x(t ' ) e^{-j 2 \pi (\frac{f}{\alpha } t ' )} &\text{ si } \alpha > 0\\
+            - \frac{1}{\alpha } \int_{-\infty }^{+\infty }x(t ' ) e^{-j 2 \pi (\frac{f}{\alpha } t ' )} &\text{ si } \alpha < 0\\
+        \end{cases} 
+\end{align*}
+
+\begin{proof}[Preuve : Modulation ]
+    \begin{align*}
+        TF \{x(t) e^{j 2 \pi f_0 t}\} &= \int_{-\infty }^{+\infty }x(t) e^{j 2 \pi f_0 t} e^{-j 2 \pi f t}dt \\
+            &= \int_{_\infty}^{+\infty }x(t) e^{-j 2 \pi (f - f_0)t}dt \\
+            &= X(f - f_0)
+    \end{align*}
+\end{proof}
+
+\subsubsection{Diapo 38}
+\begin{align*}
+    TF^{-1}\{\delta (f - f_0)\} &= \int_{-\infty }^{+\infty }\delta (f - f_0) e^{+j2 \pi ft}df \\
+    &= \int_{-\infty }^{+\infty }\delta (f - f_0) e^{+j2 \pi f_0 t}df \\
+    &= e^{+j2 \pi f_0 t} \int_{-\infty }^{+\infty }\delta (f - f_0) df \\
+    &= e^{+j2 \pi f_0 t}
+\end{align*}
+
+\end{proof}
+
 
 \end{document}
