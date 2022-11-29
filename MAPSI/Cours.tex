@@ -598,4 +598,47 @@ Exemple d'application :
 \underline{Nouveau cours du 22/11} \\
 Je suis pas aller en cours pour réviser et parce que j'ouvre jamais ce document il sere à rien
 
+\underline{Nouveau cours du 29/11} \\
+\begin{itemize}
+    \item Regression = prédiction d'une variable continue 
+    \item X entrées, Y sortie continue, $ \epsilon  $ = résidu = erreur = bruit
+    \item Modélisation : $ Y = \alpha + \beta X + \epsilon, \epsilon \sim \mathcal{N}(0, \sigma )  $ 
+    \item $ Y_i \sim \mathcal{N}(\alpha + \beta x_i, \sigma ) $ 
+    \item On peut trouver une solution analytique à $ \beta, \alpha  $ 
+    \item Par changement de variable on peut passer sur du non linéaire
+\end{itemize}
+Modélisation par max vraissemblance
+\begin{itemize}
+    \item 
+\end{itemize}
+Par fonction de cout : 
+\begin{itemize}
+    \item 
+\end{itemize}
+L'indicateur $ R^2 $ \begin{itemize}
+    \item Si proche de 1 : la variance des données est entièrement expliqué par les données, la variance des erreur $ e_i $ vaut 0
+    \item A l'inverse si petit alors variance des erreurs fortes
+    \item On peut aussi tester le modèle sur un set de test
+\end{itemize}
+Passage aux données multi-dimensionnelles en X
+\begin{itemize}
+    \item On veut estimer $ E(Y|X_1, \dots, X_n) $ 
+    \item on transforme tout en matrice
+    \item $ W = (X^T X)^{-1} X^T Y $ 
+\end{itemize}
+Passage au non linéaire : \begin{itemize}
+    \item On réécris nos données comme $ Xe = [1, X, X*X] $ 
+    \item Puis solution standard
+\end{itemize}
+Exemple de fonction de cout :
+\begin{itemize}
+    \item Cout charnière : voir la forme sur internet, lorsque bonne prédiction, $x_i$ et $y_i$ du même signe $\rightarrow$égal à zéros comme ça on pénalise pas le modèle dans la fonction de coût (proche du perceptron)
+\end{itemize}
+Opimisation général 
+\begin{itemize}
+    \item On peut soit faire une résolution analytique
+    \item ou une descente de gradient, souvent moins coûteuse qu'une inversion de matrice 
+    \item Quand on a beaucoup d'exemple, calculer les moyennes ect ça peut être long. Donc on peut calculer le gradient sur un sous ensemble de $ X $ $\rightarrow$ plus d'update du gradient mais on a un gradient moins précis.
+\end{itemize}
+
 \end{document}
