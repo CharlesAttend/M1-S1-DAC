@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!ELEMENT bib  (book* )>
+<!ELEMENT book  (title,  (author+ | editor+ ), publisher, price )>
+<!ATTLIST book  year CDATA  #REQUIRED >
+<!ELEMENT author  (last, first )>
+<!ELEMENT editor  (last, first, affiliation )>
+<!ELEMENT title  (#PCDATA )>
+<!ELEMENT last  (#PCDATA )>
+<!ELEMENT first  (#PCDATA )>
+<!ELEMENT affiliation  (#PCDATA )>
+<!ELEMENT publisher  (#PCDATA )>
+<!ELEMENT price  (#PCDATA )>

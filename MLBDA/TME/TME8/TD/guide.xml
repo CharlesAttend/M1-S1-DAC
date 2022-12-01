@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<base>
+  <restaurant nom="la tour d'argent" etoile="3" ville="Paris">
+    <fermeture>dimanche et lundi</fermeture>
+    <menu nom="buffet" prix="200" />
+    <menu nom="gourmet" prix="300"/>
+  </restaurant>
+
+  <ville nom="Paris" departement="75">
+    <plusBeauMonument nom="tour Eiffel" tarif="30"/>
+  </ville>
+
+  <restaurant nom="chez Bocuse" etoile="2" ville="Lyon">
+    <fermeture>dimanche</fermeture>
+    <menu nom="specialites lyonnaises" prix="200"/>
+    <menu nom="vegetarien" prix="299"/>
+  </restaurant>
+
+  <restaurant nom="MacDo" etoile="0" ville="Avignon">
+    <menu nom="standard" prix="35"/>
+    <menu nom="enfant" prix="20"/>
+    <menu nom="big" prix="49"/>
+  </restaurant>
+
+  <ville nom="Lyon" departement="69">
+  </ville>
+
+  <ville nom="Avignon" departement="84">
+    <plusBeauMonument nom="le pont" tarif="0"/>
+  </ville>
+
+  <restaurant nom="Les 4 saisons" etoile="1" ville="Paris">
+     <fermeture>mardi</fermeture>
+       <menu nom="assiette printaniere" prix="50" />
+       <menu nom="salade d'ete" prix="30"/>
+       <menu nom="menu d'automne" prix="150"/>
+       <menu nom="menu d'hiver" prix="99"/>
+  </restaurant>
+
+  <ville nom="Brest" departement="29">
+     <plusBeauMonument nom="oceanopolis" tarif="95"/>
+  </ville>
+
+</base>
+
+
+
+
+
+
+
+
