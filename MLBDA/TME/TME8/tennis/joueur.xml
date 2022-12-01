@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<joueurs>
+   <joueur num="1">
+      <nujoueur>1</nujoueur>
+      <nom>MARTINEZ</nom>
+      <prenom>Conchita</prenom>
+      <annaiss>1972</annaiss>
+      <nationalite>Espagne</nationalite>
+   </joueur>
+   <joueur num="2">
+      <nujoueur>2</nujoueur>
+      <nom>NAVRATILOVA</nom>
+      <prenom>Martina</prenom>
+      <annaiss>1957</annaiss>
+      <nationalite>Etats-Unis</nationalite>
+   </joueur>
+   <joueur num="3">
+      <nujoueur>3</nujoueur>
+      <nom>GRAF</nom>
+      <prenom>Steffi</prenom>
+      <annaiss>1969</annaiss>
+      <nationalite>Allemagne</nationalite>
+   </joueur>
+   <joueur num="4">
+      <nujoueur>4</nujoueur>
+      <nom>HALARD</nom>
+      <prenom>Julie</prenom>
+      <annaiss>1970</annaiss>
+      <nationalite>France</nationalite>
+   </joueur>
+   <joueur num="5">
+      <nujoueur>5</nujoueur>
+      <nom>PIERCE</nom>
+      <prenom>Mary</prenom>
+      <annaiss>1975</annaiss>
+      <nationalite>France</nationalite>
+   </joueur>
+   <joueur num="6">
+      <nujoueur>6</nujoueur>
+      <nom>EDBERG</nom>
+      <prenom>Stephan</prenom>
+      <annaiss>1966</annaiss>
+      <nationalite>Suede</nationalite>
+   </joueur>
+   <joueur num="7">
+      <nujoueur>7</nujoueur>
+      <nom>LARSSON</nom>
+      <prenom>Magnus</prenom>
+      <annaiss>1970</annaiss>
+      <nationalite>Suede</nationalite>
+   </joueur>
+   <joueur num="8">
+      <nujoueur>8</nujoueur>
+      <nom>LECONTE</nom>
+      <prenom>Henri</prenom>
+      <annaiss>1963</annaiss>
+      <nationalite>France</nationalite>
+   </joueur>
+   <joueur num="9">
+      <nujoueur>9</nujoueur>
+      <nom>FORGET</nom>
+      <prenom>Guy</prenom>
+      <annaiss>1965</annaiss>
+      <nationalite>France</nationalite>
+   </joueur>
+   <joueur num="10">
+      <nujoueur>10</nujoueur>
+      <nom>FLEURIAN</nom>
+      <prenom>Jean-Philippe</prenom>
+      <annaiss>1965</annaiss>
+      <nationalite>France</nationalite>
+   </joueur>
+   <joueur num="11">
+      <nujoueur>11</nujoueur>
+      <nom>WILANDER</nom>
+      <prenom>Mats</prenom>
+      <annaiss>1964</annaiss>
+      <nationalite>Suede</nationalite>
+   </joueur>
+   <joueur num="12">
+      <nujoueur>12</nujoueur>
+      <nom>CONNORS</nom>
+      <prenom>Jimmy</prenom>
+      <annaiss>1952</annaiss>
+      <nationalite>Etats-Unis</nationalite>
+   </joueur>
+   <joueur num="13">
+      <nujoueur>13</nujoueur>
+      <nom>McENROE</nom>
+      <prenom>John</prenom>
+      <annaiss>1959</annaiss>
+      <nationalite>Etats-Unis</nationalite>
+   </joueur>
+   <joueur num="14">
+      <nujoueur>14</nujoueur>
+      <nom>SAMPRAS</nom>
+      <prenom>Pete</prenom>
+      <annaiss>1972</annaiss>
+      <nationalite>Etats-Unis</nationalite>
+   </joueur>
+</joueurs>

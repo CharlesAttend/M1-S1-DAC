@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<gains>
+   <gain num="1">
+      <nujoueur>14</nujoueur>
+      <lieutournoi>Roland Garros</lieutournoi>
+      <annee>1992</annee>
+      <prime>200000</prime>
+      <nomsponsor>Peugeot</nomsponsor>
+   </gain>
+   <gain num="2">
+      <nujoueur>14</nujoueur>
+      <lieutournoi>Roland Garros</lieutournoi>
+      <annee>1994</annee>
+      <prime>1800000</prime>
+      <nomsponsor>Reebok</nomsponsor>
+   </gain>
+   <gain num="3">
+      <nujoueur>14</nujoueur>
+      <lieutournoi>Wimbledon</lieutournoi>
+      <annee>1992</annee>
+      <prime>700000</prime>
+      <nomsponsor>Peugeot</nomsponsor>
+   </gain>
+   <gain num="4">
+      <nujoueur>14</nujoueur>
+      <lieutournoi>Wimbledon</lieutournoi>
+      <annee>1993</annee>
+      <prime>1400000</prime>
+      <nomsponsor>Peugeot</nomsponsor>
+   </gain>
+   <gain num="5">
+      <nujoueur>13</nujoueur>
+      <lieutournoi>Roland Garros</lieutournoi>
+      <annee>1990</annee>
+      <prime>1100000</prime>
+      <nomsponsor>Kennex</nomsponsor>
+   </gain>
+   <gain num="6">
+      <nujoueur>13</nujoueur>
+      <lieutournoi>Roland Garros</lieutournoi>
+      <annee>1992</annee>
+      <prime>1500000</prime>
+      <nomsponsor>Kennex</nomsponsor>
+   </gain>
+   <gain num="7">
+      <nujoueur>13</nujoueur>
+      <lieutournoi>Wimbledon</lieutournoi>
+      <annee>1989</annee>
+      <prime>350000</prime>
+      <nomsponsor>Donnay</nomsponsor>
+   </gain>
+   <gain num="8">
+      <nujoueur>13</nujoueur>
+      <lieutournoi>Wimbledon</lieutournoi>
+      <annee>1992</annee>
+      <prime>400000</prime>
+      <nomsponsor>Kennex</nomsponsor>
+   </gain>
+   <gain num="9">
+      <nujoueur>12</nujoueur>
+      <lieutournoi>Roland Garros</lieutournoi>
+      <annee>1990</annee>
+      <prime>400000</prime>
+      <nomsponsor>Dunlop</nomsponsor>
+   </gain>
+   <gain num="10">
+      <nujoueur>12</nujoueur>
+      <lieutournoi>Roland Garros</lieutournoi>
+      <annee>1992</annee>
+      <prime>200000</prime>
+      <nomsponsor>Dunlop</nomsponsor>
+   </gain>
+   <gain num="11">
+      <nujoueur>12</nujoueur>
+      <lieutournoi>Wimbledon</lieutournoi>
+      <annee>1989</annee>
+      <prime>600000</prime>
+      <nomsponsor>Dunlop</nomsponsor>
+   </gain>
+   <gain num="12">
+      <nujoueur>12</nujoueur>
+      <lieutournoi>Flushing Meadow</lieutournoi>
+      <annee>1989</annee>
+      <prime>1600000</prime>
+      <nomsponsor>Dunlop</nomsponsor>
+   </gain>
+   <gain num="13">
+      <nujoueur>12</nujoueur>
+      <lieutournoi>Flushing Meadow</lieutournoi>
+      <annee>1991</annee>
+      <prime>1800000</prime>
+      <nomsponsor>Lacoste</nomsponsor>
+   </gain>
+   <gain num="14">
+      <nujoueur>11</nujoueur>
+      <lieutournoi>Roland Garros</lieutournoi>
+      <annee>1990</annee>
+      <prime>700000</prime>
+      <nomsponsor>Kennex</nomsponsor>
+   </gain>
+   <gain num="15">
+      <nujoueur>11</nujoueur>
+      <lieutournoi>Roland Garros</lieutournoi>
+      <annee>1992</annee>
+      <prime>500000</prime>
+      <nomsponsor>Kennex</nomsponsor>
+   </gain>
+   <gain num="16">
+      <nujoueur>11</nujoueur>
+      <lieutournoi>Wimbledon</lieutournoi>
+      <annee>1989</annee>
+      <prime>1000000</prime>
+      <nomsponsor>Dunlop</nomsponsor>
+   </gain>
+   <gain num="17">
+      <nujoueur>10</nujoueur>
+      <lieutournoi>Roland Garros</lieutournoi>
+      <annee>1994</annee>
+      <prime>600000</prime>
+      <nomsponsor>Peugeot</nomsponsor>
+   </gain>
+   <gain num="18">
+      <nujoueur>10</nujoueur>
+      <lieutournoi>Wimbledon</lieutournoi>
+      <annee>1993</annee>
+      <prime>500000</prime>
+      <nomsponsor>Peugeot</nomsponsor>
+   </gain>
+   <gain num="19">
+      <nujoueur>8</nujoueur>
+      <lieutournoi>Roland Garros</lieutournoi>
+      <annee>1992</annee>
+      <prime>500000</prime>
+      <nomsponsor>Lacoste</nomsponsor>
+   </gain>
+   <gain num="20">
+      <nujoueur>8</nujoueur>
+      <lieutournoi>Roland Garros</lieutournoi>
+      <annee>1994</annee>
+      <prime>1000000</prime>
+      <nomsponsor>Reebok</nomsponsor>
+   </gain>
+   <gain num="21">
+      <nujoueur>8</nujoueur>
+      <lieutournoi>Wimbledon</lieutournoi>
+      <annee>1989</annee>
+      <prime>350000</prime>
+      <nomsponsor>Peugeot</nomsponsor>
+   </gain>
+   <gain num="22">
+      <nujoueur>7</nujoueur>
+      <lieutournoi>Roland Garros</lieutournoi>
+      <annee>1992</annee>
+      <prime>200000</prime>
+      <nomsponsor>Donnay</nomsponsor>
+   </gain>
+   <gain num="23">
+      <nujoueur>7</nujoueur>
+      <lieutournoi>Wimbledon</lieutournoi>
+      <annee>1993</annee>
+      <prime>800000</prime>
+      <nomsponsor>Reebok</nomsponsor>
+   </gain>
+   <gain num="24">
+      <nujoueur>7</nujoueur>
+      <lieutournoi>Flushing Meadow</lieutournoi>
+      <annee>1991</annee>
+      <prime>1000000</prime>
+      <nomsponsor>Donnay</nomsponsor>
+   </gain>
+   <gain num="25">
+      <nujoueur>6</nujoueur>
+      <lieutournoi>Roland Garros</lieutournoi>
+      <annee>1992</annee>
+      <prime>900000</prime>
+      <nomsponsor>Dunlop</nomsponsor>
+   </gain>
+   <gain num="26">
+      <nujoueur>6</nujoueur>
+      <lieutournoi>Wimbledon</lieutournoi>
+      <annee>1992</annee>
+      <prime>1200000</prime>
+      <nomsponsor>Dunlop</nomsponsor>
+   </gain>
+   <gain num="27">
+      <nujoueur>5</nujoueur>
+      <lieutournoi>Wimbledon</lieutournoi>
+      <annee>1992</annee>
+      <prime>300000</prime>
+      <nomsponsor>Dunlop</nomsponsor>
+   </gain>
+   <gain num="28">
+      <nujoueur>5</nujoueur>
+      <lieutournoi>Wimbledon</lieutournoi>
+      <annee>1993</annee>
+      <prime>350000</prime>
+      <nomsponsor>Reebok</nomsponsor>
+   </gain>
+   <gain num="29">
+      <nujoueur>4</nujoueur>
+      <lieutournoi>Roland Garros</lieutournoi>
+      <annee>1994</annee>
+      <prime>400000</prime>
+      <nomsponsor>Lacoste</nomsponsor>
+   </gain>
+   <gain num="30">
+      <nujoueur>4</nujoueur>
+      <lieutournoi>Wimbledon</lieutournoi>
+      <annee>1992</annee>
+      <prime>300000</prime>
+      <nomsponsor>Lacoste</nomsponsor>
+   </gain>
+   <gain num="31">
+      <nujoueur>4</nujoueur>
+      <lieutournoi>Wimbledon</lieutournoi>
+      <annee>1993</annee>
+      <prime>350000</prime>
+      <nomsponsor>Lacoste</nomsponsor>
+   </gain>
+   <gain num="32">
+      <nujoueur>9</nujoueur>
+      <lieutournoi>Roland Garros</lieutournoi>
+      <annee>1990</annee>
+      <prime>400000</prime>
+      <nomsponsor>Peugeot</nomsponsor>
+   </gain>
+   <gain num="33">
+      <nujoueur>9</nujoueur>
+      <lieutournoi>Roland Garros</lieutournoi>
+      <annee>1992</annee>
+      <prime>200000</prime>
+      <nomsponsor>Peugeot</nomsponsor>
+   </gain>
+   <gain num="34">
+      <nujoueur>9</nujoueur>
+      <lieutournoi>Roland Garros</lieutournoi>
+      <annee>1994</annee>
+      <prime>600000</prime>
+      <nomsponsor>Reebok</nomsponsor>
+   </gain>
+   <gain num="35">
+      <nujoueur>9</nujoueur>
+      <lieutournoi>Wimbledon</lieutournoi>
+      <annee>1992</annee>
+      <prime>400000</prime>
+      <nomsponsor>Peugeot</nomsponsor>
+   </gain>
+   <gain num="36">
+      <nujoueur>9</nujoueur>
+      <lieutournoi>Wimbledon</lieutournoi>
+      <annee>1993</annee>
+      <prime>500000</prime>
+      <nomsponsor>Reebok</nomsponsor>
+   </gain>
+   <gain num="37">
+      <nujoueur>9</nujoueur>
+      <lieutournoi>Flushing Meadow</lieutournoi>
+      <annee>1989</annee>
+      <prime>900000</prime>
+      <nomsponsor>Lacoste</nomsponsor>
+   </gain>
+   <gain num="38">
+      <nujoueur>3</nujoueur>
+      <lieutournoi>Roland Garros</lieutournoi>
+      <annee>1990</annee>
+      <prime>500000</prime>
+      <nomsponsor>Donnay</nomsponsor>
+   </gain>
+   <gain num="39">
+      <nujoueur>3</nujoueur>
+      <lieutournoi>Roland Garros</lieutournoi>
+      <annee>1992</annee>
+      <prime>550000</prime>
+      <nomsponsor>Donnay</nomsponsor>
+   </gain>
+   <gain num="40">
+      <nujoueur>3</nujoueur>
+      <lieutournoi>Roland Garros</lieutournoi>
+      <annee>1994</annee>
+      <prime>400000</prime>
+      <nomsponsor>Reebok</nomsponsor>
+   </gain>
+   <gain num="41">
+      <nujoueur>3</nujoueur>
+      <lieutournoi>Wimbledon</lieutournoi>
+      <annee>1989</annee>
+      <prime>750000</prime>
+      <nomsponsor>Donnay</nomsponsor>
+   </gain>
+   <gain num="42">
+      <nujoueur>3</nujoueur>
+      <lieutournoi>Wimbledon</lieutournoi>
+      <annee>1992</annee>
+      <prime>850000</prime>
+      <nomsponsor>Donnay</nomsponsor>
+   </gain>
+   <gain num="43">
+      <nujoueur>3</nujoueur>
+      <lieutournoi>Flushing Meadow</lieutournoi>
+      <annee>1989</annee>
+      <prime>700000</prime>
+      <nomsponsor>Donnay</nomsponsor>
+   </gain>
+   <gain num="44">
+      <nujoueur>2</nujoueur>
+      <lieutournoi>Roland Garros</lieutournoi>
+      <annee>1990</annee>
+      <prime>800000</prime>
+      <nomsponsor>Vittel</nomsponsor>
+   </gain>
+   <gain num="45">
+      <nujoueur>2</nujoueur>
+      <lieutournoi>Roland Garros</lieutournoi>
+      <annee>1992</annee>
+      <prime>900000</prime>
+      <nomsponsor>Vittel</nomsponsor>
+   </gain>
+   <gain num="46">
+      <nujoueur>2</nujoueur>
+      <lieutournoi>Roland Garros</lieutournoi>
+      <annee>1994</annee>
+      <prime>1200000</prime>
+      <nomsponsor>Donnay</nomsponsor>
+   </gain>
+   <gain num="47">
+      <nujoueur>2</nujoueur>
+      <lieutournoi>Wimbledon</lieutournoi>
+      <annee>1989</annee>
+      <prime>400000</prime>
+      <nomsponsor>Vittel</nomsponsor>
+   </gain>
+   <gain num="48">
+      <nujoueur>2</nujoueur>
+      <lieutournoi>Wimbledon</lieutournoi>
+      <annee>1992</annee>
+      <prime>500000</prime>
+      <nomsponsor>Vittel</nomsponsor>
+   </gain>
+   <gain num="49">
+      <nujoueur>2</nujoueur>
+      <lieutournoi>Wimbledon</lieutournoi>
+      <annee>1993</annee>
+      <prime>600000</prime>
+      <nomsponsor>Donnay</nomsponsor>
+   </gain>
+   <gain num="50">
+      <nujoueur>2</nujoueur>
+      <lieutournoi>Flushing Meadow</lieutournoi>
+      <annee>1989</annee>
+      <prime>1000000</prime>
+      <nomsponsor>Vittel</nomsponsor>
+   </gain>
+   <gain num="51">
+      <nujoueur>1</nujoueur>
+      <lieutournoi>Wimbledon</lieutournoi>
+      <annee>1993</annee>
+      <prime>900000</prime>
+      <nomsponsor>Nike</nomsponsor>
+   </gain>
+   <gain num="52">
+      <nujoueur>1</nujoueur>
+      <lieutournoi>Roland Garros</lieutournoi>
+      <annee>1994</annee>
+      <prime>800000</prime>
+      <nomsponsor>Nike</nomsponsor>
+   </gain>
+</gains>

@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<rencontres>
+   <rencontre num="1">
+      <nugagnant>13</nugagnant>
+      <nuperdant>9</nuperdant>
+      <lieutournoi>Roland Garros</lieutournoi>
+      <annee>1990</annee>
+   </rencontre>
+   <rencontre num="2">
+      <nugagnant>11</nugagnant>
+      <nuperdant>12</nuperdant>
+      <lieutournoi>Roland Garros</lieutournoi>
+      <annee>1990</annee>
+   </rencontre>
+   <rencontre num="3">
+      <nugagnant>13</nugagnant>
+      <nuperdant>11</nuperdant>
+      <lieutournoi>Roland Garros</lieutournoi>
+      <annee>1990</annee>
+   </rencontre>
+   <rencontre num="4">
+      <nugagnant>2</nugagnant>
+      <nuperdant>3</nuperdant>
+      <lieutournoi>Roland Garros</lieutournoi>
+      <annee>1990</annee>
+   </rencontre>
+   <rencontre num="5">
+      <nugagnant>13</nugagnant>
+      <nuperdant>12</nuperdant>
+      <lieutournoi>Roland Garros</lieutournoi>
+      <annee>1992</annee>
+   </rencontre>
+   <rencontre num="6">
+      <nugagnant>6</nugagnant>
+      <nuperdant>14</nuperdant>
+      <lieutournoi>Roland Garros</lieutournoi>
+      <annee>1992</annee>
+   </rencontre>
+   <rencontre num="7">
+      <nugagnant>11</nugagnant>
+      <nuperdant>9</nuperdant>
+      <lieutournoi>Roland Garros</lieutournoi>
+      <annee>1992</annee>
+   </rencontre>
+   <rencontre num="8">
+      <nugagnant>8</nugagnant>
+      <nuperdant>7</nuperdant>
+      <lieutournoi>Roland Garros</lieutournoi>
+      <annee>1992</annee>
+   </rencontre>
+   <rencontre num="9">
+      <nugagnant>13</nugagnant>
+      <nuperdant>8</nuperdant>
+      <lieutournoi>Roland Garros</lieutournoi>
+      <annee>1992</annee>
+   </rencontre>
+   <rencontre num="10">
+      <nugagnant>6</nugagnant>
+      <nuperdant>11</nuperdant>
+      <lieutournoi>Roland Garros</lieutournoi>
+      <annee>1992</annee>
+   </rencontre>
+   <rencontre num="11">
+      <nugagnant>13</nugagnant>
+      <nuperdant>6</nuperdant>
+      <lieutournoi>Roland Garros</lieutournoi>
+      <annee>1992</annee>
+   </rencontre>
+   <rencontre num="12">
+      <nugagnant>2</nugagnant>
+      <nuperdant>3</nuperdant>
+      <lieutournoi>Roland Garros</lieutournoi>
+      <annee>1992</annee>
+   </rencontre>
+   <rencontre num="13">
+      <nugagnant>14</nugagnant>
+      <nuperdant>10</nuperdant>
+      <lieutournoi>Roland Garros</lieutournoi>
+      <annee>1994</annee>
+   </rencontre>
+   <rencontre num="14">
+      <nugagnant>8</nugagnant>
+      <nuperdant>9</nuperdant>
+      <lieutournoi>Roland Garros</lieutournoi>
+      <annee>1994</annee>
+   </rencontre>
+   <rencontre num="15">
+      <nugagnant>14</nugagnant>
+      <nuperdant>8</nuperdant>
+      <lieutournoi>Roland Garros</lieutournoi>
+      <annee>1994</annee>
+   </rencontre>
+   <rencontre num="16">
+      <nugagnant>2</nugagnant>
+      <nuperdant>4</nuperdant>
+      <lieutournoi>Roland Garros</lieutournoi>
+      <annee>1994</annee>
+   </rencontre>
+   <rencontre num="17">
+      <nugagnant>1</nugagnant>
+      <nuperdant>3</nuperdant>
+      <lieutournoi>Roland Garros</lieutournoi>
+      <annee>1994</annee>
+   </rencontre>
+   <rencontre num="18">
+      <nugagnant>2</nugagnant>
+      <nuperdant>1</nuperdant>
+      <lieutournoi>Roland Garros</lieutournoi>
+      <annee>1994</annee>
+   </rencontre>
+   <rencontre num="19">
+      <nugagnant>11</nugagnant>
+      <nuperdant>8</nuperdant>
+      <lieutournoi>Wimbledon</lieutournoi>
+      <annee>1989</annee>
+   </rencontre>
+   <rencontre num="20">
+      <nugagnant>12</nugagnant>
+      <nuperdant>13</nuperdant>
+      <lieutournoi>Wimbledon</lieutournoi>
+      <annee>1989</annee>
+   </rencontre>
+   <rencontre num="21">
+      <nugagnant>11</nugagnant>
+      <nuperdant>12</nuperdant>
+      <lieutournoi>Wimbledon</lieutournoi>
+      <annee>1989</annee>
+   </rencontre>
+   <rencontre num="22">
+      <nugagnant>3</nugagnant>
+      <nuperdant>2</nuperdant>
+      <lieutournoi>Wimbledon</lieutournoi>
+      <annee>1989</annee>
+   </rencontre>
+   <rencontre num="23">
+      <nugagnant>14</nugagnant>
+      <nuperdant>13</nuperdant>
+      <lieutournoi>Wimbledon</lieutournoi>
+      <annee>1992</annee>
+   </rencontre>
+   <rencontre num="24">
+      <nugagnant>6</nugagnant>
+      <nuperdant>9</nuperdant>
+      <lieutournoi>Wimbledon</lieutournoi>
+      <annee>1992</annee>
+   </rencontre>
+   <rencontre num="25">
+      <nugagnant>6</nugagnant>
+      <nuperdant>14</nuperdant>
+      <lieutournoi>Wimbledon</lieutournoi>
+      <annee>1992</annee>
+   </rencontre>
+   <rencontre num="26">
+      <nugagnant>3</nugagnant>
+      <nuperdant>5</nuperdant>
+      <lieutournoi>Wimbledon</lieutournoi>
+      <annee>1992</annee>
+   </rencontre>
+   <rencontre num="27">
+      <nugagnant>2</nugagnant>
+      <nuperdant>4</nuperdant>
+      <lieutournoi>Wimbledon</lieutournoi>
+      <annee>1992</annee>
+   </rencontre>
+   <rencontre num="28">
+      <nugagnant>3</nugagnant>
+      <nuperdant>2</nuperdant>
+      <lieutournoi>Wimbledon</lieutournoi>
+      <annee>1992</annee>
+   </rencontre>
+   <rencontre num="29">
+      <nugagnant>14</nugagnant>
+      <nuperdant>10</nuperdant>
+      <lieutournoi>Wimbledon</lieutournoi>
+      <annee>1993</annee>
+   </rencontre>
+   <rencontre num="30">
+      <nugagnant>7</nugagnant>
+      <nuperdant>9</nuperdant>
+      <lieutournoi>Wimbledon</lieutournoi>
+      <annee>1993</annee>
+   </rencontre>
+   <rencontre num="31">
+      <nugagnant>14</nugagnant>
+      <nuperdant>7</nuperdant>
+      <lieutournoi>Wimbledon</lieutournoi>
+      <annee>1993</annee>
+   </rencontre>
+   <rencontre num="32">
+      <nugagnant>1</nugagnant>
+      <nuperdant>5</nuperdant>
+      <lieutournoi>Wimbledon</lieutournoi>
+      <annee>1993</annee>
+   </rencontre>
+   <rencontre num="33">
+      <nugagnant>2</nugagnant>
+      <nuperdant>4</nuperdant>
+      <lieutournoi>Wimbledon</lieutournoi>
+      <annee>1993</annee>
+   </rencontre>
+   <rencontre num="34">
+      <nugagnant>1</nugagnant>
+      <nuperdant>2</nuperdant>
+      <lieutournoi>Wimbledon</lieutournoi>
+      <annee>1993</annee>
+   </rencontre>
+   <rencontre num="35">
+      <nugagnant>12</nugagnant>
+      <nuperdant>9</nuperdant>
+      <lieutournoi>Flushing Meadow</lieutournoi>
+      <annee>1989</annee>
+   </rencontre>
+   <rencontre num="36">
+      <nugagnant>2</nugagnant>
+      <nuperdant>3</nuperdant>
+      <lieutournoi>Flushing Meadow</lieutournoi>
+      <annee>1989</annee>
+   </rencontre>
+   <rencontre num="37">
+      <nugagnant>12</nugagnant>
+      <nuperdant>7</nuperdant>
+      <lieutournoi>Flushing Meadow</lieutournoi>
+      <annee>1991</annee>
+   </rencontre>
+</rencontres>
