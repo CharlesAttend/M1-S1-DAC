@@ -96,5 +96,101 @@ Je vais essayer de noter les démonstrations ici. Mais je pense qu'il vas rester
 
 \end{proof}
 
+\underline{Nouveau cours du 02/12} \\
+
+\subsubsection{Diapo 42}
+La formule des coefs resemble beaucoup à celle de la corrélation entre $ x $ et $ e^{-j2 \pi nt/T} $. \\
+En bas les sinus et cosinus ont des fréquences de $ n*\frac{t}{T} $ 
+
+\subsubsection{Diapo 43}
+Le $ a, a+T $ dans la formule du coeficient == on fait l'intégrale sur un motif période, si j'ai bien compris comme c'est égale à zéros partout, cette intégrale est équivalente à celle sur $ \pm \infty  $.
+
+\subsubsection{Diapo 44}
+Formule sympatique par exemple si on doit intégrer un $ sinc^2 $ ça revient à intégrer une fonction rectangle. \\
+Densité spectrale : j'ai écrit un truc dans mon TD quand on a démontré la formule de Parseval. TD3 exo 1 je crois
+
+\subsubsection{Diapo 45}
+$ \gamma _x (\tau ) $ = autocorrelation 
+
+\subsection{Approche fréquentielles des SLIs}
+\subsubsection{Diapo 47}
+
+\begin{defn}[]
+    La \textbf{réponse en fréquence} d'un SLI 
+    \[
+        H = TF\{h\}= Y/X
+    .\]
+    car $ y = h \star x \Leftrightarrow Y = H*X$ 
+\end{defn}
+On dit que les SLI sont des filtres car avec $ Y=HX $ si $ H $ est proche de zéro ou très grand on vas supprimer ou amplifier certaine fréquence.
+
+Le gain et la phase finalement on écrit $ H $ sous sa forme complexe.
+
+\subsubsection{Diapo 48}
+
+$ A_s(f_0) $ = amplitude de la sortie, $ A_e(f_0) $ = amplitude de l'entrée. $ \phi (f_0) $ = phase = décalage dans le temps. \\
+On appele ça le gain car on retrouve que $ \left| H(f_0) \right| $  c'est le facteur qui change l'amplitude. De même pour la phase qui est le décalage, qui indique le déphasage.
+
+Si j'injecte une sinusoïde en entrée, je peux retrouver en sortie le même signal mais en fonction du gain et de la phase.
+
+Diagramme de bode : On utilise le $ \log_{10}(f)  $ en abscise pour représenter sur un même graph toutes les fréquences 
+
+\subsubsection{Diapo 49}
+Le transformé simplifie tout en virant les convolutions
+
+
+\section{Numérisation et reconstitution des signaux}
+= traitement numérique du signal 
+
+Moitié des points sur cette partie, moitié des point sur le reste.
+\subsection{Introduction}
+
+\subsubsection{Diapo 52}
+Quand on traite des signaux : \begin{itemize}
+    \item Soit c'est pour les transmettre entre deux machines : et transmettre en numérique permet d'éviter les problèmes de bruit
+    \item Soit c'est pour les manipuler numériquement sur des processeurs ect
+\end{itemize}
+
+\subsubsection{Diapo 53}
+En pratique full signal analogique qu'on convertie h24 :
+\begin{itemize}
+    \item Convertisseur analogique - numérique (CAN) = échantillonneur
+    \item CNA : blocage d'ordre zéro
+\end{itemize}
+
+\subsubsection{Diapo 54}
+On discrétise l'abscisse mais aussi l'ordonnée. Discrétiser l'ordonnée provoque une erreur de quantification mais c'est nécessaire pour encoder en binaire $\rightarrow$ On met beaucoup de niveau quantifie pour éviter l'erreur.
+
+\subsection{Échantillonnage idéal}
+\subsubsection{Diapo 55}
+
+idéal = une valeur à une date précise.
+
+Comment choisir $ T_e $ ? On veut minimiser $ T_e $ tout en restant capable de reconstituer le signal. 
+
+\subsubsection{Diapo 56}
+Depuis le début, la transformé simplifie les choses. Regardons le lien entre $ x(t) $ et $ x[k] $ en fonction de $ T_e $ 
+\begin{defn}[]
+    \textbf{Signal échantilloné} = intermédiaire mathématique = signal continue d'une série d'impulsion de Dirac de hauteur modulé tout le $ T_e $ 
+    \[
+        x_e(t) = \sum_{k=-\infty }^{+\infty }x(kT_e)\delta (t-kT_e)
+    .\]
+    Relis $ x(t) $ et $ x[k] $.
+\end{defn}
+
+\subsubsection{Diapo 58}
+On a écrit $ X_e(f) $ en fonction de $ X(f) $. On a le signal échantillonné en fonction du signal continue.
+
+\subsubsection{Diapo 59}
+
+\subsubsection{Diapo 60}
+Annotation poly
+
+
+
+
+
+
+
 
 \end{document}
