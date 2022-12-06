@@ -634,11 +634,45 @@ Exemple de fonction de cout :
 \begin{itemize}
     \item Cout charnière : voir la forme sur internet, lorsque bonne prédiction, $x_i$ et $y_i$ du même signe $\rightarrow$égal à zéros comme ça on pénalise pas le modèle dans la fonction de coût (proche du perceptron)
 \end{itemize}
-Opimisation général 
+Optimisation général 
 \begin{itemize}
     \item On peut soit faire une résolution analytique
     \item ou une descente de gradient, souvent moins coûteuse qu'une inversion de matrice 
     \item Quand on a beaucoup d'exemple, calculer les moyennes ect ça peut être long. Donc on peut calculer le gradient sur un sous ensemble de $ X $ $\rightarrow$ plus d'update du gradient mais on a un gradient moins précis.
 \end{itemize}
 
+
+\underline{Nouveau cours du 06/12} \\
+Perceptron
+\begin{itemize}
+    \item On a un truc proche de la regression. $ y_i \in \{-1, 1\} $ 
+    \item On classe en fonction du signe de $ f(x_i) $. 
+    \item La fonction de coût/d'erreur : $ C(w) = \sum_{N}^{i=1}(-y_i x_i w)_+ $ fonction de coût charnière $ (x)_+ = \max (0, x)$ . Ca fait que si $ y_i $ et $ x_i w $ sont de même signe alors $ ()_+ = 0$ vaut zéro sinon on pénalise 
+    \item la fonction charnière est limité au cas binaires mais mieux adapté à la classification 
+    \item Diapo 4 : Puis descente de gradient. L'algorithme stochastique évite de calculer le gradient entier, on utilise un sous ensemble d'exemple. Cool car par exemple en NLP, il y a plusieurs milliard de paramètre et milliard d'exemple. + Mise à jours plus fréquente
+    \item Diapo 5 : il existe une infinité de droite qui sépare les deux nuages de points
+    \item Diapo 6 : Logique de marge, en rajoutant le $ 1 - \hat{y} $, on décale le moment ou la charnière vaut zéro en 1, et donc même si on a bon dans la prédiction, on continue d'optimiser la fonction. Sauf qu'il nous faut quand même une contrainte : le terme de régularisation $ ||w||^2 = 0 $ il minimise la distance entre les deux points de chaque classe les plus proches (je sais pas précisement comment)
+\end{itemize}
+
+Regression logistique
+\begin{itemize}
+    \item Proche de ce qu'on a vu précédement : nouvelle fonction d'erreur
+    \item Diapo 8 : rappel sur les modèles génératifs : ici on cherche à estimer une loi jointe. C'est sympa parce qu'après on peut générer des données. 
+    \item Diapo 11 : Limite = explicabilité ? // Sinon on vas travailler sur $ P(Y|X) $ plus simple que d'estimer toute la jointe. + Moins de modélisation et hypothèse sur les données
+    \item Diapo 12 : On vas utiliser un sigmoide qui est une distribution de probabilité finalement : $ P(Y |X) = f(x), f$ sigmoide
+    \item Diapo 14 : Trouver les paramètres : maximum vraisemblance d'une bernouilli avec $ p = f(x) $, $\rightarrow$ Dérivation $\rightarrow$ mais pas de solution analytique simple $\rightarrow$ Descente de gradient avec une logistic loss convexe
+    \item Diapo 17 : Avant on considérait chaque pixel $ \sim \mathcal{N}(\mu , \sigma ) $ par modèle génératif. Maintenant on à 10 modèle binaires (zéros vs toutes les autres classe) avec des poids par pixel. Ainsi on apprend quelle sont les pixels/zones importantes dans l'image.
+    \item Diapo 18 : passage en multiclasse : solution facile : K classfier binaire 
+\end{itemize}
+Système de recommandation
+\begin{itemize}
+    \item Annale où il faut bien connaitre la sigmoïde
+\end{itemize}
+Ouverture :
+\begin{itemize}
+    \item Diapo 35 : Le biais c'est la capacité à mon espace de fonction à pouvoir contenir la solution, par exemple un espace linéaire pour des données quadratiques. + On surveille la variance car forte variance = overfitting
+    \item Diapo 36 : Exploiter seulement les informations utile permet de fit des modèle simple qui fonctionne bien après 
+    \item Diapo 38 : méthode à noyaux : On utiliser des outil linéaire en transformant l'espace d'entrée non linéaire. Comme avec la regression quand on la fait passer en quadratique.
+    \item Diapo 40 : Curse of dimensionality : plus on augmente la dimension, plus la distance euclidienne entre les points perds en sens. 
+\end{itemize}
 \end{document}
