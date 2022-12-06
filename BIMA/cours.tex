@@ -970,7 +970,7 @@ Mais du coup je vais relire le diapo et prendre des notes de ce que je comprends
 
 \underline{Nouveau cours9 du 29/11} \\
 \section{Feature descriptor}
-Comme la dernière fois je relis le diapo et prend juste des notes ici : pas de ce que le prof a \displaystyle 
+Comme la dernière fois je relis le diapo et prend juste des notes ici : pas de ce que le prof a dit.
 
 Gabor filter
 \begin{itemize}
@@ -992,6 +992,55 @@ Application en :
     \item Indexing and searching in database : 
 \end{itemize}
 
+\underline{Nouveau cours du 06/12} \\
+Cette fois-ci je suis en cours.
 
-
+\begin{itemize}
+    \item Classification d'image: PCA 
+    \item diapo 11 : PCA : Analyse de la coravariance et dispertion autour de la moyenne, on vas regarder quelles valeurs décrive le mieux l'image. Comme ça on peut garder uniquement l'information utile et réduire les dimensions.
+    \item Pour nos images on est en dimension 256... et voir les corrélations entre pixel la dedans c'est compliqué 
+    \item Permet aussi de voir si il a des corrélations entre variable
+    \item Diapo 12 : interprétation graphique, on adapte la base pour qu'en projetant sur le nouvelle axe on retrouve un nuage de point plus ou moins mieux pour discriminer. On maximise la variance dans cette nouvelle base. On veut peu de corrélation entre les composantes 
+    \item Diapo 13 : On cherche la direction $ v \in \mathbb{R}^d$ qui maximise la variance. $ \pi = v v^T \in \mathcal{M}^d $ opérateur de projection avec $ v^T v = 1 $ ainsi $ \pi (v) = v $  projection sur lui même.
+    \item Diapo 14 : $ \Sigma  $ = matrice de covaraince 
+    \item Diapo 15 : On veux donc maximiser $ \sigma _v ^2 = v^T \Sigma v \Leftrightarrow \Sigma v = \lambda v$ 
+    \item Diapo 16 : En faite c'est équivalent au fait que $ \lambda  = $ valeur propre et $ \Sigma  $ vecteur propre. $ \lambda  $ scalaire. CCL : les composants principaux sont ceux ayant la plus grande valeurs propre 
+    \item Diapo 17 : CCL cool
+    \item Diapo 18 : Rappel des conséquences mathématiqeus de ce qu'on a fait.
+    \item Diapo 19 : comment choisir q, le nombre de composante : on regarde la variances de chaque composante. On fait un ratio entre la variance de la composante et la somme de toute les variances des composantes
+    \item Diapo 20 : on prend un image et on cut le visage avec sift par exemple, et on utilise la pca
+    \item Diapo 26 : la distance euclidienne pas ouf du tout, la metrique vas pas et le vecteur $ x \in \mathcal{M}^{64^2} $ non lol $\rightarrow$On veut réduire les dimention de $ x $ 
+    \item  Diapo 28 : Avec un peu de chance ça va bien se clusteriser le long d'une droite
+    \item Diapo 29 : CCL de ce qu'on vas faire en TME
+    \item Diapo 30 : En faite y'a une astuce pour réduire la dimension de la matrice de covariance qui vaut $ d^4 $ pour une image 
+    \item Diapo 32 : Exemple de ce qui se passe et du visage moyen $ g $ utilisé dans le calcul de la variance 
+    \item Diapo 34 : CCL : réduction de dimension, visualisation simplifié, then il faut classifier à partir de ces composantes
+\end{itemize}
+LDA : Linear discriminant analysis 
+\begin{itemize}
+    \item proche de la PCA 
+    \item On veut séparer un max les clusters des classes 
+    \item En faite on vas trouver une base qui \begin{itemize}
+        \item Minimise la variance intra-classe
+        \item Maximise la variance inter-classe
+    \end{itemize}
+    \item Diapo 38 : exemple clair de LDA
+    \item Diapo 39 : formalisme et notation
+    \item Diapo 41 : En faite on peu décomposer $ SS(k) $ en une variance intra classe et une variance inter class
+    \item Diapo 43 : Maintenant on veut faire la même chose mais avec une projection $ v $ 
+    \item Diapo 44 : illusration de cette histoire de variance inter/intra classe 
+    \item Diapo 49 : Les diapos d'avant sont assez clair
+    \item Diapo 50 : Exemple sur iris
+    \item Diapo 51 : Attention, c'est des transformation liénaires des données, donc il faut que les données soit linéaire. Mais il existe d'autre méthode quadratique, normale, SVM
+\end{itemize}
+SVM : Séparateur vaste marge 
+\begin{itemize}
+    \item Maximise la marge entre les clusters (c'est pas comme minimiser la variance inter-classe. C'est équivalent dans $ \mathbb{R}^2 $ uniquement)
+\end{itemize}
+Supplément sur la classificiation
+\begin{itemize}
+    \item Diapo 53 : fontionnement générale on a une Loss function et un Risk
+    \item Diapo 55 : test et train set
+    \item 
+\end{itemize}
 \end{document}
