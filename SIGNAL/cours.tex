@@ -187,6 +187,82 @@ On a écrit $ X_e(f) $ en fonction de $ X(f) $. On a le signal échantillonné e
 Annotation poly
 
 
+\underline{Nouveau cours10 du 09/12} \\
+
+Sur des signaux random, on défini une bande de fréquence à protéger, et au vas filtrer au delà (filtre anti aliasing). En fonction de la bande de fréquence qu'on conserve $ f_{max} $ on peut alors définir la fréquence d'échantillonnage max qui respecte le théorème de Shannon. Exemple diapo 63
+
+\subsubsection{Diapo 65}
+Parfois si on a du vide dans $ f_{max} $ il peut arriver qu'il n'y ait pas de recouvrement spectral même sans respecter Shannon (exo 2 TD4 je crois ) == Shannon condition suffisante mais pas nécéssaire.
+
+Il faut être sur de pouvoir caler un nombre impaire de motif entre $ -f_0 $ et $ f_0 $, pour cela on défini un $ B' $ 
+
+\subsection{Quantification}
+\subsubsection{Diapo 66}
+Quantification : division uniforme en plusieurs niveau quantifié entre le max et le min du signal. Si on peut on utilise un nombre de niveau $ D $ en puissance de deux pour pouvoir facilement convertir en binaire. 
+
+Mais on introduit une erreur de quantification $ \epsilon _q = x[k] - x_q[k]$. Finalement on a deux erreurs introduite pour numériser : le cut de fréquence et la quantification
+
+\subsection{Reconstitution par blocage}
+\subsubsection{Diapo 67}
+BUT : reconstituer un signal continue depuis un signal échantillonné. \\
+C'est juste transformer un signal échantillonné en un signal en escalier. On utilise bien $ T_e $ entre deux marches $ [kT_e ; (k+1)T_e] $  
+
+\subsubsection{Diapo 68}
+oklm
+\subsubsection{Diapo 69}
+On part de l'exemple diapo 61. le module de $ P(f) $ c'est le $ sinc $ et $ T_e $. Le $ sinc $ s'annule en $ 1/T_e = f_e $. On retrouve finalement presque l'originale $ |X(f)| $ mais avec du bruit sur les cotés.
+\subsubsection{Diapo 70}
+Bruit qu'on vas filtrer toujours dans les fréquences
+
+\subsubsection{Diapo 71}
+Finalement $ x(t) $ est reconstitué par TF inverse. Avec le filtre passe bas, on arrondie les bords : car les marches d'escalier sont comme des sinusoïde haute fréquence, qu'on a coupé avec le filtre.
+
+Autre remarque : Quand $ f_e $ est grand, au voisinage de 0 le sinc est vraiment proche de 1 sur une grande bande permettant une meilleurs reconstitution de $ \left| X(f) \right|  $ et de même le bruit lui est fort compressé. De plus si $ f_e $ grand devant $ f_{max} $, le filtre passe bas sera plus facile à réaliser (moins de coef) car on a plus de place pour faire chuter le signal
+
+Problème : on veut aussi $ f_e $ petit d'après ce qu'on a dit avant, je sais plus pourquoi. Je pense c'est pour éviter d'avoir trop d'échantillon alors qu'on peut reconstituer sans
+
+\subsection{Réduction de cadence et décimation}
+\subsubsection{Diapo 72}
+Réduction de cadence = échantillonnage sur un signal déjà à temps discret. Je prend un échantillons tous les $ N $. 
+\[
+    x^{\downarrow }[n] = x[k] \text{ avec } k = nN
+.\]
+Comment choisir $ N $ ? Il faut regarder l'effet dans le domaine des fréquences
+
+\subsubsection{Diapo 74}
+Exactement le même diapo 56 sur l'échantillonnage tellement c'est proche = transposition en numérique de l'échantillonnage, on vas encore introduire une intermédiaire mathématique. \textbf{Lors de la relecture du cours, mettre en parallèle l'échantillonnage et la réduction de cadence}
+
+\subsubsection{Diapo 76}
+Vraiment same que pour l'échantillonnage lol avec $ N T_e $ 
+
+\subsubsection{Diapo 78}
+Exemple de comment on fait avec des dessins pour trouver $ \left| X^{\downarrow }(v') \right|  $ avec $ N = 3 $. C'est la même chose, toujours attention à l'air des masses de dirac qui change
+
+\subsubsection{Diapo 80}
+Comme la dernière fois, on place un filtre anti-aliasing pour éviter un recouvrement spectrale dans la réduction de cadence == décimation
+
+\subsection{Elévation de cadance et interpolation}
+\subsubsection{Diapo 82}
+Up sampling = rajouter des zéros entre les échantillons. On regarde si $ m $ est un multiple de $ k $ 
+\[
+    x^{\uparrow } [m] = \begin{cases}
+    x[k] &\text{ pour } m = kM\\
+    0 &\text{ pour } m \neq kM\\
+    \end{cases} 
+.\]
+
+\subsubsection{Diapo 84}
+Cette fois ci on comprime l'axe des abscises
+
+\subsubsection{Diapo 85}
+Quel est l'intérêt de faire ça ? Recalculer les échantillons intermédiaires du à l'échantillonnage, c'est l'opération inverse du décimateur je crois 
+
+
+
+
+
+
+
 
 
 
