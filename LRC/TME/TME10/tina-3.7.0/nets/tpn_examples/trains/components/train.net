@@ -1,0 +1,6 @@
+net train
+tr App : App Far -> Close 
+tr Ex [2,4] On -> Left 
+tr Exit : Exit [0,0] Left -> Far 
+tr In [3,5] Close -> On 
+pl Far (1)

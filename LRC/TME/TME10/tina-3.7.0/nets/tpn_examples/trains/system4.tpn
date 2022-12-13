@@ -1,0 +1,15 @@
+
+load components/train.ndr
+ren Approche/App Sortie/Exit
+dup
+dup
+merge 3
+ren 1/Approche 2/Sortie
+load components/controler.ndr
+ren 1/App 2/Exit 3/Up 4/Down
+load components/barrier.ndr
+ren 3/Up 4/Down
+sync 3
+ren /1 /2 /3 /4
+
+

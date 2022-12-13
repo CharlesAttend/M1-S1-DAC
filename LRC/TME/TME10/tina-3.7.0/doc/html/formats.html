@@ -1,0 +1,768 @@
+<HTML><HEAD>
+<TITLE>Manual Page - formats(n)</TITLE>
+<BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
+<!-- .TH formats n "Version 3.7.0" "Tina Formats" -->
+<CENTER>
+<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>formats (n)</NOBR><HR></H1>
+</CENTER>
+<P>
+<!-- .SH NAME -->
+<A name=0>
+
+     <H3>NAME</H3>
+
+</A>
+<BLOCKQUOTE>
+formats   - file formats of the Tina Toolbox
+<P>
+Part of Tina Toolbox for analysis of Petri nets and Time Petri nets.
+<P>
+<!-- .SH DESCRIPTION -->
+</BLOCKQUOTE>
+<A name=contents></A><H3>CONTENTS</H3></A>
+<BLOCKQUOTE>
+<A HREF=#1>Description</A><BR>
+<A HREF=#2>The &#46;net format</A><BR>
+<A HREF=#3>The &#46;ndr format</A><BR>
+<A HREF=#4>The &#46;tpn format</A><BR>
+<A HREF=#5>The &#46;pnml format</A><BR>
+<A HREF=#6>The &#46;tts format</A><BR>
+<A HREF=#7>The &#46;ktz format</A><BR>
+<A HREF=#8>The &#46;aut format</A><BR>
+<A HREF=#9>The &#46;bcg format</A><BR>
+<A HREF=#10>The &#46;mec format</A><BR>
+<A HREF=#11>The &#46;adr format</A><BR>
+<A HREF=#12>The &#46;ltl format</A><BR>
+<A HREF=#13>The &#46;mmc format</A><BR>
+<A HREF=#14>The &#46;scn format</A><BR>
+<A HREF=#15>Examples</A><BR>
+<A HREF=#16>See Also</A><BR>
+<A HREF=#17>Authors</A><BR>
+</BLOCKQUOTE>
+<A name=18>
+
+     <H3>DESCRIPTION</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+This page describe the formats of files used by the Tina tools.
+<P>
+<!-- .nf -->
+<PRE>
+Time Petri nets formats, input of tina/sift/tedd/struct/plan/play/ndrio/nd:
+<P>
+net.txt  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#46;net &nbsp;&nbsp;&nbsp;Time Petri nets textual format
+ndr.txt  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#46;ndr &nbsp;&nbsp;&nbsp;Time Petri nets graphic format
+tpn.txt  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#46;tpn &nbsp;&nbsp;&nbsp;Time Petri nets script format
+pnml.txt&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#46;pnml &nbsp;&nbsp;Time Petri nets pnml format
+<P>
+Time Transition System format, input of tina/sift/tedd/struct/plan/play
+(not supported by ndrio nor nd):
+<P>
+tts.txt  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#46;tts &nbsp;&nbsp;&nbsp;Time Transition System format
+<P>
+Transition system formats, output of tina:
+<P>
+aut.txt  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#46;aut &nbsp;&nbsp;&nbsp;Transition systems textual format (CADP format)
+ktz.txt  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#46;ktz &nbsp;&nbsp;&nbsp;Kripke transition systems binary format (tina)
+bcg.txt  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#46;bcg &nbsp;&nbsp;&nbsp;Transition systems binary format (tina for CADP)
+mec.txt  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#46;mec &nbsp;&nbsp;&nbsp;Kripke transition systems textual format (tina for MEC4)
+<P>
+Other formats:
+<P>
+adr.txt  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#46;adr &nbsp;&nbsp;&nbsp;Transition systems graphic format (nd)
+ltl.txt  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#46;ltl &nbsp;&nbsp;&nbsp;SE-LTL model checker commands (selt)
+mmc.txt  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#46;ltl &nbsp;&nbsp;&nbsp;Mu-calculus model checker commands (muse)
+scn.txt  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#46;scn &nbsp;&nbsp;&nbsp;Format of firing sequences and firing schedules,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(selt, plan, play, nd stepper history files)
+<!-- .fi -->
+</PRE>
+<P>
+<P>
+<!-- .SH The \&.net format -->
+</BLOCKQUOTE>
+<A name=2>
+
+     <H3>The &#46;net format</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+This is the textual description format of Time Petri nets.
+<P>
+A  net is  described  by a  series  of declarations  of places, transitions
+and/or notes, and an  optional naming declaration for the  net. The net
+described is the superposition  of these declarations.  The grammar of
+&#46;net  declarations  is  the   following,  in  which  nonterminals  are
+bracketed by &lt;  ..  &gt;, terminals are in upper  case or quoted.  Spaces,
+carriage return and tabs act as separators.
+<P>
+Optionally,  labels may be  assigned to  places and  transitions. This
+should  be preferably done  within "tr"  and "pl"  declarations rather
+than using separate  "lb" declarations. The later form  ("lb") is kept
+for backward compatibility and might disappear in future releases.
+<P>
+<!-- .B Grammar: -->
+<B>Grammar:</B> <P>
+<!-- .nf -->
+<PRE>
+&#46;net&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= (&lt;trdesc&gt;|&lt;pldesc&gt;|&lt;lbdesc&gt;|&lt;prdesc&gt;|&lt;ntdesc&gt;|&lt;netdesc&gt;)*
+netdesc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= &#146;net&#146; &lt;net&gt;
+trdesc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= &#146;tr&#146; &lt;transition&gt; {":" &lt;label&gt;} {&lt;interval&gt;} {&lt;tinput&gt; -&gt; &lt;toutput&gt;}
+pldesc &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= &#146;pl&#146; &lt;place&gt; {":" &lt;label&gt;} {(&lt;marking&gt;)} {&lt;pinput&gt; -&gt; &lt;poutput&gt;}
+ntdesc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= &#146;nt&#146; &lt;note&gt; (&#146;0&#146;|&#146;1&#146;) &lt;annotation&gt;
+lbdesc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= &#146;lb&#146; [&lt;place&gt;|&lt;transition&gt;] &lt;label&gt;
+prdesc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= &#146;pr&#146; (&lt;transition&gt;)+ ("&lt;"|"&gt;") (&lt;transition&gt;)+
+interval &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&nbsp;::= (&#146;[&#146;|&#146;]&#146;)INT&#146;,&#146;INT(&#146;[&#146;|&#146;]&#146;) | (&#146;[&#146;|&#146;]&#146;)INT&#146;,&#146;w[&#146;
+tinput&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= &lt;place&gt;{&lt;arc&gt;}
+toutput&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= &lt;place&gt;{&lt;normal_arc&gt;}
+pinput&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= &lt;transition&gt;{&lt;normal_arc&gt;}
+poutput&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= &lt;transition&gt;{arc}
+arc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= &lt;normal_arc&gt; | &lt;test_arc&gt; | &lt;inhibitor_arc&gt; |
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    &lt;stopwatch_arc&gt; | &lt;stopwatch-inhibitor_arc&gt;
+normal_arc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= &#146;*&#146;&lt;weight&gt;
+test_arc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= &#146;?&#146;&lt;weight&gt;
+inhibitor_arc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= &#146;?-&#146;&lt;weight&gt;
+stopwatch_arc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= &#146;!&#146;&lt;weight&gt;
+stopwatch-inhibitor_arc&nbsp;::= &#146;!-&#146;&lt;weight&gt;
+weight, marking &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= INT{&#146;K&#146;|&#146;M&#146;|&#146;G&#146;|&#146;T&#146;|&#146;P&#146;|&#146;E&#146;}
+net, place, transition, label, note, annotation ::= ANAME | &#146;{&#146;QNAME&#146;}&#146;
+INT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= unsigned integer
+ANAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= alphanumeric name, see Notes below
+QNAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= arbitrary name, see Notes below
+<!-- .fi -->
+</PRE>
+<P>
+<!-- .B Notes: -->
+<B>Notes:</B> <P>
+Two forms are admitted for net, place and transition names:
+<BR>
+  - ANAME : any non empty string of letters, digits, primes &#146; and underscores _
+<BR>
+  - &#146;{&#146;QNAME&#146;}&#146; : any chain between braces, and in which characters {, }, and \ are prefixed by \
+<P>
+Empty lines and lines beginning with &#146;#&#146; are considered comments.
+<P>
+In any closed temporal interval [eft,lft], one must have eft &lt;= lft.
+<P>
+The letter &#146;K&#146; (resp. &#146;M&#146;, &#146;G&#146;, &#146;T&#146;, &#146;P&#146;, &#146;E&#146;) following a weight or marking multiplies it by 10^3 (resp. 10^6, 10^9, 10^12, 10^15, 10^18).
+<P>
+Weight is optional for normal arcs, but mandatory for test and inhibitor arcs
+<P>
+By default:
+<BR>
+  - transitions have temporal interval [0,w[
+<BR>
+  - normal arcs have weight 1
+<BR>
+  - places have marking 0
+<BR>
+  - places and transitions have the empty label "{}"
+<P>
+When several labels are assigned to some node, only the last assigned is kept.
+<!-- .fi -->
+<P>
+<P>
+<!-- .SH The \&.ndr format -->
+</BLOCKQUOTE>
+<A name=3>
+
+     <H3>The &#46;ndr format</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+Format ndr is the format of graphic files produced by the nd editor. A
+net is  described by a  series of declarations of  places, transitions
+and edges, followed  by a net name declaration.   The net described is
+the superposition of these declarations.
+<P>
+<!-- .B Grammar : -->
+<B>Grammar :</B> <P>
+<!-- .nf -->
+<PRE>
+&#46;ndr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= (&lt;trdesc&gt;|&lt;pldesc&gt;)* (&lt;edgedesc&gt;|&lt;prdesc&gt;|&lt;ntdesc&gt;)* &lt;netdesc&gt;
+trdesc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= &#146;t&#146; &lt;xpos&gt; &lt;ypos&gt; &lt;transition&gt; &lt;eft&gt; &lt;lft&gt; &lt;anchor&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |  &#146;t&#146; &lt;xpos&gt; &lt;ypos&gt; &lt;transition&gt; &lt;anchor&gt; &lt;eft&gt; &lt;lft&gt; &lt;anchor&gt; &lt;label&gt; &lt;anchor&gt;
+pldesc &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= &#146;p&#146; &lt;xpos&gt; &lt;ypos&gt; &lt;place&gt; &lt;marking&gt; &lt;anchor&gt; {&lt;label&gt; &lt;anchor&gt;}
+ntdesc &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= &#146;n&#146; &lt;xpos&gt; &lt;ypos&gt; &lt;note&gt; (&#146;0&#146;|&#146;1&#146;) &lt;annotation&gt;
+edgedesc &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= &#146;e&#146; &lt;place&gt; &lt;transition&gt; {&lt;arckind&gt;}&lt;weight&gt; &lt;anchor&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |  &#146;e&#146; &lt;place&gt; &lt;ang&gt; &lt;rad&gt; &lt;transition&gt; &lt;ang&gt; &lt;rad&gt; {&lt;arckind&gt;}&lt;weight&gt; &lt;anchor&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |  &#146;e&#146; &lt;transition&gt; &lt;place&gt; &lt;weight&gt; &lt;anchor&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |  &#146;e&#146; &lt;transition&gt; &lt;ang&gt; &lt;rad&gt; &lt;place&gt; &lt;ang&gt; &lt;rad&gt; &lt;weight&gt; &lt;anchor&gt;
+prdesc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= &#146;e&#146; &lt;transition&gt; &lt;transition&gt; 1 &lt;anchor&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |  &#146;e&#146; &lt;transition&gt; &lt;ang&gt; &lt;rad&gt; &lt;transition&gt; &lt;ang&gt; &lt;rad&gt; 1 &lt;anchor&gt;
+netdesc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= &#146;h&#146; &lt;net&gt; {&lt;nodesize&gt; {&lt;bgcolor&gt;}}
+eft &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= {-}INT
+lft &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= {-}INT | &#146;w&#146;
+weight, marking&nbsp;::= INT{&#146;K&#146;|&#146;M&#146;|&#146;G&#146;|&#146;T&#146;|&#146;P&#146;|&#146;E&#146;}
+arckind&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= &#146;?&#146;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     // test (read) arc
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |  &#146;?-&#146;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     // inhibitor
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |  &#146;!&#146;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     // stopwatch
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |  &#146;!-&#146;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     // stopwatch-inhibitor
+xpos, ypos, rad&nbsp;::= FLOAT
+ang&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= UFLOAT
+net, place, transition, label, note, annotation ::= ANAME | &#146;{&#146;QNAME&#146;}&#146;
+anchor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= &#146;n&#146; | &#146;nw&#146; | &#146;w&#146; | &#146;sw&#146; | &#146;s&#146; | &#146;se&#146; | &#146;e&#146; | &#146;ne&#146; | &#146;c&#146;
+FLOAT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= unsigned float (without exponent)
+UFLOAT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= unsigned float between 0 and 1 (without exponent)
+INT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= unsigned integer
+ANAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= see notes below
+QNAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= see notes below
+&lt;nodesize&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= &#146;small&#146; | &#146;normal&#146; | &#146;large&#146;
+&lt;bgcolor&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= any tcl-tk color
+<!-- .fi -->
+</PRE>
+<P>
+<!-- .B Notes: -->
+<B>Notes:</B> <P>
+Node declarations must precede edge declarations.
+<P>
+The last declaration must be the netname declaration (h).
+<P>
+Empty lines and lines beginning with &#146;#&#146;are considered comments.
+<P>
+A &#146;-&#146; starting an eft or lft denotes an open interval end.
+<P>
+In any transition declaration, one must have &#145;lft &gt;= &#145;eft or lft = &#146;w&#146;,
+where &#145;e denotes e if e&gt;=0, or (-e)-1 otherwise
+<P>
+If eft = lft, then they may not be both negative (intervals may not be empty).
+<P>
+The letter &#146;K&#146; (resp. &#146;M&#146;, &#146;G&#146;, &#146;T&#146;, &#146;P&#146;, &#146;E&#146;) following a weight or marking multiplies it by 10^3 (resp. 10^6, 10^9, 10^12, 10^15, 10^18).
+<P>
+Two forms are admitted for net, place and transition names:
+<BR>
+  - ANAME : any non empty string of letters, digits, primes &#146; and underscores _
+<BR>
+  - &#146;{&#146;QNAME&#146;}&#146; : any chain between braces, and in which characters {, }, and \ are prefixed by \
+<P>
+<P>
+<!-- .SH The \&.tpn format -->
+</BLOCKQUOTE>
+<A name=4>
+
+     <H3>The &#46;tpn format</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+Format .tpn  is a preliminary  script language for building  nets from
+net components specified in &#46;net or &#46;ndr format.
+<P>
+<!-- .B Syntax of tpn files: -->
+<B>Syntax of tpn files:</B> <P>
+<P>
+A &#46;tpn file is constituted of zero or more lines
+<P>
+<!-- .nf -->
+<PRE>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.tpn ::= &lt;tpnline&gt;*
+<!-- .fi -->
+</PRE>
+<P>
+each line is either any line allowed in a &#46;net or &#46;ndr file, or a tpn command:
+<P>
+<!-- .nf -->
+<PRE>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tpnline ::=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &lt;trdesc&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(as in &#46;net or &#46;ndr formats)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| &lt;pldesc&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(as in &#46;net or &#46;ndr formats)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| &lt;lbdesc&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(as in &#46;net or &#46;ndr formats)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| &lt;prdesc&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(as in &#46;net or &#46;ndr formats)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| &lt;ntdesc&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(as in &#46;net or &#46;ndr formats)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| &lt;netdesc&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(as in &#46;net or &#46;ndr formats)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| &lt;tpncmd&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tpncmd ::=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &#146;new&#146;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| &#146;dup&#146; INT
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| &#146;load&#146; TPNFILE
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| &#146;ren&#146; &lt;renlist&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| &#146;merge&#146; INT
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| &#146;sync&#146; INT
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| &#146;chain&#146; INT
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| &#146;source&#146; FILE
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;renlist ::= &lt;labpair&gt; &lt;renlist&gt; | &lt;labpair&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;labpair ::= &lt;label&gt;"/"&lt;label&gt; | "/"&lt;label&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label ::= a label (as in &#46;net or &#46;ndr formats)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TPNFILE ::= the name of a &#46;net or &#46;ndr file
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FILE ::= the name of a &#46;net, &#46;ndr, or .tpn file
+<!-- .fi -->
+</PRE>
+<P>
+Note that, syntactically, &#46;net and  &#46;ndr files are .tpn files. The tpn
+format extends both  the &#46;net and &#46;ndr formats, but  it has no graphic
+interpretation at the moment (a future &#46;tdr format might provide that).
+<P>
+<P>
+<!-- .B Interpretation of tpn scripts: -->
+<B>Interpretation of tpn scripts:</B> <P>
+A  tpn  file describes  a  Time  Petri  net, possibly  resulting  from
+composition of several Time Petri nets.
+<P>
+Tpn scripts  are interpreted  as code for  an abstract  stack machine.
+The stack  initially holds  the empty Time  Petri net.  The  result of
+evaluation  of  a tpn  script  is  the net  on  top  of  the stack  at
+completion of interpretation.
+<P>
+The lines  of a tpn file  are interpreted as follows  ("top" means the
+net in topmost position on stack):
+<P>
+<!-- .nf -->
+<PRE>
+new&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pushes an empty net on stack
+&#46;net or &#46;ndr line&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extends top with the &#46;net or &#46;ndr declaration
+dup n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pushes on stack n copies of top (default n is 1)
+ren R1 ... Rn&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;applies relabelling R1 ... Rn to top
+merge n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;replaces n topmost nets by their concurrent composition
+sync n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;replaces n topmost nets by their synchronization
+chain n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;replaces n topmost nets by their chaining
+source file&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;evaluates commands from file tpnfile
+load tpnfile&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pushes the empty net on stack, then sources tpnfile
+<!-- .fi -->
+</PRE>
+<P>
+Notes:
+<P>
+- merge n, sync n, chain n, assign unique names to the nodes of their components;
+<P>
+- synchronization (sync) fuse copies of transitions with same label in all components;
+<P>
+- chaining (chain) is like synchronization, but on places;
+<P>
+- concurrent composition (merge) is simply juxtaposition, preserving labels.
+<BR>
+  It is a derived form that could always be replaced by some combination of
+<BR>
+  relabelling and sync/chain (see examples);
+<P>
+- in a ren specification, all renamings and/or hidings are applied simultaneously;
+<BR>
+  ren x/y means that all nodes labelled by y become labelled by x
+<BR>
+  ren /x means that nodes labelled x become unlabelled (hidden)
+<P>
+- "load tpnfile" is a shorthand for the two lines:
+<!-- .nf -->
+<PRE>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;source tpnfile
+<!-- .fi -->
+</PRE>
+<P>
+- the file names in source and load instructions are relative to the directory
+<BR>
+  in which resides the script file;
+<P>
+<P>
+<P>
+<P>
+<!-- .SH The \&.pnml format -->
+</BLOCKQUOTE>
+<A name=5>
+
+     <H3>The &#46;pnml format</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+The PNML  format is  still evolving. The  tina tools  currently accept
+BasicPNML   (<A HREF="http://www.informatik.hu-berlin.de/top/pnml/basicPNML.rng">http://www.informatik.hu-berlin.de/top/pnml/basicPNML.rng</A>)
+and an extension of it,  TpnPNML, informally explained below.
+<P>
+TpnPNML extends BasicPNML as follows:
+<P>
+- In the "graphics" element of any node, the following line can be added,
+<BR>
+  that specifies an offset for the node identifier:
+<P>
+   &lt;offset x=... y=... /&gt;
+<P>
+- Any place and transition can have a "label" element, in addition to a
+<BR>
+  name element.
+<P>
+- Any transition can have a "delay" element, encoding a firing interval,
+<BR>
+  and possibly an offset for this interval. The syntax of intervals is
+<BR>
+  taken from MathML (<A HREF="http://www.w3.org/1998/Math/MathM">http://www.w3.org/1998/Math/MathM</A>).
+<P>
+<!-- .nf -->
+<PRE>
+  For instance, an interval [4,9] with offset (-10,0) is specified by:
+<P>
+  &lt;delay&gt;
+   &lt;interval xmlns="<A HREF="http://www.w3.org/1998/Math/MathML">http://www.w3.org/1998/Math/MathML</A>" closure="closed"&gt;
+    &lt;cn&gt;4&lt;/cn&gt;
+    &lt;cn&gt;9&lt;/cn&gt;
+   &lt;/interval&gt;
+   &lt;graphics&gt;
+    &lt;offset x="-10" y="0" /&gt;
+   &lt;/graphics&gt;
+  &lt;/delay&gt;
+<P>
+  The unbounded interval [4,w[ would be specified by:
+<P>
+  &lt;delay&gt;
+   &lt;interval xmlns="<A HREF="http://www.w3.org/1998/Math/MathML">http://www.w3.org/1998/Math/MathML</A>" closure="closed-open"&gt;
+    &lt;cn&gt;4&lt;/cn&gt;
+    &lt;ci&gt;infty&lt;/ci&gt;
+   &lt;/interval&gt;
+  &lt;/delay&gt;
+<P>
+  And interval ]3,5[ by:
+<P>
+  &lt;delay&gt;
+   &lt;interval xmlns="<A HREF="http://www.w3.org/1998/Math/MathML">http://www.w3.org/1998/Math/MathML</A>" closure="open"&gt;
+    &lt;cn&gt;3&lt;/cn&gt;
+    &lt;cn&gt;5&lt;/cn&gt;
+   &lt;/interval&gt;
+  &lt;/delay&gt;
+<!-- .fi -->
+</PRE>
+<P>
+Tools tina, struct and plan accept BasicPNML and TpnPNML natively.
+<P>
+The nd  tool can import or export  nets into TpnPNML. If  the file has
+extension .pnml, then "file-&gt;open" and "file-&gt;save as" can be used for
+this, otherwise use "file-&gt;import" or "file-&gt;export".
+<P>
+The ndrio tool is able to convert &#46;net and &#46;ndr to/from &#46;pnml.
+<P>
+<P>
+<P>
+<!-- .SH The \&.tts format -->
+</BLOCKQUOTE>
+<A name=6>
+
+     <H3>The &#46;tts format</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+As  of 2.9.0,  tina accepts  as input  high level  descriptions called
+"Time Transition Systems" (TTS).  A Time Transition System description
+consists of  a Time  Petri net described  in any format  understood by
+tina (&#46;net, &#46;ndr, &#46;tpn, &#46;pnml) and a shared  library (a &#46;so/&#46;dyn/&#46;dll
+file)  defining   the  data  processing  synchronized   with  the  net
+transitions, together in a directory with extension .tts.
+<P>
+Applied to  a &#46;tts  directory, tina  loads the &#46;net  or &#46;ndr  file (as
+usual), and dynamically links the  library file to get the actions and
+predicates. This file described the API the shared library must obey.
+<P>
+tina sees data values  as keys (integers, not necessarily contiguous),
+through a  "store" function.   The storage functions  may reside  in a
+separate library  or may be  statically linked with the  data library,
+all storage libraries must provide functions:
+<P>
+<!-- .nf -->
+<PRE>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;store : value -&gt; key
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lookup : key -&gt; value
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;init_storage : unit -&gt; unit
+<!-- .fi -->
+</PRE>
+<P>
+The data shared library itself captures:
+<P>
+<!-- .nf -->
+<PRE>
+    an array of transition names for the transitions referred to
+    in the library. The size of the array is returned in the parameter
+    of function transition.
+<P>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;transitions : int ref -&gt; string vector
+<P>
+    A function returning the current version of the format (currently 2):
+<P>
+        ttsapiversion : unit -&gt; int
+<P>
+    A function initial returning the initial data state and a
+    function final called after exploration is complete:
+<P>
+       initial : unit -&gt; key
+       final : int -&gt; unit
+<P>
+    for a subset of transitions in transitions, referred to by
+    their index in array transitions, functions:
+<P>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pre_i : key -&gt; bool
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;act_i : key -&gt; key
+<P>
+    A function set_exceptions, called by the tts client if wishing to handle
+    tts runtime exceptions itself rather then leaving that task to the
+    tts library (default behavior). Function set_exception returns the array
+    of possible exception messages, its size in the first argument, and, in
+    the second argument, the address of the C variable holding the
+    exception code when some exception is raised. Exception codes are either
+    an exception number in 0..99 or a line number (line) and an exception number
+    (no) encoded into the integer 100*line + no. To handle exceptions,
+    the client must read that variable after each call of pre_i and act_i,
+    and reset it to 0 afterwards:
+   
+    &nbsp;&nbsp;&nbsp;&nbsp;set_exceptions : int ref * pointer ref -&gt; string vector
+<P>
+    An independance predicate for actions.
+    This predicate is used by tina for computing the conflicting relation
+    for partial order methods, and the persistent and newly enabled relations
+    for state class graphs:
+<P>
+        independant : int * int -&gt; bool
+<P>
+    A value printer, used by tina to print data value in some concrete
+    notation when output is "verbose":
+<P>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sprint_state: key * string ref -&gt; int
+<P>
+    For kts output, the state (or some abstraction of it) should be
+    available to tina as a record with integer fields. This is done
+    by providing:
+<P>
+    A vector of observation labels, and the number of, by function:
+<P>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;obs_names : int ref -&gt; string vector
+<P>
+    A function to retrieve the contents of observables from a value:
+<P>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;obs_values : key -&gt; int vector
+<!-- .fi -->
+</PRE>
+<P>
+A first high level description language compiled into this format, called
+Fiacre, should be available by now.
+<P>
+<P>
+<!-- .SH The \&.ktz format -->
+</BLOCKQUOTE>
+<A name=7>
+
+     <H3>The &#46;ktz format</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+The ktz format is the binary format for kripke transition system (kts)
+of tina.   That compact format is  the input format of  selt (the tina
+SE-LTL model checker) and other forthcoming tools.
+<P>
+(description to be provided).
+<P>
+<P>
+<!-- .SH The \&.aut format -->
+</BLOCKQUOTE>
+<A name=8>
+
+     <H3>The &#46;aut format</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+The aut format is the lts  description format of the Aldebaran tool of
+the CADP toolset (see the CADP documents).
+<P>
+<!-- .B Notes -->
+<B>Notes</B> <P>
+The  &#46;aut format does not  allow double quotes (")  to appear in
+labels.   In addition  tina  forbids backquotes  (&#145;)  in &#46;aut  labels.
+Backquotes are used by tina to encode sets of properties into single &#46;aut labels.
+<P>
+<!-- .SH The \&.bcg format -->
+</BLOCKQUOTE>
+<A name=9>
+
+     <H3>The &#46;bcg format</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+The bcg format  is the binary lts description format  of the BCG tools
+of the CADP toolset (see the CADP documents).
+<P>
+<!-- .B Notes -->
+<B>Notes</B> <P>
+tina forbids  double quotes (") and  backquotes (&#145;) to  appear in &#46;bcg
+labels. Backquotes are used by tina to encode lists of properties into
+single &#46;bcg  labels; double quotes would  prevent lossless conversions
+to &#46;bcg.
+<P>
+<P>
+<!-- .SH The \&.mec format -->
+</BLOCKQUOTE>
+<A name=10>
+
+     <H3>The &#46;mec format</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+The mec format is the kts description format of the Mec4 model checker.
+<P>
+<!-- .B Notes -->
+<B>Notes</B> <P>
+mec  only allows alphanumeric  labels (a  letter followed  by letters,
+digits or  _) to appear as  state or transition  properties. tina will
+refuse to generate &#46;mec descriptions  if place or transition names are
+not legal mec property identifiers.
+<P>
+<P>
+<!-- .SH The \&.adr format -->
+</BLOCKQUOTE>
+<A name=11>
+
+     <H3>The &#46;adr format</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+It  is the  format of  graphic files  produced by  the nd  editor when
+editing  automata.    An  automaton  is  described  by   a  series  of
+declarations of states and edges, followed by a name declaration.  The
+automaton described is the superposition of these declarations.
+<P>
+<!-- .B Grammar: -->
+<B>Grammar:</B> <P>
+<!-- .nf -->
+<PRE>
+&#46;adr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= (&lt;stdesc&gt;)* (&lt;edgedesc&gt;)* &lt;autdesc&gt;
+stdesc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= &#146;s&#146; &lt;xpos&gt; &lt;ypos&gt; &lt;state&gt; {&lt;anchor&gt; &lt;label&gt; &lt;anchor&gt;}
+edgedesc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= &#146;e&#146; &lt;state&gt; &lt;state&gt; &lt;label&gt; &lt;anchor&gt;
+edgedesc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |  &#146;e&#146; &lt;state&gt; &lt;ang&gt; &lt;rad&gt; &lt;state&gt; &lt;ang&gt; &lt;rad&gt; &lt;label&gt; &lt;anchor&gt;
+autdesc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= &#146;h&#146; &lt;aut&gt; &lt;attr&gt;
+xpos, ypos, rad&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= FLOAT
+ang&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= UFLOAT
+aut, state, label&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= ANAME | &#146;{&#146;QNAME&#146;}&#146;
+anchor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= &#146;n&#146; | &#146;nw&#146; | &#146;w&#146; | &#146;sw&#146; | &#146;s&#146; | &#146;se&#146; | &#146;e&#146; | &#146;ne&#146; | &#146;c&#146;
+FLOAT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= integer or float (without exponent)
+UFLOAT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= integer or float between 0 and 1 (without exponent)
+INT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= unsigned integer
+ANAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= see notes below
+QNAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= see notes below
+attr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::= an unspecified number of optional graphic parameters (specifying size, color, etc)
+<!-- .fi -->
+</PRE>
+<P>
+<!-- .B Notes: -->
+<B>Notes:</B> <P>
+State declarations must precede edge declarations.
+<P>
+The last declaration must be the autdesc declaration (h).
+<P>
+Empty lines and lines beginning with &#146;#&#146;are considered comments.
+<P>
+Two forms are admitted for net, place and transition names:
+<BR>
+  - ANAME : any non empty string of letters, digits, primes &#146; and underscores _
+<BR>
+  - &#146;{&#146;QNAME&#146;}&#146; : any chain between braces, and in which characters {, }, and \ are prefixed by \
+<P>
+<P>
+<!-- .SH The \&.ltl format -->
+</BLOCKQUOTE>
+<A name=12>
+
+     <H3>The &#46;ltl format</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+ltl  is  the  format of  files  accepted  as  use  input by  the  selt
+model-checker.  Check the selt manual page for a full description.
+<P>
+<P>
+<!-- .SH The \&.mmc format -->
+</BLOCKQUOTE>
+<A name=13>
+
+     <H3>The &#46;mmc format</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+mmc  is  the  format of  files  accepted  as  use  input by  the muse
+model-checker.  Check the muse manual page for a full description.
+<P>
+<P>
+<!-- .SH The \&.scn format -->
+</BLOCKQUOTE>
+<A name=14>
+
+     <H3>The &#46;scn format</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+The scn format is used by:
+<P>
+<!-- .nf -->
+<PRE>
+- the nd stepper to store/load histories;
+- the selt model checker to save counter examples for replay by the stepper;
+- the plan application, to analyse path timing.
+<!-- .fi -->
+</PRE>
+<P>
+A  &#46;scn file is  a series  of line,  each constituted  of a  series of
+blocks of one  of the following shape (all blocks in  a file have same
+shape) :
+<P>
+<!-- .nf -->
+<PRE>
+       &lt;transition&gt;
+  or:  &lt;transition&gt;@&lt;time&gt;
+  or:  &lt;transition&gt;$&lt;time&gt;
+<P>
+  where &lt;transition&gt; is a transition name (see net.txt)
+  and   &lt;time&gt; is a nonnegative float (without exponent)
+<!-- .fi -->
+</PRE>
+<P>
+Spaces and tabs are considered separators;
+<P>
+Line breaks are  significant, they are interpreted as  marks by the nd
+stepper, and preserved by the plan tool;
+<P>
+Blank lines and and those beginning with "#" are considered comments;
+<P>
+<P>
+<P>
+<!-- .SH EXAMPLES -->
+</BLOCKQUOTE>
+<A name=15>
+
+     <H3>EXAMPLES</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+Directory "net" in tina distributions include various example descriptions
+in the above formats.
+<P>
+<P>
+<!-- .SH SEE ALSO -->
+</BLOCKQUOTE>
+<A name=16>
+
+     <H3>SEE ALSO</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+nd(n), tina(n), plan(n), struct(n), ktzio(n), ndrio(n), tedd(n), selt(n), sift(n), muse(n), pathto(n), play(n), walk(n), reduce(n)
+<P>
+<!-- .SH AUTHORS -->
+</BLOCKQUOTE>
+<A name=17>
+
+     <H3>AUTHORS</H3>
+
+</A>
+<BLOCKQUOTE>
+Bernard Berthomieu, LAAS/CNRS, 2000-2015, <A HREF="mailto:Bernard.Berthomieu@laas.fr.">Bernard.Berthomieu@laas.fr.</A>
+<P>
+</BLOCKQUOTE>
+<P><HR>
+<TABLE width=100%><TR> <TD width=33%><I>Tina Formats</I></TD> <TD width=33% align=center>formats (n)</TD> <TD align=right width=33%><I>Version 3.7.0</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.07</A> from src/formats.n using man macros.</FONT>
+</BODY></HTML>

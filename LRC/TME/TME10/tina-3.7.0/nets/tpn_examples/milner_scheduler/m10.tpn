@@ -1,0 +1,23 @@
+net milner10
+load components/proc.ndr
+pl p0 (1)
+ren 1/out 10/in
+load components/proc.ndr
+ren 2/out 1/in
+load components/proc.ndr
+ren 3/out 2/in
+load components/proc.ndr
+ren 4/out 3/in
+load components/proc.ndr
+ren 5/out 4/in
+load components/proc.ndr
+ren 6/out 5/in
+load components/proc.ndr
+ren 7/out 6/in
+load components/proc.ndr
+ren 8/out 7/in
+load components/proc.ndr
+ren 9/out 8/in
+load components/proc.ndr
+ren 10/out 9/in
+chain 10

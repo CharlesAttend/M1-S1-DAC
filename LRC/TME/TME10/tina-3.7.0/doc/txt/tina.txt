@@ -1,0 +1,479 @@
+tina(n)                                                                tina(n)
+
+
+
+NAME
+       tina - state space generation tool
+
+       Part of Tina Toolbox for analysis of Petri nets and Time Petri nets.
+
+
+SYNOPSIS
+       tina [-help] [-p]
+            [-C | -Cm n | -R |
+             -V | -Vq | -V(o|f|l) tlist | -P | -Q(|p|b) |
+             -D | -F(|1) |
+             -M(|m) | -E | -W(|m) | -S | -A | -U | -incl | -equal]
+            [-s n] [-c n] [-b n] [-t s] [-m n] [-en n]
+            [-df | -bf ] [-inh] [-tc] [-pr] [-dt] [-sw]
+            [-NET | -NDR | -TPN | -PNML | -TTS]
+            [-v | -q | -aut | -mec | -bcg | -ktz]
+            [-sp n] [-tp n] [-ls] [-lt] [-wp n] [-g] [-d] [-stats]
+            [infile] [outfile] [digestfile] [errorfile]
+
+
+
+DESCRIPTION
+       tina  builds various  state space abstractions for Petri  nets and Time
+       Petri nets.  It  takes as input descriptions of  a Priority Time  Petri
+       net   in textual  form (.net,  .pnml, .tpn  formats) or  graphical form
+       (.ndr format of files produced by  nd, .pnml with graphics), or a  Time
+       Transition System description in .tts format.
+
+
+OPTIONS
+       -help  Recalls options.
+
+
+       Operating mode options:
+
+
+       -C | -Cm n
+              Build  the  Coverability  Graph of a Petri net (untimed, or with
+              temporal information  discarded).   -C   implements   a   method
+              close   to   the  original  Karp  and  Miller algorithm.  -Cm  n
+              behaves like -C,  except that  it  specifies  a  threshold   for
+              unbounded  places   (-C eqv.  -Cm  0).   With -Cm  k, a place  p
+              becomes marked with w in  marking m' if some ancestor marking  m
+              of m' is such that: (for any q)(m'(q) >= m(q)) and  m'(p) > m(p)
+              >= k.  These options remove time constraints, inhibitor arcs and
+              priorities, they set flags -tc -inh -pr.
+
+
+       -R     Builds  the  marking reachability graph of a Petri net (untimed,
+              or with temporal information discarded).   This  option  removes
+              time constraints, it sets flag -tc.
+
+
+       -V | -Vq | -Vo tlist | -Vf tlist | -Vl tlist
+
+              Builds   the  Covering  Step  Graph of  a Petri  net,  according
+              to  the technique of Vernadat/Azema/Michel.  -V preserves  dead-
+              locks.  -Vq  stops  as soon  as all transitions  have been fired
+              or all states  have been enumerated;  it    checks   quasi-live-
+              ness.    tlist   being   a  list  of observable transitions, -Vo
+              tlist preserves observational  equivalence  wrt  transitions  in
+              tlist,  -Vf  tlist preserves failure equivalence, and -Vl  tlist
+              preserves  linear   time  temporal  properties.   If  all  tran-
+              sitions  are  observable   then  -V(o|f|l)  tlist is eqv  to -R.
+              These options remove  time constraints   and  priorities,   they
+              set  flags -tc -pr.
+
+
+       -P     Builds   the  partial marking  graph of  a Petri  net, according
+              to the persistent sets technique. The heuristic retained  is  to
+              minimize local branching.  These options remove time constraints
+              and priorities, they set flags -tc and -pr.
+
+
+       -Q | -Qp | -Qb
+              Builds  the  partial  marking  graph  of  a  Petri   net.   Com-
+              bine   the  persistent   sets  (-P)  and   covering  steps  (-V)
+              methods.  Several heuristics are available: -Qp  maximizes  size
+              of  steps;  -Qb  minimizes  branching, like -P; -Q (recommended)
+              implemnents a trade off between  -Qp  and  -Qb.   These  options
+              remove  time constraints and priorities, they set flags -tc -pr.
+
+
+       -D     Builds the essential state graph of a Time Petri net,  according
+              to  the  technique  of Popova. This graph preserves reachability
+              and linear time temporal properties. Static intervals   must  be
+              closed or unbounded and left-closed.   If no  temporal  informa-
+              tion is  specified,  or if  all transitions bear interval [0,w[,
+              then -D is silently replaced by -R.
+
+
+       -F | -F1
+              Builds   the  subgraph  of the  state graph  obtained by  firing
+              integer delay transitions (unit  delays  if  -F1)  and  discrete
+              transitions.   This  graph strictly includes that obtained by -D
+              and  preserves  the  same properties. Static intervals  must  be
+              closed   or  unbounded  and  left- closed. If no temporal infor-
+              mation is specified, or if all transitions bear interval  [0,w[,
+              then -F/-F1 is silently replaced by -R.
+
+
+       -W     Builds  the  linear  state  class  graph   of  a Time Petri net,
+              according to the technique  of Berthomieu/Menasche.   The linear
+              state   class  graph preserves  marking reachability  properties
+              and  linear  time temporal properties.   If  no temporal  infor-
+              mation   is   specified,   or  if  all transitions bear interval
+              [0,w[, then -W is silently replaced by -R.  This option  removes
+              priorities, it sets flag -pr.
+
+
+       -Wm    As   -W,  except   interprets  multi   enabledness   of  transi-
+              tions.  Multi-enabled transitions are  associated  with  several
+              delay variables, ordered by their creation dates.
+
+
+       -M | -Mm
+              As  -W  or  -Wm,  except  only  markings  are  preserved (firing
+              sequences are not).
+
+
+       -S     Builds the  strong state class graph  (also called  zone   graph
+              by  some  authors)  of  a  Time Petri net.  That graph preserves
+              state reachability properties  and  linear  time  temporal prop-
+              erties.    If  no  temporal information is  specified, or if all
+              transitions  bear interval [0,w[, then -S is  silently  replaced
+              by -R.
+
+
+       -E     As  -S,  except  only states are preserved (firing sequences are
+              not).
+
+
+       -A     Builds the arborescent,  or atomic, state class graph  of a Time
+              Petri  net.   The arborescent state  class graph preserves live-
+              ness properties and branching time temporal properties.   If  no
+              temporal information is specified,  or if  all transitions  bear
+              interval [0,w[,  then -A  is  silently  replaced  by  -R.   This
+              option currently removes priorities, it sets flag -pr.
+
+
+       -U     An  alternative for  -A,  generally slower,  provided for  peda-
+              gogical  purposes.    Algorithmically,    -A   partition/refines
+              the    result  of construction  -E, while -U  proceeds from  the
+              typically  larger graph obtained by -S. The graphs  obtained  by
+              -A  and  -U  should be bisimilar.  This option currently removes
+              priorities, it sets flag -pr.
+
+
+       -incl  Identify two state classes when one is included  in  the  other.
+              This  flag  avoids to specify mode -M or -E when analyzing timed
+              models.  It is silently ignored if the net is untimed or if some
+              operating  mode  is  simultaneously  set,  otherwise  it has the
+              effects of -M if no priorities are specified, or  of  -E  other-
+              wise.
+
+
+       -equal Identify  two state classes when they are equal (default).  This
+              flag undoes the effects of any preceding -incl flag.
+
+
+       Exploration strategy flags:
+
+
+       -df    Depth-first exploration (when meaningful)
+
+
+       -bf    Breadth-first exploration (default)
+
+
+       -inh   Removes inhibitor arcs from the input net.
+
+
+       -pr    Removes priority constraints from the input net.
+
+
+       -tc    Removes time constraints  from the input net.
+
+
+       -dt    Forgets data processing when reading a tts description.
+
+
+       -sw    Forgets stopwatch and stopwatch-inhibitor arcs from input net.
+
+
+       Stopping test and limits flags:
+
+
+       -s n   Stopping test for the boundedness property.
+              -s 0 : None, use limit option(s) to ensure termination
+              -s 1 : Checks a sufficient condition for unboundedness
+                      of the underlying untimed net (Fast but small risk
+                      of undetection).
+              With -C, no stopping test is necessary.
+
+              With time constaints, inhibitor arcs, stopwatch arcs,
+              boundedness is undecidable.
+
+
+       -c n   Bound on the number of markings to enumerate (none if n=0).
+
+
+       -b n   Bound on the marking of each place (none if n=0).
+
+
+       -t n   Bound on duration of enumeration (none if n=0).
+
+
+       -m n   Bound on multi-enabledness of transitions (none if n=0).
+
+
+       -en n  Lower bound on number of enabled transitions (none if n=0). E.g.
+              absence of deadlocks is checked on the fly with "-en 1".
+
+
+       Output format selection :
+
+
+       -v     textual output, prints full results
+
+
+       -q     textual output, prints a summary of results
+
+
+       -aut   transition   system  output   in .aut  format, as  read by Alde-
+              baran.
+
+
+       -mec   transition system output in .mec format, as read by Mec 4.
+
+
+       -ktz   transition system output in .ktz proprietary compact format.
+
+
+       -bcg   transition system output in .bcg compact format, as read by  bcg
+              tools.
+
+
+
+       -ls    prints labelled state properties
+
+              Without  option  -ls,  atomic  state  properties are bijectively
+              mapped to the net's place names.  With -ls, they are  mapped  to
+              place labels.
+
+
+       -lt    prints labelled transition properties
+
+              Without option -lt, atomic transition properties are bijectively
+              mapped to the net's transition names.  With -lt, they are mapped
+              to transition labels.
+
+
+
+       -sp n  encoding of state properties for transition system outputs:
+              -sp 0 : no state properties (default for .aut, .bcg)
+              -sp 1 : boolean state properties (default for .mec)
+              -sp 2 : weighted state properties (default for .ktz)
+              -sp 3 : weighted state properties for all weights
+
+              The  .aut and .bcg formats do not natively support state proper-
+              ties. With -sp n,  where n>0, tina encodes  them  as  additional
+              transitions: regular transition properties (labels) are prefixed
+              by  "E.", state  properties (markings) are  introduced as  loops
+              on  states  labelled  by the places marked, prefixed by "S.". In
+              addition, when n>1, place names are suffixed by  their  marking,
+              separated  by  "*".   E.g.  if place p3 has 3 tokens in state s,
+              than  -sp  1  adds  transition  (s,"S.`p3`",s),   -sp   2   adds
+              (s,"S.`p3`*3",s),   and   -sp   3   adds    (s,"S.`p3`  S.`p3`*2
+              S.`p3`*3",s).
+
+              The .mec format natively supports unweighted  state  properties.
+              If -sp 2 or 3 is specified, weighted properties are encoded into
+              boolean properties: e.g. marking  p*3  is represented  by  state
+              property   p with -sp 1, p_3 with  -sp 2, and properties p, p_2,
+              and p_3, with -sp 3.
+
+              The .ktz format natively  supports  weighted  state  properties,
+              even  for  infinite  weights  (unbounded places). For .ktz, flag
+              values 1 to 3 yield the same result.
+
+
+       -tp n  encoding of transition properties for transition system outputs:
+              -tp 0 : no transition properties
+              -tp 1 : boolean transition properties (default for .aut, .bcg, .mec)
+              -tp 2 : weighted transition properties (default for .ktz)
+              -tp 3 : weighted transition properties for all weights
+
+              The  .aut  and  .bcg formats expect a single transition property
+              (or none, represented by "i"). Multiple properties  are  encoded
+              into  a single one, built from the concatenation of their repre-
+              sentations.
+
+              The .mec format supports unweighted multiple transition  proper-
+              ties.   Weights  are  appended  to the  properties  as explained
+              above for weighted  state  properties.
+
+              The .ktz format natively supports weighted transition properties
+              (even  for infinite weights). For .ktz, flag values 1 to 3 yield
+              the same result.
+
+              Note: All tina constructions except -V  produce  single  transi-
+              tion   properties; construction -V produces multiple  transition
+              properties. No construction  currently produces weighted   tran-
+              sition properties,  but  options -tp 2 and -tp 3 are still  use-
+              ful  when  combined  with option -lt and transition labelling is
+              surjective.
+
+
+       -wp n  encoding of wait states for transition system outputs:
+
+              -wp 0 : no wait state properties
+              -wp 1 : emit wait state properties
+
+              In  Time  Petri  nets,  it may happen that no transition firable
+              from some state has a finite firing deadline. Knowledge of  such
+              "wait" states is important for e.g. LTL model checkers. With -wp
+              1, an extra "wait" property is emitted for all wait states (thus
+              for  all  states  if  the net is untimed or all transitions have
+              interval [0,w[). In all formats, it is represented by  an  extra
+              transition  labelled "*" looping on states having that property.
+
+              Default value: -wp 1 if ktz output and at least  one  transition
+              has  an  interval  different  from  [0,w[, otherwise -wp 0. This
+              treatment avoids to associate a wait property for  all  behavior
+              states  in  untimed nets, for which LTL model checking typically
+              assumes a fairness hypothesis for transition  firing.  The  tina
+              LTL  model  checker  has  a flag to restore these properties, if
+              desired.
+
+
+       Other flags:
+
+
+       -stats Prints progress information on the fly.
+
+
+       -g     Disables liveness analysis (if applicable).
+
+
+       -p     Disables reachability and liveness analysis (just parses).
+
+
+       -d     As of 2.9.4, tina prints a five lines digest in digestfile  (see
+              below) after construction of the specified abstraction.  Flag -d
+              disables printing and computation of digest (if applicable).
+
+              The digest information includes status information for the prop-
+              erties  of  the  net  (boundedness, liveness, reversibility) and
+              some information about the contents  of  the  transition  system
+              (ts) built:
+
+              count: the number of states/transitions in the ts
+              props: the number of atomic states/transitions propositions
+                     referred to in the ts. Depending on whether ts is built
+                     from names or labels, these are:
+                     - the numbers of places/transitions of the net, or
+                     - the numbers of distinct place/transition labels
+              psets: the number of sets of propositions referred to in the
+                     ts. Depending on whether ts is built from names or
+                     labels, these are
+                     - the numbers of markings/transition steps referred
+                        to in the ts, or
+                     - the numbers of those distinct after labelling
+              dead: the numbers of deadlock states and of unfireable transitions
+              live: the numbers of live states and transitions, where
+                     - a state is live if it is found in some pending
+                        strong connected component of the ts
+                     - a transition is live if it fires in all pending
+                        strong connected components of the ts
+
+
+
+       Input format:
+
+
+       -NET | -NDR | -PNML | -TPN | -TTS
+              Specifies  the  format  of the input net. This flag is necessary
+              when the input net is read on standard input,  or  read  from  a
+              file  that does not bear the expected extension. By default, the
+              net is assumed in .net or .ndr format.
+
+
+       Input source:
+
+
+       infile Where the  net is  read. The  input  format  is   determined  by
+              the file type, according to the table below. If absent or speci-
+              fied by "-", the net is  read on standard  input in the   format
+              specified  by   the  input  flag.  If  both an  infile and  some
+              input flag  are present,  then the format defined  by the  input
+              flag supersedes  that determined  by the infile extension.
+
+              file extension      input format
+              --------------------------------------------------------------
+              .net           net format
+              .ndr           ndr format
+              .tpn           tpn format
+              .pnml               pnml format
+              .tts           tts format
+
+
+       Output destination:
+
+
+       outfile
+              Where  results  are  written. The output format is determined by
+              the file type, according  to the  table  below.  If   absent  or
+              specified  by "-", then the net is written on standard output in
+              the format specified by the output flag. If both an  outfile and
+              some  output  flag  are present, then the format defined by  the
+              output flag supersedes that determined by the outfile extension.
+
+              file extension      output format
+              --------------------------------------------------------------
+              .ktz           tina binary ktz format
+              .bcg           bcg tools bcg format
+              .aut           aldebaran aut format
+              .mec           mec4 mec format
+              any other      textual output (default -v style)
+
+
+       Digest destination:
+
+
+       digestfile
+
+              As  of  2.9.4,  tina  prints  a  five lines digest in digestfile
+              (default stdout) after construction of  the  specified  abstrac-
+              tion.
+
+
+       Errors destination:
+
+
+       errorfile
+              Where error messages are written. By default, errors are printed
+              on standard error.
+
+
+
+       Default options:
+
+              Depend upon the features of the input net:
+              If no time constraint:     tina -R -s 1 -c 0 -t 0 -b 0 -m 0 -v
+              Else, if no priorities:    tina -W -s 1 -c 0 -t 0 -b 0 -m 0 -v
+              Otherwise:                 tina -S -s 1 -c 0 -t 0 -b 0 -m 0 -v
+
+
+
+EXAMPLES
+       tina -q  < nets/ifip.ndr
+       tina -PNML < mynet.xml
+       tina -s 0 nets/abp.net abp.txt
+       tina -R -q < nets/ifip.ndr > ifip.log-R
+       tina -a nets/ifip.ndr > ifip.aut
+       tina -C ../nets/hp.ndr hp.ktz
+       tina -R ../nets/ifip.ndr ifip.ktz ifip.digest ifip.error
+
+
+
+SEE ALSO
+       nd(n),  plan(n),  struct(n),  ktzio(n),  ndrio(n),  tedd(n),   selt(n),
+       sift(n), muse(n), pathto(n), play(n), walk(n), reduce(n), formats(n)
+
+
+
+AUTHORS
+       Bernard  Berthomieu,  with  contributions by Francois Vernadat, Pierre-
+       Olivier    Ribet,    Florent     Peres,      LAAS/CNRS,      2000-2012,
+       {Bernard.Berthomieu|Francois.Vernadat}@laas.fr.
+
+
+
+
+Tina Tools                       Version 3.7.0                         tina(n)

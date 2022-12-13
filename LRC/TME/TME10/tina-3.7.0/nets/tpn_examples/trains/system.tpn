@@ -1,0 +1,9 @@
+
+load components/train.ndr
+load components/train.ndr
+load components/train.ndr
+merge 3
+load components/controler.ndr
+load components/barrier.ndr
+sync 3
+

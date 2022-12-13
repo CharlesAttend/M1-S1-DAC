@@ -1,0 +1,411 @@
+<HTML><HEAD>
+<TITLE>Manual Page - plan(n)</TITLE>
+<BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
+<!-- .TH plan n "Version 3.7.0" "Tina Tools" -->
+<CENTER>
+<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>plan (n)</NOBR><HR></H1>
+</CENTER>
+<P>
+<!-- .SH NAME -->
+<A name=0>
+
+     <H3>NAME</H3>
+
+</A>
+<BLOCKQUOTE>
+plan - path analysis tool
+<P>
+Part of Tina Toolbox for analysis of Petri nets and Time Petri nets.
+<P>
+<!-- .SH SYNOPSIS -->
+</BLOCKQUOTE>
+<A name=contents></A><H3>CONTENTS</H3></A>
+<BLOCKQUOTE>
+<A HREF=#1>Synopsis</A><BR>
+<A HREF=#2>Description</A><BR>
+<A HREF=#3>Options</A><BR>
+<A HREF=#4>Examples</A><BR>
+<A HREF=#5>Notes</A><BR>
+<A HREF=#6>See Also</A><BR>
+<A HREF=#7>Authors</A><BR>
+</BLOCKQUOTE>
+<A name=8>
+
+     <H3>SYNOPSIS</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+<!-- .B plan  -->
+<B>plan</B> [-<I>h</I>elp]
+<BR>
+     [-A(|w|i) | -S(|w|i)]
+<BR>
+     [-t s] [-df | -bf] [-p]
+<BR>
+     [-NET | -NDR | -PNML | -TPN | -TTS]
+<BR>
+     [-v | -q | -s] [-abs | -rel] [-raw | -min | -can]
+<BR>
+     [scninfile] [netinfile] [outfile] [errorfile]
+<P>
+<!-- .SH DESCRIPTION -->
+</BLOCKQUOTE>
+<A name=2>
+
+     <H3>DESCRIPTION</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+From a Time Petri net or  Time Transition System and a firing sequence
+in &#46;scn format, plan  computes an inequation system characterizing all
+the times at which transitions in the sequence may fire, or an example
+firing schedule (also called path).
+<P>
+<!-- .SH OPTIONS -->
+</BLOCKQUOTE>
+<A name=3>
+
+     <H3>OPTIONS</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+<!-- .TP -->
+<TABLE cellpadding=3>
+<TR valign=top><TD width=6% nowrap>
+-<I>h</I>elp
+</TD><TD valign=bottom>
+Recalls options.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Operating mode options: -->
+<B>Operating mode options:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-A
+</TD><TD valign=bottom>
+Returns  an  inequation  system   characterizing  the  times  at  which
+transition in the input &#46;scn firing sequence may fire.
+If the  input firing sequence is timed, then  times are forgotten.
+Fails if the input firing sequence is not firable.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-S
+</TD><TD valign=bottom>
+Returns a solution of the system computed by -A.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-Aw
+</TD><TD valign=bottom>
+Line breaks  in scnfiles are  significant. Omitting blank  and comment
+lines,  file scnfile  defines a  series  of sequence.  That series  of
+sequence can  always be written s.w,  where w is the  last sequence in
+the series,  and s  is the concatenation  of all sequences  except the
+last.
+<P>
+If subsequence  w is empty, then  -Aw is equivalent  to -A. Otherwise,
+-Aw  assumes that  sequence  s.w^*  is firable  and  returns a  system
+characterizing the times at which transition in sequence s.w may fire,
+with the guarantee that this path leads to a state from which sequence
+w is firable an infinite number of times.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-Sw
+</TD><TD valign=bottom>
+Returns a  solution of  the system computed  by -Aw.
+<P>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-Ai
+</TD><TD valign=bottom>
+(IN PROGRESS)
+As  -Aw, except  that the  system returned,  if any,
+characterizes infinite  paths: the subsystem  characterizing the times
+of subsequence w is guaranteed to produce stationary paths (with equal
+source and target states).  Such a solution is not garanteed to exist,
+even though sequence w is firable an infinite number of times after s
+(Time Petri nets may exhibit zeno behaviors).
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-Si
+</TD><TD valign=bottom>
+(IN PROGRESS)
+Returns a solution  of the system computed by  -Ai.
+<P>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Path options: -->
+<B>Path options:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-abs
+</TD><TD valign=bottom>
+Returns  path system  or path  expressed in  terms of  dates (absolute
+times). Variable  start is  the time at  which the initial  marking is
+established.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-rel
+</TD><TD valign=bottom>
+Returns  path system  or path  expressed in  terms of  delays (relative
+times).
+<P>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-raw
+</TD><TD valign=bottom>
+Returns path system "as computed", without any particular post processing.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-can
+</TD><TD valign=bottom>
+Returns path system in which all constraints are tight. All missing constraints,
+if any, are redundant and can be recovered as linear combinations of the existing constraints.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-min
+</TD><TD valign=bottom>
+(IN PROGRESS)
+As -can, except that attempts to return a system without redundant constraints.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Output format flags: -->
+<B>Output format flags:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-v
+</TD><TD valign=bottom>
+verbose output. Prints results in explicit form.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-q
+</TD><TD valign=bottom>
+Prints a summary of results. For -A, and when -can or -min is passed,
+prints the duration of the shortest and longest paths.
+For -S, prints the duration of the path computed.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-s
+</TD><TD valign=bottom>
+Output results in a format loadable into the nd stepper, for replaying it
+(only for mode -S).
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Other flags: -->
+<B>Other flags:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-p
+</TD><TD valign=bottom>
+Disables path analysis (just parses).
+<P>
+<P>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Input format flags for net: -->
+<B>Input format flags for net:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+-NET | -NDR | -PNML | -TPN | -TTS
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Specifies the format of the input net. This flag is necessary when the
+input net is read on standard input, or read from a file that does not
+bear the expected extension. By default, the net is assumed in &#46;net or
+&#46;ndr format.
+<P>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Firing sequence input source: -->
+<B>Firing sequence input source:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+scninfile
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Where the firing  sequence is read. If absent or specified by
+"-", the sequence is read on  standard input.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Net input source: -->
+<B>Net input source:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+netinfile
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Where the  net is  read. The  input format is  determined by  the file
+type, according to the table below. If absent or specified by "-", and
+the firing sequence is not read  on standard input, the net is read on
+standard input in  the format specified by the input  flag. If both an
+infile and some input flag are present, then the format defined by the
+input flag supersedes that determined by the infile extension.
+<P>
+<!-- .nf -->
+<PRE>
+file extension&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;input format
+--------------------------------------------------------------
+&#46;net&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;net format
+&#46;ndr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ndr format
+&#46;tpn&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tpn format
+&#46;pnml&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pnml format
+&#46;tts&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tts format
+<!-- .fi -->
+</PRE>
+<P>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Output destination: -->
+<B>Output destination:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+outfile
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Where results are written. The output format is determined by the file
+type, according  to the  table below. If  absent or specified  by "-",
+then the net is written on  standard output in the format specified by
+the output  format flag. If both  an outfile and some  output flag are
+present, then  the format defined  by the output flag  supersedes that
+determined by the outfile extension.
+<P>
+<!-- .nf -->
+<PRE>
+file extension&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;output format
+--------------------------------------------------------------
+&#46;scn&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nd stepper format
+any other&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;textual output (default -v style)
+<!-- .fi -->
+</PRE>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Errors destination: -->
+<B>Errors destination:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+errorfile
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Where error messages are written. By default, errors are printed on standard error.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Default options: -->
+<B>Default options:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+plan -A -v
+<P>
+<P>
+<!-- .SH EXAMPLES -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=4>
+
+     <H3>EXAMPLES</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+<!-- .nf -->
+<PRE>
+plan -A nets/ifip.scn nets/ifip.ndr
+plan -A nets/ifip.scn nets/ifip.ndr -s
+cat nets/ifip.scn | plan -S - nets/ifip.ndr
+<!-- .fi -->
+</PRE>
+<P>
+<P>
+<!-- .SH NOTES -->
+</BLOCKQUOTE>
+<A name=5>
+
+     <H3>NOTES</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+Tool plan is  still in progress.  Options -Aw and -Sw are experimental,
+options -Ai, -Si are not implemented yet.
+<P>
+<P>
+<!-- .SH SEE ALSO -->
+</BLOCKQUOTE>
+<A name=6>
+
+     <H3>SEE ALSO</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+nd(n), tina(n), struct(n), ktzio(n), ndrio(n), tedd(n), selt(n), sift(n), muse(n), pathto(n), play(n), walk(n), reduce(n), formats(n)k]
+<P>
+<!-- .SH AUTHORS -->
+</BLOCKQUOTE>
+<A name=7>
+
+     <H3>AUTHORS</H3>
+
+</A>
+<BLOCKQUOTE>
+Bernard Berthomieu, LAAS/CNRS, 2000-2012, <A HREF="mailto:Bernard.Berthomieu@laas.fr.">Bernard.Berthomieu@laas.fr.</A>
+<P>
+</BLOCKQUOTE>
+<P><HR>
+<TABLE width=100%><TR> <TD width=33%><I>Tina Tools</I></TD> <TD width=33% align=center>plan (n)</TD> <TD align=right width=33%><I>Version 3.7.0</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.07</A> from src/plan.n using man macros.</FONT>
+</BODY></HTML>

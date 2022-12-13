@@ -1,0 +1,27 @@
+
+bcg support:
+------------
+
+Format  bcg  is one  of  the formats  supported  by  the CADP  toolbox
+(available at http://www.inrialpes.fr/vasy/cadp).  
+
+Bcg support is only available  on linux and windows (please contact us
+if you need bcg support for other targets).
+
+To enable bcg support:
+
+1. Properly  install the CADP toolset you  your machine.
+
+2. Update variable CADP in Makefile, if needed.
+
+3. Type  make to  build  the interface  library  libbcg.so (linux)  or
+libbcg.dll (windows). This library is  needed by tina for bcg support.
+The Makefile provided assumes gcc and gmake available (on linux).  For
+Windows, it is  assumed to be run from a mingw  shell; please adapt if
+you are using another compiler.
+
+4. Move  libbcg.{so|dll} to  a  suitable place.  For Linux,  libbcg.so
+should be in  one of the directories in  variable LD_LIBRARY_PATH. For
+Windows,  it should  be  enough  to move  libbcg.dll  into tina's  bin
+directory.
+

@@ -1,0 +1,201 @@
+<pnml xmlns="http://www.pnml.org/version-2009/grammar/pnml">
+ <net id="n-60E5-326CE-0" type ="http://www.pnml.org/version-2009/grammar/ptnet">
+  <name>
+   <text>l6000</text>
+  </name>
+ <page id="g-60E5-326DF-1">
+  <place id="p-60E5-326E5-2">
+  <name>
+   <text>p1</text>
+    <graphics>
+     <offset x="0" y="10" />
+    </graphics>
+  </name>
+   <initialMarking>
+    <text>6000</text>
+   </initialMarking>
+   <graphics>
+    <position x="180" y="110"/>
+   </graphics>
+  </place>
+  <place id="p-60E5-3271D-3">
+  <name>
+   <text>p2</text>
+    <graphics>
+     <offset x="10" y="-10" />
+    </graphics>
+  </name>
+   <graphics>
+    <position x="120" y="230"/>
+   </graphics>
+  </place>
+  <place id="p-60E5-32732-4">
+  <name>
+   <text>p3</text>
+    <graphics>
+     <offset x="-10" y="-10" />
+    </graphics>
+  </name>
+   <initialMarking>
+    <text>2000</text>
+   </initialMarking>
+   <graphics>
+    <position x="240" y="230"/>
+   </graphics>
+  </place>
+  <transition id="t-60E5-3273E-5">
+  <name>
+   <text>t1</text>
+    <graphics>
+     <offset x="0" y="0" />
+    </graphics>
+  </name>
+   <graphics>
+    <position x="180" y="30"/>
+   </graphics>
+  </transition>
+  <transition id="t-60E5-32750-6">
+  <name>
+   <text>t2</text>
+    <graphics>
+     <offset x="0" y="0" />
+    </graphics>
+  </name>
+   <graphics>
+    <position x="50" y="270"/>
+   </graphics>
+  </transition>
+  <transition id="t-60E5-3275F-7">
+  <name>
+   <text>t3</text>
+    <graphics>
+     <offset x="0" y="0" />
+    </graphics>
+  </name>
+   <graphics>
+    <position x="310" y="270"/>
+   </graphics>
+  </transition>
+  <arc id="e-60E5-3276D-8" source="p-60E5-326E5-2" target="t-60E5-3273E-5">
+   <inscription>
+    <text>6000</text>
+    <graphics>
+     <offset x="-10" y="0" />
+    </graphics>
+   </inscription>
+   <graphics>
+    <position x="168" y="90" />
+    <position x="168" y="50" />
+   </graphics>  </arc>
+  <arc id="e-60E5-32793-9" source="t-60E5-3275F-7" target="p-60E5-326E5-2">
+   <inscription>
+    <text>2</text>
+    <graphics>
+     <offset x="0" y="-10" />
+    </graphics>
+   </inscription>
+   <graphics>
+    <position x="326" y="230" />
+    <position x="268" y="118" />
+   </graphics>  </arc>
+  <arc id="e-60E5-327AC-10" source="t-60E5-32750-6" target="p-60E5-3271D-3">
+   <inscription>
+    <text>3000</text>
+    <graphics>
+     <offset x="0" y="10" />
+    </graphics>
+   </inscription>
+   <graphics>
+    <position x="70" y="274" />
+    <position x="112" y="254" />
+   </graphics>  </arc>
+  <arc id="e-60E5-327C4-11" source="p-60E5-326E5-2" target="t-60E5-32750-6">
+   <inscription>
+    <text>3</text>
+    <graphics>
+     <offset x="-10" y="0" />
+    </graphics>
+   </inscription>
+   <graphics>
+    <position x="108" y="114" />
+    <position x="34" y="230" />
+   </graphics>  </arc>
+  <arc id="e-60E5-327DB-12" source="t-60E5-3273E-5" target="p-60E5-326E5-2">
+   <inscription>
+    <text>6000</text>
+    <graphics>
+     <offset x="10" y="10" />
+    </graphics>
+   </inscription>
+   <graphics>
+    <position x="192" y="50" />
+    <position x="192" y="90" />
+   </graphics>  </arc>
+  <arc id="e-60E5-327F3-13" source="t-60E5-3273E-5" target="p-60E5-3271D-3">
+   <inscription>
+    <text>3</text>
+    <graphics>
+     <offset x="-10" y="10" />
+    </graphics>
+   </inscription>
+   <graphics>
+    <position x="132" y="30" />
+    <position x="88" y="158" />
+   </graphics>  </arc>
+  <arc id="e-60E5-32810-14" source="p-60E5-32732-4" target="t-60E5-3273E-5">
+   <inscription>
+    <text>2</text>
+    <graphics>
+     <offset x="10" y="-10" />
+    </graphics>
+   </inscription>
+   <graphics>
+    <position x="276" y="158" />
+    <position x="220" y="30" />
+   </graphics>  </arc>
+  <arc id="e-60E5-32827-15" source="p-60E5-3271D-3" target="t-60E5-32750-6">
+   <inscription>
+    <text>3000</text>
+    <graphics>
+     <offset x="0" y="-10" />
+    </graphics>
+   </inscription>
+   <graphics>
+    <position x="96" y="226" />
+    <position x="62" y="246" />
+   </graphics>  </arc>
+  <arc id="e-60E5-3283E-16" source="p-60E5-32732-4" target="t-60E5-3275F-7">
+   <inscription>
+    <text>2000</text>
+    <graphics>
+     <offset x="-10" y="10" />
+    </graphics>
+   </inscription>
+   <graphics>
+    <position x="252" y="250" />
+    <position x="282" y="274" />
+   </graphics>  </arc>
+  <arc id="e-60E5-32A41-17" source="t-60E5-3275F-7" target="p-60E5-32732-4">
+   <inscription>
+    <text>2000</text>
+    <graphics>
+     <offset x="0" y="-10" />
+    </graphics>
+   </inscription>
+   <graphics>
+    <position x="298" y="246" />
+    <position x="272" y="230" />
+   </graphics>  </arc>
+  <arc id="e-60E5-32A59-18" source="t-60E5-32750-6" target="p-60E5-32732-4">
+   <graphics>
+    <position x="74" y="302" />
+    <position x="196" y="294" />
+   </graphics>  </arc>
+  <arc id="e-60E5-32A73-19" source="p-60E5-3271D-3" target="t-60E5-3275F-7">
+   <graphics>
+    <position x="156" y="282" />
+    <position x="278" y="306" />
+   </graphics>  </arc>
+ </page>
+ </net>
+</pnml>

@@ -1,0 +1,22 @@
+# m0 symmetric
+load components/philo.ndr
+ren a9/tleft b9/bleft a0/tright b0/bright
+load components/philo.ndr
+ren a0/tleft b0/bleft a1/tright b1/bright
+load components/philo.ndr
+ren a1/tleft b1/bleft a2/tright b2/bright
+load components/philo.ndr
+ren a2/tleft b2/bleft a3/tright b3/bright
+load components/philo.ndr
+ren a3/tleft b3/bleft a4/tright b4/bright
+load components/philo.ndr
+ren a4/tleft b4/bleft a5/tright b5/bright
+load components/philo.ndr
+ren a5/tleft b5/bleft a6/tright b6/bright
+load components/philo.ndr
+ren a6/tleft b6/bleft a7/tright b7/bright
+load components/philo.ndr
+ren a7/tleft b7/bleft a8/tright b8/bright
+load components/philo.ndr
+ren a8/tleft b8/bleft a9/tright b9/bright
+sync ring 10

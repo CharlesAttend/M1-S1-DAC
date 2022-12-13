@@ -1,0 +1,32 @@
+
+Milner's scheduler example.
+
+Contents:
+
+components:
+	basic component, replicated in all models
+
+mksched:
+	a tcl script for generating milner scheduler models in tpn format
+	(usage, e.g.    mksched 100 > m100.tpn)
+
+m*.tpn:
+	example models obtained my mksched (recommended for tedd)
+
+milner10000.net:
+	see below
+
+milner10.ndr:
+	the result of drawing m10.tpn in nd, for understanding the models
+
+----
+
+NOTE: interpreting tpn scripts producing very large nets can be slow.
+For repeated experiments on the same (large) net, it may be convenient to convert first
+the .tpn description into an equivalent .net, using tool ndrio, e.g. 
+
+      ndrio m5000.tpn m5000.net
+      tedd m5000.net
+      tedd -pnmc m5000.net -order-lexical
+      tedd -pnmc m5000.net -order-force
+ 

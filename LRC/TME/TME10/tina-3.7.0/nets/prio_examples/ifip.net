@@ -1,0 +1,9 @@
+net ifip
+tr t1 [4,9] p1 p2*2 -> p3 p4 p5 
+tr t2 [0,2] p4 -> p2 
+tr t3 [1,3] p5 -> p2 
+tr t4 [0,2] p3 -> p3 
+tr t5 [0,3] p3 -> p1 
+pl p1 (1)
+pl p2 (2)
+pr t3 < t2

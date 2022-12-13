@@ -1,0 +1,94 @@
+pathto(n)                                                            pathto(n)
+
+
+
+NAME
+       pathto  - compute path to a state in a ktz description
+
+       Part of Tina Toolbox for analysis of Petri nets and Time Petri nets.
+
+
+SYNOPSIS
+       pathto [-help]
+              tgt [-from src]
+              [-p | -t | -s | -l]
+              [infile] [outfile] [errorfile]
+
+
+DESCRIPTION
+       Given  a kripke transition system in a ktz file, a target state identi-
+       fied by its rank in the kts file, and a source state (default 0),  com-
+       putes a path in the kts from the source to the destination state.
+
+
+OPTIONS
+       -help  Recalls options.
+
+
+       Source and destination states:
+
+
+       tgt    The target state, identified by its rank in the ktz file.
+
+              -from  src  The source state (default 0), identified by its rank
+              in the ktz file.
+
+
+
+       Output format flags:
+
+
+       -p     Prints path from src to tgt as a series of states (ranks)  sepa-
+              rated  by transition (names). This is the default output format.
+
+
+       -t     Prints path from src to tgt as a series of  transition  (names).
+              Such  sequences  are  conformant  to the .scn format expected by
+              plan, play or the nd stepper.
+
+
+       -s     Prints path from src to tgt as a series of states (ranks).
+
+
+       -l     Prints the length of a path from src to tgt.
+
+
+
+       Input source:
+
+
+       infile A ktz file.
+
+
+       Output destination:
+
+
+       outfile
+              Where the result path or its length is written (default  stdin).
+
+
+       Errors destination:
+
+
+       errorfile
+              Where error messages are written (default stderr).
+
+
+
+EXAMPLES
+       pathto 4 ifip.ktz
+       pathto 8 -from 2 -t abp.ktz
+
+
+SEE ALSO
+       nd(n),   tina(n),  plan(n),  struct(n),  ktzio(n),  ndrio(n),  tedd(n),
+       selt(n), sift(n), muse(n), play(n), walk(n), reduce(n), formats(n)
+
+
+AUTHORS
+       Bernard Berthomieu, LAAS/CNRS, 2000-2012, Bernard.Berthomieu@laas.fr.
+
+
+
+
+Tina Tools                       Version 3.7.0                       pathto(n)

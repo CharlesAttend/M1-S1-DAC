@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pnml xmlns="http://www.pnml.org/version-2009/grammar/pnml">
+ <net id="n-60E1-4B533-0" type ="http://www.laas.fr/tina/tpn">
+  <name>
+   <text>ifip</text>
+  </name>
+ <page id="g-60E1-4B555-1">
+  <place id="p-60E1-4B55C-2">
+  <name>
+   <text>p1</text>
+  </name>
+   <initialMarking>
+    <text>1</text>
+   </initialMarking>
+  </place>
+  <place id="p-60E1-4B573-3">
+  <name>
+   <text>p2</text>
+  </name>
+   <initialMarking>
+    <text>2</text>
+   </initialMarking>
+  </place>
+  <place id="p-60E1-4B57A-4">
+  <name>
+   <text>p3</text>
+  </name>
+  </place>
+  <place id="p-60E1-4B57E-5">
+  <name>
+   <text>p4</text>
+  </name>
+  </place>
+  <place id="p-60E1-4B581-6">
+  <name>
+   <text>p5</text>
+  </name>
+  </place>
+  <transition id="t-60E1-4B584-7">
+  <name>
+   <text>t1</text>
+  </name>
+   <delay>
+    <interval xmlns="http://www.w3.org/1998/Math/MathML" closure="closed">
+     <cn>4</cn>
+     <cn>9</cn>
+    </interval>
+   </delay>
+  </transition>
+  <transition id="t-60E1-4B58B-8">
+  <name>
+   <text>t2</text>
+  </name>
+   <delay>
+    <interval xmlns="http://www.w3.org/1998/Math/MathML" closure="closed">
+     <cn>0</cn>
+     <cn>2</cn>
+    </interval>
+   </delay>
+  </transition>
+  <transition id="t-60E1-4B596-9">
+  <name>
+   <text>t3</text>
+  </name>
+   <delay>
+    <interval xmlns="http://www.w3.org/1998/Math/MathML" closure="closed">
+     <cn>1</cn>
+     <cn>3</cn>
+    </interval>
+   </delay>
+  </transition>
+  <transition id="t-60E1-4B59A-10">
+  <name>
+   <text>t4</text>
+  </name>
+   <delay>
+    <interval xmlns="http://www.w3.org/1998/Math/MathML" closure="closed">
+     <cn>0</cn>
+     <cn>2</cn>
+    </interval>
+   </delay>
+  </transition>
+  <transition id="t-60E1-4B59F-11">
+  <name>
+   <text>t5</text>
+  </name>
+   <delay>
+    <interval xmlns="http://www.w3.org/1998/Math/MathML" closure="closed">
+     <cn>0</cn>
+     <cn>3</cn>
+    </interval>
+   </delay>
+  </transition>
+  <arc id="e-60E1-4B5A8-12" source="p-60E1-4B55C-2" target="t-60E1-4B584-7">
+  </arc>
+  <arc id="e-60E1-4B5AE-13" source="p-60E1-4B57A-4" target="t-60E1-4B59A-10">
+  </arc>
+  <arc id="e-60E1-4B5B1-14" source="t-60E1-4B59A-10" target="p-60E1-4B57A-4">
+  </arc>
+  <arc id="e-60E1-4B5B4-15" source="p-60E1-4B57A-4" target="t-60E1-4B59F-11">
+  </arc>
+  <arc id="e-60E1-4B5B7-16" source="t-60E1-4B59F-11" target="p-60E1-4B55C-2">
+  </arc>
+  <arc id="e-60E1-4B5BF-17" source="p-60E1-4B573-3" target="t-60E1-4B584-7">
+   <inscription>
+    <text>2</text>
+   </inscription>
+  </arc>
+  <arc id="e-60E1-4B5C7-18" source="t-60E1-4B584-7" target="p-60E1-4B57A-4">
+  </arc>
+  <arc id="e-60E1-4B5CA-19" source="t-60E1-4B584-7" target="p-60E1-4B57E-5">
+  </arc>
+  <arc id="e-60E1-4B5CD-20" source="t-60E1-4B584-7" target="p-60E1-4B581-6">
+  </arc>
+  <arc id="e-60E1-4B5D0-21" source="p-60E1-4B57E-5" target="t-60E1-4B58B-8">
+  </arc>
+  <arc id="e-60E1-4B5D3-22" source="t-60E1-4B58B-8" target="p-60E1-4B573-3">
+  </arc>
+  <arc id="e-60E1-4B5D5-23" source="p-60E1-4B581-6" target="t-60E1-4B596-9">
+  </arc>
+  <arc id="e-60E1-4B5D8-24" source="t-60E1-4B596-9" target="p-60E1-4B573-3">
+  </arc>
+ </page>
+ </net>
+</pnml>

@@ -1,0 +1,232 @@
+.TH reduce n "Version 3.7.0" "Tina Tools"
+
+.SH NAME
+reduce  \- Tina reduction tool
+
+Part of Tina Toolbox for analysis of Petri nets and Time Petri nets.
+
+
+.SH SYNOPSIS
+
+.B reduce
+[\-\f2h\f1elp] [-p]
+       [-rg[,start][,redundant][,compact[+]]
+           [,convert][,mg][,4ti2][,transitions]]
+       [-redundant-limit n] [-redundant-time n]
+       [-inv-limit n] [-inv-time n]
+       [-tr[,cluster][,4ti2]]
+       [-semiflow-limit n] [-semiflow-time n]
+       [-nupn-limit n] [-no-nupn]
+       [-v | -q] [-t n]
+       [-NET | -NDR | -TPN | -PNML | -TTS]
+       [-inh] [-tc] [-dt] [-pr] [-sw] [-stats]
+       [infile] [outfile] [errorfile]
+
+
+.SH DESCRIPTION
+
+Tool reduce includes an implementation of the reduction system presented in papers:
+
+.nf
+B Berthomieu, D Le Botlan, S Dal Zilio
+International Symposium on Model Checking Software (SPIN), LNCS 10869, pp 65-84, Springer, 2018.
+
+B Berthomieu, D Le Botlan, S Dal Zilio
+International Journal on Software Tools for Technology Transfer 22(2), pp 163-181, Springer, 2020.
+.fi
+
+To these reductions, reduce adds the capability of clustering safe place invariants
+into a single place, thanks to the tina tools supporting generalized read arcs
+and generalized inhibitor arcs.
+
+The input is a net description in any format supported by the Tina tools
+(\&.net,  \&.ndr,  \&.tpn, \&.pnml  or  \&.tts); the output is a net in
+the tina \&.net format annotated by reduction equations (as comments).
+The input net should not have time constraints, priorities nor special arcs
+(read or inhibitors arcs); the output net may have special arcs.
+
+
+.SH OPTIONS
+
+.TP
+\-\f2h\f1elp
+Recalls options.
+
+
+.TP
+.B Reduction specification and limits:
+
+.TP
+\-rg[,start][,redundant][,compact[+]][,convert][,mg][,4ti2][,transitions]
+Reduction preserving the reachability set (through reduction equations).
+By default (-rg without options), only removes duplicated and constant
+places, and duplicated and identity transitions. The options are:
+
+.nf
+start:       fire start transitions                    
+redundant:   remove redundant places and redundant transitions (using ILP)                   
+compact[+]:  agglomerate places (two options)         
+convert:     clusters each complementary pair of places into a single place               
+mg:          computes equational descriptions of their reachability set for some special cases of nets
+transitions: keep a copy of each transition (among duplicates)
+4ti2:        use tool 4ti2 for computing redundant places and transitions rather than native algorithms.
+.fi
+
+The toolset 4ti2 must be installed by the user.
+
+.TP
+\-redundant-limit n
+Limit on the size of nets (|P| or |T|) for application of the redundant option.
+
+.TP
+\-redundant-time n
+Timeout on the computation of redundant places and transitions, if requested.
+
+.TP
+\-inv-limit n
+Limit on the size of nets (|P|) for application of the mg option.
+
+.TP
+\-inv-time n
+Timeout on the computation of equational description for option mg, if requested.
+
+
+
+.TP
+.B Transformation specification and limits:
+
+.TP
+\-tr[,cluster][,4ti2]
+Reduction preserving the reachability set (through transformation relations).
+Currently, the sole transformation provided is cluster.
+	    
+.nf
+cluster:   Clusters safe place invariants into a single place, using an encoding relying on special arcs.
+           The safe invariants are deduced either from the nupn information in the pnml file, of any,
+	      or from the place semiflows of the net, otherwise.
+4ti2:      use tool 4ti2 for computing place semiflows rather than native algorithms.
+.fi
+
+The toolset 4ti2 must be installed by the user.
+
+.TP
+-semiflow-limit n
+Limit on the size of nets (|P|) for computation of p-semiflows for the cluster option.
+
+.TP
+-semiflow-time n
+Timeout on the computation of semiflows for option cluster, if requested.
+
+.TP
+-nupn-limit n | -no-nupn
+Forget nupn information in input net, if any (-no-nupn), or forget it only if |P| > n (-nupn-limit n).
+
+
+
+.TP
+.B Input options:
+
+.TP
+\-inh
+Forget inhibitor arcs in the input net.
+
+.TP
+\-pr
+Forget priority constraints in the input net.
+
+.TP
+\-tc
+Forget time constraints in the input net.
+
+.TP
+\-dt
+Forget data processing when reading a tts description.
+
+.TP
+\-sw
+Forget stopwatches in the input net.
+
+
+.TP
+.B Input format and source:
+
+.TP
+\-NET | -NDR | -PNML | -TPN | -TTS
+Specifies the format of the input net. This flag is necessary when the
+input net is read on standard input, or read from a file that does not
+bear the expected extension. By default, the net is assumed in .net or
+.ndr format.
+
+.TP
+infile
+Where the  net is  read. The  input format is  determined by  the file
+type, according to the table below. If absent or specified by "-", the
+net is  read on standard  input in the  format specified by  the input
+flag. If  both an  infile and  some input flag  are present,  then the
+format defined  by the  input flag supersedes  that determined  by the
+infile extension.
+
+.nf
+file extension		input format
+--------------------------------------------------------------
+\&.net			net format
+\&.ndr			ndr format
+\&.tpn			tpn format
+\&.pnml			pnml format
+\&.tts			tts format
+.fi
+
+
+.TP
+.B Output format and destination:
+
+.TP
+\-q | -v
+Verbosity level, quiet (-q) or verbose (-v).
+
+
+.TP
+outfile
+Where results are written. If absent or specified  by "-",
+results are written on standard output.
+
+
+.TP
+.B Errors destination:
+
+.TP
+errfile
+Where error messages are written. If absent or specified  by "-", error messages are written on standard error.
+
+.TP
+.B Other flags:
+
+.TP
+\-t s
+Limit on total duration of reduction.
+
+.TP
+\-stats
+Print some statistics information, if available.
+
+
+
+.SH EXAMPLES
+
+.nf
+reduce -rg,redundant,compact HouseConstruction-PT-00100.pnml
+reduce -rg,redundant,compact+ models/Angiogenesis-PT-20.pnml
+reduce -rg,redundant,compact models/AirplaneLD-PT-0010.pnml
+reduce -rg,start,redundant,compact+ models/IBM319-PT-none.pnml
+reduce -rg,redundant,compact,mg,4ti2 models/CircularTrains-PT-024.pnml
+.fi
+
+
+.SH SEE ALSO
+
+nd(n), tina(n), plan(n), struct(n), ktzio(n), ndrio(n), tedd(n), selt(n), sift(n), muse(n), pathto(n), play(n), walk(n), formats(n)
+
+.SH AUTHORS
+Bernard Berthomieu
+LAAS/CNRS,  2000-2012, Bernard.Berthomieu@laas.fr
+

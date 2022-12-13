@@ -1,0 +1,38 @@
+
+
+net train
+tr App : App Far -> Close 
+tr Ex [2,4] On -> Left 
+tr Exit : Exit [0,0] Left -> Far 
+tr In [3,5] Close -> On 
+pl Far (1)
+
+dup
+dup
+merge 3
+
+new
+net controleur
+tr A1 : App far*3 -> far*2 in Coming 
+tr A2 : App far in -> in*2 
+tr D : Down [0,0] Coming -> 
+tr E1 : Exit [0,0] far*2 in -> far*3 Leaving 
+tr E2 : Exit [0,0] in*2 -> far in 
+tr U : Up [0,0] Leaving -> 
+pl far (3)
+
+new
+net barrier
+tr D1 : Down [0,0] Up -> lowering 
+tr D2 : Down [0,0] raising -> lowering 
+tr L [1,2] lowering -> Down 
+tr R [1,2] raising -> Up 
+tr U : Up [0,0] Down -> raising 
+pl Up (1)
+
+sync 3
+
+
+
+
+

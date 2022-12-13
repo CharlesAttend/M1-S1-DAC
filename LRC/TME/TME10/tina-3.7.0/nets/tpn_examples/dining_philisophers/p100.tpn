@@ -1,0 +1,202 @@
+# m0 symmetric
+load components/philo.ndr
+ren a99/tleft b99/bleft a0/tright b0/bright
+load components/philo.ndr
+ren a0/tleft b0/bleft a1/tright b1/bright
+load components/philo.ndr
+ren a1/tleft b1/bleft a2/tright b2/bright
+load components/philo.ndr
+ren a2/tleft b2/bleft a3/tright b3/bright
+load components/philo.ndr
+ren a3/tleft b3/bleft a4/tright b4/bright
+load components/philo.ndr
+ren a4/tleft b4/bleft a5/tright b5/bright
+load components/philo.ndr
+ren a5/tleft b5/bleft a6/tright b6/bright
+load components/philo.ndr
+ren a6/tleft b6/bleft a7/tright b7/bright
+load components/philo.ndr
+ren a7/tleft b7/bleft a8/tright b8/bright
+load components/philo.ndr
+ren a8/tleft b8/bleft a9/tright b9/bright
+load components/philo.ndr
+ren a9/tleft b9/bleft a10/tright b10/bright
+load components/philo.ndr
+ren a10/tleft b10/bleft a11/tright b11/bright
+load components/philo.ndr
+ren a11/tleft b11/bleft a12/tright b12/bright
+load components/philo.ndr
+ren a12/tleft b12/bleft a13/tright b13/bright
+load components/philo.ndr
+ren a13/tleft b13/bleft a14/tright b14/bright
+load components/philo.ndr
+ren a14/tleft b14/bleft a15/tright b15/bright
+load components/philo.ndr
+ren a15/tleft b15/bleft a16/tright b16/bright
+load components/philo.ndr
+ren a16/tleft b16/bleft a17/tright b17/bright
+load components/philo.ndr
+ren a17/tleft b17/bleft a18/tright b18/bright
+load components/philo.ndr
+ren a18/tleft b18/bleft a19/tright b19/bright
+load components/philo.ndr
+ren a19/tleft b19/bleft a20/tright b20/bright
+load components/philo.ndr
+ren a20/tleft b20/bleft a21/tright b21/bright
+load components/philo.ndr
+ren a21/tleft b21/bleft a22/tright b22/bright
+load components/philo.ndr
+ren a22/tleft b22/bleft a23/tright b23/bright
+load components/philo.ndr
+ren a23/tleft b23/bleft a24/tright b24/bright
+load components/philo.ndr
+ren a24/tleft b24/bleft a25/tright b25/bright
+load components/philo.ndr
+ren a25/tleft b25/bleft a26/tright b26/bright
+load components/philo.ndr
+ren a26/tleft b26/bleft a27/tright b27/bright
+load components/philo.ndr
+ren a27/tleft b27/bleft a28/tright b28/bright
+load components/philo.ndr
+ren a28/tleft b28/bleft a29/tright b29/bright
+load components/philo.ndr
+ren a29/tleft b29/bleft a30/tright b30/bright
+load components/philo.ndr
+ren a30/tleft b30/bleft a31/tright b31/bright
+load components/philo.ndr
+ren a31/tleft b31/bleft a32/tright b32/bright
+load components/philo.ndr
+ren a32/tleft b32/bleft a33/tright b33/bright
+load components/philo.ndr
+ren a33/tleft b33/bleft a34/tright b34/bright
+load components/philo.ndr
+ren a34/tleft b34/bleft a35/tright b35/bright
+load components/philo.ndr
+ren a35/tleft b35/bleft a36/tright b36/bright
+load components/philo.ndr
+ren a36/tleft b36/bleft a37/tright b37/bright
+load components/philo.ndr
+ren a37/tleft b37/bleft a38/tright b38/bright
+load components/philo.ndr
+ren a38/tleft b38/bleft a39/tright b39/bright
+load components/philo.ndr
+ren a39/tleft b39/bleft a40/tright b40/bright
+load components/philo.ndr
+ren a40/tleft b40/bleft a41/tright b41/bright
+load components/philo.ndr
+ren a41/tleft b41/bleft a42/tright b42/bright
+load components/philo.ndr
+ren a42/tleft b42/bleft a43/tright b43/bright
+load components/philo.ndr
+ren a43/tleft b43/bleft a44/tright b44/bright
+load components/philo.ndr
+ren a44/tleft b44/bleft a45/tright b45/bright
+load components/philo.ndr
+ren a45/tleft b45/bleft a46/tright b46/bright
+load components/philo.ndr
+ren a46/tleft b46/bleft a47/tright b47/bright
+load components/philo.ndr
+ren a47/tleft b47/bleft a48/tright b48/bright
+load components/philo.ndr
+ren a48/tleft b48/bleft a49/tright b49/bright
+load components/philo.ndr
+ren a49/tleft b49/bleft a50/tright b50/bright
+load components/philo.ndr
+ren a50/tleft b50/bleft a51/tright b51/bright
+load components/philo.ndr
+ren a51/tleft b51/bleft a52/tright b52/bright
+load components/philo.ndr
+ren a52/tleft b52/bleft a53/tright b53/bright
+load components/philo.ndr
+ren a53/tleft b53/bleft a54/tright b54/bright
+load components/philo.ndr
+ren a54/tleft b54/bleft a55/tright b55/bright
+load components/philo.ndr
+ren a55/tleft b55/bleft a56/tright b56/bright
+load components/philo.ndr
+ren a56/tleft b56/bleft a57/tright b57/bright
+load components/philo.ndr
+ren a57/tleft b57/bleft a58/tright b58/bright
+load components/philo.ndr
+ren a58/tleft b58/bleft a59/tright b59/bright
+load components/philo.ndr
+ren a59/tleft b59/bleft a60/tright b60/bright
+load components/philo.ndr
+ren a60/tleft b60/bleft a61/tright b61/bright
+load components/philo.ndr
+ren a61/tleft b61/bleft a62/tright b62/bright
+load components/philo.ndr
+ren a62/tleft b62/bleft a63/tright b63/bright
+load components/philo.ndr
+ren a63/tleft b63/bleft a64/tright b64/bright
+load components/philo.ndr
+ren a64/tleft b64/bleft a65/tright b65/bright
+load components/philo.ndr
+ren a65/tleft b65/bleft a66/tright b66/bright
+load components/philo.ndr
+ren a66/tleft b66/bleft a67/tright b67/bright
+load components/philo.ndr
+ren a67/tleft b67/bleft a68/tright b68/bright
+load components/philo.ndr
+ren a68/tleft b68/bleft a69/tright b69/bright
+load components/philo.ndr
+ren a69/tleft b69/bleft a70/tright b70/bright
+load components/philo.ndr
+ren a70/tleft b70/bleft a71/tright b71/bright
+load components/philo.ndr
+ren a71/tleft b71/bleft a72/tright b72/bright
+load components/philo.ndr
+ren a72/tleft b72/bleft a73/tright b73/bright
+load components/philo.ndr
+ren a73/tleft b73/bleft a74/tright b74/bright
+load components/philo.ndr
+ren a74/tleft b74/bleft a75/tright b75/bright
+load components/philo.ndr
+ren a75/tleft b75/bleft a76/tright b76/bright
+load components/philo.ndr
+ren a76/tleft b76/bleft a77/tright b77/bright
+load components/philo.ndr
+ren a77/tleft b77/bleft a78/tright b78/bright
+load components/philo.ndr
+ren a78/tleft b78/bleft a79/tright b79/bright
+load components/philo.ndr
+ren a79/tleft b79/bleft a80/tright b80/bright
+load components/philo.ndr
+ren a80/tleft b80/bleft a81/tright b81/bright
+load components/philo.ndr
+ren a81/tleft b81/bleft a82/tright b82/bright
+load components/philo.ndr
+ren a82/tleft b82/bleft a83/tright b83/bright
+load components/philo.ndr
+ren a83/tleft b83/bleft a84/tright b84/bright
+load components/philo.ndr
+ren a84/tleft b84/bleft a85/tright b85/bright
+load components/philo.ndr
+ren a85/tleft b85/bleft a86/tright b86/bright
+load components/philo.ndr
+ren a86/tleft b86/bleft a87/tright b87/bright
+load components/philo.ndr
+ren a87/tleft b87/bleft a88/tright b88/bright
+load components/philo.ndr
+ren a88/tleft b88/bleft a89/tright b89/bright
+load components/philo.ndr
+ren a89/tleft b89/bleft a90/tright b90/bright
+load components/philo.ndr
+ren a90/tleft b90/bleft a91/tright b91/bright
+load components/philo.ndr
+ren a91/tleft b91/bleft a92/tright b92/bright
+load components/philo.ndr
+ren a92/tleft b92/bleft a93/tright b93/bright
+load components/philo.ndr
+ren a93/tleft b93/bleft a94/tright b94/bright
+load components/philo.ndr
+ren a94/tleft b94/bleft a95/tright b95/bright
+load components/philo.ndr
+ren a95/tleft b95/bleft a96/tright b96/bright
+load components/philo.ndr
+ren a96/tleft b96/bleft a97/tright b97/bright
+load components/philo.ndr
+ren a97/tleft b97/bleft a98/tright b98/bright
+load components/philo.ndr
+ren a98/tleft b98/bleft a99/tright b99/bright
+sync ring 100

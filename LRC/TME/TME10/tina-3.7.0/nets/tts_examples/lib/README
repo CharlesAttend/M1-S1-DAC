@@ -1,0 +1,27 @@
+
+requirements:
+
+	gnumake
+	gcc
+	tina 2.9.X
+
+
+usage:
+
+
+Checking fiacre spec:
+
+	 frac file.fcr
+
+Checking and compiling:
+
+	 frac file.fcr file.tts
+
+Compiling the tts for tina:
+
+	make NAME=file
+
+Computing behavior:
+
+	tina file.tts <flags>
+

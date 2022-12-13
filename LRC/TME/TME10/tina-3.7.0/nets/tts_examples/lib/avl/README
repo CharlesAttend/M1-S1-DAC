@@ -1,0 +1,16 @@
+
+code for the avl storage library
+
+define COMPRESSION and call set_compress(1) to enable compresion.
+
+define DATABASE and call set_database(dbdir) to enable database storage.
+DATABASE implies COMPRESSION.
+
+the application must include avl.h, must be compiled with avl.c and must link berkeley-db if DATABASE is defined;
+
+init_storage must pass compare_value (or NULL), free_value (or NULL) and the size of values
+
+
+
+
+

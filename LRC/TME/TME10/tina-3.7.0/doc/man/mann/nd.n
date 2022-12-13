@@ -1,0 +1,76 @@
+.TH nd n "Version 3.7.0" "Tina Tools"
+
+.SH NAME
+nd	  \- Time Petri net net editor and Graphic interface for toolbox
+
+Part of Tina Toolbox for analysis of Petri nets and Time Petri nets.
+
+.SH SYNOPSIS
+
+.B nd 
+[\-\f2h\f1elp] 
+[\-ag | \-at | \-ng | \-nt] 
+[file]
+
+
+.SH DESCRIPTION
+
+nd (netDraw)  embeds editors for graphic and  textual net descriptions
+and  automata  descriptions. Also  provides  graphical interfaces  for
+tools tina and  struct ("tools" button) when editing  a net.  Produces
+files in \&.net  or \&.ndr format (for nets) readable by tina and struct,
+or in \&.aut  or \&.adr format (for automata),  may import descriptions in
+\&.pnml (with or without graphics), \&.tpn (tina's script language), or
+\&.ktz (for automata).
+
+.SH OPTIONS
+
+.TP
+.B \-\f2h\f1elp Recalls options.
+
+.TP
+-ag | -at | -ng | -nt
+
+Selection  of initial  editing mode  if no  file is  loaded.  With \-ag
+(resp. \-at), edits an automaton  in graphic (resp. textual) form. With
+\-ng (resp.  \-nt), edits  a Time Petri  net in graphic  (resp. textual)
+form.
+
+The editing mode of nd is determined by:
+.nf
+\- its default value (-ng),
+\- superseded by the value saved in the setup file, if any,
+\- superseded by the command line argument, if any,
+\- superseded  by the  mode determined from  the contents 
+of the file loaded, if any.
+.fi
+
+.TP
+file
+
+The file  being loaded, if it  exist (it must  be in one of  the above
+formats), or a filename in which the item being edited is saved.
+
+.TP
+.B Default options:
+
+nd -ng buffer.ndr
+
+
+
+.SH EXAMPLES
+
+.nf
+nd
+nd exemple.ndr
+nd example.aut
+nd -nt
+.fi
+
+.SH SEE ALSO
+
+nd(n), tina(n), plan(n), struct(n), ktzio(n), ndrio(n), tedd(n), selt(n), sift(n), pathto(n), play(n), walk(n), reduce(n), formats(n)
+
+.SH AUTHORS
+Bernard Berthomieu, LAAS/CNRS, 2000-2012, Bernard.Berthomieu@laas.fr.
+

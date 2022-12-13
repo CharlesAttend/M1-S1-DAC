@@ -1,0 +1,185 @@
+<pnml xmlns="http://www.pnml.org/version-2009/grammar/pnml">
+ <net id="n-60DE-ACD46-0" type ="http://www.pnml.org/version-2009/grammar/ptnet">
+  <name>
+   <text>hp</text>
+  </name>
+ <page id="g-60DE-ACD58-1">
+  <place id="p-60DE-ACD5F-2">
+  <name>
+   <text>A</text>
+    <graphics>
+     <offset x="10" y="0" />
+    </graphics>
+  </name>
+   <initialMarking>
+    <text>1</text>
+   </initialMarking>
+   <graphics>
+    <position x="90" y="170"/>
+   </graphics>
+  </place>
+  <place id="p-60DE-ACD92-3">
+  <name>
+   <text>B</text>
+    <graphics>
+     <offset x="-10" y="0" />
+    </graphics>
+  </name>
+   <graphics>
+    <position x="210" y="170"/>
+   </graphics>
+  </place>
+  <place id="p-60DE-ACDA6-4">
+  <name>
+   <text>C</text>
+    <graphics>
+     <offset x="0" y="10" />
+    </graphics>
+  </name>
+   <initialMarking>
+    <text>1</text>
+   </initialMarking>
+   <graphics>
+    <position x="150" y="290"/>
+   </graphics>
+  </place>
+  <place id="p-60DE-ACDB6-5">
+  <name>
+   <text>D</text>
+    <graphics>
+     <offset x="0" y="-10" />
+    </graphics>
+  </name>
+   <graphics>
+    <position x="150" y="50"/>
+   </graphics>
+  </place>
+  <place id="p-60DE-ACDBF-6">
+  <name>
+   <text>E</text>
+    <graphics>
+     <offset x="0" y="-10" />
+    </graphics>
+  </name>
+   <graphics>
+    <position x="350" y="170"/>
+   </graphics>
+  </place>
+  <transition id="t-60DE-ACDCF-7">
+  <name>
+   <text>a</text>
+    <graphics>
+     <offset x="0" y="0" />
+    </graphics>
+  </name>
+   <graphics>
+    <position x="270" y="170"/>
+   </graphics>
+  </transition>
+  <transition id="t-60DE-ACDE1-8">
+  <name>
+   <text>b</text>
+    <graphics>
+     <offset x="0" y="0" />
+    </graphics>
+  </name>
+   <graphics>
+    <position x="30" y="170"/>
+   </graphics>
+  </transition>
+  <transition id="t-60DE-ACDF0-9">
+  <name>
+   <text>c</text>
+    <graphics>
+     <offset x="0" y="0" />
+    </graphics>
+  </name>
+   <graphics>
+    <position x="150" y="110"/>
+   </graphics>
+  </transition>
+  <transition id="t-60DE-ACDFA-10">
+  <name>
+   <text>d</text>
+    <graphics>
+     <offset x="0" y="0" />
+    </graphics>
+  </name>
+   <graphics>
+    <position x="150" y="230"/>
+   </graphics>
+  </transition>
+  <arc id="e-60DE-ACE0D-11" source="t-60DE-ACDCF-7" target="p-60DE-ACDB6-5">
+   <graphics>
+    <position x="270" y="126" />
+    <position x="194" y="50" />
+   </graphics>  </arc>
+  <arc id="e-60DE-ACE2C-12" source="p-60DE-ACD92-3" target="t-60DE-ACDFA-10">
+   <graphics>
+    <position x="210" y="198" />
+    <position x="178" y="230" />
+   </graphics>  </arc>
+  <arc id="e-60DE-ACE44-13" source="t-60DE-ACDFA-10" target="p-60DE-ACD5F-2">
+   <graphics>
+    <position x="122" y="230" />
+    <position x="90" y="198" />
+   </graphics>  </arc>
+  <arc id="e-60DE-ACE5E-14" source="p-60DE-ACD5F-2" target="t-60DE-ACDF0-9">
+   <graphics>
+    <position x="90" y="142" />
+    <position x="122" y="110" />
+   </graphics>  </arc>
+  <arc id="e-60DE-ACE74-15" source="t-60DE-ACDCF-7" target="p-60DE-ACDBF-6">
+   <graphics>
+    <position x="318" y="170" />
+    <position x="302" y="170" />
+   </graphics>  </arc>
+  <arc id="e-60DE-ACE8A-16" source="p-60DE-ACDB6-5" target="t-60DE-ACDE1-8">
+   <graphics>
+    <position x="106" y="50" />
+    <position x="30" y="126" />
+   </graphics>  </arc>
+  <arc id="e-60DE-ACE9F-17" source="t-60DE-ACDE1-8" target="p-60DE-ACDA6-4">
+   <graphics>
+    <position x="30" y="214" />
+    <position x="106" y="290" />
+   </graphics>  </arc>
+  <arc id="e-60DE-ACEB4-18" source="p-60DE-ACDA6-4" target="t-60DE-ACDCF-7">
+   <graphics>
+    <position x="194" y="290" />
+    <position x="270" y="214" />
+   </graphics>  </arc>
+  <arc id="e-60DE-ACECF-19" source="p-60DE-ACDB6-5" target="t-60DE-ACDF0-9">
+   <graphics>
+    <position x="134" y="66" />
+    <position x="134" y="90" />
+   </graphics>  </arc>
+  <arc id="e-60DE-ACEE5-20" source="t-60DE-ACDF0-9" target="p-60DE-ACDB6-5">
+   <graphics>
+    <position x="166" y="90" />
+    <position x="166" y="66" />
+   </graphics>  </arc>
+  <arc id="e-60DE-ACEFB-21" source="t-60DE-ACDFA-10" target="p-60DE-ACDA6-4">
+   <graphics>
+    <position x="134" y="250" />
+    <position x="134" y="274" />
+   </graphics>  </arc>
+  <arc id="e-60DE-AD0F9-22" source="p-60DE-ACDA6-4" target="t-60DE-ACDFA-10">
+   <graphics>
+    <position x="166" y="274" />
+    <position x="166" y="250" />
+   </graphics>  </arc>
+  <arc id="e-60DE-AD110-23" source="t-60DE-ACDF0-9" target="p-60DE-ACD92-3">
+   <inscription>
+    <text>2</text>
+    <graphics>
+     <offset x="10" y="0" />
+    </graphics>
+   </inscription>
+   <graphics>
+    <position x="178" y="110" />
+    <position x="210" y="142" />
+   </graphics>  </arc>
+ </page>
+ </net>
+</pnml>

@@ -1,0 +1,340 @@
+<HTML><HEAD>
+<TITLE>Manual Page - ktzio(n)</TITLE>
+<BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
+<!-- .TH ktzio n "Version 3.7.0" "Tina Tools" -->
+<CENTER>
+<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>ktzio (n)</NOBR><HR></H1>
+</CENTER>
+<P>
+<!-- .SH NAME -->
+<A name=0>
+
+     <H3>NAME</H3>
+
+</A>
+<BLOCKQUOTE>
+ktzio  - conversion tool for transition systems
+<P>
+Part of Tina Toolbox for analysis of Petri nets and Time Petri nets.
+<P>
+<!-- .SH SYNOPSIS -->
+</BLOCKQUOTE>
+<A name=contents></A><H3>CONTENTS</H3></A>
+<BLOCKQUOTE>
+<A HREF=#1>Synopsis</A><BR>
+<A HREF=#2>Description</A><BR>
+<A HREF=#3>Options</A><BR>
+<A HREF=#4>Examples</A><BR>
+<A HREF=#5>See Also</A><BR>
+<A HREF=#6>Authors</A><BR>
+</BLOCKQUOTE>
+<A name=7>
+
+     <H3>SYNOPSIS</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+<!-- .B ktzio -->
+<B>ktzio</B> [-<I>h</I>elp] [-sp n] [-tp n] [-wp n] [-g] [-tina | -fw] -i file]
+<P>
+<!-- .B ktzio -->
+<B>ktzio</B> [-<I>h</I>elp] [-KTZ | -BCG | -AUT]
+<BR>
+      [-<I>k</I>tz | -bcg |-<I>a</I>ut | -mec | -cwb | -ktj | -txt]
+<BR>
+      [-sp n] [-tp n] [-wp n] [-g] [-tina | -fw] [-bf | -df]
+<BR>
+      [infile] [outfile] [errorfile]
+<P>
+<!-- .SH DESCRIPTION -->
+</BLOCKQUOTE>
+<A name=2>
+
+     <H3>DESCRIPTION</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+ktzio converts kripke transition systems between several formats.
+<P>
+The formats manipulated are the following:
+<P>
+<!-- .nf -->
+<PRE>
+name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;file ext&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;description
+------------------------------------------------------
+ktz             &#46;ktz          tina compact binary format
+bcg             &#46;bcg          CADP compact binary format
+aut             &#46;aut          CADP aldebaran format
+mec             &#46;mec          Mec4 model checker format
+cwb             &#46;cwb          Concurrency Workbench agent format
+json            &#46;ktj          Json format
+textual         &#46;txt          textual descriptions, explained below
+<!-- .fi -->
+</PRE>
+<P>
+<P>
+The conversions currently supported are the following:
+<P>
+<!-- .nf -->
+<PRE>
+from&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to
+------------------------------------------------------
+ktz&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ktz, aut, mec, cwb, bcg, ktj, textual
+bcg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ktz, textual
+aut&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ktz, textual
+<!-- .fi -->
+</PRE>
+<P>
+<!-- .SH OPTIONS -->
+</BLOCKQUOTE>
+<A name=3>
+
+     <H3>OPTIONS</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+<!-- .TP -->
+<TABLE cellpadding=3>
+<TR valign=top><TD width=6% nowrap>
+-<I>h</I>elp
+</TD><TD valign=bottom>
+Recalls options.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Interactive mode: -->
+<B>Interactive mode:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+-i infile
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Reads a kts from infile and prints its contents interactively, as
+a list of state descriptions.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Input format flags: -->
+<B>Input format flags:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+-KTZ | -BCG | -AUT
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Specifies  the format  of the  input transition  system. This  flag is
+necessary when the input transition  system is read on standard input,
+or read from a file that does not bear the expected extension. Default
+is -KTZ.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Output format flags: -->
+<B>Output format flags:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+-ktz | -bcg | -aut | -mec | -cwb | -ktj | -txt
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Specifies the  format of  the output transition  system. This  flag is
+necessary  when the output  transition system  is written  on standard
+output,   or   in  a   file   that   does   not  bear   the   expected
+extension.
+Flag -txt (default) produces a textual description.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Transition system generation options (see the tina page): -->
+<B>Transition system generation options (see the tina page):</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-sp n
+</TD><TD valign=bottom>
+For ktz to ktz/aut/mec/bcg conversions.
+Encoding  of  state  properties  in  output  transition  system  (when
+information is present in the input system).
+<!-- .nf -->
+<PRE>
+-sp 0 : no state properties (default for &#46;aut, &#46;bcg)
+-sp 1 : boolean state properties (default for &#46;mec)
+-sp 2 : weighted state properties (default for &#46;ktz)
+-sp 3 : weighted state properties for all weights
+<!-- .fi -->
+</PRE>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-tp n
+</TD><TD valign=bottom>
+For ktz to ktz/aut/mec/bcg conversions.
+Encoding of  transition properties  in output transition  system (when
+information is present in the input system):
+<!-- .nf -->
+<PRE>
+-tp 0 : no transition properties
+-tp 1 : boolean transition properties (default for all formats)
+-tp 2 : weighted transition properties (default for &#46;ktz)
+-tp 3 : weighted transition properties for all weights
+<!-- .fi -->
+</PRE>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-wp n
+</TD><TD valign=bottom>
+For ktz to ktz/aut/mec/bcg conversions.
+Encoding of wait properties in output transition  system (when
+information is present in the input system):
+<!-- .nf -->
+<PRE>
+-wp 0 : no wait properties (default for &#46;aut, &#46;bcg, &#46;mec)
+-wp 1 : preserve wait properties (default for &#46;ktz)
+<!-- .fi -->
+</PRE>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-g
+</TD><TD valign=bottom>
+For ktz to ktz conversions. Removes liveness information if present.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-tina
+</TD><TD valign=bottom>
+For &#46;aut or &#46;bcg input. Decodes properties assuming they were encoded
+by tina. E.g. if the &#46;aut file was generated by tina with flag -sp 2,
+restores the state properties encoded in the file. If the input file
+was not generated by tina, then the behavior is undefined.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-fw
+</TD><TD valign=bottom>
+This flag is necessary to convert older ktz files capturing unbounded
+property values (such as those resulting from tina -C) into crrent ktz.
+If omitted and the file actually contains unbounded values, then the conversion
+will fail.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-df | -bf
+</TD><TD valign=bottom>
+Tune up flag for bcg to ktz conversions. Default is -df.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Input source: -->
+<B>Input source:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+infile
+</TD><TD valign=bottom>
+Where the  kts is  read. The  input format is  determined by  the file
+type, according to the table above. If absent or specified by "-", the
+kts is  read on standard  input in the  format specified by  the input
+flag. If  both an  infile and  some input flag  are present,  then the
+format defined  by the  input flag supersedes  that determined  by the
+infile extension.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Output destination: -->
+<B>Output destination:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+outfile
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Where results are written. The output format is determined by the file
+type, according  to the  table above. If  absent or specified  by "-",
+then results are written on standard output in the format specified by
+the output flag. If both an  outfile and some output flag are present,
+then the format defined by  the output flag supersedes that determined
+by the outfile extension.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Errors destination: -->
+<B>Errors destination:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+errorfile
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Where error messages are written. By default, errors are printed on standard error.
+<P>
+<P>
+<!-- .SH EXAMPLES -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=4>
+
+     <H3>EXAMPLES</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+<!-- .nf -->
+<PRE>
+ktzio -i abp.ktz
+ktzio -v abp.ktz
+ktzio abp.ktz abp.aut
+ktzio -AUT - abp.ktz &lt; abp.aut
+ktzio -AUT -ktz &lt; abp.aut &gt; abp.ktz
+ktzio abp.bcg -ktz | ktzio -KTZ - abp.aut
+<!-- .fi -->
+</PRE>
+<P>
+Note: not all targets support  binary data on standard input
+or output.
+<P>
+<!-- .SH SEE ALSO -->
+</BLOCKQUOTE>
+<A name=5>
+
+     <H3>SEE ALSO</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+nd(n), tina(n), plan(n), struct(n), ktzio(n), ndrio(n), tedd(n), selt(n), sift(n), muse(n), pathto(n), play(n), walk(n), reduce(n), formats(n)
+<P>
+<!-- .SH AUTHORS -->
+</BLOCKQUOTE>
+<A name=6>
+
+     <H3>AUTHORS</H3>
+
+</A>
+<BLOCKQUOTE>
+Bernard Berthomieu, LAAS/CNRS, 2000-2012, <A HREF="mailto:Bernard.Berthomieu@laas.fr.">Bernard.Berthomieu@laas.fr.</A>
+<P>
+</BLOCKQUOTE>
+<P><HR>
+<TABLE width=100%><TR> <TD width=33%><I>Tina Tools</I></TD> <TD width=33% align=center>ktzio (n)</TD> <TD align=right width=33%><I>Version 3.7.0</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.07</A> from src/ktzio.n using man macros.</FONT>
+</BODY></HTML>

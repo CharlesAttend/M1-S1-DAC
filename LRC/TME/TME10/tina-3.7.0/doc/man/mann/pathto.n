@@ -1,0 +1,97 @@
+.TH pathto n "Version 3.7.0" "Tina Tools"
+
+.SH NAME
+pathto  \- compute path to a state in a ktz description
+
+Part of Tina Toolbox for analysis of Petri nets and Time Petri nets.
+
+.SH SYNOPSIS
+
+.B
+pathto [\-\f2h\f1elp]
+       tgt [\-from src]
+       [\-p | \-t | \-s | \-l]
+       [infile] [outfile] [errorfile]
+
+.SH DESCRIPTION
+
+Given a kripke transition system in a ktz file, a target state identified by its rank in the kts file, and a source state (default 0), computes a path in the kts from the source
+to the destination state.
+
+.SH OPTIONS
+
+.TP
+\-\f2h\f1elp
+Recalls options.
+
+.TP
+.B Source and destination states:
+
+.TP
+tgt
+The target state, identified by its rank in the ktz file.
+
+.TB
+\-from src
+The source state (default 0), identified by its rank in the ktz file.
+
+
+.TP
+.B Output format flags:
+
+.TP
+\-p
+Prints path from src to tgt as a series of states (ranks) separated by
+transition (names). This is the default output format.
+
+.TP
+\-t
+Prints path from src to tgt as a series of transition (names). Such sequences
+are conformant to the \&.scn format expected by plan, play or the nd stepper.
+
+.TP
+\-s
+Prints path from src to tgt as a series of states (ranks).
+
+.TP
+\-l
+Prints the length of a path from src to tgt.
+
+
+.TP
+.B Input source:
+
+.TP
+infile
+A ktz file.
+
+.TP
+.B Output destination:
+
+.TP
+outfile
+Where the result path or its length is written (default stdin).
+
+.TP
+.B Errors destination:
+
+.TP
+errorfile
+Where error messages are written (default stderr).
+
+
+.SH EXAMPLES
+
+.nf
+pathto 4 ifip.ktz
+pathto 8 -from 2 -t abp.ktz
+.fi
+
+.SH SEE ALSO
+
+nd(n), tina(n), plan(n), struct(n), ktzio(n), ndrio(n), tedd(n), selt(n), sift(n), muse(n), play(n), walk(n), reduce(n), formats(n)
+
+.SH AUTHORS
+Bernard Berthomieu,
+LAAS/CNRS, 2000-2012, Bernard.Berthomieu@laas.fr.
+

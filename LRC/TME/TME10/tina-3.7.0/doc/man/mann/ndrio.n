@@ -1,0 +1,182 @@
+.TH ndrio n "Version 3.7.0" "Tina Tools"
+
+.SH NAME
+ndrio  \- conversion tool for Petri nets and Time Petri nets
+
+Part of Tina Toolbox for analysis of Petri nets and Time Petri nets.
+
+.SH SYNOPSIS
+
+.B ndrio
+[\-\f2h\f1elp] 
+      [\-NET | \-NDR | \-PNML | \-TPN]
+      [\-net | \-ndr | \-pnml | \-tpn | \-pnt | \-romeo | \-lola | \-nupn]
+      [\-graphplace | \-dot | \-neato | \-circo | \-textify]
+      [\-no-nupn] [\-ren] [\-d] [\-rev] 
+      [infile] [outfile] [errorfile]
+
+.SH DESCRIPTION
+
+ndrio converts Petri nets and Time Petri nets between several, graphic
+or textual, formats. ndrio handles tina labels, delay intervals associated
+with transitions, generalized inhibitor and read (test) arcs, generalized
+stopwatch-inhibitor and stopwatch arcs, and priorities.
+The features not supported by the target format are silently omitted.
+The formats manipulated are the following:
+
+.nf
+name		extension       description
+------------------------------------------------------
+net             \&.net          tina textual format
+ndr             \&.ndr          tina graphic format (produced by nd)
+tpn             \&.tpn          tina textual scripts format
+pnml            \&.pnml         Petri Net Markup Language format
+                                (with or without graphics)
+pnt             \&.pnt          INA format
+                                (if the net is timed, the intervals
+                                 are saved into a companion \&.tim file)
+romeo           \&.romeo        romeo format (without graphics)
+lola            \&.lola         LoLA format (unstructured)
+nupn            \&.nupn         CADP nupn format
+.fi
+
+
+The conversions currently supported are the following:
+
+.nf
+from		to
+------------------------------------------------------
+net             ndr, tpn, pnml, pnt, romeo, lola, nupn
+ndr             net, tpn, pnml, pnt, romeo, lola, nupn
+tpn             net, ndr, pnml, pnt, romeo, lola, nupn
+pnml            net, ndr, tpn, pnml, pnt, romeo, lola, nupn
+.fi
+
+.SH OPTIONS
+
+.TP
+\-\f2h\f1elp
+Recalls options.
+
+.TP
+.B Input format flags:
+
+.TP
+\-NET | -NDR | -PNML | -TPN
+Specifies the format of the input net. This flag is necessary when the
+input net is read on standard input, or read from a file that does not
+bear the expected extension. Default is -NET.
+
+.TP
+.B Output format flags:
+
+.TP
+\-net | -ndr | -pnml | -tpn | -pnt | -romeo | -lola | -nupn
+Specifies the  format of the output  net. This flag  is necessary when
+the output net  is written on standard output, or into a file that does
+not bear the expected extension.
+
+Export to romeo and lola is preliminary. The graphic information, if any,
+is currently not exported to romeo. Also, the user should make sure the
+place and transition names used in the input file are legal romeo or
+lola names; ndrio does not attempt to convert them (consider passing options
+-r -d, in addition).
+
+Export to nupn converts pnml format, with or without nupn units descriptions,
+to CADP nupn format. If the input file format is not pnml, or there are no
+unit descriptions in the file, or if option -no-nupn is passed, outputs a file
+in nupn format in which all units are trivial (each contains a single place).
+In all cases, the input net is assumed safe.
+
+
+.TP
+.B Drawing options:
+
+.TP
+\-graphplace | -dot | -neato | -circo
+Specify a placement filter for nodes. Necessary when converting from a
+graphics-free format  into \&.ndr; optional when converting  into \&.pnml
+(graphics information is only  generated if some filter is specified).
+When  converting  from  a   graphic  format,  the  original  placement
+information is always retained, whatever the tool specified.
+
+.TP
+.B Textifying option:
+
+.TP
+\-textify
+Removes any graphics information from the input file when graphics is
+supported but optional in the output format.
+
+
+.TP
+.B Other flags:
+
+.TP
+\-no-nupn
+If the input file is in pnml format, forget any nupn units descriptions in it.
+
+.TP
+\-ren | \-r
+Renames places and transitions with integers prefixed by "p" and "t", respectively.
+Old names become labels.
+
+.TP
+\-d
+Drops all labels of places and transitions.
+
+.TP
+\-rev
+Reverses the direction of normal edges (inhibitor, read, stopwatch,
+stopwatch-inhibitor and priority edges are unchanged).
+
+.TP
+.B Input source:
+
+.TP
+infile
+Where the  net is  read. The  input format is  determined by  the file
+type, according to the table above. If absent or specified by "-", the
+net is  read on standard  input in the  format specified by  the input
+flag. If  both an  infile and  some input flag  are present,  then the
+format defined  by the  input flag supersedes  that determined  by the
+infile extension.
+
+.TP
+.B Output destination:
+
+.TP
+outfile
+Where the net is written. The output format is determined by the file
+type, according  to the  table above. If  absent or specified  by "-",
+then the net is written on standard output in the format specified by
+the output flag. If both an  outfile and some output flag are present,
+then the format defined by  the output flag supersedes that determined
+by the outfile extension.
+
+.TP
+.B Errors destination:
+
+.TP
+errorfile
+Where error messages are written. By default, errors are printed on standard error.
+
+
+.SH EXAMPLES
+
+.nf
+ndrio abp.net abp.pnml
+ndrio abp.ndr abp.net
+ndrio -NDR -pnml -neato < abp.ndr > abp.pnml
+ndrio abp.ndr -NET
+ndrio abp.ndr abp.pnt
+.fi
+
+.SH SEE ALSO
+
+nd(n), tina(n), plan(n), struct(n), ktzio(n), tedd(n), selt(n), sift(n), muse(n), pathto(n), play(n), walk(n), reduce(n), formats(n)
+
+.SH AUTHORS
+Bernard Berthomieu, with contributions by Florent Peres,
+LAAS/CNRS, 2000-2021, Bernard.Berthomieu@laas.fr.
+

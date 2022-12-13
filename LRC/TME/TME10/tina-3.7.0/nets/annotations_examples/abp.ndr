@@ -1,0 +1,92 @@
+p 195.0 50.0 p1 1 n
+p 195.0 190.0 p2 0 w
+p 195.0 370.0 p3 0 w
+p 195.0 510.0 p4 0 w
+t 195.0 120.0 t1 0 w n
+t 195.0 260.0 t3 0 1 w
+t 195.0 440.0 t4 0 w n
+t 195.0 580.0 t6 0 1 s
+t 560.0 120.0 t7 0 1 n
+p 560.0 190.0 p6 0 e
+t 560.0 260.0 t8 0 2 e
+p 560.0 330.0 p7 0 e
+t 560.0 440.0 t10 0 1 e
+p 560.0 510.0 p8 0 e
+t 560.0 580.0 t11 0 2 e
+p 380.0 120.0 p9 0 n
+t 265.0 190.0 t2 5 6 s
+p 560.0 650.0 p5 1 s
+t 380.0 190.0 t13 0 1 e
+t 490.0 190.0 t9 0 1 n
+p 380.0 260.0 p10 0 n
+t 265.0 510.0 t5 5 6 s
+t 380.0 510.0 t15 0 1 e
+p 380.0 440.0 p11 0 n
+t 490.0 510.0 t12 0 1 n
+p 380.0 580.0 p12 0 n
+t 380.0 330.0 t14 0 1 e
+t 380.0 650.0 t16 0 1 e
+a 710.0 325.0 n4 1 {Receiver\\nprocess}
+a 55.0 190.0 n2 1 {bit 0}
+a 60.0 515.0 n3 1 {bit 1}
+a 20.0 330.0 n1 1 {Sender\\nprocess}
+a 225.0 290.0 n12 1 {rcve ack}
+a 225.0 90.0 n5 1 {send msg}
+a 400.0 295.0 n11 1 {ack lost}
+a 595.0 90.0 n7 1 {msg received}
+a 590.0 290.0 n9 1 {send ack}
+a 520.0 160.0 n8 1 {reject msg}
+a 265.0 160.0 n6 1 {resend msg\\non timeout}
+a 395.0 160.0 n10 1 {msg lost}
+a 225.0 610.0 n13 0 {rcve ack}
+a 225.0 410.0 n14 0 {send msg}
+a 400.0 615.0 n15 0 {ack lost}
+a 595.0 410.0 n16 0 {msg received}
+a 590.0 610.0 n17 0 {send ack}
+a 520.0 480.0 n18 0 {reject msg}
+a 265.0 480.0 n19 0 {resend msg\\non timeout}
+a 395.0 480.0 n20 0 {msg lost}
+a 285.0 765.0 n0 1 {The Alternating Bit Protocol\\nBartlett et al. 1969}
+e t5 p11 1 n
+e t2 p9 1 n
+e p12 t16 1 n
+e p10 t14 1 n
+e p12 t6 1 n
+e t11 p12 1 n
+e p11 t12 1 n
+e t12 p8 1 n
+e p5 t12 1 n
+e p11 t15 1 n
+e p11 t10 1 n
+e t4 p11 1 n
+e t5 0.3939370221 32.29082239 p4 0.1060629779 32.29082239 1 n
+e p4 0.8939370221 32.29082239 t5 0.6060629779 32.29082239 1 n
+e p5 0.0 91.3752122 t7 0.0 91.3752122 1 n
+e t6 0.5 91.37521224 p1 0.5000000002 91.37521224 1 n
+e p9 t9 1 n
+e p10 t3 1 n
+e t8 p10 1 n
+e p9 t13 1 n
+e p7 t9 1 n
+e t9 p6 1 n
+e t2 0.3939370221 32.29082239 p2 0.1060629779 32.29082239 1 n
+e p2 0.8939370221 32.29082239 t2 0.6060629779 32.29082239 1 n
+e t11 p5 1 n
+e p8 t11 1 n
+e t10 p8 1 n
+e p7 t10 1 n
+e t8 p7 1 n
+e p6 t8 1 n
+e t7 p6 1 n
+e p9 t7 1 n
+e t1 p9 1 n
+e p4 t6 1 n
+e t4 p4 1 n
+e p3 t4 1 n
+e t3 p3 1 n
+e p2 t3 1 n
+e t1 p2 1 n
+e p1 t1 1 n
+h abp
+
+

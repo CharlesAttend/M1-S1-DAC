@@ -1,0 +1,89 @@
+Installation instructions for Windows.
+
+
+1. prerequisites:
+-----------------
+
+None.
+
+
+2. installing the toolbox:
+--------------------------
+
+Download and  unpack the tina  distribution. This creates  a hierarchy
+rooted  at tina-3.X.Y.   The binaries  are in  subdirectory  bin.  The
+editor  is  "nd.exe".
+
+To  use  the tools  standalone,  you  may wish  to  add  the tina  bin
+directory to the Path environment  variable.  This is not required for
+using the  tools from the  editor, however. Alternatively, nd  and the
+tools can be moved or copied  at some standard place, provided all the
+contents of the tina bin directory is moved or copied there.
+
+The Unix  manual pages are  in doc/man/mann.  Directory  doc/txt holds
+text copies of these.
+
+The nd  graphic editor assumes  a 3-button mouse is  present. Bindings
+for  emulating a  3-button  mouse with  a  2-button mouse  or pad  are
+built-in: the  Middle button is simulated  by Shift-RightButton. Click
+Help->nd help for information on the graphic bindings.
+
+
+3. drawing filters:
+-------------------
+
+Nd can draw nets or  automata from textual descriptions, provided some
+placement filters  are installed.  Nd has builtin  interfaces for four
+filters :  graphplace, dot, neato  and circo. Graphplace and  dot play
+somewhat the  same role  and are suitable  for drawing dags;  neato is
+best suited for drawing graphs  with cycles; circo attempts a circular
+layout.
+
+Graphplace is bundled  with nd. It is a program  by Jos van Eijndhoven
+at Eindhoven University of Technology, available in source form at:
+	ftp://ftp.es.ele.tue.nl/pub/users/jos/graphplace.tar.gz
+
+Filters  dot, neato  and  circo are  part  of the  AT&T graph  drawing
+package  Graphviz.  Graphviz  is  available  precompiled  for  various
+platforms at: 
+	http://www.research.att.com/sw/tools/graphviz 
+
+For convenience,  stripped down versions  of dot, neato and  circo are
+bundled with the tina distributions.  If Graphviz is already installed
+on your system,  then you may wish to delete the  versions in the tina
+bin directory, and make the installed filters reachable from your Path
+instead.
+
+
+4. bcg support:
+---------------
+
+Format  bcg  is one  of  the formats  supported  by  the CADP  toolbox
+(available at http://www.inrialpes.fr/vasy/cadp).  Bcg support is only
+available on linux and windows versions (please contact us if you need
+bcg support for other targets).  It first requires to properly install
+the CADP  toolset on your machine.  Then you must  compile and install
+libbcg.so  (on linux),  or  libbcg.dll (on  windows)  as explained  in
+extras/bcgsupport/README.
+
+
+5. pnml support:
+----------------
+
+As  of 2.8.0,  the  tina tools  support  the PNML  (Petri Nets  Markup
+Language) format as  an alternative to .net or  .ndr. The PNML support
+is still evolving,  check the formats man page  for details about PNML
+support by tina.
+
+
+6. help, feedback:
+------------------
+
+Please report bugs or other problems to the author at bernard@laas.fr.
+All comments/questions are also welcome on the tina-users forum:
+
+	register at url: http://sympa.laas.fr/wws/info/tina-users
+	post at address: tina-users@laas.fr	
+
+Enjoy,
+

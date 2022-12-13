@@ -1,0 +1,92 @@
+
+Nets  with  data  are  packed  into  directories  with  extension  tts
+including a .net,  .ndr or .tpn file,  a .c file for the  code of data
+and a shared  library (.so/.dyn/.dll file) capturing the  code for the
+particular target.
+
+Applied to  a .tts  directory, tina  loads the .net  or .ndr  file (as
+usual), and dynamically links the  library file to get the actions and
+predicates.   It is  the  user's responsability  to  build the  shared
+library component fron the C sources (tina does not do it for you).
+
+
+Storage libraries:
+------------------
+
+tina  sees data  values  as  keys (pointers  or  integers), through  a
+"store"  function.  The  storage functions  may reside  in  a separate
+library or may be statically  linked with the data processing library.
+The  storage  functions  are not  part  of  the  tts api.  They  would
+typically provide functions:
+
+	store : value -> key
+	lookup : key -> value
+	init_storage : <library specific> -> int
+
+The storage library must be initialized by calling init_storage before
+any call of store.
+
+In addition, storage libraries may require functions to be provided by
+the application, typically the following:
+
+	compare_value : value * value -> comp
+	free_value : value -> void
+
+Finally, storage libraries may optionally provide two functions:
+
+        set_compression : int -> int
+        set_database : string -> int
+
+The  first is  called  by tina  with  argument 1  when compression  is
+enabled (flag -cp of tina, if available), the second is called by tina
+with the directory in which resides the database when database storage
+is enabled (flag -db of tina, if available).
+
+
+
+Data processing library:
+------------------------
+
+The data shared library itself captures:
+
+    optionally,  a  function  returning  an API  version  (default  0,
+    meaning the api described in this file).
+
+        ttsapiversion : void -> int
+
+    an array of transition names for the transitions referred to
+    in the library:
+
+	transitions : int ref -> string vector
+
+    for a subset of transitions in transitions, referred to by
+    their index in the above vector:
+
+	pre_i : key -> bool
+	act_i : key -> key
+
+    An independance predicate for actions. This predicate is used
+    by tina for computing the conflicting relation for partial order
+    methods, and the persistent and newly enabled relations for state
+    class graphs:
+
+    A value printer, used by tina to print data value in some concrete
+    notation when output is "verbose":
+
+	sprint_state: key * string ref -> int
+
+    For kts output, the state (or some abstraction of it) should be 
+    available to tina as a record with integer fields. This is done
+    by providing:
+
+    The list of observable names, and their number, by function:
+
+	obs_names : int ref -> string vector
+
+    A function to retrieve the contents of observables from a value:
+
+	obs_values : key -> int vector
+
+
+
+

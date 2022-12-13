@@ -1,0 +1,410 @@
+<HTML><HEAD>
+<TITLE>Manual Page - reduce(n)</TITLE>
+<BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
+<!-- .TH reduce n "Version 3.7.0" "Tina Tools" -->
+<CENTER>
+<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>reduce (n)</NOBR><HR></H1>
+</CENTER>
+<P>
+<!-- .SH NAME -->
+<A name=0>
+
+     <H3>NAME</H3>
+
+</A>
+<BLOCKQUOTE>
+reduce  - Tina reduction tool
+<P>
+Part of Tina Toolbox for analysis of Petri nets and Time Petri nets.
+<P>
+<P>
+<!-- .SH SYNOPSIS -->
+</BLOCKQUOTE>
+<A name=contents></A><H3>CONTENTS</H3></A>
+<BLOCKQUOTE>
+<A HREF=#1>Synopsis</A><BR>
+<A HREF=#2>Description</A><BR>
+<A HREF=#3>Options</A><BR>
+<A HREF=#4>Examples</A><BR>
+<A HREF=#5>See Also</A><BR>
+<A HREF=#6>Authors</A><BR>
+</BLOCKQUOTE>
+<A name=7>
+
+     <H3>SYNOPSIS</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+<!-- .B reduce -->
+<B>reduce</B> [-<I>h</I>elp] [-p]
+<BR>
+       [-rg[,start][,redundant][,compact[+]]
+<BR>
+           [,convert][,mg][,4ti2][,transitions]]
+<BR>
+       [-redundant-limit n] [-redundant-time n]
+<BR>
+       [-inv-limit n] [-inv-time n]
+<BR>
+       [-tr[,cluster][,4ti2]]
+<BR>
+       [-semiflow-limit n] [-semiflow-time n]
+<BR>
+       [-nupn-limit n] [-no-nupn]
+<BR>
+       [-v | -q] [-t n]
+<BR>
+       [-NET | -NDR | -TPN | -PNML | -TTS]
+<BR>
+       [-inh] [-tc] [-dt] [-pr] [-sw] [-stats]
+<BR>
+       [infile] [outfile] [errorfile]
+<P>
+<P>
+<!-- .SH DESCRIPTION -->
+</BLOCKQUOTE>
+<A name=2>
+
+     <H3>DESCRIPTION</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+Tool reduce includes an implementation of the reduction system presented in papers:
+<P>
+<!-- .nf -->
+<PRE>
+B Berthomieu, D Le Botlan, S Dal Zilio
+International Symposium on Model Checking Software (SPIN), LNCS 10869, pp 65-84, Springer, 2018.
+<P>
+B Berthomieu, D Le Botlan, S Dal Zilio
+International Journal on Software Tools for Technology Transfer 22(2), pp 163-181, Springer, 2020.
+<!-- .fi -->
+</PRE>
+<P>
+To these reductions, reduce adds the capability of clustering safe place invariants
+into a single place, thanks to the tina tools supporting generalized read arcs
+and generalized inhibitor arcs.
+<P>
+The input is a net description in any format supported by the Tina tools
+(&#46;net,  &#46;ndr,  &#46;tpn, &#46;pnml  or  &#46;tts); the output is a net in
+the tina &#46;net format annotated by reduction equations (as comments).
+The input net should not have time constraints, priorities nor special arcs
+(read or inhibitors arcs); the output net may have special arcs.
+<P>
+<P>
+<!-- .SH OPTIONS -->
+</BLOCKQUOTE>
+<A name=3>
+
+     <H3>OPTIONS</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+<!-- .TP -->
+<TABLE cellpadding=3>
+<TR valign=top><TD width=6% nowrap>
+-<I>h</I>elp
+</TD><TD valign=bottom>
+Recalls options.
+<P>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Reduction specification and limits: -->
+<B>Reduction specification and limits:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+-rg[,start][,redundant][,compact[+]][,convert][,mg][,4ti2][,transitions]
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Reduction preserving the reachability set (through reduction equations).
+By default (-rg without options), only removes duplicated and constant
+places, and duplicated and identity transitions. The options are:
+<P>
+<!-- .nf -->
+<PRE>
+start:       fire start transitions                   
+redundant:   remove redundant places and redundant transitions (using ILP)                  
+compact[+]:  agglomerate places (two options)        
+convert:     clusters each complementary pair of places into a single place              
+mg:          computes equational descriptions of their reachability set for some special cases of nets
+transitions: keep a copy of each transition (among duplicates)
+4ti2:        use tool 4ti2 for computing redundant places and transitions rather than native algorithms.
+<!-- .fi -->
+</PRE>
+<P>
+The toolset 4ti2 must be installed by the user.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+-redundant-limit n
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Limit on the size of nets (|P| or |T|) for application of the redundant option.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+-redundant-time n
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Timeout on the computation of redundant places and transitions, if requested.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+-inv-limit n
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Limit on the size of nets (|P|) for application of the mg option.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+-inv-time n
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Timeout on the computation of equational description for option mg, if requested.
+<P>
+<P>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Transformation specification and limits: -->
+<B>Transformation specification and limits:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+-tr[,cluster][,4ti2]
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Reduction preserving the reachability set (through transformation relations).
+Currently, the sole transformation provided is cluster.
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   
+<!-- .nf -->
+<PRE>
+cluster:   Clusters safe place invariants into a single place, using an encoding relying on special arcs.
+           The safe invariants are deduced either from the nupn information in the pnml file, of any,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      or from the place semiflows of the net, otherwise.
+4ti2:      use tool 4ti2 for computing place semiflows rather than native algorithms.
+<!-- .fi -->
+</PRE>
+<P>
+The toolset 4ti2 must be installed by the user.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+-semiflow-limit n
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Limit on the size of nets (|P|) for computation of p-semiflows for the cluster option.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+-semiflow-time n
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Timeout on the computation of semiflows for option cluster, if requested.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+-nupn-limit n | -no-nupn
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Forget nupn information in input net, if any (-no-nupn), or forget it only if |P| &gt; n (-nupn-limit n).
+<P>
+<P>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Input options: -->
+<B>Input options:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-inh
+</TD><TD valign=bottom>
+Forget inhibitor arcs in the input net.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-pr
+</TD><TD valign=bottom>
+Forget priority constraints in the input net.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-tc
+</TD><TD valign=bottom>
+Forget time constraints in the input net.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-dt
+</TD><TD valign=bottom>
+Forget data processing when reading a tts description.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-sw
+</TD><TD valign=bottom>
+Forget stopwatches in the input net.
+<P>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Input format and source: -->
+<B>Input format and source:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+-NET | -NDR | -PNML | -TPN | -TTS
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Specifies the format of the input net. This flag is necessary when the
+input net is read on standard input, or read from a file that does not
+bear the expected extension. By default, the net is assumed in .net or
+<!-- .ndr format. -->
+<!-- ignored unsupported tag .ndr -->
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+infile
+</TD><TD valign=bottom>
+Where the  net is  read. The  input format is  determined by  the file
+type, according to the table below. If absent or specified by "-", the
+net is  read on standard  input in the  format specified by  the input
+flag. If  both an  infile and  some input flag  are present,  then the
+format defined  by the  input flag supersedes  that determined  by the
+infile extension.
+<P>
+<!-- .nf -->
+<PRE>
+file extension&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;input format
+--------------------------------------------------------------
+&#46;net&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;net format
+&#46;ndr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ndr format
+&#46;tpn&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tpn format
+&#46;pnml&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pnml format
+&#46;tts&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tts format
+<!-- .fi -->
+</PRE>
+<P>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Output format and destination: -->
+<B>Output format and destination:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-q | -v
+</TD><TD valign=bottom>
+Verbosity level, quiet (-q) or verbose (-v).
+<P>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+outfile
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Where results are written. If absent or specified  by "-",
+results are written on standard output.
+<P>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Errors destination: -->
+<B>Errors destination:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+errfile
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Where error messages are written. If absent or specified  by "-", error messages are written on standard error.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Other flags: -->
+<B>Other flags:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-t s
+</TD><TD valign=bottom>
+Limit on total duration of reduction.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-stats
+</TD><TD valign=bottom>
+Print some statistics information, if available.
+<P>
+<P>
+<P>
+<!-- .SH EXAMPLES -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=4>
+
+     <H3>EXAMPLES</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+<!-- .nf -->
+<PRE>
+reduce -rg,redundant,compact HouseConstruction-PT-00100.pnml
+reduce -rg,redundant,compact+ models/Angiogenesis-PT-20.pnml
+reduce -rg,redundant,compact models/AirplaneLD-PT-0010.pnml
+reduce -rg,start,redundant,compact+ models/IBM319-PT-none.pnml
+reduce -rg,redundant,compact,mg,4ti2 models/CircularTrains-PT-024.pnml
+<!-- .fi -->
+</PRE>
+<P>
+<P>
+<!-- .SH SEE ALSO -->
+</BLOCKQUOTE>
+<A name=5>
+
+     <H3>SEE ALSO</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+nd(n), tina(n), plan(n), struct(n), ktzio(n), ndrio(n), tedd(n), selt(n), sift(n), muse(n), pathto(n), play(n), walk(n), formats(n)
+<P>
+<!-- .SH AUTHORS -->
+</BLOCKQUOTE>
+<A name=6>
+
+     <H3>AUTHORS</H3>
+
+</A>
+<BLOCKQUOTE>
+Bernard Berthomieu
+LAAS/CNRS,  2000-2012, <A HREF="mailto:Bernard.Berthomieu@laas.fr">Bernard.Berthomieu@laas.fr</A>
+<P>
+</BLOCKQUOTE>
+<P><HR>
+<TABLE width=100%><TR> <TD width=33%><I>Tina Tools</I></TD> <TD width=33% align=center>reduce (n)</TD> <TD align=right width=33%><I>Version 3.7.0</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.07</A> from src/reduce.n using man macros.</FONT>
+</BODY></HTML>

@@ -1,0 +1,478 @@
+<HTML><HEAD>
+<TITLE>Manual Page - tedd(n)</TITLE>
+<BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
+<!-- .TH tedd n "Version 3.7.0" "Tina Tools" -->
+<CENTER>
+<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>tedd (n)</NOBR><HR></H1>
+</CENTER>
+<P>
+<!-- .SH NAME -->
+<A name=0>
+
+     <H3>NAME</H3>
+
+</A>
+<BLOCKQUOTE>
+tedd - logic symbolic state space constructop and explorator (development in progress)
+<P>
+Part of Tina Toolbox for analysis of Petri nets and Time Petri nets.
+<P>
+<!-- .SH SYNOPSIS -->
+</BLOCKQUOTE>
+<A name=contents></A><H3>CONTENTS</H3></A>
+<BLOCKQUOTE>
+<A HREF=#1>Synopsis</A><BR>
+<A HREF=#2>Description</A><BR>
+<A HREF=#3>Options</A><BR>
+<A HREF=#4>Shell Variables</A><BR>
+<A HREF=#5>Examples</A><BR>
+<A HREF=#6>See Also</A><BR>
+<A HREF=#7>Authors</A><BR>
+</BLOCKQUOTE>
+<A name=8>
+
+     <H3>SYNOPSIS</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+<!-- .B tedd -->
+<B>tedd</B> [-<I>h</I>elp] [-p]
+<BR>
+     [-order-auto |
+<BR>
+      -order-(dfs|scan|bfs|rcm|wrcm|struct|lexical|sliced|
+<BR>
+              random|tpn)[,force][,rev][,flat][,4ti2]]
+<BR>
+     [-sdd-variables n]
+<BR>
+     [-order-force-limits p t] [-order-struct-limits p t]
+<BR>
+     [-order-save file] [-order-load file]
+<BR>
+     [-count-transitions] [-dead-states] [-dead-transitions]
+<BR>
+     [-q | -v] [-NET | -NDR | -TPN | -PNML | -TTS]
+<BR>
+     [-inh] [-tc] [-dt] [-pr] [-stats] [-b n] [-t s]
+<BR>
+     [infile] [outfile] [digestfile] [errorfile]
+<P>
+<P>
+<!-- .SH DESCRIPTION -->
+</BLOCKQUOTE>
+<A name=2>
+
+     <H3>DESCRIPTION</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+tedd computes the state space of a Petri net or of a discrete time Time Petri
+using logic-based symbolic techniques (decision diagrams).
+It  takes as input Petri net descriptions in textual form (&#46;net, &#46;pnml,
+&#46;tpn formats) or graphical form  (&#46;ndr format of files produced by nd,
+&#46;pnml with graphics).
+Priorities, time constraints and Time Transition System descriptions in &#46;tts
+format are not supported yet.
+tedd also allows to compute dead states and dead transitions in the spaces explored.
+<P>
+Note: this preliminary version is a simplified variant of that used with success
+at the Model Checking Contest, with fewer options (no net reductions nor transformations,
+in particular).
+<P>
+<P>
+<!-- .SH OPTIONS -->
+</BLOCKQUOTE>
+<A name=3>
+
+     <H3>OPTIONS</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+<!-- .TP -->
+<TABLE cellpadding=3>
+<TR valign=top><TD width=6% nowrap>
+-<I>h</I>elp
+</TD><TD valign=bottom>
+Recalls options.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Variable order options: -->
+<B>Variable order options:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+-order-auto
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Let tedd decide order of variables using its builtin metric.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+-order-&lt;spec&gt;[,force][,rev][,flat][,4ti2]]
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Use specified order, where
+<P>
+<!-- .nf -->
+<PRE>
+spec is either:
+  dfs: order variables as places are found in a dfs preorder traversal of net
+  scan: same but in dfs postorder traversal
+  bfs: same but in bfs traversal
+  rcm: use Reverse Cuthill/McKee ordering
+  wrcm: a variation of rcm taking arc weights into account
+  struct: order making use of p-semiflows
+  lexical: order variables according to place names, lexicographically
+  sliced: a variant of lexical
+  random: order variables randomly
+  tpn: another variant of lexical order, recommended for tpn descriptions.
+force: apply force heuristic to order computed
+rev | reverse: reverse order computed
+flat: flatten order (put all variables in a single hierarchical level)
+4ti2: use 4ti2 instead of native algorithms to compute struct order.
+<!-- .fi -->
+</PRE>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+-sdd-variables n
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Sets to n the max number of varibles at each hierarchical level.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+-order-force-limit p t
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Skips force option when computing -order-auto and |P| &gt; p or |T| &gt; t
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+-order-struct-limit p t
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Skips struct order when computing -order-auto and |P| &gt; p or |T| &gt; t
+<P>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+-order-save file
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Saves order computed into a file.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+-order-load file
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Loads variable order from file.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Build options: -->
+<B>Build options:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+-count-transitions
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Compute and print the number of transitions of the state space, if supported by tool.
+By defaut, neither tool computes the transition count as this can be expensive.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+-dead-states
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Once the state space is built, compute the dead states (states without successors)
+and prints them.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+-dead-transitions
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Once the state space is built, compute the dead transitions (those never fired)
+and prints them.
+<P>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Input options: -->
+<B>Input options:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-inh
+</TD><TD valign=bottom>
+Forget inhibitor arcs in the input net.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-pr
+</TD><TD valign=bottom>
+Forget priority constraints in the input net.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-tc
+</TD><TD valign=bottom>
+Forget time constraints in the input net.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-dt
+</TD><TD valign=bottom>
+Forget data processing when reading a tts description.
+<P>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Input format and source: -->
+<B>Input format and source:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+-NET | -NDR | -PNML | -TPN | -TTS
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Specifies the format of the input net. This flag is necessary when the
+input net is read on standard input, or read from a file that does not
+bear the expected extension. By default, the net is assumed in .net or
+<!-- .ndr format. -->
+<!-- ignored unsupported tag .ndr -->
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+infile
+</TD><TD valign=bottom>
+Where the  net is  read. The  input format is  determined by  the file
+type, according to the table below. If absent or specified by "-", the
+net is  read on standard  input in the  format specified by  the input
+flag. If  both an  infile and  some input flag  are present,  then the
+format defined  by the  input flag supersedes  that determined  by the
+infile extension.
+<P>
+<!-- .nf -->
+<PRE>
+file extension&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;input format
+--------------------------------------------------------------
+&#46;net&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;net format
+&#46;ndr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ndr format
+&#46;tpn&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tpn format
+&#46;pnml&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pnml format
+&#46;tts&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     tts format
+<!-- .fi -->
+</PRE>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Output format and destination: -->
+<B>Output format and destination:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-q | -v
+</TD><TD valign=bottom>
+Specifies the format of the output, quiet (-q) or verbose (-v).
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+outfile
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Where results are written.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Digest destination: -->
+<B>Digest destination:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+digestfile
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+In addition to (possibly) its results in file outfile, tedd may
+prints a summary of results in file digestfile (default stdout).
+<P>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Errors destination: -->
+<B>Errors destination:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+errorfile
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Where error messages are written. By default, errors are printed on standard error.
+<P>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Other flags: -->
+<B>Other flags:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-p
+</TD><TD valign=bottom>
+Disables state space generation, just parses input net.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-po
+</TD><TD valign=bottom>
+Disables state space generation, just parses input net and computes variable order.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-stats
+</TD><TD valign=bottom>
+Prints progress information on the fly, if available.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-b n
+</TD><TD valign=bottom>
+Indicates that the marking of each place cannot exceed n. Tedd does not check it but may
+take advantage of this information for optimizing the state space representation.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-t n
+</TD><TD valign=bottom>
+Stop if computation lasts longer than n seconds; no effects if n=0.
+<P>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Default options: -->
+<B>Default options:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+tedd -q -pr -dt -order-auto
+<P>
+<P>
+<P>
+<!-- .SH SHELL VARIABLES -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=4>
+
+     <H3>SHELL VARIABLES</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+Several tables used by tedd are statically allocated, including the following, with the default sizes shown:
+<P>
+<!-- .nf -->
+<PRE>
+table&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default size (items)
+--------------------------------------------------------------
+HOMUTSIZE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10000
+HOMCACHESIZE &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1000000
+HOMCACHETHRESHOLD &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1000000
+REWCACHESIZE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;100000
+REWCACHETHRESHOLD &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1000000
+SDDUTSIZE &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2000000
+SDDCACHESIZE &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1000000
+SDDCACHETHRESHOLD &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1000000
+<!-- .fi -->
+</PRE>
+<P>
+These initial sizes may be changed by defining shell variables named like the tables to be dimensioned,
+with the desired sizes assigned to.
+<P>
+For better performances on nets with large state spaces, it might be wise to augment the default sizes of
+the HOMCACHE, SDDUT and SDDCACHE tables. Three examples size sets follow; the code assigning these sizes
+tp the shell veriables should br added to your startup file or to a file sourced before calling tedd
+(exact syntax depends on the shell im use).:
+<P>
+<!-- .nf -->
+<PRE>
+table&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;medium size&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;large size&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;very large size
+--------------------------------------------------------------
+HOMCACHESIZE&nbsp;&nbsp;&nbsp;&nbsp;10000000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;20000000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;30000000
+SDDUTSIZE &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10000000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;20000000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;30000000
+SDDCACHESIZE &nbsp;&nbsp;&nbsp;5000000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10000000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;15000000
+<!-- .fi -->
+</PRE>
+<P>
+<P>
+<P>
+<P>
+<!-- .SH EXAMPLES -->
+</BLOCKQUOTE>
+<A name=5>
+
+     <H3>EXAMPLES</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+<!-- .nf -->
+<PRE>
+tedd -tc ifip.ndr
+tedd tpn_examples/milner_scheduler/m100.tpn
+tedd tpn_examples/dining_philosophers/p1000.tpn -dead-states
+<P>
+<P>
+<!-- .SH SEE ALSO -->
+</PRE>
+</BLOCKQUOTE>
+<A name=6>
+
+     <H3>SEE ALSO</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+nd(n), tina(n), plan(n), struct(n), ktzio(n), ndrio(n), selt(n), sift(n), muse(n), pathto(n), play(n), walk(n), reduce(n), formats(n)
+<P>
+<!-- .SH AUTHORS -->
+</BLOCKQUOTE>
+<A name=7>
+
+     <H3>AUTHORS</H3>
+
+</A>
+<BLOCKQUOTE>
+Bernard Berthomieu, with contributions by Alexandre Hamez (smldd, expatSML libraries),
+LAAS/CNRS,  2010-2021,
+<A HREF="mailto:Bernard.Berthomieu@laas.fr.">Bernard.Berthomieu@laas.fr.</A>
+<P>
+</BLOCKQUOTE>
+<P><HR>
+<TABLE width=100%><TR> <TD width=33%><I>Tina Tools</I></TD> <TD width=33% align=center>tedd (n)</TD> <TD align=right width=33%><I>Version 3.7.0</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.07</A> from src/tedd.n using man macros.</FONT>
+</BODY></HTML>

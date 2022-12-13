@@ -1,0 +1,262 @@
+walk(n)                                                                walk(n)
+
+
+
+NAME
+       walk  - Tina random walk explorer
+
+       Part of Tina Toolbox for analysis of Petri nets and Time Petri nets.
+
+
+
+SYNOPSIS
+       walk [-help] [-p]
+            [-R | -P | -V | -Q]
+            [-T[,(min|max|rand)][,(dense|discrete)] | -W | -S]
+            [-f formula | -ff file | -dead] [-c n] [-t s] [-b n]
+            [-seed] [-loop] [-only s] [-favor s] [-avoid s] [-never s]
+            [-q | -v] [-NET | -NDR | -TPN | -PNML | -TTS]
+            [-inh] [-tc] [-dt] [-pr] [-sw] [-stats] [-trace]
+            [infile] [outfile] [digestfile] [errorfile]
+
+
+
+DESCRIPTION
+       Tool  walk  allows  to  simulate  net descriptions  in  any of  formats
+       .net,  .ndr,  .tpn, .pnml  or  .tts.  Its  capabilities  include  those
+       provided by the play tool except that walk is not interactive and never
+       stores history. walk is typically much faster than  play  and  provides
+       more  simulation  modes;  its primary intent is to quickly find counter
+       examples to reachability properties in a  random  walk  over  markings,
+       timed state markings, or state class markings.
+
+
+OPTIONS
+       -help  Recalls options.
+
+
+
+       Marking paths specification:
+
+
+       If  there  are  no  time constraints in the input net, then a path is a
+       sequence of net markings separated by net transitions or steps (sets of
+       transitions fired simultaneousy).
+
+
+       -R     Path transitions are single net transitions.
+
+
+       -P     The  path transitions are firing sequence in the partial marking
+              graph built by the persistent set method.
+
+
+       -V     The path transitions are sequences of steps in the partial mark-
+              ing graph built by the covering steps method.
+
+
+       -Q     The path transitions are sequences of steps in the partial mark-
+              ing graph built by the persistent steps method (combining -P and
+              -V construction, see tina papers for details).
+
+
+
+
+       Timed state paths specification:
+
+
+       If  the input net is a Time Petri net with nontrivial time constraints,
+       then a path is either a  series of  states  separated  by   transitions
+       (delay  transitions  followed  by  discrete transitions) in the -T con-
+       struction, or a series of state classes separated by  discrete  transi-
+       tions in the -W and -S constructions.
+
+
+       -T[,(min|max|rand)][,(dense|discrete)]
+              Each  path  transition  is a delay followed by a net transition.
+              One may specify that delays are  the  minimum  allowed,  maximum
+              allowed, or ca be choosen randomly between these.  The semantics
+              of time is either  discrete  (integer  time  instants  only0  or
+              dense.   If  the input net is not timed or all transition delays
+              are trivisl ([0,w[), then -T is silently handed as -R.
+
+
+       -W | -S
+              States are state classes (-W) or strong state classes (-S). Path
+              transitions are net transitions, time delays are abstracted.
+
+
+
+       Path constraints:
+
+
+       -seed  Initializes  the random number generator so that different calls
+              of walk on the same arguments have a chance to explore different
+              paths (if any).
+
+
+       -loop  If  the  current  state is a deadlock or terminated due to other
+              path consttaints, and it is not a counter example to  the  prop-
+              erty  to  be  checked, then the simulation is restarted from the
+              initial marking or state.
+
+
+       -favor s | -avoid s
+              Whevener possible along the path, pick transitions in s  (-favor
+              s), or not in s (-avoid s).
+
+
+       -only s | never s
+              Restrict  path  to  the  transitions in s (-only s), or not in s
+              (-never s).  If not possible, then terminate the path.
+
+
+
+       Stopping conditions:
+
+              Flags -f and -dead specify formulas that  should  be  invariant.
+              walk  stops  along  a path if some state violating the specified
+              formula is found.
+
+
+       -f form
+              Stop with result FALSE if some  state  does  not  obey  property
+              form;  no  effects  if  form=T.   Stops  with  result OPEN if no
+              counter example was found along the  path  developped.   Formula
+              form  is  any  modality-free  formula accepted by the selt model
+              checker (check man selt for details).  In  addition,  an  atomic
+              proposition  is  provided, "safe" or "L.safe", then asserts that
+              the marking of  each  place does not exceed 1.
+
+
+       -ff form
+              Equivalent to -f form, for the formula form read in file.
+
+
+       -dead  Stop with FALSE if some deadlock state is found;  shorthand  for
+              -f "-L.dead".
+
+
+       -c n   walk  stops  with  result  OPEN  if the length of the path taken
+              exceeds n.
+
+
+       -t s   walk stops with result OPEN if more than s seconds elapsed since
+              walk was called.
+
+
+       -b n   Stops  with FALSE if some marking is found that marks some place
+              with more than n tokens.
+
+
+
+       Input options:
+
+
+       -inh   Forget inhibitor arcs in the input net.
+
+
+       -pr    Forget priority constraints in the input net.
+
+
+       -tc    Forget time constraints in the input net.
+
+
+       -dt    Forget data processing when reading a tts description.
+
+
+       -sw    Forget stopwatch and stopwatch-inhibitor arcs in the input  net.
+
+
+
+
+       Input format and source:
+
+
+       -NET | -NDR | -PNML | -TPN | -TTS
+              Specifies  the  format  of the input net. This flag is necessary
+              when the input net is read on standard input,  or  read  from  a
+              file  that does not bear the expected extension. By default, the
+              net is assumed in .net or
+
+
+       infile Where the  net is  read. The  input  format  is   determined  by
+              the file type, according to the table below. If absent or speci-
+              fied by "-", the net is  read on standard  input in the   format
+              specified  by   the  input  flag.  If  both an  infile and  some
+              input flag  are present,  then the format defined  by the  input
+              flag supersedes  that determined  by the infile extension.
+
+              file extension      input format
+              --------------------------------------------------------------
+              .net           net format
+              .ndr           ndr format
+              .tpn           tpn format
+              .pnml               pnml format
+              .tts           tts format
+
+
+
+       Output format and destination:
+
+
+       -q | -v
+              Verbosity level, quiet (-q) or verbose (-v).
+
+
+
+       outfile
+              Where  results  are  written.  If  absent  or specified  by "-",
+              results are written on standard output.
+
+
+
+       Digest destination:
+
+
+       digestfile
+              In addition to (possibly) its results in file outfile, walk  may
+              prints a summary of results in file digestfile (default stdout).
+
+
+
+       Errors destination:
+
+
+       errfile
+              Where error messages are written. If  absent  or  specified   by
+              "-", error messages are written on standard error.
+
+
+       Other flags:
+
+
+       -stats prints progress information on the fly (path length so far).
+
+
+       -trace prints  path transitions on the fly, prefixed by delays if input
+              is timed.
+
+
+
+
+EXAMPLES
+       walk -T,min,dense -f L.safe ../nets/ifip.ndr
+       walk -R -dead AirplaneLD-PT-0010.pnml
+       walk -W -f -t4 ../nets/ifip.ndr
+       walk -W -f -p3 ../nets/ifip.ndr
+
+
+
+SEE ALSO
+       nd(n),  tina(n),  plan(n),  struct(n),  ktzio(n),  ndrio(n),   tedd(n),
+       selt(n), sift(n), muse(n), pathto(n), play(n), reduce(n), formats(n)
+
+
+AUTHORS
+       Bernard Berthomieu LAAS/CNRS,  2000-2012, Bernard.Berthomieu@laas.fr
+
+
+
+
+Tina Tools                       Version 3.7.0                         walk(n)

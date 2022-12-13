@@ -1,0 +1,164 @@
+struct(n)                                                            struct(n)
+
+
+
+NAME
+       struct - Structural analysis tool
+
+       Part of Tina Toolbox for analysis of Petri nets and Time Petri nets.
+
+
+SYNOPSIS
+       struct [-help]
+              [-S | -F] [-I | -Q] [-P | -T] [-safe]
+              [-32 | -64 | -mp | -dp] [-native | -4ti2]
+              [-v | -q | -j | -j2 | -j3]
+              [-NET | -NDR | -PNML | -TPN | -TTS]
+              [infile] [outfile] [errorfile]
+
+
+
+DESCRIPTION
+       struct  computes  generator sets for  semiflows, or bases of  flows, on
+       places and transitions.  It takes  as input descriptions of a  Priority
+       Time   Petri  net  in  textual  form (.net,  .pnml,  .tpn  formats)  or
+       graphical  form (.ndr  format  of  files produced  by  nd, .pnml   with
+       graphics), or a Time Transition System description in .tts format.
+
+
+
+OPTIONS
+       -help  Recalls options.
+
+
+       Operating mode options:
+
+
+       -P | -T
+              Computes  semiflows or flows for places only (-P) or transitions
+              only (-T).  In absence of either flag, computes them for both.
+
+
+       -S | -F
+              Computes semiflow generator sets (-S) or flow bases (-F). If -S,
+              also computes the invariant and consistent properties.
+
+
+       -I | -Q
+              Computes   semiflow  (resp. flow) basis  such  that   any  semi-
+              flow (resp. flow)  is a  linear combination with   integer  (-I)
+              or  rational (-Q) coefficients of those in basis (nongenative if
+              -S, in addition).
+
+
+       -safe  Evaluates a sufficient condifion for net safeness,  using  semi-
+              flows on places.
+
+
+       -32 | -64 | -mp | -dp
+              precision of arithmetic computations:
+              -32: use 32 bit integers;
+              -64: use 64 bit integers;
+              -mp: use arbitrary precision arithmetics;
+              -dp: use default precision.
+
+
+       -native
+              Use  the  native  solver  for  computation of flows or semiflows
+              (default).
+
+              -4ti2 Use the 4ti2 tool (www.4ti2.de)  rather  than  the  native
+              implementations  for  computation  of  flows or semiflows.  This
+              option requires to compile and install the  4ti2  tool  on  your
+              machine.  4ti2 is significantly faster on large nets, especially
+              when using option -I.
+
+
+       Output format selection :
+
+
+       -v     textual output, prints full results.
+
+
+       -q     textual output, prints a summary of results.
+
+
+       -j | -j2 | -j3
+              prints [semi]flows  in  json  format,  with  several  levels  of
+              detail.
+              -j3: most detailled, selt explanatory
+              -j2: like -j3 except items names are replaced by indices in lexicograophically ordered list of names
+              -j : just prints indices of items with positive coefficients
+
+
+       Input format flags:
+
+
+       -NET | -NDR | -PNML | -TPN | -TTS
+              Specifies  the  format  of the input net. This flag is necessary
+              when the input net is read on standard input,  or  read  from  a
+              file  that does not bear the expected extension. By default, the
+              net is assumed in .net or .ndr format.
+
+
+       Input source:
+
+
+       infile Where the  net is  read. The  input  format  is   determined  by
+              the file type, according to the table below. If absent or speci-
+              fied by "-", the net is  read on standard  input in the   format
+              specified  by   the  input  flag.  If  both an  infile and  some
+              input flag  are present,  then the format defined  by the  input
+              flag supersedes  that determined  by the infile extension.
+
+              file extension      input format
+              --------------------------------------------------------------
+              .net           net format
+              .ndr           ndr format
+              .tpn           tpn format
+              .pnml               pnml format
+              .tts           tts format
+
+
+       Output destination:
+
+
+       outfile
+              Where  results are  written.   If  absent or  specified  by "-",
+              then results are written on standard output.
+
+
+
+       Errors destination:
+
+
+       errorfile
+              Where error messages are written. By default, errors are printed
+              on standard error.
+
+
+
+       Default options are :
+
+              struct -t 0 -v -S -Q
+
+
+
+EXAMPLES
+       struct < nets/ifip.ndr > ifip.struct
+       struct -q nets/ifip.ndr ifip.struct
+
+
+
+SEE ALSO
+       nd(n), tina(n), plan(n), ktzio(n), ndrio(n), tedd(n), selt(n), sift(n),
+       muse(n), pathto(n), play(n), walk(n), reduce(n), formats(n)
+
+
+AUTHORS
+       Bernard Berthomieu, LAAS/CNRS, 2000-2012, Bernard.Berthomieu@laas.fr.
+
+
+
+
+Tina Tools                       Version 3.7.0                       struct(n)

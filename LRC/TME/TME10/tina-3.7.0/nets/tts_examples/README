@@ -1,0 +1,70 @@
+
+Contents:
+
+API:
+----
+
+tts API documentation.
+
+
+lib/avl:
+--------
+
+Code  for the  avl-based  storage library, check avl/README for details.
+
+By default (typing "make", or "make K=<int>" when K required), all the
+following examples statically add to the libraries they build the code
+for the  avl storage.
+
+
+ifip:
+-----
+
+A documented  toy example (read  file ifip.c) illustrating the  use of
+non-integer  data state  components and  reference counts  for sharing
+pointed structures among data states.
+
+type "make" for building ifip.tts.
+
+then try e.g.	tina ifip.tts
+		tina ifip.tts -aut
+		tina ifip.tts ifip.ktz
+		
+
+naimitrehel1, naimitrehel1-cp, naimitrehel1-db:
+-----------------------------------------------
+
+A version of the Naimi-Trehel distributed mutual exclusion algorithm,
+without concerns for space efficiency.
+
+type "make K=4" for building an example with 4 sites
+
+the try e.g.	tina -q nt4.tts
+
+
+naimitrehel2:
+-------------
+
+The same  example, with a  more sophisticated memory  management: data
+memory management allows sharing of  state components. It does not run
+faster  than  naimitrehel1,  but   comsumes  about  35%  less  memory.
+naimitrehel1-cp is  more space efficient  though, on versions  of tina
+enabling compression.
+
+
+trains:
+-------
+
+A  variant  of  ../../tpn_examples/trains  with  a  simpler  controler
+resuming to a  counter and implemented in the  "data" part. No storage
+library is needed for that example.
+
+The net component is defined by a tpn script and components trains.ndr
+and barrier.ndr.
+
+type "make K=4" for building an example with 4 trains
+
+then try e.g.	tina -q trains4.tts
+		tina -q -M trains4.tts
+
+

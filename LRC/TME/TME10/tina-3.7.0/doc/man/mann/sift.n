@@ -1,0 +1,352 @@
+.TH sift n "Version 3.7.0" "Tina Tools"
+
+.SH NAME
+sift - high performance state space explorator and checker
+
+Part of Tina Toolbox for analysis of Petri nets and Time Petri nets.
+
+.SH SYNOPSIS
+
+.B sift
+[\-\f2h\f1elp] [-p]
+     [-R | -P | -V | -Q |
+      -D | -F | -F1 |
+      -W | -M | -H | -S | -E | -G]
+     [-equal | -incl | -hull]
+     [-f form | -ff file | -dead] [-c n] [-t s] [-b n]
+     [-q | -k] [-NET | -NDR | -TPN | -PNML | -TTS]
+     [-df | -bf | -rf] [-seed] [-tree] [-inh] [-tc] [-pr] [-dt] [-stats]
+     [infile] [outfile] [digestfile] [errorfile]
+
+ 
+.SH DESCRIPTION
+
+sift builds  various state space abstractions for  extended Time Petri
+nets.  It  takes as input  descriptions in textual form  (\&.net, \&.pnml,
+\&.tpn formats) or graphical form  (\&.ndr format of files produced by nd,
+\&.pnml with graphics), or a  Time Transition System description in \&.tts
+format.
+
+sift serves similar purposes as  the tina tool, with less options but
+handles large  states spaces much more efficiently.   sift also allows
+to check reachability properties on the fly.
+
+
+.SH OPTIONS
+
+.TP
+\-\f2h\f1elp
+Recalls options.
+
+.TP
+.B Operating mode options:
+
+.TP
+\-R
+Builds the marking reachability graph of a Petri net (untimed, or with
+temporal information discarded). 
+This option forgets time constraints, it sets flag -tc.
+
+.TP
+-V
+Builds  the Covering  Step  Graph of  a  Petri net,  according to  the
+technique of Vernadat/Azema/Michel. The construction preserves deadlocks.
+This option forgets time constraints and priorities, it sets flags -tc -pr.
+
+.TP
+\-P
+Builds  the partial marking  graph of  a Petri  net, according  to the
+persistent sets technique. The heuristic retained is to minimize local
+branching.
+This option forgets time constraints and priorities, it sets flags -tc and -pr.
+
+.TP
+\-Q
+Builds  the  partial  marking  graph  of  a  Petri  net.  Combine  the
+persistent  sets  (-P)  and   covering  steps  (-V)  methods.
+This option forgets time constraints and priorities, it sets flags -tc and -pr.
+
+.TP
+\-D
+Builds the essential state graph of a Time Petri net, according to the
+technique of Popova. This graph preserves reachability and linear time
+temporal properties. Static intervals  must be closed or unbounded and
+left-closed.   If no  temporal  information is  specified,  or if  all
+transitions bear interval [0,w[, then -D is silently replaced by -R.
+
+.TP
+\-F | -F1
+Builds  the subgraph  of the  state graph  obtained by  firing integer
+delay transitions (unit delays if -F1) and discrete transitions.  This
+graph strictly includes that obtained by -D  and  preserves  the  same
+properties. Static intervals must be closed  or  unbounded  and  left-
+closed. If no temporal information is specified, or if all transitions
+bear interval [0,w[, then -F/-F1 is silently replaced by -R.
+
+.TP
+\-W
+Builds the linear state class graph  of a Time Petri net, according to
+the technique of Berthomieu/Menasche [IFIP1983].  The linear state class
+graph  preserves  marking  reachability  properties  and  linear  time
+temporal properties.   If no temporal information is  specified, or if
+all transitions bear  interval [0,w[, then -W is  silently replaced by
+-R.  This option removes priorities, it sets flag -pr.
+
+.TP
+\-M
+Option -M computes the set of markings of a TPN.
+Option -M is typically faster than -W and yields smaller state space
+abstractions, but it does not preserve firing sequences. ktz files
+created in mode -M only capture markings and the firable transitions
+represented as loop transitions on the markings they are firable from.
+
+.TP
+\-H
+Option -H computes an overapproximation of the set of markings
+of a TPN. It is typically much faster than options -M and -W and produces
+a set of classes with exactly one firing domain associated with each marking.
+Compared to -W, all classes associated with the same marking are merged into
+a single class obained from the dbm-hull of their domains (the smallest
+dbm including all of them). As for mode -M, ktz files created in mode -H
+only capture markings and the firable transitions.
+
+.TP
+\-S
+Builds the  strong state  class graph, according  to the  technique of
+Berthomieu/Vernadat   [TACAS2003].    That   graph   preserves   state
+reachability  properties and  linear time  temporal properties;  it is
+also  compatible  with  priorities.   If no  temporal  information  is
+specified,  or if  all transitions  bear  interval [0,w[,  then -S  is
+silently replaced by -R.
+
+.TP
+\-E
+Option -E computes the set of states of a TPN.
+Option -E is typically faster than -S and yields smaller state space
+abstractions, but it does not preserve firing sequences. ktz files
+created in mode -E only captured markings and the firable transitions,
+represented as loop transitions on the markings they are firable from.
+
+.TP
+\-G
+Option -G computes an overapproximation of the set of states
+of a TPN. It is typically much faster than options -S and -E and produces
+a set of strong classes with exactly one clock domain associated with each marking.
+Compared to -S, all classes associated with the same marking are merged into
+a single class obained from the dbm-hull of their domains (the smallest
+dbm including all of them). As for mode -E, ktz files created in mode -G
+only capture markings and the firable transitions.
+
+.TP
+\-equal
+Identify two state classes when they are equal (default).
+This flag has the effects of -W if no priorities are specified, or of -S otherwise;
+It is ignored if the net is untimed or if some operating mode is simultaneously set.
+
+.TP
+\-incl
+Identify two state classes when one is included in the other.
+This flag has the effects of -M if no priorities are specified, or of -E otherwise;
+It is ignored if the net is untimed or if some operating mode is simultaneously set.
+
+.TP
+\-hull
+Merge all state classes with same marking into their dbm hull.
+This flag has the effects of -H if no priorities are specified, or of -G otherwise;
+It is ignored if the net is untimed or if some operating mode is simultaneously set.
+
+.TP
+.B Exploration strategy flags (when meaningful):
+
+.TP
+\-df
+Depth-first exploration order
+
+.TP
+\-bf
+Breadth-first exploration order (default)
+
+.TP
+\-rf
+Random exploration order
+
+\-seed
+Initializes the random number generator so that different calls of sift with order -rf
+on the same arguments may traverse the state space in different orders.
+
+.TP
+.B input options:
+
+.TP
+\-inh
+Removes inhibitor arcs from the input net.
+
+.TP
+\-pr
+Removes priority constraints from the input net.
+
+.TP
+\-tc
+Removes time constraints  from the input net.
+
+.TP
+\-dt
+Forgets data processing when reading a tts description.
+
+.TP
+.B Storage strategy flags:
+
+.TP
+\-tree
+Do not store states; assume any state computed is new.
+
+.TP
+.B Stopping conditions:
+
+If some of these conditions fail and the output is ktz, then the ktz
+file captures a partial state space including the offending state and
+in which all non fully explored states bear property "sub".
+
+.TP
+\-c n 
+Stop if the number of state enumerated exceeds n; no effects if n=0.
+
+.TP
+\-t n
+Stop if exploration lasts longer than n seconds; no effects if n=0.
+
+.TP
+\-b n 
+Stops if the marking of some place exceeds n; no effects if n=0.
+Sift may take advantage of this value for choosing the representation of
+states.
+
+.TP
+\-f form
+Stop if some state does not obey property form; no effects if form=T.
+Formula form is any modality-free formula accepted by the selt model
+checker (check man selt for details). In addition, an atomic proposition
+is provided, "safe" or "L.safe", then asserts that the marking of each place
+does not exceed 1.
+
+.TP
+\-ff form
+Equivalent to -f form, for the formula form read in file.
+
+.TP
+\-dead
+Stop if some deadlock state is found; shorthand for -f "-L.dead".
+
+
+.TP
+.B Other flags:
+
+.TP
+\-p
+Disables state space generation, just parses input net.
+
+.TP
+\-stats
+Prints progress information on the fly.
+
+.TP
+.B Input format and source:
+
+.TP
+\-NET | -NDR | -PNML | -TPN | -TTS
+Specifies the format of the input net. This flag is necessary when the
+input net is read on standard input, or read from a file that does not
+bear the expected extension. By default, the net is assumed in .net or
+.ndr format.
+
+.TP
+infile
+Where the  net is  read. The  input format is  determined by  the file
+type, according to the table below. If absent or specified by "-", the
+net is  read on standard  input in the  format specified by  the input
+flag. If  both an  infile and  some input flag  are present,  then the
+format defined  by the  input flag supersedes  that determined  by the
+infile extension.
+
+.nf
+file extension		input format
+--------------------------------------------------------------
+\&.net			net format
+\&.ndr			ndr format
+\&.tpn			tpn format
+\&.pnml			pnml format
+\&.tts			tts format
+.fi
+
+.TP
+.B Output format and destination:
+
+.TP
+\-q | \-\f2k\f1tz
+Specifies the format of the output. This flag is necessary when
+output is produced on standard output, or written in a file that does not
+bear the expected extension. \-q means no output is printed, while 
+\-k means some output is produced in \&.ktz proprietary compressed format. 
+
+.TP
+outfile
+Where results are written. The output format is determined by the file
+type, according  to the  table below. If  absent or specified  by "-",
+then results are written on standard output in the format specified by
+the output format flag. If both an  outfile and some output flag are present,
+then the format defined by  the output flag supersedes that determined
+by the outfile extension.
+
+.nf
+file extension		output format
+--------------------------------------------------------------
+\&.ktz			tina binary ktz format
+any other		textual output
+.fi
+
+.TP
+.B Digest destination:
+
+.TP
+digestfile
+
+In addition to (possibly) its results in ktz form in file outfile, sift 
+prints a summary of results in file digestfile (default stdout).
+
+.TP
+.B Errors destination:
+
+.TP
+errorfile
+Where error messages are written. By default, errors are printed on standard error.
+
+
+.TP
+.B Default options:
+
+Depend upon the features of the input net:
+.nf
+If no time constraint:     sift -R -c 0 -t 0 -b 0 -f T -q
+Else, if no priorities:    sift -W -c 0 -t 0 -b 0 -f T -q
+Otherwise:                 sift -S -c 0 -t 0 -b 0 -f T -q
+.fi
+
+
+.SH EXAMPLES
+
+.nf
+sift -f "p1 \/ t4" < ifip.ndr
+sift -PNML mynet.xml
+sift -f safe abp.ndr abp.ktz -stats
+.fi
+
+
+.SH SEE ALSO
+
+nd(n), tina(n), plan(n), struct(n), ktzio(n), ndrio(n), tedd(n), selt(n), muse(n), pathto(n), play(n), walk(n), reduce(n), formats(n)
+
+.SH AUTHORS
+Bernard Berthomieu, with contributions by Alexandre Hamez
+LAAS/CNRS,  2000-2012,
+Bernard.Berthomieu@laas.fr.
+

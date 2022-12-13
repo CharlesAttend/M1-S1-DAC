@@ -1,0 +1,19 @@
+#!/bin/sh
+# \
+exec tclsh "$0" -- "$@"
+
+# generates n-philosophers
+# usage mkphilo N > philoN.tpn
+
+proc main {} {
+    global argv
+    if {"" == [set n [lindex $argv 1]]} {set n 1}
+    puts "# m0 symmetric"
+    for {set i 0} {$i < $n} {incr i} {
+	puts "load components/philo.ndr"
+	puts "ren a[expr [expr $i - 1] % $n]/tleft b[expr [expr $i - 1] % $n]/bleft a$i/tright b$i/bright"
+    }
+    puts "sync ring $n"
+}
+
+main

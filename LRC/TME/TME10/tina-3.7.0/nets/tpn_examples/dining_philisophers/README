@@ -1,0 +1,32 @@
+
+A dining philosophers example in which each philosopher can take both forks in parallel
+
+Contents:
+
+components:
+	basic component, replicated in all models
+
+mkphilo:
+	a tcl script for generating philosopher models in tpn format
+	(usage, e.g.    mkphilo 100 > p100.tpn)
+
+p*.tpn:
+	example models obtained my mksched (recommended for tedd)
+
+p10000.net:
+	see below
+
+philosophers5.ndr:
+	the result of drawing p5.tpn in nd, for understanding the models
+
+----
+
+NOTE: interpreting tpn scripts producing very large nets can be slow.
+For repeated experiments on the same (large) net, it may be convenient to first convert
+the .tpn description into an equivalent .net, using tool ndrio, e.g. 
+
+      ndrio p5000.tpn p5000.net
+      tedd p5000.net
+      tedd -pnmc p5000.net -order-lexical
+      tedd -pnmc p5000.net -order-force
+ 

@@ -1,0 +1,8 @@
+net swtpn
+tr t1 [1,1] p0 -> p3 
+tr t2 [1,1] p2 ->
+tr t3 [0,1] p3 -> p0 p2 
+tr t4 [1,1] p3!1 ->
+pl p0 (1)
+pl p3 (1)
+

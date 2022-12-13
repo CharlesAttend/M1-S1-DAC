@@ -1,0 +1,455 @@
+selt(n)                                                                selt(n)
+
+
+
+NAME
+       selt  - SE-LTL model checker
+
+       Part of Tina Toolbox for analysis of Petri nets and Time Petri nets.
+
+
+SYNOPSIS
+       selt [-help]
+
+       selt ktzfile [-f formula | formfile] [-prelude ltlfile]
+            [-ltl2nc | -spin | -ltl2ba | -spot]
+            [-q | -v] [-b | -c | -p | -s | -g] [-S scnfile] [-wp n]
+            [outfile] [errorfile]
+
+
+DESCRIPTION
+       selt  model-checks state-event LTL formulas on a kripke transition sys-
+       tem given in ktz format.
+
+       If some  formula is specified (by  flag -f or by  providing  formfile),
+       then   the result  of  evaluation  of  the formula  is  printed accord-
+       ing to the output mode and verbosity flags, and selt exits.
+
+       If  no  formula file is  specified,  then  selt  starts an  interactive
+       session, evaluating commands entered by the user on standard input (see
+       "selt se-ltl language and commands" below).
+
+
+
+OPTIONS
+       -help  Recalls options.
+
+
+
+       Ktz input:
+
+
+       ktzfile
+              The kripke transition system on which formula are model-checked,
+              in ktz format (extension .ktz).
+
+
+       -wp (0|1|2)
+              This  flag  removes (0), preserves (1),  or forces at each state
+              (2) the temporal divergence  property possibly  present  in  the
+              kts file (see tina's -wp flag for details).
+
+
+
+       LTL input:
+
+
+       -f formula
+              Passes to selt the formula to be verified.
+
+
+       formfile
+              Specifies  a file holding the formulas to be verified. Must have
+              extension .ltl
+
+
+       -prelude ltlfile
+              Specifies a  file containing selt  commands to be evaluated   on
+              entry,  before   any formula  provided by  -f, by  formfile,  or
+              interactively.   This   flag  is   useful   to    load    SE-LTL
+              libraries.   ltlfile must  have extension .ltl
+
+
+       LTL to Buchi automata converter options:
+
+
+       default  option
+              If  none  of  the following options is passed, selt will use the
+              converter the name of which is found in the environment variable
+              LTL2BA,  if  set,  or  ltl2nc  otherwise (ltl2nc is bundled with
+              tina, for all targets).
+
+
+
+       -ltl2nc
+              Convert  ltl formula  to buchi  automata  using ltl2nc  (ltl  to
+              never  claim), a stripped down version of spin-6.2.3 only imple-
+              menting option -f.  ltl2nc binaries are bundled with  tina  dis-
+              tributions.
+
+
+       -spin  Convert  ltl formula to buchi automata using spin (any version).
+              spin must be installed at your site from the sources or binaries
+              available from (http://spinroot.com).
+
+
+       -ltl2ba
+              Convert  ltl  formula  to  buchi  automata  using  Oddoux/Gastin
+              ltl2ba.  Typically yields smaller automata than the above,  fits
+              most  purposes and easy to compile.  ltl2ba must be installed at
+              your     site,     from     the     sources     available     at
+              (http://www.lsv.fr/~gastin/ltl2ba).   Pre-compiled  binaries  of
+              ltl2ba   V1.0   for   some   targets   may   be   available   at
+              (http://www.laas.fr/tina/software2.php).
+
+
+       -spot  Convert  ltl  formula  to buchi automata using ltl2tgba from the
+              SPOT model checking library.  ltl2tgba must be installed at your
+              site, from the sources available at (http://spot.lrde.epita.fr).
+              This is certainly the  fastest  converter  available,  and  that
+              yielding the smallest automata, but compilation may be challeng-
+              ing on some targets.
+
+
+       Verbosity level:
+
+
+       -v     prints banner and evaluation times for LTL commands (default).
+
+
+       -q     No  banner  nor times  are  printed. This  flag  is  useful  for
+              batch operation.
+
+
+
+       Output mode flags:
+
+
+       -b     When   evaluating   a  formula,  just  prints  its  truth value,
+              without counter example.
+
+
+       -c     When  a formula  evaluates  to  FALSE, prints   in   addition  a
+              counter example in condensed form (default).
+
+
+       -p     When   a  formula   evaluates  to  FALSE, prints  in  addition a
+              counter example in full form.
+
+
+       -s     When  a formula  evaluates  to  FALSE, prints   in   addition  a
+              counter example in the scn formmat of the nd stepper.
+
+
+       -g     When  a  formula   evaluates to FALSE, does not  print a counter
+              example, but builds the  full graph obtained  as  the   synchro-
+              nization of the kts and of the  bucchi automaton translating the
+              negation  of the formula, instead, in ktz form (to be provided).
+
+
+
+       Other flags:
+
+
+       -S  scnfile
+              When  a   formula evaluates to FALSE,  writes a counter  example
+              in .scn format of in file scnfile (creating the file if it  does
+              not  exist, and overwriting  it otherwise).   This flag  is use-
+              ful  to  replay counter examples  in   the   nd   stepper   when
+              modelchecking   an  existing  ktz description and a  description
+              of the net the .ktz file describes the behavior  of   is  avail-
+              able  (see  "interacting  with  the nd  stepper" below).
+
+
+
+       Output destination:
+
+
+       outfile
+              Where  results  are  written. The output format is determined by
+              the file type, according  to the  table  below.  If   absent  or
+              specified   by  "-", then results are written on standard output
+              in the format specified by the output flag. If both an   outfile
+              and  some  output  flag  are present, then the format defined by
+              the output flag supersedes that determined by the outfile exten-
+              sion.
+
+              file extension      output format
+              --------------------------------------------------------------
+              .scn           nd stepper .scn format
+              .ktz           .ktz format
+              any other      textual output
+
+
+
+       Errors destination:
+
+
+       errorfile
+              Where error messages are written. By default, errors are printed
+              on standard error.
+
+
+
+
+INTERACTING WITH THE ND STEPPER
+       For  model-checking  Petri nets  or  Time  Petri  nets, tool  selt   is
+       interfaced with the nd editor of the Tina toolbox.
+
+       When   the .ktz  of  the behavior  of  some net  is  not available,  or
+       rebuilding  it  is  cheap,  SE-LTL   properties  of  the  net  can   be
+       model-checked  as  follows: load  the net into  nd, then build  the ktz
+       description  of its behavior  (using the  reachability tool,  with  the
+       default  output  mode and  construction), then invoke  the modelchecker
+       from the menu  in the ktz window, and finally  select "stepper" in  the
+       nd  tools menu.  Any counter example computed by the model-checker will
+       then be loaded automatically into the stepper, for replay.
+
+       When the .ktz of the behavior  of some net is available and  rebuilding
+       it  is expensive, then invoke selt with option -S. The file passed with
+       -S will always hold the  last counter example built. In parallel,  load
+       the  net description into nd and select "stepper" in the nd tools menu.
+       For replaying a counter example, load the .scn file specified with  -S.
+
+
+
+
+SELT SE-LTL LANGUAGE AND COMMANDS
+       Selt  implements  a version of the SE-LTL linear time temporal logic as
+       described in paper:
+
+       S.  Chaki, E.  M. Clarke,  J. Ouaknine,  N. Sharygina,  and  N.  Sinha,
+       "State/Event-based    Software  Model   Checking",   4th  International
+       Conference on Integrated Formal  Methods (IFM'04), Springer LNCS  2999,
+       pages 128--147, April 2004.
+
+       For  building  Buchi automata from  LTL files, the recommended  tool is
+       ltl2ba (see above option -ltl2ba for details), a tool described in  the
+       paper:
+
+       P.  Gastin  and D.  Oddoux, "Fast LTL  to Buchi  Automata Translation",
+       13th Conference Computer-Aided  Verification (CAV'2001), Springer  LNCS
+       2102, pages 53--65, July 2001.
+
+
+1. Lexical matters:
+       - A identifier is either:
+
+       Any   place    or   transition   identifier   allowed  in .net  or .ndr
+       descriptions, that  is: any  sequence of letters,  digits,  underscores
+       "_"  and primes  "'", or any sequence of  characters enclosed in braces
+       in which "{", "}" (except the outer ones) and "\" are prefixed by "\"
+
+       Any sequence of symbols from the list ~ ` ! @ # $ % ^ & * - + = :  ?  |
+        /   < > [ ];
+
+       A qualified identifier: an identifier prefixed by S., E. or L.
+
+       e.g.    hello,  _p4'_,  123,  >=<, or {variable x45}, are legal identi-
+       fiers.
+
+       - The commands are: op, infix, prefix, forget,  verb,  output,  source,
+       quit, assert.  Command names  may not be used  as operator or  variable
+       names.
+
+       - When  analyzing  identifiers,  the  scanner  advances  as  right   as
+       possible.   So, in a juxtaposition  of identifiers, two symbolic or two
+       alphanumeric unbraced identifiers,  or e.g. an alphanumeric  identifier
+       and  a  command name, must  be separated by  a space.  But no  space is
+       necessary  between  identifiers  of   different  kinds  or  between   a
+       parenthesis (or ";") and an identifier.
+
+       -  justaposition bind  tighter than infixes and associate  to the left,
+       infixes and prefixes associate to the  right. That is, if f is a  3-ary
+       operator  in functional notation, [],  <>, -, are prefixes, and /\, \/,
+       are infixes:
+
+                      [] p1 => <> - p3 /\ f u v w
+         parses as    ([] p1) => ((<> (- p3)) /\ (f u v wp))
+
+                      f - <> p1 (f p0 p1 (p4 /\ p5)) \/ f u v w
+         parses as    (f (- <> p1) (f p0 p1 (p4 /\ p5))) \/ (f u v w)
+
+         and          f - <> p1 f p0 p1 p4 \/ f u v w
+         parses as    (f (- <> p1) f p0 p1 p4) \/ (f u v w)
+         which is ill-typed
+
+       - infixes  have precedence in  0..5 (see  below). Infixes  with  higher
+       precedence bind tighter than those with lower precedence.
+
+
+
+2. The initial environment:
+       It is made up of (pushed in that order):
+
+       -  The  atomic  state  and  event  propositions. They  have  the  names
+       captured in the .ktz file,  i.e. those of the places and transitions of
+       the Petri net if the .ktz file was generated by tina.
+
+       - Then, the logic and arithmetic primitives, constituted of:
+
+          constants:  T (true), F (false),
+                 dead (deadlock property)
+                 div (temporal divergence property)
+                 sub (state is partially known)
+
+          prefixes:   [] (always), <> (eventually), () (next),
+                 - (logic negation), ~(arithmetic negation)
+
+          infixes:    U (until), V (release), of precedence 0
+                 => (implies), <=> (equivalent), of precedence 1
+                 /\ (and), \/ (or), of precedence 2
+                 <=, >=, =, le, lt, ge, gt, of precedence 3
+                 +, of precedence 4
+                 *, of precedence 5
+                  - Then the user defined operators.
+
+       Since  the syntactic classes of atomic state propositions, atomic event
+       propositions, logic primitives,  integer,  and user defined  operators,
+       overlap,   we must have  some way  of disambiguating  identifiers.  For
+       this:
+
+       - unqualified identifiers are bound to  the command with than name,  if
+       any,  or otherwise to the last pushed environment entry with that name.
+
+       - identifiers  qualified by  S (e.g.  S.p1)  are bound  to the   atomic
+       state proposition with that name with the qualifier removed (e.g. p1);
+
+       -  identifiers  qualified by  E (e.g.  E.t1)  are bound  to the  atomic
+       event proposition with that name with the qualifier removed (e.g. t1);
+
+       - identifiers  qualified by  L  (e.g.  L./\) are  bound  to the   logic
+       primitive with that name with the qualifier removed (e.g. /\);
+
+       So,  atomic  propositions (found  in the ktz  file) sharing  their name
+       with some atomic propositions in a different group (state or event)  or
+       with  some command  (e.g. op), or some logical  primitive (e.g.  -), or
+       the name  of which  is an integer  (e.g.  3),  must be referred  to  in
+       formulas by their qualified form (e.g.  S.op, E.-, or S.3);
+
+
+
+3. Fixity:
+       Identifiers  declared  infix (binary  logic primitives or  user defined
+       operators declared by "infix") must be used in infix notation;
+
+       Identifiers declared  prefix (unary  logic primitives or  user  defined
+       operators  declared by "prefix") must  be used in prefix notation (in a
+       juxtaposition  of  identifiers, prefix  operators  associate with   the
+       right expression);
+
+       Other  operators  or primitives accessed by their  qualified names must
+       be used in functional notation.   E.g. if a1, a2, a3 are  parenthesized
+       expressions, and f has arity 3, then:
+
+            a1 /\ a2 and L./\ a1 a2 are legal (and equivalent)
+           but a1 L./\ a2 is ill-typed
+
+            f - a1 a2 a3 is legal (parses as ((f (- a1)) a2) a3)
+           but f L.- a1 a2 a3 T is ill-typed (parses as (((f L.-) a1) a2) a3)
+
+
+4. Commands and effects:
+       Commands  must terminate with ";".  In formula files, the final ";" may
+       be  omitted (EOF  plays that  role). The  effects of  commands  are  as
+       follows ("exp" is any ltl expression, x, y, f, xi are identifiers):
+
+       exp;
+            evaluates LTL expression exp;
+
+       assert exp "whentrue" "whenfalse";
+              evaluates exp then prints string whentrue (resp. whenfalse) if
+              exp holds (resp. does not) instead of the default message TRUE
+              (resp. FALSE).
+
+       op f x1 ... xn = exp;
+            declares an  operator f  or arity n  (n >=  0), to be  used in
+            functional notation;
+
+       infix [n] x f y = exp;
+            declares a binary operator f in infix notation. n is an
+            optional integer in 0..5 specifying precedence.
+
+       prefix f x = exp;
+            declares a unary operator f in prefix notation;
+
+       forget f1 ... fn;
+            Removed items names f1 ...  fn from the environment, and their
+            fixity information;
+
+       source [file | "file"];
+            reads at toplevel the contents of file. The file name is
+            optionally surrounded  by string quotes (this  is necessary if
+            the name includes spaces);
+
+       verb [true | false | debug];
+            verbosity level. Tne initial  setting follows from the command
+            line flags -v | -q (default -v);
+
+            true  (default):  prints   the  banner,  prompts,  results  of
+            commands, and evaluation times;
+
+            false:  just   prints  the   results  of  evaluation   of  LTL
+            expressions (useful in batch mode);
+
+            debug: may print extra information (mainly for developper);
+
+       output [proof | fullproof | quiet | stepper | graph]
+            specify   effects   and   results   of  evaluations   of   LTL
+            expressions.  The  command  line  flags  -c, -p,  -b,  -s,  -g
+            specifies the initial setting (default -c);
+
+            proof  (default): evaluations  return  TRUE, or  FALSE with  a
+            counter example in condensed form;
+
+            fullproof: evaluations  return TRUE,  or FALSE with  a counter
+            example in full form (may be very large);
+
+            quiet: evaluations just return  TRUE or FALSE, without counter
+            examples.
+
+            stepper: as output fullproof  except the counter example is in
+            stepper format (typically used in batch mode);
+
+            graph: not implemented yet
+
+       quit
+            leaves selt (also ^D on Unix targets).
+
+
+5. Example commands:
+       p1;            (eqv. p1 lt 0  p gt 0)
+       - p1;          (eqv. p1 = 0)
+       p1 /\ p2 >= 2;      (eqv. p1 /\ (p2 >= 2))
+       op x > y = x >= y + 1;   (declares arithmetic operator >, in infix form)
+       p1+p2;              (eqv. p1+p2 >= 0, eqv. p1 \/ p2)
+       p1+p2 > p3;
+       p1*p2 = 0;
+       infix y follows x = [] (x => <>y);
+                      (declares logical operator "follows:, in infix form)
+       (t3 \/ p5) follows (t1 /\ p1>=p2);
+                 (eqv. [] ((t1 /\ (p1>=p2)) => <> (t3 \/ p5)));
+
+
+
+
+EXAMPLES
+       selt abp.ktz -f "[] (t1 => <> t3)" -q -b
+       selt abp.ktz -p
+
+
+
+SEE ALSO
+       nd(n),   tina(n),  plan(n),  struct(n),  ktzio(n),  ndrio(n),  tedd(n),
+       sift(n), muse(n), pathto(n), play(n), walk(n), reduce(n), formats(n)
+
+
+AUTHORS
+       Bernard Berthomieu, with contributions by  Francois  Vernadat,  Pierre-
+       Olivier Ribet, LAAS/CNRS,  2000-2012, {Bernard.Berthomieu|Francois.Ver-
+       nadat}@laas.fr.
+
+
+
+
+Tina Tools                       Version 3.7.0                         selt(n)

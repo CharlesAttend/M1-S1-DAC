@@ -1,0 +1,41 @@
+tr t1 [0,w[ p1 -> p9 p2
+tr t3 [0,1] p10 p2 -> p3
+tr t4 [0,w[ p3 -> p11 p4
+tr t6 [0,1] p12 p4 -> p1
+tr t7 [0,1] p5 p9 -> p6
+tr t8 [0,2] p6 -> p10 p7
+tr t10 [0,1] p11 p7 -> p8
+tr t11 [0,2] p8 -> p12 p5
+tr t2 [5,6] p2 -> p9 p2
+tr t13 [0,1] p9 ->
+tr t9 [0,1] p9 p7 -> p6
+tr t5 [5,6] p4 -> p11 p4
+tr t15 [0,1] p11 ->
+tr t12 [0,1] p11 p5 -> p8
+tr t14 [0,1] p10 ->
+tr t16 [0,1] p12 ->
+pl p1 (1)
+pl p5 (1)
+nt n4 1 {Receiver\\nprocess}
+nt n2 1 {bit 0}
+nt n3 1 {bit 1}
+nt n1 1 {Sender\\nprocess}
+nt n12 1 {rcve ack}
+nt n5 1 {send msg}
+nt n11 1 {ack lost}
+nt n7 1 {msg received}
+nt n9 1 {send ack}
+nt n8 1 {reject msg}
+nt n6 1 {resend msg\\non timeout}
+nt n10 1 {msg lost}
+nt n0 1 {The Alternating Bit Protocol\\nBartlett et al. 1969}
+nt n13 0 {rcve ack}
+nt n14 0 {send msg}
+nt n15 0 {ack lost}
+nt n16 0 {msg received}
+nt n17 0 {send ack}
+nt n18 0 {reject msg}
+nt n19 0 {resend msg\\non timeout}
+nt n20 0 {msg lost}
+net abp
+

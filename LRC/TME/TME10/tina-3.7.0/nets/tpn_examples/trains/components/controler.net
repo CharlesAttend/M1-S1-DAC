@@ -1,0 +1,8 @@
+net controleur
+tr A1 : App far*3 -> far*2 in Coming 
+tr A2 : App far in -> in*2 
+tr D : Down [0,0] Coming -> 
+tr E1 : Exit [0,0] far*2 in -> far*3 Leaving 
+tr E2 : Exit [0,0] in*2 -> far in 
+tr U : Up [0,0] Leaving -> 
+pl far (3)

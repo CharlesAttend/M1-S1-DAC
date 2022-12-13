@@ -1,0 +1,33 @@
+p 140.0 50.0 {p2-thinks} 1 n
+t 140.0 125.0 t 0 w n
+p 70.0 180.0 p1 0 n
+p 205.0 180.0 p5 0 n
+t 70.0 250.0 t1 c 0 w n tleft w
+p 70.0 330.0 p3 0 s
+p 205.0 330.0 p6 0 s
+t 140.0 405.0 e 0 w n
+p 140.0 485.0 {p4-eats} 0 w
+t 205.0 250.0 t2 0 w n
+t 140.0 560.0 t4 c 0 w n bleft w
+t 465.0 250.0 t3 c 0 w n tright e
+t 465.0 560.0 t0 c 0 w n bright e
+p 335.0 400.0 f 1 n
+e t4 0.0 135.0 {p2-thinks} 0.0 135.0 1 n
+e {p4-eats} t4 1 n
+e t2 p6 1 n
+e p5 t2 1 n
+e t0 f 1 n
+e f t3 1 n
+e t4 f 1 n
+e f t2 1 n
+e e {p4-eats} 1 n
+e p6 e 1 n
+e p3 e 1 n
+e t1 p3 1 n
+e p1 t1 1 n
+e t p5 1 n
+e t p1 1 n
+e {p2-thinks} t 1 n
+h philo
+
+

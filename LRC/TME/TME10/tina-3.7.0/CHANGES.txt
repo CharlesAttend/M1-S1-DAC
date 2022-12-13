@@ -1,0 +1,435 @@
+Changes from 3.0.0 to current:
+-----------------------------
+
+Now summarized on http://www.laas.fr/tina/news.php
+
+
+Changes from 2.10.0 to 3.0.0:
+-----------------------------
+
+In addition to  bug fixes and many improvements  of 2.10.0 tools, Tina
+version 3.0.0 introduces five new tools:
+
+frac -- support  for high-level descriptions in Fiacre:  As of version
+2.9.0, tina supports an extension of Time Petri Nets with data actions
+and  preconditions specified  in C  (see  the description  of the  tts
+format in manual pages).  A higher level notation is now available, in
+a language called Fiacre.  Fiacre  descriptions can be compiled to tts
+descriptions  accepted by  tina by  a dedicated  compiler,  Frac.  The
+Fiacre language and the Frac compiler are described and made available
+in a companion site (http://www.laas.fr/fiacre).
+
+sift: it is a specialization of  the tina tool, it offers less options
+than tina  but implements them  more efficiently; sift is  faster than
+tina and  makes use  of considerably less  space. sift also  allows to
+check reachability properties on the fly.
+
+pathto: a utility  program; given a kripke transition  system in a ktz
+file and  a target state,  pathto computes and  prints a path  to that
+state. pathto  is mostly useful for for  building transition sequences
+leading to counter-example states computed by sift.
+
+play: allows to  simulate net descriptions in all  formats accepted by
+tina.   Its capabilities  are  similar  to those  provided  by the  nd
+stepper except that play may also simulate .tts descriptions.
+
+muse:  (in progress) a  modal mu-calculus  model checker  operating on
+kripke transition systems represented in .ktz format.
+
+Check the  Fiacre pages and the  manual pages in  directories doc/* of
+the distributions for usage details.
+
+
+Changes from 2.9.0 to 2.10.0:
+-----------------------------
+
+The standard tina distribution  now supports the "Stopwatch Time Petri
+nets", formerly  in a specific distribution, introduced in paper:
+
+  B. Berthomieu, D. Lime, O. H. Roux, F. Vernadat,
+  Reachability Problems and Abstract State Spaces for Time Petri Nets
+  with Stopwatches,
+  Journal of Discrete Event Dynamic Systems 17:133-158, 2007.
+
+
+Changes following the support of stopwatches:
+
+- The graphic  editor and  all net formats  support two more  types of
+arc: stopwatch arcs and stopwatch-inhibitor arcs.  These arcs serve to
+stop/resume the clock of their target transition.
+
+- In the  textual .net format, stopwatch  and stopwatch-inhibitor arcs
+are  specified  like  read  and  inhibitor  arcs,  respectively,  just
+replacing symbol "?" by "!", as in e.g.:
+
+            tr t0 [4,5] p1 p2!1 -> p3*3
+            tr t1 [3,w[ p6 p5!-3 -> p8 
+
+The tool tina has two extra flags:
+
+- flag  -grid  n/d specifies  a  grid  size  for overapproximation  of
+temporal domains (default none) in presence of stopwatches.
+
+- flag  -pk   (1|2|3)  specifies  the  format   of  inequality  system
+coefficients   and  constants   in  state   classes  in   presence  of
+stopwatches: 1 means 32 bit (fast but high risks of overflow), 2 means
+64  bits (default),  3  means arbitrary  precision  integers (may  not
+overflow, but computationally expensive).
+
+Support  of  stopwatches   currently  suffers  some  restrictions.  In
+particular:
+
+- Some constructions are not implemented  for SwTPN's yet; tina modes
+  -D/-F/-U/-A are not supported;
+
+- Unbounded static intervals are not supported for SwTPNs in mode -S;
+
+- The  plan tool does not support stopwatch arcs yet,  so the  counter
+  examples computed by the model checker cannot be timed (nor reloaded
+  into the nd stepper if using selt from nd);
+
+Finally, it  should be stressed  than computation of state  classes of
+SwTPN's is not  guaranteed to terminate in general,  unless the net is
+intrinsically bounded  AND some grid  size is specified by  flag -grid
+(check the above papers for details). Also, computing state classes in
+presence of stopwatches can be very slow and space consuming.
+
+
+The other changes include:
+
+- nd:  The nd  editor  now  provides a  toolbar.   The former  graphic
+bindings are still supported (when toolbar is in selection mode).  The
+graphic bindings  have been cleaned  up, specially on MacOS;  they are
+recalled  in the  nd  window on  startup.   Check nd->preferences  for
+options;
+
+- tools:   besides  bug   fixes  and   many  optimizations,   flag  -s
+(boundedness test) of tina now has  two options only: -s 0 removes any
+boundedness  check, -s 1  (default) checks  a necessary  condition for
+unboundedness of the underlying petri net (omitting time constraints).
+-s 1  is cheap but with  a small risk  of non termination; for  a true
+boundedness  check on  untimed  nets,  one should  use  the costly  -C
+option (on untimed nets).
+
+- the pnml parser now handles pages (one page actually);
+
+
+Changes from 2.8.4 to 2.9.0:
+-----------------------------
+
+Besides  many   improvements,  it  introduces   static  priorities:  A
+transition is  firable at  some instant if  no transition  with higher
+priority is  firable at the  same instant.  In absence  of priorities,
+2.9.0  behaves  exactly  like  2.8.4  (in  spite  of  minor  ergonomic
+differences) and is fully upward-compatible.
+
+- Priorities  may be  specified graphically,  by drawing  arcs between
+transitions, from  that with higher  priority, or textually  with "pr"
+declarations  (check doc/formats/net.txt  for details).   The priority
+relation is the transitive closure  of the specified relation, it must
+be irreflexive.  All tools  support priorities, but priorities are not
+meaningfull in  all state space abstractions  (notably in coverability
+graphs (-C)  and state classes (-W)).  The  adequate constructions for
+handling priorities are the reachability graph (mode -R) in absence of
+time constraints and the strong state class graph (or zone graph, mode
+-S) with time constraints.  More constructions will support priorities
+in  the  future  (including  covering  state graphs  (mode  -V)).   By
+default, the state space  abstraction tool selects a construction that
+handles all features present in the net.
+
+- The nd  editor and other  tools have been  improved in an  number of
+ways  favoring robustness, ease  of use  and performances.
+
+
+Changes from 2.8.0 to 2.8.4:
+-----------------------------
+
+Besides bug fixes and many  small improvements, the changes from 2.8.0
+to 2.8.4 essentially concern the tina tool:
+
+- New tina  modes (tina -D/-F/-F1) provides three  variants of Louchka
+Popova's "essential states" construction;
+
+- Constructions  -S,  -A and  -U  have  been  improved for  nets  with
+unbounded firing  intervals: instead of the  "clock domain relaxation"
+defined in our TACAS'03 paper, these constructions now use the simpler
+"normalization" operation proposed by Hadjidj/Boucheneb;
+
+- A variant of  the coverability tree construction (-Cm  n) allows one
+to set a marking threshold for unbounded places (see the man pages for
+details);
+
+Though this is  not documented yet, Tina 2.8.4  also supports (for all
+targets) a  form of "predicate/action" Time Petri  net: predicates and
+actions over  some data  may be associated  with the transitions  of a
+net, written in C. Some tutorial examples are available.
+
+Finally, an experimental version  of Tina is available, called SwTina.
+SwTina supports  an extension of  Time Petri nets with  suspension and
+resumption of transitions, called "Stopwatch Time Petri nets".  Please
+check  the  page   http://www.laas.fr/tina/next.php  for  details  and
+pointers.
+
+
+Changes from 2.7.4 to 2.8.0:
+-----------------------------
+
+tina-2.8.0 brings a number of new features and three new tools, all
+brielfly described below.
+
+PNML support:
+=============
+
+(check doc/formats/pnml.txt for futher information)
+
+Tina 2.8.0 provides a preliminary  support for PNML. PNML support will
+follow evolutions of the PNML  standard. The version of PNML currently
+supported  are  BasicPNML   and  its  extension  (TPNPNML)  informally
+described below. The TPNPNML extends Basic PNML as follows:
+
+- In the "graphics" element of a node, one may add an offset specification
+  interpreted as the position of the node id, relative to the node.
+  e.g.	<offset x=... y=... />
+
+- arcs may have an optional "type" element, one of normal, inhibitor, test;
+  e.g.	<type value="test"/>
+
+- Any transition may have a "delay" element, specifying a time interval in
+  the style of MathML intervals, and optionally some position relative to
+  the transition.
+
+  e.g. (check doc/formats/pnml.txt for other examples) interval [4,9],
+  positionned (-10,0) relative to the transition is specified as follows
+  (note the "closure" attribute in the interval line):
+
+  <delay>
+   <interval xmlns="http://www.w3.org/1998/Math/MathML" closure="closed">
+    <cn>4</cn>
+    <cn>9</cn>
+   </interval>
+   <graphics>
+    <offset x="-10" y="0" />
+   </graphics>
+  </delay>
+
+The tools tina, struct, and the new plan tool, natively read BasicPNML
+and its above extension. The nd editor may import from, and export to,
+the above  format. The new ndrio  tool can convert  between .pnml .ndr
+and .net formats. PNML support will follow evolutions of the PNML standard.
+
+Generalized inhibitor arcs and test (read) arcs:
+================================================
+
+All tools now support generalized inhibitor arcs and test (read) arcs.
+The .aut and .ndr formats have been extended to support these features
+(check   formats/net.txt   and   formats/ndr.txt   for  up   to   date
+descriptions).  The .pnml TPN format also supports these.
+
+To specify  a test (resp.   inhibitor) arc in  .net or .ndr,  one must
+specify  its weight  and  uses  "?"  (resp.   "-?")   instead of  "*".
+e.g. in  the following line,  p1*3 defines a  normal arc of  weight 3,
+p2?4 a test arc of weight 4, and p3?-2 an inhibitor arc of weight 2.
+
+   tr t1 p1*3 p2?4 p3?-2 -> p4*5
+   tr t2 p2?4 p5 -> p6
+
+In the nd graphic editor, clicking  <3> on an arc allows to select its
+type together with its weight.
+
+NOTE: The boundedness proprety  is undecidable for nets with inhibitor
+arcs. However,  tina still  uses the usual  stopping test  by default,
+that provides  here a sufficient  only condition for  boundedness.  If
+desired, one  one may cancel it  (option -s 0) and  optionnaly use the
+limit flags to enforce termination.
+
+The net scripting language tpn:
+===============================
+
+In  addition to  format .net,  .ndr and  .pnmml, the  tina-2.8.0 tools
+support a  simple scripting language  for building Time Petri  nets by
+composition of  smaller nets.
+
+The  .tpn  format   extends  both  .net  and  .ndr,   its  syntax  and
+interpretation are defined in  file formats/tpn.txt. In short, the tpn
+format allows one to build nets by composing net elements specified in
+.net and/or  .ndr, composition operations  rely upon the .net  or .ndr
+labels. When nd,  tina, or another tool, reads a  .tpn files, the file
+is interpreted on the fly. The composition operations are:
+
+   - merge n : juxtaposition of nets (without fusion)
+   - sync n  : composition by transitions (synchronous)
+   - chain n : composition by places
+   - ren ... : renaming and hiding of labels
+
+The .tpn  format will  probably be extended  in future  versions. Some
+example nets can be found in directory nets/tpn_examples.
+
+New syntax for defining labels in .net:
+=======================================
+
+A mode convenient syntax is provided for declaring place or transition
+labels in .net  files.  That notation will replace  in future releases
+the obsolete "lb" declarations. e.g.
+
+to assign label {TRANS 34} to transition t1, one had to write in 2.7.4:
+
+		tr t1 [3,4[ p1 -> p2
+                lb t1 {TRANS 34}
+	
+In 2.8.0, these two lines are equivalent to:
+
+		tr t1 : {TRANS 34} [3,4[ p1 -> p2
+	
+Changes to the tina tool:
+=========================
+
+In addition to  the support of PNML, and  inhibitor/read arcs, two new
+flags, -lt  and -ls  allows one to  output transition systems  (in any
+output format) labelled by node labels rather than node names. This is
+particularly useful in conjunction with CADP.
+
+Also, performances have been improved for all constructions, specially
+for nets with a large number of transitions.
+
+Changes to the struct tool:
+===========================
+
+Now accepts  net descriptions  in .pnml or  .tpn formats as  well (see
+above).  Structural analysis is performed on nets with their inhibitor
+and read arcs removed.
+
+New tool, selt:
+===============
+
+This new tool is a model checker for a variant of State/Event-LTL with
+integer  state/transition properties.  The  tool operates  on extended
+Kripke transition systems in .ktz format (as built by tina with option
+-k), and model  checks the ktz read against  extended S/E-LTL formula.
+To give an idea, the following  are examples of legal selt commands:
+
+    [] (3*p1 + 4*p2 - p3 >= 7);	         (checks a marking invariant)
+    infix x follows y = [] (y => <> x);  (declares follows)
+    t5 follows (p5 >= 4);		 (a mixed state/trans formula)
+
+Check the  selt man page (doc/man/mann/selt.n)  or in doc/txt/selt.txt
+for a full description.
+
+For  translation of  LTL formula  to  Buchi automata,  selt relies  on
+ltl2ba,   a    tool   developped    by   Didier   Oddoux    at   Liafa
+(http://www.liafa.jussieu.fr/~oddoux).
+
+New tool, ndrio:
+================
+
+This new tool converts between net descriptions in formats .net, .ndr,
+.tpn and  .pnml. When  converting from a  textual format to  a graphic
+one, a drawing  tool may be specified (one  of graphplace, dot, neato,
+circo).
+
+Check   the   ndrio   man   page   (doc/man/mann/ndriot.n)   or   file
+doc/txt/ndrio.txt for a full description.
+
+New tool, plan:
+==============
+
+This  tool  accepts  as  arguments  a net  and  a  firable  transition
+sequence, and, according to other options, produces a characterisation
+of all firing  schedules having this sequence as  support, or a single
+such  firing   schedule.  This  tool  is   particularly  helpful  when
+model-checking  Time Petri nets,  it allows  to transform  the untimed
+counter examples produced by selt into firable firing schedules (times
+firing sequences) loadable into the nd simulator for replay.
+
+---------------------------------------------------------------------------
+
+CHANGES from V2.7.2 to 2.7.4:
+-----------------------------
+
+2.7.4  mainly improves  the  nd editor  and  stepper simulator.  Also,
+installation on Windows is simpler. The changes are:
+
+* [nd]   Now   provides   selection,   with  standard   bindings   and
+Cut/Copy/Paste/Move facilities for node groups.
+
+* [nd]   Several  nets  can   be  merged   into  the   graphic  buffer
+(File->include->...).
+
+* [nd] Nodes in the graphic  buffer can be fused (superpose them, then
+use Button 3);
+
+* [nd]   Generic  facilities   allows  one   to  invoke   his/her  own
+applications from  the tools menu,  provided they operate on  files in
+the formats recognized by nd, check (Tools->how to ...) for details.
+
+Available plugins  for nd using  these features will be  advertized in
+the new Friends page, if desired.
+
+* [nd]  The  stepper  simulator  has  been  much  improved,  in  look,
+behavior, and functions for replaying scenarios
+
+* [tools]  On windows,  the cygwin  library  is no  more needed,  just
+download and run.
+
+* [tools]: A new flag (-wp) controls generation of temporal divergence
+information in lts outputs (check  the man pages for details). The ktz
+format captures that information.
+
+
+---------------------------------------------------------------------------
+
+CHANGES from V2.7.0 to 2.7.2:
+-----------------------------
+
+For Linux/Windows/Solaris, 2.7.2 is  essentially a bug fixes and clean
+up release.  The real novelty is  availability of a  version for MacOS
+X. The changes are:
+
+* [nd+tools] Now available for MacIntoshes  under MacOS X. The MacOS X
+release comes with two versions of the editor, one runs under X11, and
+the  other runs  under  the  native Aqua  graphic  system. Check  file
+INSTALL in the distribution for details.
+
+* [nd]  Now runs  with the  latest,  and much  faster, Tcl/Tk  version
+8.4. To ease installation, the editor  is now deployed as a standalone
+application  only. Problems  with management  of temporary  files have
+been solved.
+
+
+
+---------------------------------------------------------------------------
+
+CHANGES FROM V2.6,. to V2.7.0 :
+-------------------------------
+
+Version 2.7.0  brings major  improvements over previous  releases. The
+major changes are:
+
+* [nd] Includes  a stepper simulator. One  may animate a  Petri net or
+Time Petri net without leaving the editor;
+
+* [tina and struct] Overall  performances improvements due to a change
+of compiler.   
+
+* [tools] Installation  and command line usages are  easier since tina
+and struct are now standalone executables;
+
+* [tina]  Improved algorithmics  for  constructions -S  (SSCG) and  -A
+(ASCG);
+
+* [tina] New modes -M (preserves markings), -E (preserves states), and
+-Vq (checks quasi-liveness);
+
+* [struct] Now  offers a choice  of algorithms for computing  flows or
+semiflows;
+
+
+---------------------------------------------------------------------------
+
+CHANGES FROM V2.0 to V2.6.6:
+---------------------------
+
+(dropped)
+
+
+---------------------------------------------------------------------------
+

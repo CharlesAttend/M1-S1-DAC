@@ -1,0 +1,22 @@
+#!/bin/sh
+# \
+exec tclsh "$0" -- "$@"
+
+# generates milner scheduler for n sites in tpn format
+# usage mksched n (default n = 2)
+
+proc main {} {
+    global argv
+    if {"" == [set n [lindex $argv 1]]} {set n 2}
+    puts "net milner$n"
+    puts "load components/proc.ndr"
+    puts "pl p0 (1)"
+    puts "ren 1/out $n/in"
+    for {set i 2} {$i <= $n} {incr i} {
+	puts "load components/proc.ndr"
+	puts "ren $i/out [expr $i - 1]/in"
+    }
+    puts "chain $n"
+}
+
+main

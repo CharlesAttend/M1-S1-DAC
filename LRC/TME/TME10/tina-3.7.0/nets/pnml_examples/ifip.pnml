@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pnml xmlns="http://www.pnml.org/version-2009/grammar/pnml">
+ <net id="n-60E2-7904A-0" type ="http://www.laas.fr/tina/tpn">
+  <name>
+   <text>ifip</text>
+  </name>
+ <page id="g-60E2-7905D-1">
+  <place id="p-60E2-79064-2">
+  <name>
+   <text>p1</text>
+    <graphics>
+     <offset x="0" y="-10" />
+    </graphics>
+  </name>
+   <initialMarking>
+    <text>1</text>
+   </initialMarking>
+   <graphics>
+    <position x="120" y="50"/>
+   </graphics>
+  </place>
+  <place id="p-60E2-7909D-3">
+  <name>
+   <text>p2</text>
+    <graphics>
+     <offset x="0" y="-10" />
+    </graphics>
+  </name>
+   <initialMarking>
+    <text>2</text>
+   </initialMarking>
+   <graphics>
+    <position x="340" y="50"/>
+   </graphics>
+  </place>
+  <place id="p-60E2-790B1-4">
+  <name>
+   <text>p3</text>
+    <graphics>
+     <offset x="0" y="-10" />
+    </graphics>
+  </name>
+   <graphics>
+    <position x="120" y="190"/>
+   </graphics>
+  </place>
+  <place id="p-60E2-790C1-5">
+  <name>
+   <text>p4</text>
+    <graphics>
+     <offset x="10" y="0" />
+    </graphics>
+  </name>
+   <graphics>
+    <position x="280" y="200"/>
+   </graphics>
+  </place>
+  <place id="p-60E2-790CC-6">
+  <name>
+   <text>p5</text>
+    <graphics>
+     <offset x="10" y="0" />
+    </graphics>
+  </name>
+   <graphics>
+    <position x="390" y="200"/>
+   </graphics>
+  </place>
+  <transition id="t-60E2-790E6-7">
+  <name>
+   <text>t1</text>
+    <graphics>
+     <offset x="0" y="0" />
+    </graphics>
+  </name>
+   <delay>
+    <interval xmlns="http://www.w3.org/1998/Math/MathML" closure="closed">
+     <cn>4</cn>
+     <cn>9</cn>
+    </interval>
+    <graphics>
+     <offset x="-10" y="0" />
+    </graphics>
+   </delay>
+   <graphics>
+    <position x="180" y="120"/>
+   </graphics>
+  </transition>
+  <transition id="t-60E2-790FB-8">
+  <name>
+   <text>t2</text>
+    <graphics>
+     <offset x="0" y="0" />
+    </graphics>
+  </name>
+   <delay>
+    <interval xmlns="http://www.w3.org/1998/Math/MathML" closure="closed">
+     <cn>0</cn>
+     <cn>2</cn>
+    </interval>
+    <graphics>
+     <offset x="10" y="0" />
+    </graphics>
+   </delay>
+   <graphics>
+    <position x="280" y="120"/>
+   </graphics>
+  </transition>
+  <transition id="t-60E2-7910D-9">
+  <name>
+   <text>t3</text>
+    <graphics>
+     <offset x="0" y="0" />
+    </graphics>
+  </name>
+   <delay>
+    <interval xmlns="http://www.w3.org/1998/Math/MathML" closure="closed">
+     <cn>1</cn>
+     <cn>3</cn>
+    </interval>
+    <graphics>
+     <offset x="10" y="0" />
+    </graphics>
+   </delay>
+   <graphics>
+    <position x="390" y="120"/>
+   </graphics>
+  </transition>
+  <transition id="t-60E2-79119-10">
+  <name>
+   <text>t4</text>
+    <graphics>
+     <offset x="0" y="0" />
+    </graphics>
+  </name>
+   <delay>
+    <interval xmlns="http://www.w3.org/1998/Math/MathML" closure="closed">
+     <cn>0</cn>
+     <cn>2</cn>
+    </interval>
+    <graphics>
+     <offset x="0" y="10" />
+    </graphics>
+   </delay>
+   <graphics>
+    <position x="120" y="260"/>
+   </graphics>
+  </transition>
+  <transition id="t-60E2-7912B-11">
+  <name>
+   <text>t5</text>
+    <graphics>
+     <offset x="0" y="0" />
+    </graphics>
+  </name>
+   <delay>
+    <interval xmlns="http://www.w3.org/1998/Math/MathML" closure="closed">
+     <cn>0</cn>
+     <cn>3</cn>
+    </interval>
+    <graphics>
+     <offset x="-10" y="0" />
+    </graphics>
+   </delay>
+   <graphics>
+    <position x="60" y="120"/>
+   </graphics>
+  </transition>
+  <arc id="e-60E2-79141-12" source="t-60E2-7912B-11" target="p-60E2-79064-2">
+  </arc>
+  <arc id="e-60E2-79148-13" source="t-60E2-790E6-7" target="p-60E2-790CC-6">
+   <graphics>
+    <position x="190" y="173" />
+    <position x="325" y="242" />
+   </graphics>  </arc>
+  <arc id="e-60E2-79165-14" source="p-60E2-790CC-6" target="t-60E2-7910D-9">
+  </arc>
+  <arc id="e-60E2-79168-15" source="t-60E2-7910D-9" target="p-60E2-7909D-3">
+  </arc>
+  <arc id="e-60E2-7916B-16" source="t-60E2-790E6-7" target="p-60E2-790B1-4">
+  </arc>
+  <arc id="e-60E2-7916E-17" source="p-60E2-79064-2" target="t-60E2-790E6-7">
+  </arc>
+  <arc id="e-60E2-79171-18" source="p-60E2-790B1-4" target="t-60E2-7912B-11">
+  </arc>
+  <arc id="e-60E2-7918B-19" source="p-60E2-790B1-4" target="t-60E2-79119-10">
+   <graphics>
+    <position x="104" y="207" />
+    <position x="104" y="240" />
+   </graphics>  </arc>
+  <arc id="e-60E2-791A8-20" source="t-60E2-79119-10" target="p-60E2-790B1-4">
+   <graphics>
+    <position x="135" y="241" />
+    <position x="135" y="208" />
+   </graphics>  </arc>
+  <arc id="e-60E2-791BE-21" source="p-60E2-7909D-3" target="t-60E2-790E6-7">
+   <inscription>
+    <text>2</text>
+    <graphics>
+     <offset x="0" y="-10" />
+    </graphics>
+   </inscription>
+   <graphics>
+    <position x="294" y="50" />
+    <position x="202" y="80" />
+   </graphics>  </arc>
+  <arc id="e-60E2-791D5-22" source="t-60E2-790E6-7" target="p-60E2-790C1-5">
+   <graphics>
+    <position x="199" y="150" />
+    <position x="240" y="189" />
+   </graphics>  </arc>
+  <arc id="e-60E2-791ED-23" source="p-60E2-790C1-5" target="t-60E2-790FB-8">
+  </arc>
+  <arc id="e-60E2-791F0-24" source="t-60E2-790FB-8" target="p-60E2-7909D-3">
+  </arc>
+ </page>
+ </net>
+</pnml>

@@ -1,0 +1,465 @@
+<HTML><HEAD>
+<TITLE>Manual Page - walk(n)</TITLE>
+<BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
+<!-- .TH walk n "Version 3.7.0" "Tina Tools" -->
+<CENTER>
+<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>walk (n)</NOBR><HR></H1>
+</CENTER>
+<P>
+<!-- .SH NAME -->
+<A name=0>
+
+     <H3>NAME</H3>
+
+</A>
+<BLOCKQUOTE>
+walk  - Tina random walk explorer
+<P>
+Part of Tina Toolbox for analysis of Petri nets and Time Petri nets.
+<P>
+<P>
+<!-- .SH SYNOPSIS -->
+</BLOCKQUOTE>
+<A name=contents></A><H3>CONTENTS</H3></A>
+<BLOCKQUOTE>
+<A HREF=#1>Synopsis</A><BR>
+<A HREF=#2>Description</A><BR>
+<A HREF=#3>Options</A><BR>
+<A HREF=#4>Examples</A><BR>
+<A HREF=#5>See Also</A><BR>
+<A HREF=#6>Authors</A><BR>
+</BLOCKQUOTE>
+<A name=7>
+
+     <H3>SYNOPSIS</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+<!-- .B walk -->
+<B>walk</B> [-<I>h</I>elp] [-p]
+<BR>
+     [-R | -P | -V | -Q]
+<BR>
+     [-T[,(min|max|rand)][,(dense|discrete)] | -W | -S]
+<BR>
+     [-f formula | -ff file | -dead] [-c n] [-t s] [-b n]
+<BR>
+     [-seed] [-loop] [-only s] [-favor s] [-avoid s] [-never s]
+<BR>
+     [-q | -v] [-NET | -NDR | -TPN | -PNML | -TTS]
+<BR>
+     [-inh] [-tc] [-dt] [-pr] [-sw] [-stats] [-trace]
+<BR>
+     [infile] [outfile] [digestfile] [errorfile]
+<P>
+<P>
+<!-- .SH DESCRIPTION -->
+</BLOCKQUOTE>
+<A name=2>
+
+     <H3>DESCRIPTION</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+Tool walk allows  to  simulate  net descriptions  in  any of  formats
+&#46;net,  &#46;ndr,  &#46;tpn, &#46;pnml  or  &#46;tts. Its capabilities include
+those provided by the play tool except that walk is not interactive and
+never stores history. walk is typically much faster than play and provides
+more simulation modes; its primary intent is to quickly find counter examples
+to reachability properties in a random walk over markings, timed state
+markings, or state class markings.
+<P>
+<!-- .SH OPTIONS -->
+</BLOCKQUOTE>
+<A name=3>
+
+     <H3>OPTIONS</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+<!-- .TP -->
+<TABLE cellpadding=3>
+<TR valign=top><TD width=6% nowrap>
+-<I>h</I>elp
+</TD><TD valign=bottom>
+Recalls options.
+<P>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Marking paths specification: -->
+<B>Marking paths specification:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+If there are no time constraints in the input net, then a path is a sequence of net markings separated by net transitions or steps (sets of transitions fired simultaneousy).
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-R
+</TD><TD valign=bottom>
+Path transitions are single net transitions.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-P
+</TD><TD valign=bottom>
+The path transitions are firing sequence in the partial marking graph built by the persistent set
+method.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-V
+</TD><TD valign=bottom>
+The path transitions are sequences of steps in the partial marking graph built by the covering steps
+method.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-Q
+</TD><TD valign=bottom>
+The path transitions are sequences of steps in the partial marking graph built by the persistent steps
+method (combining -P and -V construction, see tina papers for details).
+<P>
+<P>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Timed state paths specification: -->
+<B>Timed state paths specification:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+If the input net is a Time Petri net with nontrivial time constraints, then a path is either a  series of states separated by  transitions (delay transitions followed by discrete transitions) in the -T construction, or a series of state classes separated by discrete transitions in the -W and -S constructions.
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+-T[,(min|max|rand)][,(dense|discrete)]
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Each path transition is a delay followed by a net transition.
+One may specify that delays are the minimum allowed, maximum allowed, or ca be choosen randomly between these.
+The semantics of time is either discrete (integer time instants only0 or dense.
+If the input net is not timed or all transition delays are trivisl ([0,w[), then -T is silently handed as -R.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-W | -S
+</TD><TD valign=bottom>
+States are state classes (-W) or strong state classes (-S). Path transitions are net transitions,
+time delays are abstracted.
+<P>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Path constraints: -->
+<B>Path constraints:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-seed
+</TD><TD valign=bottom>
+Initializes the random number generator so that different calls of walk on the same arguments
+have a chance to explore different paths (if any).
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-loop
+</TD><TD valign=bottom>
+If the current state is a deadlock or terminated due to other path consttaints,
+and it is not a counter example to the property to be checked,
+then the simulation is restarted from the initial marking or state.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+-favor s | -avoid s
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Whevener possible along the path, pick transitions in s (-favor s), or not in s (-avoid s).
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+-only s | never s
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Restrict path to the transitions in s (-only s), or not in s (-never s).
+If not possible, then terminate the path.
+<P>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Stopping conditions: -->
+<B>Stopping conditions:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+Flags -f and -dead specify formulas that should be invariant. walk stops along a path if some state
+violating the specified formula is found.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-f form
+</TD><TD valign=bottom>
+Stop with result FALSE if some state does not obey property form; no effects if form=T.
+Stops with result OPEN if no counter example was found along the path developped.
+Formula form is any modality-free formula accepted by the selt model checker (check man selt
+for details). In addition, an atomic proposition is provided, "safe" or "L.safe", then asserts
+that the marking of  each  place does not exceed 1.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-ff form
+</TD><TD valign=bottom>
+Equivalent to -f form, for the formula form read in file.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-dead
+</TD><TD valign=bottom>
+Stop with FALSE if some deadlock state is found; shorthand for -f "-L.dead".
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-c n
+</TD><TD valign=bottom>
+walk stops with result OPEN if the length of the path taken exceeds n.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-t s
+</TD><TD valign=bottom>
+walk stops with result OPEN if more than s seconds elapsed since walk was called.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-b n
+</TD><TD valign=bottom>
+Stops with FALSE if some marking is found that marks some place with more than n tokens.
+<P>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Input options: -->
+<B>Input options:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-inh
+</TD><TD valign=bottom>
+Forget inhibitor arcs in the input net.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-pr
+</TD><TD valign=bottom>
+Forget priority constraints in the input net.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-tc
+</TD><TD valign=bottom>
+Forget time constraints in the input net.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-dt
+</TD><TD valign=bottom>
+Forget data processing when reading a tts description.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-sw
+</TD><TD valign=bottom>
+Forget stopwatch and stopwatch-inhibitor arcs in the input net.
+<P>
+<P>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Input format and source: -->
+<B>Input format and source:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+-NET | -NDR | -PNML | -TPN | -TTS
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Specifies the format of the input net. This flag is necessary when the
+input net is read on standard input, or read from a file that does not
+bear the expected extension. By default, the net is assumed in .net or
+<!-- .ndr format. -->
+<!-- ignored unsupported tag .ndr -->
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+infile
+</TD><TD valign=bottom>
+Where the  net is  read. The  input format is  determined by  the file
+type, according to the table below. If absent or specified by "-", the
+net is  read on standard  input in the  format specified by  the input
+flag. If  both an  infile and  some input flag  are present,  then the
+format defined  by the  input flag supersedes  that determined  by the
+infile extension.
+<P>
+<!-- .nf -->
+<PRE>
+file extension&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;input format
+--------------------------------------------------------------
+&#46;net&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;net format
+&#46;ndr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ndr format
+&#46;tpn&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tpn format
+&#46;pnml&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pnml format
+&#46;tts&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tts format
+<!-- .fi -->
+</PRE>
+<P>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Output format and destination: -->
+<B>Output format and destination:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-q | -v
+</TD><TD valign=bottom>
+Verbosity level, quiet (-q) or verbose (-v).
+<P>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+outfile
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Where results are written. If absent or specified  by "-",
+results are written on standard output.
+<P>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Digest destination: -->
+<B>Digest destination:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+digestfile
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+In addition to (possibly) its results in file outfile, walk may
+prints a summary of results in file digestfile (default stdout).
+<P>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Errors destination: -->
+<B>Errors destination:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+errfile
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Where error messages are written. If absent or specified  by "-", error messages are written on standard error.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Other flags: -->
+<B>Other flags:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-stats
+</TD><TD valign=bottom>
+prints progress information on the fly (path length so far).
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-trace
+</TD><TD valign=bottom>
+prints path transitions on the fly, prefixed by delays if input is timed.
+<P>
+<P>
+<P>
+<!-- .SH EXAMPLES -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=4>
+
+     <H3>EXAMPLES</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+<!-- .nf -->
+<PRE>
+walk -T,min,dense -f L.safe ../nets/ifip.ndr
+walk -R -dead AirplaneLD-PT-0010.pnml
+walk -W -f -t4 ../nets/ifip.ndr
+walk -W -f -p3 ../nets/ifip.ndr
+<!-- .fi -->
+</PRE>
+<P>
+<P>
+<!-- .SH SEE ALSO -->
+</BLOCKQUOTE>
+<A name=5>
+
+     <H3>SEE ALSO</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+nd(n), tina(n), plan(n), struct(n), ktzio(n), ndrio(n), tedd(n), selt(n), sift(n), muse(n), pathto(n), play(n), reduce(n), formats(n)
+<P>
+<!-- .SH AUTHORS -->
+</BLOCKQUOTE>
+<A name=6>
+
+     <H3>AUTHORS</H3>
+
+</A>
+<BLOCKQUOTE>
+Bernard Berthomieu
+LAAS/CNRS,  2000-2012, <A HREF="mailto:Bernard.Berthomieu@laas.fr">Bernard.Berthomieu@laas.fr</A>
+<P>
+</BLOCKQUOTE>
+<P><HR>
+<TABLE width=100%><TR> <TD width=33%><I>Tina Tools</I></TD> <TD width=33% align=center>walk (n)</TD> <TD align=right width=33%><I>Version 3.7.0</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.07</A> from src/walk.n using man macros.</FONT>
+</BODY></HTML>

@@ -1,0 +1,75 @@
+nd(n)                                                                    nd(n)
+
+
+
+NAME
+       nd     - Time Petri net net editor and Graphic interface for toolbox
+
+       Part of Tina Toolbox for analysis of Petri nets and Time Petri nets.
+
+
+SYNOPSIS
+       nd [-help] [-ag | -at | -ng | -nt] [file]
+
+
+
+DESCRIPTION
+       nd  (netDraw)  embeds editors for graphic and  textual net descriptions
+       and  automata  descriptions. Also  provides  graphical interfaces   for
+       tools  tina and  struct ("tools" button) when editing  a net.  Produces
+       files in .net  or .ndr format (for nets) readable by tina  and  struct,
+       or  in .aut  or .adr format (for automata),  may import descriptions in
+       .pnml (with or without graphics), .tpn  (tina's  script  language),  or
+       .ktz (for automata).
+
+
+OPTIONS
+       -help Recalls options.
+
+
+       -ag | -at | -ng | -nt
+
+              Selection   of  initial   editing  mode  if no  file is  loaded.
+              With -ag (resp. -at), edits an automaton  in graphic (resp. tex-
+              tual)  form.  With -ng (resp.  -nt), edits  a Time Petri  net in
+              graphic  (resp. textual) form.
+
+              The editing mode of nd is determined by:
+              - its default value (-ng),
+              - superseded by the value saved in the setup file, if any,
+              - superseded by the command line argument, if any,
+              - superseded  by the  mode determined from  the contents
+              of the file loaded, if any.
+
+
+       file    The file  being loaded, if it  exist (it must   be  in  one  of
+              the above formats), or a filename in which the item being edited
+              is saved.
+
+
+       Default options:
+
+              nd -ng buffer.ndr
+
+
+
+
+EXAMPLES
+       nd
+       nd exemple.ndr
+       nd example.aut
+       nd -nt
+
+
+SEE ALSO
+       nd(n),  tina(n),  plan(n),  struct(n),  ktzio(n),  ndrio(n),   tedd(n),
+       selt(n), sift(n), pathto(n), play(n), walk(n), reduce(n), formats(n)
+
+
+AUTHORS
+       Bernard Berthomieu, LAAS/CNRS, 2000-2012, Bernard.Berthomieu@laas.fr.
+
+
+
+
+Tina Tools                       Version 3.7.0                           nd(n)

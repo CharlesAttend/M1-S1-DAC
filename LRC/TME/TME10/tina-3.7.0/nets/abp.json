@@ -1,0 +1,634 @@
+{
+    "header": {
+        "edges": 22,
+        "name": "abp",
+        "nodes": 16,
+        "state-nspaces": [
+            {
+                "atoms": [
+                    "scc",
+                    "div"
+                ],
+                "inf": "false",
+                "neg": "false",
+                "nsname": "L",
+                "propsets": 16
+            },
+            {
+                "atoms": [
+                    "p1",
+                    "p10",
+                    "p11",
+                    "p12",
+                    "p2",
+                    "p3",
+                    "p4",
+                    "p5",
+                    "p6",
+                    "p7",
+                    "p8",
+                    "p9"
+                ],
+                "inf": "false",
+                "neg": "false",
+                "nsname": "S",
+                "propsets": 14
+            }
+        ],
+        "trans-nspaces": [
+            {
+                "atoms": [
+                    "t1",
+                    "t10",
+                    "t11",
+                    "t12",
+                    "t13",
+                    "t14",
+                    "t15",
+                    "t16",
+                    "t2",
+                    "t3",
+                    "t4",
+                    "t5",
+                    "t6",
+                    "t7",
+                    "t8",
+                    "t9"
+                ],
+                "inf": "false",
+                "neg": "false",
+                "nsname": "E",
+                "propsets": 16
+            }
+        ]
+    },
+    "label": [
+        "Created Wed Jul 04 11:19:54 2012 by TINA version 3.0.2"
+    ],
+    "states": [
+        {
+            "no": 0,
+            "props": [
+                [
+                    {
+                        "name": "div",
+                        "value": 1
+                    }
+                ],
+                [
+                    {
+                        "name": "p1",
+                        "value": 1
+                    },
+                    {
+                        "name": "p5",
+                        "value": 1
+                    }
+                ]
+            ],
+            "trans": [
+                {
+                    "props": [
+                        [
+                            {
+                                "name": "t1",
+                                "value": 1
+                            }
+                        ]
+                    ],
+                    "target": 1
+                }
+            ]
+        },
+        {
+            "no": 1,
+            "props": [
+                [],
+                [
+                    {
+                        "name": "p2",
+                        "value": 1
+                    },
+                    {
+                        "name": "p5",
+                        "value": 1
+                    },
+                    {
+                        "name": "p9",
+                        "value": 1
+                    }
+                ]
+            ],
+            "trans": [
+                {
+                    "props": [
+                        [
+                            {
+                                "name": "t13",
+                                "value": 1
+                            }
+                        ]
+                    ],
+                    "target": 2
+                },
+                {
+                    "props": [
+                        [
+                            {
+                                "name": "t7",
+                                "value": 1
+                            }
+                        ]
+                    ],
+                    "target": 3
+                }
+            ]
+        },
+        {
+            "no": 2,
+            "props": [
+                [],
+                [
+                    {
+                        "name": "p2",
+                        "value": 1
+                    },
+                    {
+                        "name": "p5",
+                        "value": 1
+                    }
+                ]
+            ],
+            "trans": [
+                {
+                    "props": [
+                        [
+                            {
+                                "name": "t2",
+                                "value": 1
+                            }
+                        ]
+                    ],
+                    "target": 1
+                }
+            ]
+        },
+        {
+            "no": 3,
+            "props": [
+                [],
+                [
+                    {
+                        "name": "p2",
+                        "value": 1
+                    },
+                    {
+                        "name": "p6",
+                        "value": 1
+                    }
+                ]
+            ],
+            "trans": [
+                {
+                    "props": [
+                        [
+                            {
+                                "name": "t8",
+                                "value": 1
+                            }
+                        ]
+                    ],
+                    "target": 4
+                }
+            ]
+        },
+        {
+            "no": 4,
+            "props": [
+                [],
+                [
+                    {
+                        "name": "p10",
+                        "value": 1
+                    },
+                    {
+                        "name": "p2",
+                        "value": 1
+                    },
+                    {
+                        "name": "p7",
+                        "value": 1
+                    }
+                ]
+            ],
+            "trans": [
+                {
+                    "props": [
+                        [
+                            {
+                                "name": "t14",
+                                "value": 1
+                            }
+                        ]
+                    ],
+                    "target": 5
+                },
+                {
+                    "props": [
+                        [
+                            {
+                                "name": "t3",
+                                "value": 1
+                            }
+                        ]
+                    ],
+                    "target": 6
+                }
+            ]
+        },
+        {
+            "no": 5,
+            "props": [
+                [],
+                [
+                    {
+                        "name": "p2",
+                        "value": 1
+                    },
+                    {
+                        "name": "p7",
+                        "value": 1
+                    }
+                ]
+            ],
+            "trans": [
+                {
+                    "props": [
+                        [
+                            {
+                                "name": "t2",
+                                "value": 1
+                            }
+                        ]
+                    ],
+                    "target": 7
+                }
+            ]
+        },
+        {
+            "no": 6,
+            "props": [
+                [
+                    {
+                        "name": "div",
+                        "value": 1
+                    }
+                ],
+                [
+                    {
+                        "name": "p3",
+                        "value": 1
+                    },
+                    {
+                        "name": "p7",
+                        "value": 1
+                    }
+                ]
+            ],
+            "trans": [
+                {
+                    "props": [
+                        [
+                            {
+                                "name": "t4",
+                                "value": 1
+                            }
+                        ]
+                    ],
+                    "target": 8
+                }
+            ]
+        },
+        {
+            "no": 7,
+            "props": [
+                [],
+                [
+                    {
+                        "name": "p2",
+                        "value": 1
+                    },
+                    {
+                        "name": "p7",
+                        "value": 1
+                    },
+                    {
+                        "name": "p9",
+                        "value": 1
+                    }
+                ]
+            ],
+            "trans": [
+                {
+                    "props": [
+                        [
+                            {
+                                "name": "t9",
+                                "value": 1
+                            }
+                        ]
+                    ],
+                    "target": 3
+                },
+                {
+                    "props": [
+                        [
+                            {
+                                "name": "t13",
+                                "value": 1
+                            }
+                        ]
+                    ],
+                    "target": 9
+                }
+            ]
+        },
+        {
+            "no": 8,
+            "props": [
+                [],
+                [
+                    {
+                        "name": "p11",
+                        "value": 1
+                    },
+                    {
+                        "name": "p4",
+                        "value": 1
+                    },
+                    {
+                        "name": "p7",
+                        "value": 1
+                    }
+                ]
+            ],
+            "trans": [
+                {
+                    "props": [
+                        [
+                            {
+                                "name": "t10",
+                                "value": 1
+                            }
+                        ]
+                    ],
+                    "target": 10
+                },
+                {
+                    "props": [
+                        [
+                            {
+                                "name": "t15",
+                                "value": 1
+                            }
+                        ]
+                    ],
+                    "target": 11
+                }
+            ]
+        },
+        {
+            "no": 9,
+            "props": [
+                [],
+                [
+                    {
+                        "name": "p2",
+                        "value": 1
+                    },
+                    {
+                        "name": "p7",
+                        "value": 1
+                    }
+                ]
+            ],
+            "trans": [
+                {
+                    "props": [
+                        [
+                            {
+                                "name": "t2",
+                                "value": 1
+                            }
+                        ]
+                    ],
+                    "target": 7
+                }
+            ]
+        },
+        {
+            "no": 10,
+            "props": [
+                [],
+                [
+                    {
+                        "name": "p4",
+                        "value": 1
+                    },
+                    {
+                        "name": "p8",
+                        "value": 1
+                    }
+                ]
+            ],
+            "trans": [
+                {
+                    "props": [
+                        [
+                            {
+                                "name": "t11",
+                                "value": 1
+                            }
+                        ]
+                    ],
+                    "target": 12
+                }
+            ]
+        },
+        {
+            "no": 11,
+            "props": [
+                [],
+                [
+                    {
+                        "name": "p4",
+                        "value": 1
+                    },
+                    {
+                        "name": "p7",
+                        "value": 1
+                    }
+                ]
+            ],
+            "trans": [
+                {
+                    "props": [
+                        [
+                            {
+                                "name": "t5",
+                                "value": 1
+                            }
+                        ]
+                    ],
+                    "target": 8
+                }
+            ]
+        },
+        {
+            "no": 12,
+            "props": [
+                [],
+                [
+                    {
+                        "name": "p12",
+                        "value": 1
+                    },
+                    {
+                        "name": "p4",
+                        "value": 1
+                    },
+                    {
+                        "name": "p5",
+                        "value": 1
+                    }
+                ]
+            ],
+            "trans": [
+                {
+                    "props": [
+                        [
+                            {
+                                "name": "t6",
+                                "value": 1
+                            }
+                        ]
+                    ],
+                    "target": 0
+                },
+                {
+                    "props": [
+                        [
+                            {
+                                "name": "t16",
+                                "value": 1
+                            }
+                        ]
+                    ],
+                    "target": 13
+                }
+            ]
+        },
+        {
+            "no": 13,
+            "props": [
+                [],
+                [
+                    {
+                        "name": "p4",
+                        "value": 1
+                    },
+                    {
+                        "name": "p5",
+                        "value": 1
+                    }
+                ]
+            ],
+            "trans": [
+                {
+                    "props": [
+                        [
+                            {
+                                "name": "t5",
+                                "value": 1
+                            }
+                        ]
+                    ],
+                    "target": 14
+                }
+            ]
+        },
+        {
+            "no": 14,
+            "props": [
+                [],
+                [
+                    {
+                        "name": "p11",
+                        "value": 1
+                    },
+                    {
+                        "name": "p4",
+                        "value": 1
+                    },
+                    {
+                        "name": "p5",
+                        "value": 1
+                    }
+                ]
+            ],
+            "trans": [
+                {
+                    "props": [
+                        [
+                            {
+                                "name": "t12",
+                                "value": 1
+                            }
+                        ]
+                    ],
+                    "target": 10
+                },
+                {
+                    "props": [
+                        [
+                            {
+                                "name": "t15",
+                                "value": 1
+                            }
+                        ]
+                    ],
+                    "target": 15
+                }
+            ]
+        },
+        {
+            "no": 15,
+            "props": [
+                [],
+                [
+                    {
+                        "name": "p4",
+                        "value": 1
+                    },
+                    {
+                        "name": "p5",
+                        "value": 1
+                    }
+                ]
+            ],
+            "trans": [
+                {
+                    "props": [
+                        [
+                            {
+                                "name": "t5",
+                                "value": 1
+                            }
+                        ]
+                    ],
+                    "target": 14
+                }
+            ]
+        }
+    ]
+}

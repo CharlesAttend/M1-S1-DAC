@@ -1,0 +1,568 @@
+.TH formats n "Version 3.7.0" "Tina Formats"
+
+.SH NAME
+formats   \- file formats of the Tina Toolbox
+
+Part of Tina Toolbox for analysis of Petri nets and Time Petri nets.
+
+.SH DESCRIPTION
+
+This page describe the formats of files used by the Tina tools.
+
+.nf
+Time Petri nets formats, input of tina/sift/tedd/struct/plan/play/ndrio/nd:
+
+net.txt  	\&.net 	Time Petri nets textual format
+ndr.txt  	\&.ndr 	Time Petri nets graphic format
+tpn.txt  	\&.tpn 	Time Petri nets script format
+pnml.txt	\&.pnml 	Time Petri nets pnml format
+
+Time Transition System format, input of tina/sift/tedd/struct/plan/play
+(not supported by ndrio nor nd):
+
+tts.txt  	\&.tts 	Time Transition System format
+
+Transition system formats, output of tina:
+
+aut.txt  	\&.aut 	Transition systems textual format (CADP format)
+ktz.txt  	\&.ktz 	Kripke transition systems binary format (tina)
+bcg.txt  	\&.bcg 	Transition systems binary format (tina for CADP)
+mec.txt  	\&.mec 	Kripke transition systems textual format (tina for MEC4)
+
+Other formats:
+
+adr.txt  	\&.adr 	Transition systems graphic format (nd)
+ltl.txt  	\&.ltl 	SE-LTL model checker commands (selt)
+mmc.txt  	\&.ltl 	Mu-calculus model checker commands (muse)
+scn.txt  	\&.scn 	Format of firing sequences and firing schedules,
+			(selt, plan, play, nd stepper history files)
+.fi
+
+
+.SH The \&.net format
+
+This is the textual description format of Time Petri nets.
+
+A  net is  described  by a  series  of declarations  of places, transitions
+and/or notes, and an  optional naming declaration for the  net. The net
+described is the superposition  of these declarations.  The grammar of
+\&.net  declarations  is  the   following,  in  which  nonterminals  are
+bracketed by <  ..  >, terminals are in upper  case or quoted.  Spaces,
+carriage return and tabs act as separators.
+
+Optionally,  labels may be  assigned to  places and  transitions. This
+should  be preferably done  within "tr"  and "pl"  declarations rather
+than using separate  "lb" declarations. The later form  ("lb") is kept
+for backward compatibility and might disappear in future releases.
+
+.B Grammar:
+
+.nf
+\&.net			::= (<trdesc>|<pldesc>|<lbdesc>|<prdesc>|<ntdesc>|<netdesc>)*
+netdesc			::= 'net' <net>
+trdesc			::= 'tr' <transition> {":" <label>} {<interval>} {<tinput> -> <toutput>}
+pldesc 			::= 'pl' <place> {":" <label>} {(<marking>)} {<pinput> -> <poutput>}
+ntdesc			::= 'nt' <note> ('0'|'1') <annotation>
+lbdesc			::= 'lb' [<place>|<transition>] <label>
+prdesc			::= 'pr' (<transition>)+ ("<"|">") (<transition>)+
+interval 		    	::= ('['|']')INT','INT('['|']') | ('['|']')INT','w['
+tinput			::= <place>{<arc>}
+toutput			::= <place>{<normal_arc>}
+pinput			::= <transition>{<normal_arc>}
+poutput			::= <transition>{arc}
+arc			::= <normal_arc> | <test_arc> | <inhibitor_arc> |
+			    <stopwatch_arc> | <stopwatch-inhibitor_arc> 
+normal_arc		::= '*'<weight>
+test_arc		::= '?'<weight>
+inhibitor_arc		::= '?-'<weight>
+stopwatch_arc		::= '!'<weight>
+stopwatch-inhibitor_arc	::= '!-'<weight>
+weight, marking 	::= INT{'K'|'M'|'G'|'T'|'P'|'E'}
+net, place, transition, label, note, annotation ::= ANAME | '{'QNAME'}'
+INT			::= unsigned integer
+ANAME			::= alphanumeric name, see Notes below
+QNAME			::= arbitrary name, see Notes below
+.fi
+
+.B Notes:
+
+Two forms are admitted for net, place and transition names:
+  - ANAME : any non empty string of letters, digits, primes ' and underscores _
+  - '{'QNAME'}' : any chain between braces, and in which characters {, }, and \\ are prefixed by \\
+
+Empty lines and lines beginning with '#' are considered comments.
+
+In any closed temporal interval [eft,lft], one must have eft <= lft.
+
+The letter 'K' (resp. 'M', 'G', 'T', 'P', 'E') following a weight or marking multiplies it by 10^3 (resp. 10^6, 10^9, 10^12, 10^15, 10^18).
+
+Weight is optional for normal arcs, but mandatory for test and inhibitor arcs
+
+By default:
+  - transitions have temporal interval [0,w[
+  - normal arcs have weight 1
+  - places have marking 0
+  - places and transitions have the empty label "{}"
+
+When several labels are assigned to some node, only the last assigned is kept.
+.fi
+
+
+.SH The \&.ndr format
+
+Format ndr is the format of graphic files produced by the nd editor. A
+net is  described by a  series of declarations of  places, transitions
+and edges, followed  by a net name declaration.   The net described is
+the superposition of these declarations.
+
+.B Grammar :
+
+.nf
+\&.ndr		::= (<trdesc>|<pldesc>)* (<edgedesc>|<prdesc>|<ntdesc>)* <netdesc>
+trdesc		::= 't' <xpos> <ypos> <transition> <eft> <lft> <anchor>
+		 |  't' <xpos> <ypos> <transition> <anchor> <eft> <lft> <anchor> <label> <anchor>
+pldesc 		::= 'p' <xpos> <ypos> <place> <marking> <anchor> {<label> <anchor>}
+ntdesc 		::= 'n' <xpos> <ypos> <note> ('0'|'1') <annotation>
+edgedesc 	::= 'e' <place> <transition> {<arckind>}<weight> <anchor>
+		 |  'e' <place> <ang> <rad> <transition> <ang> <rad> {<arckind>}<weight> <anchor>
+		 |  'e' <transition> <place> <weight> <anchor>
+		 |  'e' <transition> <ang> <rad> <place> <ang> <rad> <weight> <anchor>
+prdesc		::= 'e' <transition> <transition> 1 <anchor>
+		 |  'e' <transition> <ang> <rad> <transition> <ang> <rad> 1 <anchor>
+netdesc		::= 'h' <net> {<nodesize> {<bgcolor>}}
+eft 		::= {-}INT
+lft 	 	::= {-}INT | 'w'
+weight, marking	::= INT{'K'|'M'|'G'|'T'|'P'|'E'}
+arckind		::= '?'				     // test (read) arc
+		 |  '?-'			     // inhibitor
+		 |  '!'				     // stopwatch
+		 |  '!-'			     // stopwatch-inhibitor
+xpos, ypos, rad	::= FLOAT
+ang		::= UFLOAT
+net, place, transition, label, note, annotation ::= ANAME | '{'QNAME'}'
+anchor		::= 'n' | 'nw' | 'w' | 'sw' | 's' | 'se' | 'e' | 'ne' | 'c'
+FLOAT		::= unsigned float (without exponent)
+UFLOAT		::= unsigned float between 0 and 1 (without exponent)
+INT		::= unsigned integer
+ANAME		::= see notes below
+QNAME		::= see notes below
+<nodesize>	::= 'small' | 'normal' | 'large'
+<bgcolor>	::= any tcl-tk color
+.fi
+
+.B Notes:
+
+Node declarations must precede edge declarations.
+
+The last declaration must be the netname declaration (h).
+
+Empty lines and lines beginning with '#'are considered comments.
+
+A '-' starting an eft or lft denotes an open interval end. 
+
+In any transition declaration, one must have `lft >= `eft or lft = 'w',
+where `e denotes e if e>=0, or (-e)-1 otherwise
+
+If eft = lft, then they may not be both negative (intervals may not be empty).
+
+The letter 'K' (resp. 'M', 'G', 'T', 'P', 'E') following a weight or marking multiplies it by 10^3 (resp. 10^6, 10^9, 10^12, 10^15, 10^18).
+
+Two forms are admitted for net, place and transition names:
+  - ANAME : any non empty string of letters, digits, primes ' and underscores _
+  - '{'QNAME'}' : any chain between braces, and in which characters {, }, and \\ are prefixed by \\
+
+
+.SH The \&.tpn format
+
+Format .tpn  is a preliminary  script language for building  nets from
+net components specified in \&.net or \&.ndr format.
+
+.B Syntax of tpn files:
+
+
+A \&.tpn file is constituted of zero or more lines
+
+.nf
+	.tpn ::= <tpnline>*
+.fi
+
+each line is either any line allowed in a \&.net or \&.ndr file, or a tpn command:
+
+.nf
+	tpnline ::=
+		  <trdesc>	(as in \&.net or \&.ndr formats)
+		| <pldesc>	(as in \&.net or \&.ndr formats)
+		| <lbdesc>	(as in \&.net or \&.ndr formats)
+		| <prdesc>	(as in \&.net or \&.ndr formats)
+		| <ntdesc>	(as in \&.net or \&.ndr formats)
+		| <netdesc>	(as in \&.net or \&.ndr formats)
+		| <tpncmd>
+	tpncmd ::=
+		  'new'
+		| 'dup' INT
+		| 'load' TPNFILE
+		| 'ren' <renlist>
+		| 'merge' INT
+		| 'sync' INT
+		| 'chain' INT
+		| 'source' FILE
+	renlist ::= <labpair> <renlist> | <labpair>
+	labpair ::= <label>"/"<label> | "/"<label>
+	label ::= a label (as in \&.net or \&.ndr formats)
+	TPNFILE ::= the name of a \&.net or \&.ndr file
+	FILE ::= the name of a \&.net, \&.ndr, or .tpn file
+.fi
+
+Note that, syntactically, \&.net and  \&.ndr files are .tpn files. The tpn
+format extends both  the \&.net and \&.ndr formats, but  it has no graphic
+interpretation at the moment (a future \&.tdr format might provide that).
+
+
+.B Interpretation of tpn scripts:
+
+A  tpn  file describes  a  Time  Petri  net, possibly  resulting  from
+composition of several Time Petri nets.
+
+Tpn scripts  are interpreted  as code for  an abstract  stack machine.
+The stack  initially holds  the empty Time  Petri net.  The  result of
+evaluation  of  a tpn  script  is  the net  on  top  of  the stack  at
+completion of interpretation.
+
+The lines  of a tpn file  are interpreted as follows  ("top" means the
+net in topmost position on stack):
+
+.nf
+new			pushes an empty net on stack
+\&.net or \&.ndr line	extends top with the \&.net or \&.ndr declaration
+dup n			pushes on stack n copies of top (default n is 1)
+ren R1 ... Rn		applies relabelling R1 ... Rn to top
+merge n			replaces n topmost nets by their concurrent composition
+sync n			replaces n topmost nets by their synchronization
+chain n			replaces n topmost nets by their chaining
+source file		evaluates commands from file tpnfile
+load tpnfile		pushes the empty net on stack, then sources tpnfile
+.fi
+
+Notes:
+
+- merge n, sync n, chain n, assign unique names to the nodes of their components;
+
+- synchronization (sync) fuse copies of transitions with same label in all components;
+
+- chaining (chain) is like synchronization, but on places;
+
+- concurrent composition (merge) is simply juxtaposition, preserving labels.
+  It is a derived form that could always be replaced by some combination of
+  relabelling and sync/chain (see examples);
+
+- in a ren specification, all renamings and/or hidings are applied simultaneously;
+  ren x/y means that all nodes labelled by y become labelled by x
+  ren /x means that nodes labelled x become unlabelled (hidden)
+
+- "load tpnfile" is a shorthand for the two lines:
+.nf
+	new
+	source tpnfile
+.fi
+
+- the file names in source and load instructions are relative to the directory
+  in which resides the script file;
+
+
+
+
+.SH The \&.pnml format
+
+The PNML  format is  still evolving. The  tina tools  currently accept
+BasicPNML   (http://www.informatik.hu-berlin.de/top/pnml/basicPNML.rng)
+and an extension of it,  TpnPNML, informally explained below.
+
+TpnPNML extends BasicPNML as follows:
+
+- In the "graphics" element of any node, the following line can be added,
+  that specifies an offset for the node identifier:
+
+   <offset x=... y=... />
+
+- Any place and transition can have a "label" element, in addition to a
+  name element.
+
+- Any transition can have a "delay" element, encoding a firing interval,
+  and possibly an offset for this interval. The syntax of intervals is
+  taken from MathML (http://www.w3.org/1998/Math/MathM).
+
+.nf
+  For instance, an interval [4,9] with offset (-10,0) is specified by:
+
+  <delay>
+   <interval xmlns="http://www.w3.org/1998/Math/MathML" closure="closed">
+    <cn>4</cn>
+    <cn>9</cn>
+   </interval>
+   <graphics>
+    <offset x="-10" y="0" />
+   </graphics>
+  </delay>
+
+  The unbounded interval [4,w[ would be specified by:
+
+  <delay>
+   <interval xmlns="http://www.w3.org/1998/Math/MathML" closure="closed-open">
+    <cn>4</cn>
+    <ci>infty</ci>
+   </interval>
+  </delay>
+
+  And interval ]3,5[ by:
+
+  <delay>
+   <interval xmlns="http://www.w3.org/1998/Math/MathML" closure="open">
+    <cn>3</cn>
+    <cn>5</cn>
+   </interval>
+  </delay>
+.fi
+
+Tools tina, struct and plan accept BasicPNML and TpnPNML natively.
+
+The nd  tool can import or export  nets into TpnPNML. If  the file has
+extension .pnml, then "file->open" and "file->save as" can be used for
+this, otherwise use "file->import" or "file->export".
+
+The ndrio tool is able to convert \&.net and \&.ndr to/from \&.pnml.
+
+
+
+.SH The \&.tts format
+
+As  of 2.9.0,  tina accepts  as input  high level  descriptions called
+"Time Transition Systems" (TTS).  A Time Transition System description
+consists of  a Time  Petri net described  in any format  understood by
+tina (\&.net, \&.ndr, \&.tpn, \&.pnml) and a shared  library (a \&.so/\&.dyn/\&.dll
+file)  defining   the  data  processing  synchronized   with  the  net
+transitions, together in a directory with extension .\&tts.
+
+Applied to  a \&.tts  directory, tina  loads the \&.net  or \&.ndr  file (as
+usual), and dynamically links the  library file to get the actions and
+predicates. This file described the API the shared library must obey.
+
+tina sees data values  as keys (integers, not necessarily contiguous),
+through a  "store" function.   The storage functions  may reside  in a
+separate library  or may be  statically linked with the  data library,
+all storage libraries must provide functions:
+
+.nf
+	store : value -> key
+	lookup : key -> value
+	init_storage : unit -> unit
+.fi
+
+The data shared library itself captures:
+
+.nf
+    an array of transition names for the transitions referred to
+    in the library. The size of the array is returned in the parameter
+    of function transition.
+
+	transitions : int ref -> string vector
+
+    A function returning the current version of the format (currently 2):
+
+        ttsapiversion : unit -> int
+
+    A function initial returning the initial data state and a
+    function final called after exploration is complete:
+
+       initial : unit -> key
+       final : int -> unit
+
+    for a subset of transitions in transitions, referred to by
+    their index in array transitions, functions:
+
+	pre_i : key -> bool
+	act_i : key -> key
+
+    A function set_exceptions, called by the tts client if wishing to handle
+    tts runtime exceptions itself rather then leaving that task to the
+    tts library (default behavior). Function set_exception returns the array
+    of possible exception messages, its size in the first argument, and, in
+    the second argument, the address of the C variable holding the
+    exception code when some exception is raised. Exception codes are either
+    an exception number in 0..99 or a line number (line) and an exception number
+    (no) encoded into the integer 100*line + no. To handle exceptions,
+    the client must read that variable after each call of pre_i and act_i,
+    and reset it to 0 afterwards:
+    
+    	set_exceptions : int ref * pointer ref -> string vector
+
+    An independance predicate for actions. 
+    This predicate is used by tina for computing the conflicting relation
+    for partial order methods, and the persistent and newly enabled relations
+    for state class graphs:
+
+        independant : int * int -> bool
+
+    A value printer, used by tina to print data value in some concrete
+    notation when output is "verbose":
+
+	sprint_state: key * string ref -> int
+
+    For kts output, the state (or some abstraction of it) should be 
+    available to tina as a record with integer fields. This is done
+    by providing:
+
+    A vector of observation labels, and the number of, by function:
+
+	obs_names : int ref -> string vector
+
+    A function to retrieve the contents of observables from a value:
+
+	obs_values : key -> int vector
+.fi
+
+A first high level description language compiled into this format, called
+Fiacre, should be available by now.
+
+
+.SH The \&.ktz format
+
+The ktz format is the binary format for kripke transition system (kts)
+of tina.   That compact format is  the input format of  selt (the tina
+SE-LTL model checker) and other forthcoming tools.
+
+(description to be provided).
+
+
+.SH The \&.aut format
+
+The aut format is the lts  description format of the Aldebaran tool of
+the CADP toolset (see the CADP documents).
+
+.B Notes
+
+The  \&.aut format does not  allow double quotes (")  to appear in
+labels.   In addition  tina  forbids backquotes  (`)  in \&.aut  labels.
+Backquotes are used by tina to encode sets of properties into single \&.aut labels.
+
+.SH The \&.bcg format
+
+The bcg format  is the binary lts description format  of the BCG tools
+of the CADP toolset (see the CADP documents).
+
+.B Notes
+
+tina forbids  double quotes (") and  backquotes (`) to  appear in \&.bcg
+labels. Backquotes are used by tina to encode lists of properties into
+single \&.bcg  labels; double quotes would  prevent lossless conversions
+to \&.bcg.
+
+
+.SH The \&.mec format
+
+The mec format is the kts description format of the Mec4 model checker.
+
+.B Notes
+
+mec  only allows alphanumeric  labels (a  letter followed  by letters,
+digits or  _) to appear as  state or transition  properties. tina will
+refuse to generate \&.mec descriptions  if place or transition names are
+not legal mec property identifiers.
+
+
+.SH The \&.adr format
+
+It  is the  format of  graphic files  produced by  the nd  editor when
+editing  automata.    An  automaton  is  described  by   a  series  of
+declarations of states and edges, followed by a name declaration.  The
+automaton described is the superposition of these declarations.
+
+.B Grammar:
+
+.nf
+\&.adr			::= (<stdesc>)* (<edgedesc>)* <autdesc>
+stdesc			::= 's' <xpos> <ypos> <state> {<anchor> <label> <anchor>}
+edgedesc		::= 'e' <state> <state> <label> <anchor>
+edgedesc		 |  'e' <state> <ang> <rad> <state> <ang> <rad> <label> <anchor>
+autdesc			::= 'h' <aut> <attr>
+xpos, ypos, rad		::= FLOAT
+ang			::= UFLOAT
+aut, state, label	::= ANAME | '{'QNAME'}'
+anchor			::= 'n' | 'nw' | 'w' | 'sw' | 's' | 'se' | 'e' | 'ne' | 'c'
+FLOAT			::= integer or float (without exponent)
+UFLOAT			::= integer or float between 0 and 1 (without exponent)
+INT			::= unsigned integer
+ANAME			::= see notes below
+QNAME			::= see notes below
+attr			::= an unspecified number of optional graphic parameters (specifying size, color, etc)
+.fi
+
+.B Notes:
+
+State declarations must precede edge declarations.
+
+The last declaration must be the autdesc declaration (h).
+
+Empty lines and lines beginning with '#'are considered comments.
+
+Two forms are admitted for net, place and transition names:
+  - ANAME : any non empty string of letters, digits, primes ' and underscores _
+  - '{'QNAME'}' : any chain between braces, and in which characters {, }, and \\ are prefixed by \\
+
+
+.SH The \&.ltl format
+
+ltl  is  the  format of  files  accepted  as  use  input by  the  selt
+model-checker.  Check the selt manual page for a full description.
+
+
+.SH The \&.mmc format
+
+mmc  is  the  format of  files  accepted  as  use  input by  the muse
+model-checker.  Check the muse manual page for a full description.
+
+
+.SH The \&.scn format
+
+The scn format is used by:
+
+.nf
+- the nd stepper to store/load histories;
+- the selt model checker to save counter examples for replay by the stepper;
+- the plan application, to analyse path timing.
+.fi
+
+A  \&.scn file is  a series  of line,  each constituted  of a  series of
+blocks of one  of the following shape (all blocks in  a file have same
+shape) :
+
+.nf
+       <transition>
+  or:  <transition>@<time>
+  or:  <transition>$<time>
+
+  where <transition> is a transition name (see net.txt)
+  and   <time> is a nonnegative float (without exponent)
+.fi
+
+Spaces and tabs are considered separators;
+
+Line breaks are  significant, they are interpreted as  marks by the nd
+stepper, and preserved by the plan tool;
+
+Blank lines and and those beginning with "#" are considered comments;
+
+
+
+.SH EXAMPLES
+
+Directory "net" in tina distributions include various example descriptions
+in the above formats.
+
+
+.SH SEE ALSO
+
+nd(n), tina(n), plan(n), struct(n), ktzio(n), ndrio(n), tedd(n), selt(n), sift(n), muse(n), pathto(n), play(n), walk(n), reduce(n)
+
+.SH AUTHORS
+Bernard Berthomieu, LAAS/CNRS, 2000-2015, Bernard.Berthomieu@laas.fr.
+

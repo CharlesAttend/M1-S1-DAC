@@ -1,0 +1,15 @@
+
+(trains example of Berthomieu and Vernadat, TACAS 2003).
+
+5 different scripts building that example:
+
+system.tpn	loads *.ndr components
+system1.tpn	single file tpn (components in ndr)
+system2.tpn	single file tpn (components in net)
+system3.tpn	sources *.tpn components
+system4.tpn	like system.tpn, plus renamings
+	
+mkcontroler.sh   single file parameterized sh script for controler
+mktrains.sh   	   single file parameterized sh script for system
+
+

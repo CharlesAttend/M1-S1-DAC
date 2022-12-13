@@ -1,0 +1,83 @@
+
+# train
+t 190.0 50.0 App n 0 w n App e
+t 190.0 270.0 Exit s 0 0 c Exit e
+p 190.0 160.0 Far 1 w
+p 70.0 50.0 Close 0 w
+t 70.0 110.0 In 3 5 w
+p 70.0 160.0 On 0 w
+t 70.0 210.0 Ex 2 4 w
+p 70.0 270.0 Left 0 w
+e Left Exit 1 n
+e Ex Left 1 n
+e On Ex 1 n
+e Exit Far 1 n
+e App Close 1 n
+e Far App 1 n
+e In On 1 n
+e Close In 1 n
+h train
+
+dup
+dup
+merge 3
+
+new
+# controler
+p 250.0 220.0 far 3 e
+p 50.0 220.0 in 0 w
+t 150.0 50.0 A1 c 0 w n App n
+t 150.0 380.0 E1 c 0 0 n Exit s
+t 150.0 160.0 A2 c 0 w n App n
+t 150.0 280.0 E2 c 0 0 n Exit s
+t 430.0 50.0 D c 0 0 e Down n
+t 410.0 380.0 U c 0 0 e Up s
+p 300.0 50.0 Coming 0 n
+p 300.0 380.0 Leaving 0 s
+e far A1 3 se
+e A1 0.897390693255 61.2646630213 far 0.287110953831 60.5476520525 2 n
+e A1 in 1 n
+e far A2 1 n
+e in A2 1 n
+e A2 0.62908169907 40.6265794452 in 0.0409551776716 57.8678442643 2 e
+e far E1 2 ne
+e E1 0.114604495126 55.8320079229 far 0.712889046169 60.5476520525 3 e
+e in E1 1 n
+e in E2 2 w
+e E2 0.375 49.497474683 in 0.953502511081 51.1338731638 1 n
+e E2 far 1 n
+e A1 Coming 1 n
+e Coming D 1 n
+e E1 Leaving 1 n
+e Leaving U 1 n
+h controleur
+
+new
+# barrier
+t 30.0 110.0 D1 c 0 0 e Down n
+t 110.0 130.0 D2 c 0 0 e Down n
+p 110.0 50.0 Up 1 n
+p 30.0 170.0 lowering 0 e
+t 30.0 230.0 L 1 2 e
+p 110.0 290.0 Down 0 s
+t 190.0 230.0 U c 0 0 e Up s
+p 190.0 170.0 raising 0 e
+t 190.0 110.0 R 1 2 e
+e D2 lowering 1 n
+e raising D2 1 n
+e raising R 1 n
+e R Up 1 n
+e U raising 1 n
+e Down U 1 n
+e L Down 1 n
+e lowering L 1 n
+e D1 lowering 1 n
+e Up D1 1 n
+h barrier
+
+sync 3
+
+
+
+
+

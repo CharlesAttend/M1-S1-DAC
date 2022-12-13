@@ -1,0 +1,25 @@
+
+new
+# barrier.ndr
+t 30.0 110.0 D1 c 0 0 e Down n
+t 110.0 130.0 D2 c 0 0 e Down n
+p 110.0 50.0 Up 1 n
+p 30.0 170.0 lowering 0 e
+t 30.0 230.0 L 1 2 e
+p 110.0 290.0 Down 0 s
+t 190.0 230.0 U c 0 0 e Up s
+p 190.0 170.0 raising 0 e
+t 190.0 110.0 R 1 2 e
+e D2 lowering 1 n
+e raising D2 1 n
+e raising R 1 n
+e R Up 1 n
+e U raising 1 n
+e Down U 1 n
+e L Down 1 n
+e lowering L 1 n
+e D1 lowering 1 n
+e Up D1 1 n
+h barrier
+
+

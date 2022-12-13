@@ -1,0 +1,15 @@
+t 140.0 25.0 t2 0 w n
+t 140.0 140.0 t1 0 w n
+p 195.0 80.0 s1 0 e
+p 85.0 80.0 s2 1 e
+p 250.0 150.0 p1 0 n out s
+p 30.0 150.0 p0 0 n in s
+e t1 p1 1 n
+e p0 t1 1 n
+e t2 s1 1 n
+e s2 t2 1 n
+e t1 s2 1 n
+e s1 t1 1 n
+h proc
+
+

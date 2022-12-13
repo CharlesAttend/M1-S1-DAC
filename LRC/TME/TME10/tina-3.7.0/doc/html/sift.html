@@ -1,0 +1,584 @@
+<HTML><HEAD>
+<TITLE>Manual Page - sift(n)</TITLE>
+<BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
+<!-- .TH sift n "Version 3.7.0" "Tina Tools" -->
+<CENTER>
+<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>sift (n)</NOBR><HR></H1>
+</CENTER>
+<P>
+<!-- .SH NAME -->
+<A name=0>
+
+     <H3>NAME</H3>
+
+</A>
+<BLOCKQUOTE>
+sift - high performance state space explorator and checker
+<P>
+Part of Tina Toolbox for analysis of Petri nets and Time Petri nets.
+<P>
+<!-- .SH SYNOPSIS -->
+</BLOCKQUOTE>
+<A name=contents></A><H3>CONTENTS</H3></A>
+<BLOCKQUOTE>
+<A HREF=#1>Synopsis</A><BR>
+<A HREF=#2>Description</A><BR>
+<A HREF=#3>Options</A><BR>
+<A HREF=#4>Examples</A><BR>
+<A HREF=#5>See Also</A><BR>
+<A HREF=#6>Authors</A><BR>
+</BLOCKQUOTE>
+<A name=7>
+
+     <H3>SYNOPSIS</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+<!-- .B sift -->
+<B>sift</B> [-<I>h</I>elp] [-p]
+<BR>
+     [-R | -P | -V | -Q |
+<BR>
+      -D | -F | -F1 |
+<BR>
+      -W | -M | -H | -S | -E | -G]
+<BR>
+     [-equal | -incl | -hull]
+<BR>
+     [-f form | -ff file | -dead] [-c n] [-t s] [-b n]
+<BR>
+     [-q | -k] [-NET | -NDR | -TPN | -PNML | -TTS]
+<BR>
+     [-df | -bf | -rf] [-seed] [-tree] [-inh] [-tc] [-pr] [-dt] [-stats]
+<BR>
+     [infile] [outfile] [digestfile] [errorfile]
+<P>
+<P>
+<!-- .SH DESCRIPTION -->
+</BLOCKQUOTE>
+<A name=2>
+
+     <H3>DESCRIPTION</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+sift builds  various state space abstractions for  extended Time Petri
+nets.  It  takes as input  descriptions in textual form  (&#46;net, &#46;pnml,
+&#46;tpn formats) or graphical form  (&#46;ndr format of files produced by nd,
+&#46;pnml with graphics), or a  Time Transition System description in &#46;tts
+format.
+<P>
+sift serves similar purposes as  the tina tool, with less options but
+handles large  states spaces much more efficiently.   sift also allows
+to check reachability properties on the fly.
+<P>
+<P>
+<!-- .SH OPTIONS -->
+</BLOCKQUOTE>
+<A name=3>
+
+     <H3>OPTIONS</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+<!-- .TP -->
+<TABLE cellpadding=3>
+<TR valign=top><TD width=6% nowrap>
+-<I>h</I>elp
+</TD><TD valign=bottom>
+Recalls options.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Operating mode options: -->
+<B>Operating mode options:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-R
+</TD><TD valign=bottom>
+Builds the marking reachability graph of a Petri net (untimed, or with
+temporal information discarded).
+This option forgets time constraints, it sets flag -tc.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-V
+</TD><TD valign=bottom>
+Builds  the Covering  Step  Graph of  a  Petri net,  according to  the
+technique of Vernadat/Azema/Michel. The construction preserves deadlocks.
+This option forgets time constraints and priorities, it sets flags -tc -pr.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-P
+</TD><TD valign=bottom>
+Builds  the partial marking  graph of  a Petri  net, according  to the
+persistent sets technique. The heuristic retained is to minimize local
+branching.
+This option forgets time constraints and priorities, it sets flags -tc and -pr.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-Q
+</TD><TD valign=bottom>
+Builds  the  partial  marking  graph  of  a  Petri  net.  Combine  the
+persistent  sets  (-P)  and   covering  steps  (-V)  methods.
+This option forgets time constraints and priorities, it sets flags -tc and -pr.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-D
+</TD><TD valign=bottom>
+Builds the essential state graph of a Time Petri net, according to the
+technique of Popova. This graph preserves reachability and linear time
+temporal properties. Static intervals  must be closed or unbounded and
+left-closed.   If no  temporal  information is  specified,  or if  all
+transitions bear interval [0,w[, then -D is silently replaced by -R.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-F | -F1
+</TD><TD valign=bottom>
+Builds  the subgraph  of the  state graph  obtained by  firing integer
+delay transitions (unit delays if -F1) and discrete transitions.  This
+graph strictly includes that obtained by -D  and  preserves  the  same
+properties. Static intervals must be closed  or  unbounded  and  left-
+closed. If no temporal information is specified, or if all transitions
+bear interval [0,w[, then -F/-F1 is silently replaced by -R.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-W
+</TD><TD valign=bottom>
+Builds the linear state class graph  of a Time Petri net, according to
+the technique of Berthomieu/Menasche [IFIP1983].  The linear state class
+graph  preserves  marking  reachability  properties  and  linear  time
+temporal properties.   If no temporal information is  specified, or if
+all transitions bear  interval [0,w[, then -W is  silently replaced by
+-R.  This option removes priorities, it sets flag -pr.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-M
+</TD><TD valign=bottom>
+Option -M computes the set of markings of a TPN.
+Option -M is typically faster than -W and yields smaller state space
+abstractions, but it does not preserve firing sequences. ktz files
+created in mode -M only capture markings and the firable transitions
+represented as loop transitions on the markings they are firable from.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-H
+</TD><TD valign=bottom>
+Option -H computes an overapproximation of the set of markings
+of a TPN. It is typically much faster than options -M and -W and produces
+a set of classes with exactly one firing domain associated with each marking.
+Compared to -W, all classes associated with the same marking are merged into
+a single class obained from the dbm-hull of their domains (the smallest
+dbm including all of them). As for mode -M, ktz files created in mode -H
+only capture markings and the firable transitions.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-S
+</TD><TD valign=bottom>
+Builds the  strong state  class graph, according  to the  technique of
+Berthomieu/Vernadat   [TACAS2003].    That   graph   preserves   state
+reachability  properties and  linear time  temporal properties;  it is
+also  compatible  with  priorities.   If no  temporal  information  is
+specified,  or if  all transitions  bear  interval [0,w[,  then -S  is
+silently replaced by -R.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-E
+</TD><TD valign=bottom>
+Option -E computes the set of states of a TPN.
+Option -E is typically faster than -S and yields smaller state space
+abstractions, but it does not preserve firing sequences. ktz files
+created in mode -E only captured markings and the firable transitions,
+represented as loop transitions on the markings they are firable from.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-G
+</TD><TD valign=bottom>
+Option -G computes an overapproximation of the set of states
+of a TPN. It is typically much faster than options -S and -E and produces
+a set of strong classes with exactly one clock domain associated with each marking.
+Compared to -S, all classes associated with the same marking are merged into
+a single class obained from the dbm-hull of their domains (the smallest
+dbm including all of them). As for mode -E, ktz files created in mode -G
+only capture markings and the firable transitions.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-equal
+</TD><TD valign=bottom>
+Identify two state classes when they are equal (default).
+This flag has the effects of -W if no priorities are specified, or of -S otherwise;
+It is ignored if the net is untimed or if some operating mode is simultaneously set.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-incl
+</TD><TD valign=bottom>
+Identify two state classes when one is included in the other.
+This flag has the effects of -M if no priorities are specified, or of -E otherwise;
+It is ignored if the net is untimed or if some operating mode is simultaneously set.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-hull
+</TD><TD valign=bottom>
+Merge all state classes with same marking into their dbm hull.
+This flag has the effects of -H if no priorities are specified, or of -G otherwise;
+It is ignored if the net is untimed or if some operating mode is simultaneously set.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Exploration strategy flags (when meaningful): -->
+<B>Exploration strategy flags (when meaningful):</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-df
+</TD><TD valign=bottom>
+Depth-first exploration order
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-bf
+</TD><TD valign=bottom>
+Breadth-first exploration order (default)
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-rf
+</TD><TD valign=bottom>
+Random exploration order
+<P>
+-seed
+Initializes the random number generator so that different calls of sift with order -rf
+on the same arguments may traverse the state space in different orders.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B input options: -->
+<B>input options:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-inh
+</TD><TD valign=bottom>
+Removes inhibitor arcs from the input net.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-pr
+</TD><TD valign=bottom>
+Removes priority constraints from the input net.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-tc
+</TD><TD valign=bottom>
+Removes time constraints  from the input net.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-dt
+</TD><TD valign=bottom>
+Forgets data processing when reading a tts description.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Storage strategy flags: -->
+<B>Storage strategy flags:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-tree
+</TD><TD valign=bottom>
+Do not store states; assume any state computed is new.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Stopping conditions: -->
+<B>Stopping conditions:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+If some of these conditions fail and the output is ktz, then the ktz
+file captures a partial state space including the offending state and
+in which all non fully explored states bear property "sub".
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-c n
+</TD><TD valign=bottom>
+Stop if the number of state enumerated exceeds n; no effects if n=0.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-t n
+</TD><TD valign=bottom>
+Stop if exploration lasts longer than n seconds; no effects if n=0.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-b n
+</TD><TD valign=bottom>
+Stops if the marking of some place exceeds n; no effects if n=0.
+Sift may take advantage of this value for choosing the representation of
+states.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-f form
+</TD><TD valign=bottom>
+Stop if some state does not obey property form; no effects if form=T.
+Formula form is any modality-free formula accepted by the selt model
+checker (check man selt for details). In addition, an atomic proposition
+is provided, "safe" or "L.safe", then asserts that the marking of each place
+does not exceed 1.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-ff form
+</TD><TD valign=bottom>
+Equivalent to -f form, for the formula form read in file.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-dead
+</TD><TD valign=bottom>
+Stop if some deadlock state is found; shorthand for -f "-L.dead".
+<P>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Other flags: -->
+<B>Other flags:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-p
+</TD><TD valign=bottom>
+Disables state space generation, just parses input net.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-stats
+</TD><TD valign=bottom>
+Prints progress information on the fly.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Input format and source: -->
+<B>Input format and source:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+-NET | -NDR | -PNML | -TPN | -TTS
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Specifies the format of the input net. This flag is necessary when the
+input net is read on standard input, or read from a file that does not
+bear the expected extension. By default, the net is assumed in .net or
+<!-- .ndr format. -->
+<!-- ignored unsupported tag .ndr -->
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+infile
+</TD><TD valign=bottom>
+Where the  net is  read. The  input format is  determined by  the file
+type, according to the table below. If absent or specified by "-", the
+net is  read on standard  input in the  format specified by  the input
+flag. If  both an  infile and  some input flag  are present,  then the
+format defined  by the  input flag supersedes  that determined  by the
+infile extension.
+<P>
+<!-- .nf -->
+<PRE>
+file extension&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;input format
+--------------------------------------------------------------
+&#46;net&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;net format
+&#46;ndr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ndr format
+&#46;tpn&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tpn format
+&#46;pnml&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pnml format
+&#46;tts&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tts format
+<!-- .fi -->
+</PRE>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Output format and destination: -->
+<B>Output format and destination:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+-q | -<I>k</I>tz
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Specifies the format of the output. This flag is necessary when
+output is produced on standard output, or written in a file that does not
+bear the expected extension. -q means no output is printed, while
+-k means some output is produced in &#46;ktz proprietary compressed format.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+outfile
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Where results are written. The output format is determined by the file
+type, according  to the  table below. If  absent or specified  by "-",
+then results are written on standard output in the format specified by
+the output format flag. If both an  outfile and some output flag are present,
+then the format defined by  the output flag supersedes that determined
+by the outfile extension.
+<P>
+<!-- .nf -->
+<PRE>
+file extension&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;output format
+--------------------------------------------------------------
+&#46;ktz&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tina binary ktz format
+any other&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;textual output
+<!-- .fi -->
+</PRE>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Digest destination: -->
+<B>Digest destination:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+digestfile
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+In addition to (possibly) its results in ktz form in file outfile, sift
+prints a summary of results in file digestfile (default stdout).
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Errors destination: -->
+<B>Errors destination:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+errorfile
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Where error messages are written. By default, errors are printed on standard error.
+<P>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Default options: -->
+<B>Default options:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+Depend upon the features of the input net:
+<!-- .nf -->
+<PRE>
+If no time constraint:     sift -R -c 0 -t 0 -b 0 -f T -q
+Else, if no priorities:    sift -W -c 0 -t 0 -b 0 -f T -q
+Otherwise:                 sift -S -c 0 -t 0 -b 0 -f T -q
+<!-- .fi -->
+</PRE>
+<P>
+<P>
+<!-- .SH EXAMPLES -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=4>
+
+     <H3>EXAMPLES</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+<!-- .nf -->
+<PRE>
+sift -f "p1 <BLINK>\/</BLINK> t4" &lt; ifip.ndr
+sift -PNML mynet.xml
+sift -f safe abp.ndr abp.ktz -stats
+<!-- .fi -->
+</PRE>
+<P>
+<P>
+<!-- .SH SEE ALSO -->
+</BLOCKQUOTE>
+<A name=5>
+
+     <H3>SEE ALSO</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+nd(n), tina(n), plan(n), struct(n), ktzio(n), ndrio(n), tedd(n), selt(n), muse(n), pathto(n), play(n), walk(n), reduce(n), formats(n)
+<P>
+<!-- .SH AUTHORS -->
+</BLOCKQUOTE>
+<A name=6>
+
+     <H3>AUTHORS</H3>
+
+</A>
+<BLOCKQUOTE>
+Bernard Berthomieu, with contributions by Alexandre Hamez
+LAAS/CNRS,  2000-2012,
+<A HREF="mailto:Bernard.Berthomieu@laas.fr.">Bernard.Berthomieu@laas.fr.</A>
+<P>
+</BLOCKQUOTE>
+<P><HR>
+<TABLE width=100%><TR> <TD width=33%><I>Tina Tools</I></TD> <TD width=33% align=center>sift (n)</TD> <TD align=right width=33%><I>Version 3.7.0</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.07</A> from src/sift.n using man macros.</FONT>
+</BODY></HTML>

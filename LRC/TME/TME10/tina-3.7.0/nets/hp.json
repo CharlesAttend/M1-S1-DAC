@@ -1,0 +1,478 @@
+{
+    "header": {
+        "edges": 18,
+        "name": "hp",
+        "nodes": 11,
+        "state-nspaces": [
+            {
+                "atoms": [
+                    "A",
+                    "B",
+                    "C",
+                    "D",
+                    "E"
+                ],
+                "inf": "true",
+                "neg": "false",
+                "nsname": "S",
+                "propsets": 11
+            }
+        ],
+        "trans-nspaces": [
+            {
+                "atoms": [
+                    "a",
+                    "b",
+                    "c",
+                    "d"
+                ],
+                "inf": "false",
+                "neg": "false",
+                "nsname": "E",
+                "propsets": 4
+            }
+        ]
+    },
+    "label": [
+        "Created Wed Jul 04 11:19:37 2012 by TINA version 3.0.2"
+    ],
+    "states": [
+        {
+            "no": 0,
+            "props": [
+                [
+                    {
+                        "name": "A",
+                        "value": 1
+                    },
+                    {
+                        "name": "C",
+                        "value": 1
+                    }
+                ]
+            ],
+            "trans": [
+                {
+                    "props": [
+                        [
+                            {
+                                "name": "a",
+                                "value": 1
+                            }
+                        ]
+                    ],
+                    "target": 1
+                }
+            ]
+        },
+        {
+            "no": 1,
+            "props": [
+                [
+                    {
+                        "name": "A",
+                        "value": 1
+                    },
+                    {
+                        "name": "D",
+                        "value": 1
+                    },
+                    {
+                        "name": "E",
+                        "value": 1
+                    }
+                ]
+            ],
+            "trans": [
+                {
+                    "props": [
+                        [
+                            {
+                                "name": "b",
+                                "value": 1
+                            }
+                        ]
+                    ],
+                    "target": 2
+                },
+                {
+                    "props": [
+                        [
+                            {
+                                "name": "c",
+                                "value": 1
+                            }
+                        ]
+                    ],
+                    "target": 3
+                }
+            ]
+        },
+        {
+            "no": 2,
+            "props": [
+                [
+                    {
+                        "name": "A",
+                        "value": 1
+                    },
+                    {
+                        "name": "C",
+                        "value": 1
+                    },
+                    {
+                        "name": "E",
+                        "value": "infinity"
+                    }
+                ]
+            ],
+            "trans": [
+                {
+                    "props": [
+                        [
+                            {
+                                "name": "a",
+                                "value": 1
+                            }
+                        ]
+                    ],
+                    "target": 4
+                }
+            ]
+        },
+        {
+            "no": 3,
+            "props": [
+                [
+                    {
+                        "name": "B",
+                        "value": 2
+                    },
+                    {
+                        "name": "D",
+                        "value": 1
+                    },
+                    {
+                        "name": "E",
+                        "value": 1
+                    }
+                ]
+            ],
+            "trans": [
+                {
+                    "props": [
+                        [
+                            {
+                                "name": "b",
+                                "value": 1
+                            }
+                        ]
+                    ],
+                    "target": 5
+                }
+            ]
+        },
+        {
+            "no": 4,
+            "props": [
+                [
+                    {
+                        "name": "A",
+                        "value": 1
+                    },
+                    {
+                        "name": "D",
+                        "value": 1
+                    },
+                    {
+                        "name": "E",
+                        "value": "infinity"
+                    }
+                ]
+            ],
+            "trans": [
+                {
+                    "props": [
+                        [
+                            {
+                                "name": "b",
+                                "value": 1
+                            }
+                        ]
+                    ],
+                    "target": 2
+                },
+                {
+                    "props": [
+                        [
+                            {
+                                "name": "c",
+                                "value": 1
+                            }
+                        ]
+                    ],
+                    "target": 6
+                }
+            ]
+        },
+        {
+            "no": 5,
+            "props": [
+                [
+                    {
+                        "name": "B",
+                        "value": 2
+                    },
+                    {
+                        "name": "C",
+                        "value": 1
+                    },
+                    {
+                        "name": "E",
+                        "value": 1
+                    }
+                ]
+            ],
+            "trans": [
+                {
+                    "props": [
+                        [
+                            {
+                                "name": "a",
+                                "value": 1
+                            }
+                        ]
+                    ],
+                    "target": 6
+                },
+                {
+                    "props": [
+                        [
+                            {
+                                "name": "d",
+                                "value": 1
+                            }
+                        ]
+                    ],
+                    "target": 7
+                }
+            ]
+        },
+        {
+            "no": 6,
+            "props": [
+                [
+                    {
+                        "name": "B",
+                        "value": 2
+                    },
+                    {
+                        "name": "D",
+                        "value": 1
+                    },
+                    {
+                        "name": "E",
+                        "value": "infinity"
+                    }
+                ]
+            ],
+            "trans": [
+                {
+                    "props": [
+                        [
+                            {
+                                "name": "b",
+                                "value": 1
+                            }
+                        ]
+                    ],
+                    "target": 8
+                }
+            ]
+        },
+        {
+            "no": 7,
+            "props": [
+                [
+                    {
+                        "name": "A",
+                        "value": 1
+                    },
+                    {
+                        "name": "B",
+                        "value": "infinity"
+                    },
+                    {
+                        "name": "C",
+                        "value": 1
+                    },
+                    {
+                        "name": "E",
+                        "value": "infinity"
+                    }
+                ]
+            ],
+            "trans": [
+                {
+                    "props": [
+                        [
+                            {
+                                "name": "a",
+                                "value": 1
+                            }
+                        ]
+                    ],
+                    "target": 9
+                },
+                {
+                    "props": [
+                        [
+                            {
+                                "name": "d",
+                                "value": 1
+                            }
+                        ]
+                    ],
+                    "target": 10
+                }
+            ]
+        },
+        {
+            "no": 8,
+            "props": [
+                [
+                    {
+                        "name": "B",
+                        "value": 2
+                    },
+                    {
+                        "name": "C",
+                        "value": 1
+                    },
+                    {
+                        "name": "E",
+                        "value": "infinity"
+                    }
+                ]
+            ],
+            "trans": [
+                {
+                    "props": [
+                        [
+                            {
+                                "name": "a",
+                                "value": 1
+                            }
+                        ]
+                    ],
+                    "target": 6
+                },
+                {
+                    "props": [
+                        [
+                            {
+                                "name": "d",
+                                "value": 1
+                            }
+                        ]
+                    ],
+                    "target": 7
+                }
+            ]
+        },
+        {
+            "no": 9,
+            "props": [
+                [
+                    {
+                        "name": "A",
+                        "value": "infinity"
+                    },
+                    {
+                        "name": "B",
+                        "value": "infinity"
+                    },
+                    {
+                        "name": "D",
+                        "value": 1
+                    },
+                    {
+                        "name": "E",
+                        "value": "infinity"
+                    }
+                ]
+            ],
+            "trans": [
+                {
+                    "props": [
+                        [
+                            {
+                                "name": "c",
+                                "value": 1
+                            }
+                        ]
+                    ],
+                    "target": 9
+                },
+                {
+                    "props": [
+                        [
+                            {
+                                "name": "b",
+                                "value": 1
+                            }
+                        ]
+                    ],
+                    "target": 10
+                }
+            ]
+        },
+        {
+            "no": 10,
+            "props": [
+                [
+                    {
+                        "name": "A",
+                        "value": "infinity"
+                    },
+                    {
+                        "name": "B",
+                        "value": "infinity"
+                    },
+                    {
+                        "name": "C",
+                        "value": 1
+                    },
+                    {
+                        "name": "E",
+                        "value": "infinity"
+                    }
+                ]
+            ],
+            "trans": [
+                {
+                    "props": [
+                        [
+                            {
+                                "name": "a",
+                                "value": 1
+                            }
+                        ]
+                    ],
+                    "target": 9
+                },
+                {
+                    "props": [
+                        [
+                            {
+                                "name": "d",
+                                "value": 1
+                            }
+                        ]
+                    ],
+                    "target": 10
+                }
+            ]
+        }
+    ]
+}

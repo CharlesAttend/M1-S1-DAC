@@ -1,0 +1,24 @@
+
+new
+# train.ndr
+t 190.0 50.0 App n 0 w n App e
+t 190.0 270.0 Exit s 0 0 c Exit e
+p 190.0 160.0 Far 1 w
+p 70.0 50.0 Close 0 w
+t 70.0 110.0 In 3 5 w
+p 70.0 160.0 On 0 w
+t 70.0 210.0 Ex 2 4 w
+p 70.0 270.0 Left 0 w
+e Left Exit 1 n
+e Ex Left 1 n
+e On Ex 1 n
+e Exit Far 1 n
+e App Close 1 n
+e Far App 1 n
+e In On 1 n
+e Close In 1 n
+h train
+
+
+
+

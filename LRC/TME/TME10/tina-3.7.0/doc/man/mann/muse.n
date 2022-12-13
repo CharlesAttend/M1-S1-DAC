@@ -1,0 +1,393 @@
+.TH muse n "Version 3.7.0" "Tina Tools"
+
+.SH NAME
+selt  \- SE\-MMC model checker
+
+Part of Tina Toolbox for analysis of Petri nets and Time Petri nets.
+
+.SH SYNOPSIS
+
+.B muse
+[\-\f2h\f1elp] 
+
+.B muse
+ktzfile [\-f formula | formfile] [\-prelude mmcfile]
+     [\-q | \-v] [\-b | \-c | \-s] [\-wp n]
+     [outfile] [errorfile]
+
+.SH DESCRIPTION
+
+muse model-checks state-event modal mu-calculus (MMC) formulas on a kripke transition system
+given in ktz format. Muse is a global model checker; the result of a query is a set of states
+or transitions.
+
+If some  formula is specified (by  flag -f or by  providing formfile),
+then  the result  of  evaluation  of  the formula  is  printed
+according to the output mode and verbosity flags, and muse exits.
+
+If  no  formula file is  specified,  then  muse  starts an  interactive
+session, evaluating commands entered by the user on standard input (see
+"muse se-mmc language and commands" below).
+
+
+.SH OPTIONS
+
+.TP
+\-\f2h\f1elp
+Recalls options.
+
+
+.TP
+.B Ktz input:
+
+.TP
+ktzfile
+The kripke transition system on which formula are model-checked, in
+ktz format (extension \&.ktz).
+
+.TP
+\-wp (0|1|2)
+This flag removes (0), preserves (1),  or forces at each state (2) the
+temporal divergence  property possibly present in the  kts file (see
+tina's -wp flag for details).
+
+
+.TP
+.B MMC input:
+
+.TP
+\-f formula
+Passes to muse the formula to be verified.
+
+.TP
+formfile
+Specifies a file holding the formulas to be verified. Must have extension \&.mmc
+
+.TP
+\-prelude mmcfile
+Specifies a  file containing muse  commands to be evaluated  on entry,
+before  any formula  provided by  -f, by  formfile,  or interactively.
+This  flag is  useful to  load  SE-MMC libraries.   mmcfile must  have
+extension \&.mmc.
+
+
+.TP
+.B Verbosity level:
+
+.TP
+\-v
+prints banner and evaluation times for MMC commands (default).
+
+.TP
+\-q 
+No  banner  nor times  are  printed. This  flag  is  useful for  batch
+operation.
+
+
+.TP
+.B Output mode flags:
+
+.TP
+\-b
+When evaluating a state (resp.  event) formula, prints its truth value
+for state (resp. transition) numbered 0.
+
+.TP
+\-c
+When evaluating a state (resp.  event) formula, prints the number of
+states (resp. transitions) satisfying the formula.
+
+.TP
+\-s
+When evaluating a state (resp.  event) formula, prints the set of
+states (resp. transitions) satisfying the formula. States (resp.
+transitions) are numberred in their order of occurrence in the ktz file.
+
+
+.TP
+.B Other flags:
+
+.TP
+\-S  scnfile
+When a  formula evaluates to FALSE,  writes a counter  example in \&.scn
+format of in file scnfile (creating the file if it does not exist, and
+overwriting  it otherwise).   This flag  is useful  to  replay counter
+examples  in  the  nd  stepper  when  modelchecking  an  existing  ktz
+description and a description of the net the \&.ktz file describes the
+behavior  of  is available  (see  "interacting  with  the nd  stepper"
+below).
+
+
+.TP
+.B Output destination:
+
+.TP
+outfile
+Where results are written.
+
+
+.TP
+.B Errors destination:
+
+.TP
+errorfile
+Where error messages are written. By default, errors are printed on standard error.
+
+
+.SH MUSE SE-MMC LANGUAGE AND COMMANDS
+
+.SH 1. \f2Lexical matters\f1:
+
+- A identifier is either:
+
+Any  place   or  transition  identifier   allowed  in  \&.net   or  \&.ndr
+descriptions, that  is: any  sequence of letters,  digits, underscores
+"_" and primes  "'", or any sequence of  characters enclosed in braces
+in which "{", "}" (except the outer ones) and "\\" are prefixed by "\\"
+
+Any sequence of symbols from the list ~ ` ! @ # $ % ^ & * - + = : ? | \ / < > [ ];
+
+A qualified identifier: an identifier prefixed by S., E. or L.
+
+e.g.   hello, _p4'_, 123, >=<, or {variable x45}, are legal identifiers.
+
+- The commands are: op, infix, prefix, forget, verb, output, source, quit, assert.
+Command names  may not be used  as operator or  variable names.
+
+- When  analyzing  identifiers,  the  scanner  advances  as  right  as
+possible.  So, in a juxtaposition  of identifiers, two symbolic or two
+alphanumeric unbraced identifiers,  or e.g. an alphanumeric identifier
+and a  command name, must  be separated by  a space.  But no  space is
+necessary  between  identifiers  of   different  kinds  or  between  a
+parenthesis (or ";") and an identifier.
+
+- justaposition bind  tighter than infixes and associate  to the left,
+infixes and prefixes associate to the  right. That is, if f is a 3-ary
+operator in functional notation, A,  B, -, are prefixes, and /\\, \\/,
+are infixes:
+
+.nf
+			A p1 => B - p3 /\\ f u v w
+  parses as	(A p1) => ((B (- p3)) /\\ (f u v wp))
+			
+			f - B p1 (f p0 p1 (p4 /\\ p5)) \\/ f u v w
+  parses as	(f (- B p1) (f p0 p1 (p4 /\\ p5))) \\/ (f u v w)
+
+  and		f - B p1 f p0 p1 p4 \\/ f u v w
+  parses as 	(f (- B p1) f p0 p1 p4) \\/ (f u v w)
+  which is ill-typed
+.fi
+
+- infixes  have precedence in  0..5 (see  below). Infixes  with higher
+precedence bind tighter than those with lower precedence.
+
+
+.SH 2. \f2The initial environment\f1:
+
+It is made up of (pushed in that order):
+
+- The  atomic  state  and  event  propositions. They  have  the  names
+captured in the \&.ktz file,  i.e. those of the places and transitions
+of the Petri net if the \&.ktz file was generated by tina.
+
+- Then, the logic and arithmetic primitives, constituted of:
+
+.nf
+   constants:	T (true), F (false),
+		div (temporal divergence property),
+		sub (partially defined state or transition)
+
+   prefixes:	- (logic negation), ~ (arithmetic negation),
+		modal operators <f>_ and [f]_, for each transition formula f,
+		` followed by an integer, designating a state or transition by its rank in the ktz input file,
+		the MEC4 primitives src, tgt, rsrc, rtgt
+
+   infixes:	=> (implies), <=> (equivalent), of precedence 1
+   		/\\ (and), \\/ (or), of precedence 2
+		<=, >=, =, le, lt, ge, gt, of precedence 3
+		+, of precedence 4
+		*, of precedence 5
+.fi
+		
+- Then the user defined operators.
+
+Since the syntactic classes of atomic state propositions, atomic event
+propositions, logic primitives,  integer,  and user defined operators,
+overlap,  we must have  some way  of disambiguating  identifiers.  For
+this:
+
+- unqualified identifiers are bound to  the command with than name, if
+any, or otherwise to the last bound user defined operator with that name.
+
+- identifiers  qualified by  S (e.g.  S.p1)  are bound  to the  atomic
+state proposition with that name with the qualifier removed (e.g. p1);
+
+- identifiers  qualified by  E (e.g.  E.t1)  are bound  to the  atomic
+event proposition with that name with the qualifier removed (e.g. t1);
+
+- identifiers  qualified by  L  (e.g.  L./\\) are  bound  to the  logic
+primitive with that name with the qualifier removed (e.g. /\\);
+
+So, atomic  propositions (found  in the ktz  file) sharing  their name
+with some atomic propositions in a different group (state or event) or
+with some command  (e.g. op), or some logical  primitive (e.g.  -), or
+the name  of which  is an integer  (e.g.  3),  must be referred  to in
+formulas by their qualified form (e.g.  S.op, E.-, or S.3);
+
+
+.SH 3. \f2Derived forms and fixpoint notation\f1:
+
+The modalities of the mu-calculus are derived from the MEC4 primitives,
+as follows. They benefit however of a specific concrete syntax:
+
+   <p>q	  stands for   src (p /\\ rtgt q)
+   [p]q   stands for   -<p>(-q)
+
+Modal mu-calculus makes use of fixpoint expressions:
+
+\- Minimal fixpoint expressions make use of keywords "min" or "mu", followed
+by the bound variable and a bar separating the variable from the body of
+the expression, as in  "min x | p \/ <q>x".
+
+\- Maximal fixpoints makes use of keywords "max" or "nu".
+
+Note: muse does not perform yet any polarity checks on fixpoint expressions,
+this check is left to the user's responsability. Hence termination of
+evaluation is not guaranteed (ill-formed expressions may diverge).
+
+(more derived notations to come)
+
+.SH 4. \f2Fixity\f1:
+
+Identifiers declared  infix (binary  logic primitives or  user defined
+operators declared by "infix") must be used in infix notation;
+
+Identifiers declared  prefix (unary  logic primitives or  user defined
+operators declared by "prefix") must  be used in prefix notation (in a
+juxtaposition  of  identifiers, prefix  operators  associate with  the
+right expression);
+
+Other operators  or primitives accessed by their  qualified names must
+be used in functional notation.   E.g. if a1, a2, a3 are parenthesized
+expressions, and f has arity 3, then:
+
+.nf
+	a1 /\\ a2 and L./\\ a1 a2 are legal (and equivalent)
+    but a1 L./\\ a2 is ill-typed
+
+	f - a1 a2 a3 is legal (parses as ((f (- a1)) a2) a3)
+    but f L.- a1 a2 a3 T is ill-typed (parses as (((f L.-) a1) a2) a3)
+.fi
+
+.SH 4. \f2Commands and effects\f1:
+
+Commands must terminate with ";".  In formula files, the final ";" may
+be  omitted (EOF  plays that  role). The  effects of  commands  are as
+follows ("exp" is any ltl expression, x, y, f, xi are identifiers):
+
+.nf
+exp;
+	evaluates MMC expression exp;
+	The result of evaluation of the last expression is always bound
+	to identifier "it";
+
+assert exp "whentrue" "whenfalse";
+       in bool output mode, evaluates exp then prints string whentrue
+       (resp. whenfalse) if exp holds (resp. does not) instead of the
+       default message TRUE (resp. FALSE). Equivalent to exp in other
+       modes.
+
+op f x1 ... xn = exp;
+	declares an  operator f  or arity n  (n >=  0), to be  used in
+	functional notation;
+
+infix [n] x f y = exp;
+	declares a binary operator f in infix notation. n is an
+	optional integer in 0..5 specifying precedence.
+
+prefix f x = exp;
+	declares a unary operator f in prefix notation;
+
+forget f1 ... fn;
+	Removed items names f1 ...  fn from the environment, and their
+	fixity information;
+
+source [file | "file"];
+	reads at toplevel the contents of file. The file name is
+	optionally surrounded  by string quotes (this  is necessary if
+	the name includes spaces);
+
+verb [true | false | debug];
+	verbosity level. Tne initial  setting follows from the command
+	line flags -v | -q (default -v);
+
+	true  (default):  prints   the  banner,  prompts,  results  of
+	commands, and evaluation times;
+
+	false:  just   prints  the   results  of  evaluation   of  LTL
+	expressions (useful in batch mode);
+
+	debug: may print extra information (mainly for developper);
+
+output [bool | card | set];
+	specify   effects   and   results   of  evaluations   of   MMC
+	expressions.  The  command  line  flags  -b, -c, -s,
+	specifie the initial setting (default -c);
+
+	If the expression evaluated is a state (resp. transition) expression:
+
+	bool: evaluation returns the truth value (TRUE or FALSE) of the
+	expression at state 0 (resp. transition 0);
+
+	card (default): evaluation returns the number of states (resp. transitions)
+	satisfying the expression;
+
+	set: evaluation returns the set of states (resp. transitions)
+	satisfying the expression;
+
+which exp;
+        Like exp; but overrides the default output option by "set";
+
+card exp;
+        Like exp; but overrides the default output option by "card";
+
+quit	
+	leaves muse (also ^D on Unix targets).
+.fi
+
+
+
+.SH 5. \f2Example commands\f1:
+
+.nf
+p1;			(eqv. p1 lt 0 \/ p gt 0)
+- p1;   		(eqv. p1 = 0)
+p1 /\\ p2 >= 2;		(eqv. p1 /\\ (p2 >= 2))
+op x > y = x >= y + 1;	(declares arithmetic operator >, in infix form)
+p1+p2;			(eqv. p1+p2 >= 0, eqv. p1 \\/ p2)
+p1+p2 > p3;
+p1*p2 = 0;
+infix y follows x = [] (x => <>y);
+      		(declares logical operator "follows:, in infix form)
+(t3 \\/ p5) follows (t1 /\\ p1>=p2);
+    		(eqv. [] ((t1 /\\ (p1>=p2)) => <> (t3 \\/ p5)));
+.fi
+
+
+
+.SH EXAMPLES
+
+.nf
+muse abp.ktz -b -f "[] (t1 => <> t3)" -q -b
+muse abp.ktz
+.fi
+
+
+.SH SEE ALSO
+
+nd(n), tina(n), plan(n), struct(n), ktzio(n), ndrio(n), tedd(n), selt(n), sift(n), pathto(n), play(n), walk(n), reduce(n), formats(n)
+
+.SH AUTHORS
+Bernard Berthomieu
+LAAS/CNRS,  2000-2012, Bernard.Berthomieu@laas.fr
+

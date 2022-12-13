@@ -1,0 +1,22 @@
+p 90.0 230.0 lowering 0 w
+t 90.0 340.0 L 1 2 w
+p 290.0 230.0 raising 0 e
+t 290.0 340.0 U 0 0 e
+t 290.0 120.0 R 1 2 e
+t 190.0 160.0 D2 0 0 n
+p 190.0 50.0 Up 1 n
+p 190.0 390.0 Down 0 s
+t 90.0 120.0 D1 0 0 w
+e Up D1 1 n
+e D1 lowering 1 n
+e lowering L 1 n
+e L Down 1 n
+e Down U 1 n
+e U raising 1 n
+e R Up 1 n
+e raising R 1 n
+e raising D2 1 n
+e D2 lowering 1 n
+h barrier
+
+

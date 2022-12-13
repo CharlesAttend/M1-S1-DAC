@@ -1,0 +1,15 @@
+p 60.0 150.0 On 0 w
+t 60.0 50.0 In n 3 5 w {} ne
+t 60.0 260.0 Ex s 2 4 w {} ne
+p 190.0 260.0 Far 1 e
+p 190.0 50.0 Close 0 e
+t 190.0 150.0 App e 0 w n {} ne
+e Close In 1 n
+e In On 1 n
+e Far App 1 n
+e App Close 1 n
+e On Ex 1 n
+e Ex Far 1 n
+h train
+
+

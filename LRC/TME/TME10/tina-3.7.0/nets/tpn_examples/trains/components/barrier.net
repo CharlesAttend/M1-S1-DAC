@@ -1,0 +1,7 @@
+net barrier
+tr D1 : Down [0,0] Up -> lowering 
+tr D2 : Down [0,0] raising -> lowering 
+tr L [1,2] lowering -> Down 
+tr R [1,2] raising -> Up 
+tr U : Up [0,0] Down -> raising 
+pl Up (1)

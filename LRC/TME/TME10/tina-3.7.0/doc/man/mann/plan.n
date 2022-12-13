@@ -1,0 +1,231 @@
+.TH plan n "Version 3.7.0" "Tina Tools"
+
+.SH NAME
+plan - path analysis tool
+
+Part of Tina Toolbox for analysis of Petri nets and Time Petri nets.
+
+.SH SYNOPSIS
+
+.B plan 
+[\-\f2h\f1elp] 
+     [-A(|w|i) | -S(|w|i)]
+     [-t s] [-df | -bf] [-p]
+     [-NET | -NDR | -PNML | -TPN | -TTS]
+     [-v | -q | -s] [-abs | -rel] [-raw | -min | -can]
+     [scninfile] [netinfile] [outfile] [errorfile]
+
+.SH DESCRIPTION
+
+From a Time Petri net or  Time Transition System and a firing sequence
+in \&.scn format, plan  computes an inequation system characterizing all
+the times at which transitions in the sequence may fire, or an example
+firing schedule (also called path).
+
+.SH OPTIONS
+
+.TP
+\-\f2h\f1elp
+Recalls options.
+
+.TP
+.B Operating mode options:
+
+.TP
+\-A
+Returns  an  inequation  system   characterizing  the  times  at  which
+transition in the input \&.scn firing sequence may fire.
+If the  input firing sequence is timed, then  times are forgotten.
+Fails if the input firing sequence is not firable.
+
+.TP
+\-S
+Returns a solution of the system computed by -A.
+
+.TP
+\-Aw
+Line breaks  in scnfiles are  significant. Omitting blank  and comment
+lines,  file scnfile  defines a  series  of sequence.  That series  of
+sequence can  always be written s.w,  where w is the  last sequence in
+the series,  and s  is the concatenation  of all sequences  except the
+last.
+
+If subsequence  w is empty, then  -Aw is equivalent  to -A. Otherwise,
+-Aw  assumes that  sequence  s.w^*  is firable  and  returns a  system
+characterizing the times at which transition in sequence s.w may fire,
+with the guarantee that this path leads to a state from which sequence
+w is firable an infinite number of times.
+
+.TP
+\-Sw
+Returns a  solution of  the system computed  by -Aw.
+
+
+.TP
+\-Ai
+(IN PROGRESS)
+As  -Aw, except  that the  system returned,  if any,
+characterizes infinite  paths: the subsystem  characterizing the times
+of subsequence w is guaranteed to produce stationary paths (with equal
+source and target states).  Such a solution is not garanteed to exist,
+even though sequence w is firable an infinite number of times after s
+(Time Petri nets may exhibit zeno behaviors).
+
+.TP
+\-Si
+(IN PROGRESS)
+Returns a solution  of the system computed by  -Ai.
+
+
+.TP
+.B Path options:
+
+.TP
+\-abs
+Returns  path system  or path  expressed in  terms of  dates (absolute
+times). Variable  start is  the time at  which the initial  marking is
+established.
+
+.TP
+\-rel
+Returns  path system  or path  expressed in  terms of  delays (relative
+times).
+
+
+.TP
+\-raw
+Returns path system "as computed", without any particular post processing.
+
+.TP
+\-can
+Returns path system in which all constraints are tight. All missing constraints,
+if any, are redundant and can be recovered as linear combinations of the existing constraints.
+
+.TP
+\-min
+(IN PROGRESS)
+As -can, except that attempts to return a system without redundant constraints.
+
+.TP
+.B Output format flags:
+
+.TP
+\-v
+verbose output. Prints results in explicit form.
+
+.TP
+\-q
+Prints a summary of results. For \-A, and when \-can or \-min is passed,
+prints the duration of the shortest and longest paths.
+For \-S, prints the duration of the path computed.
+
+.TP
+\-s
+Output results in a format loadable into the nd stepper, for replaying it
+(only for mode \-S).
+
+.TP
+.B Other flags:
+
+.TP
+\-p
+Disables path analysis (just parses).
+
+
+
+.TP
+.B Input format flags for net:
+
+.TP
+\-NET | -NDR | -PNML | -TPN | -TTS
+Specifies the format of the input net. This flag is necessary when the
+input net is read on standard input, or read from a file that does not
+bear the expected extension. By default, the net is assumed in \&.net or
+\&.ndr format.
+
+
+.TP
+.B Firing sequence input source:
+
+.TP
+scninfile
+Where the firing  sequence is read. If absent or specified by
+"-", the sequence is read on  standard input.
+
+.TP
+.B Net input source:
+
+.TP
+netinfile
+Where the  net is  read. The  input format is  determined by  the file
+type, according to the table below. If absent or specified by "-", and
+the firing sequence is not read  on standard input, the net is read on
+standard input in  the format specified by the input  flag. If both an
+infile and some input flag are present, then the format defined by the
+input flag supersedes that determined by the infile extension.
+
+.nf
+file extension		input format
+--------------------------------------------------------------
+\&.net			net format
+\&.ndr			ndr format
+\&.tpn			tpn format
+\&.pnml			pnml format
+\&.tts			tts format
+.fi
+
+
+.TP
+.B Output destination:
+
+.TP
+outfile
+Where results are written. The output format is determined by the file
+type, according  to the  table below. If  absent or specified  by "-",
+then the net is written on  standard output in the format specified by
+the output  format flag. If both  an outfile and some  output flag are
+present, then  the format defined  by the output flag  supersedes that
+determined by the outfile extension.
+
+.nf
+file extension		output format
+--------------------------------------------------------------
+\&.scn			nd stepper format
+any other		textual output (default -v style)
+.fi
+
+.TP
+.B Errors destination:
+
+.TP
+errorfile
+Where error messages are written. By default, errors are printed on standard error.
+
+.TP
+.B Default options:
+
+plan -A -v
+
+
+.SH EXAMPLES
+
+.nf
+plan -A nets/ifip.scn nets/ifip.ndr
+plan -A nets/ifip.scn nets/ifip.ndr -s
+cat nets/ifip.scn | plan -S - nets/ifip.ndr
+.fi
+
+
+.SH NOTES
+
+Tool plan is  still in progress.  Options -Aw and -Sw are experimental,
+options -Ai, -Si are not implemented yet.
+
+
+.SH SEE ALSO
+
+nd(n), tina(n), struct(n), ktzio(n), ndrio(n), tedd(n), selt(n), sift(n), muse(n), pathto(n), play(n), walk(n), reduce(n), formats(n)k]
+
+.SH AUTHORS
+Bernard Berthomieu, LAAS/CNRS, 2000-2012, Bernard.Berthomieu@laas.fr.
+

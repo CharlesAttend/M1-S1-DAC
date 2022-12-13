@@ -1,0 +1,759 @@
+<HTML><HEAD>
+<TITLE>Manual Page - tina(n)</TITLE>
+<BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
+<!-- .TH tina n "Version 3.7.0" "Tina Tools" -->
+<CENTER>
+<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>tina (n)</NOBR><HR></H1>
+</CENTER>
+<P>
+<!-- .SH NAME -->
+<A name=0>
+
+     <H3>NAME</H3>
+
+</A>
+<BLOCKQUOTE>
+tina - state space generation tool
+<P>
+Part of Tina Toolbox for analysis of Petri nets and Time Petri nets.
+<P>
+<!-- .SH SYNOPSIS -->
+</BLOCKQUOTE>
+<A name=contents></A><H3>CONTENTS</H3></A>
+<BLOCKQUOTE>
+<A HREF=#1>Synopsis</A><BR>
+<A HREF=#2>Description</A><BR>
+<A HREF=#3>Options</A><BR>
+<A HREF=#4>Examples</A><BR>
+<A HREF=#5>See Also</A><BR>
+<A HREF=#6>Authors</A><BR>
+</BLOCKQUOTE>
+<A name=7>
+
+     <H3>SYNOPSIS</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+<!-- .B tina -->
+<B>tina</B> [-<I>h</I>elp] [-p]
+<BR>
+     [-C | -Cm n | -R |
+<BR>
+      -V | -Vq | -V(o|f|l) tlist | -P | -Q(|p|b) |
+<BR>
+      -D | -F(|1) |
+<BR>
+      -M(|m) | -E | -W(|m) | -S | -A | -U | -incl | -equal]
+<BR>
+     [-s n] [-c n] [-b n] [-t s] [-m n] [-en n]
+<BR>
+     [-df | -bf ] [-inh] [-tc] [-pr] [-dt] [-sw]
+<BR>
+     [-NET | -NDR | -TPN | -PNML | -TTS]
+<BR>
+     [-v | -q | -aut | -mec | -bcg | -ktz]
+<BR>
+     [-sp n] [-tp n] [-ls] [-lt] [-wp n] [-g] [-d] [-stats]
+<BR>
+     [infile] [outfile] [digestfile] [errorfile]
+<P>
+<P>
+<!-- .SH DESCRIPTION -->
+</BLOCKQUOTE>
+<A name=2>
+
+     <H3>DESCRIPTION</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+tina builds various  state space abstractions for Petri  nets and Time
+Petri nets.  It  takes as input descriptions of  a Priority Time Petri
+net  in textual  form (&#46;net,  &#46;pnml, &#46;tpn  formats) or  graphical form
+(.ndr format of files produced by  nd, &#46;pnml with graphics), or a Time
+Transition System description in .tts format.
+<P>
+<!-- .SH OPTIONS -->
+</BLOCKQUOTE>
+<A name=3>
+
+     <H3>OPTIONS</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+<!-- .TP -->
+<TABLE cellpadding=3>
+<TR valign=top><TD width=6% nowrap>
+-<I>h</I>elp
+</TD><TD valign=bottom>
+Recalls options.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Operating mode options: -->
+<B>Operating mode options:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-C | -Cm n
+</TD><TD valign=bottom>
+Build the Coverability Graph of a Petri net (untimed, or with temporal
+information discarded).
+-C  implements  a  method  close  to  the  original  Karp  and  Miller
+algorithm.
+-Cm  n  behaves like -C,  except that  it  specifies  a threshold  for
+unbounded places  (-C eqv.  -Cm  0).   With -Cm  k, a place  p becomes
+marked with w in  marking m&#146; if some ancestor marking m  of m&#146; is such
+that: (for any q)(m&#146;(q) &gt;= m(q)) and  m&#146;(p) &gt; m(p) &gt;= k.
+These options remove time constraints, inhibitor arcs and priorities,
+they set flags -tc -inh -pr.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-R
+</TD><TD valign=bottom>
+Builds the marking reachability graph of a Petri net (untimed, or with
+temporal information discarded).
+This option removes time constraints, it sets flag -tc.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+-V | -Vq | -Vo tlist | -Vf tlist | -Vl tlist
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+Builds  the Covering  Step  Graph of  a Petri  net,  according to  the
+technique of Vernadat/Azema/Michel.  -V preserves deadlocks. -Vq stops
+as soon  as all transitions  have been fired  or all states  have been
+enumerated;  it   checks  quasi-liveness.   tlist  being   a  list  of
+observable transitions, -Vo  tlist preserves observational equivalence
+wrt transitions in tlist, -Vf tlist preserves failure equivalence, and
+-Vl  tlist   preserves  linear   time  temporal  properties.   If  all
+transitions are observable  then -V(o|f|l) tlist is eqv  to -R.  These
+options remove  time constraints  and priorities,  they set  flags -tc
+-pr.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-P
+</TD><TD valign=bottom>
+Builds  the partial marking  graph of  a Petri  net, according  to the
+persistent sets technique. The heuristic retained is to minimize local
+branching.
+These options remove time constraints and priorities, they set flags -tc and -pr.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+-Q | -Qp | -Qb
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Builds  the  partial  marking  graph  of  a  Petri  net.  Combine  the
+persistent  sets  (-P)  and   covering  steps  (-V)  methods.  Several
+heuristics are available:
+-Qp maximizes size of steps;
+-Qb minimizes branching, like -P;
+-Q (recommended) implemnents a trade off between -Qp and -Qb.
+These options remove time constraints and priorities, they set flags -tc -pr.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-D
+</TD><TD valign=bottom>
+Builds the essential state graph of a Time Petri net, according to the
+technique of Popova. This graph preserves reachability and linear time
+temporal properties. Static intervals  must be closed or unbounded and
+left-closed.   If no  temporal  information is  specified,  or if  all
+transitions bear interval [0,w[, then -D is silently replaced by -R.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-F | -F1
+</TD><TD valign=bottom>
+Builds  the subgraph  of the  state graph  obtained by  firing integer
+delay transitions (unit delays if -F1) and discrete transitions.  This
+graph strictly includes that obtained by -D  and  preserves  the  same
+properties. Static intervals must be closed  or  unbounded  and  left-
+closed. If no temporal information is specified, or if all transitions
+bear interval [0,w[, then -F/-F1 is silently replaced by -R.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-W
+</TD><TD valign=bottom>
+Builds the linear state class graph  of a Time Petri net, according to
+the technique  of Berthomieu/Menasche.   The linear state  class graph
+preserves  marking reachability  properties and  linear  time temporal
+properties.   If  no temporal  information  is  specified,  or if  all
+transitions bear interval [0,w[, then -W is silently replaced by -R.
+This option removes priorities, it sets flag -pr.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-Wm
+</TD><TD valign=bottom>
+As   -W,  except   interprets  multi   enabledness   of  transitions.
+Multi-enabled transitions are associated with several delay variables,
+ordered by their creation dates.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-M | -Mm
+</TD><TD valign=bottom>
+As -W or -Wm, except only markings are preserved (firing sequences are not).
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-S
+</TD><TD valign=bottom>
+Builds the  strong state class graph  (also called zone  graph by some
+authors) of a Time Petri net.  That graph preserves state reachability
+properties  and  linear  time  temporal properties.   If  no  temporal
+information is  specified, or if all transitions  bear interval [0,w[,
+then -S is silently replaced by -R.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-E
+</TD><TD valign=bottom>
+As -S, except only states are preserved (firing sequences are not).
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-A
+</TD><TD valign=bottom>
+Builds the arborescent,  or atomic, state class graph  of a Time Petri
+net.  The arborescent state  class graph preserves liveness properties
+and branching time temporal properties.  If no temporal information is
+specified,  or if  all transitions  bear  interval [0,w[,  then -A  is
+silently replaced by -R.
+This option currently removes priorities, it sets flag -pr.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-U
+</TD><TD valign=bottom>
+An  alternative for  -A,  generally slower,  provided for  pedagogical
+purposes.   Algorithmically,   -A  partition/refines  the   result  of
+construction  -E, while -U  proceeds from  the typically  larger graph
+obtained by -S. The graphs obtained by -A and -U should be bisimilar.
+This option currently removes priorities, it sets flag -pr.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-incl
+</TD><TD valign=bottom>
+Identify two state classes when one is included in the other.
+This flag avoids to specify mode -M or -E when analyzing timed models.
+It is silently ignored if the net is untimed or if some operating mode is
+simultaneously set, otherwise it has the effects of -M if no priorities are
+specified, or of -E otherwise.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-equal
+</TD><TD valign=bottom>
+Identify two state classes when they are equal (default).
+This flag undoes the effects of any preceding -incl flag.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Exploration strategy flags: -->
+<B>Exploration strategy flags:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-df
+</TD><TD valign=bottom>
+Depth-first exploration (when meaningful)
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-bf
+</TD><TD valign=bottom>
+Breadth-first exploration (default)
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-inh
+</TD><TD valign=bottom>
+Removes inhibitor arcs from the input net.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-pr
+</TD><TD valign=bottom>
+Removes priority constraints from the input net.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-tc
+</TD><TD valign=bottom>
+Removes time constraints  from the input net.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-dt
+</TD><TD valign=bottom>
+Forgets data processing when reading a tts description.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-sw
+</TD><TD valign=bottom>
+Forgets stopwatch and stopwatch-inhibitor arcs from input net.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Stopping test and limits flags: -->
+<B>Stopping test and limits flags:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-s n
+</TD><TD valign=bottom>
+Stopping test for the boundedness property.
+<!-- .nf -->
+<PRE>
+-s 0 : None, use limit option(s) to ensure termination
+-s 1 : Checks a sufficient condition for unboundedness
+        of the underlying untimed net (Fast but small risk
+        of undetection).
+With -C, no stopping test is necessary.
+<P>
+With time constaints, inhibitor arcs, stopwatch arcs,
+boundedness is undecidable.
+<!-- .fi -->
+</PRE>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-c n
+</TD><TD valign=bottom>
+Bound on the number of markings to enumerate (none if n=0).
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-b n
+</TD><TD valign=bottom>
+Bound on the marking of each place (none if n=0).
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-t n
+</TD><TD valign=bottom>
+Bound on duration of enumeration (none if n=0).
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-m n
+</TD><TD valign=bottom>
+Bound on multi-enabledness of transitions (none if n=0).
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-en n
+</TD><TD valign=bottom>
+Lower bound on number of enabled transitions (none if n=0). E.g. absence
+of deadlocks is checked on the fly with "-en 1".
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Output format selection : -->
+<B>Output format selection :</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-v
+</TD><TD valign=bottom>
+textual output, prints full results
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-q
+</TD><TD valign=bottom>
+textual output, prints a summary of results
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-<I>a</I>ut
+</TD><TD valign=bottom>
+transition  system output  in .aut  format, as  read by Aldebaran.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-mec
+</TD><TD valign=bottom>
+transition system output in .mec format, as read by Mec 4.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-<I>k</I>tz
+</TD><TD valign=bottom>
+transition system output in &#46;ktz proprietary compact format.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-bcg
+</TD><TD valign=bottom>
+transition system output in .bcg compact format, as read by bcg tools.
+<P>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-ls
+</TD><TD valign=bottom>
+prints labelled state properties
+<P>
+Without option -ls, atomic state properties are bijectively mapped to the net&#146;s place names.
+With -ls, they are mapped to place labels.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-lt
+</TD><TD valign=bottom>
+prints labelled transition properties
+<P>
+Without option -lt, atomic transition properties are bijectively mapped to the net&#146;s transition names.
+With -lt, they are mapped to transition labels.
+<P>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-sp n
+</TD><TD valign=bottom>
+encoding of state properties for transition system outputs:
+<!-- .nf -->
+<PRE>
+-sp 0 : no state properties (default for .aut, .bcg)
+-sp 1 : boolean state properties (default for .mec)
+-sp 2 : weighted state properties (default for .ktz)
+-sp 3 : weighted state properties for all weights
+<!-- .fi -->
+</PRE>
+<P>
+The &#46;aut and &#46;bcg formats do not natively support state properties. With -sp n,  where n&gt;0, tina encodes them as additional transitions: regular transition properties (labels) are prefixed by  "E.", state  properties (markings) are  introduced as loops on states labelled by the places marked, prefixed by "S.". In  addition, when n&gt;1, place names are suffixed by their marking, separated by "*".  E.g.  if place p3 has 3 tokens in state s, than -sp 1 adds transition (s,"S.&#145;p3&#145;",s), -sp 2 adds  (s,"S.&#145;p3&#145;*3",s), and -sp 3 adds  (s,"S.&#145;p3&#145; S.&#145;p3&#145;*2 S.&#145;p3&#145;*3",s).
+<P>
+The &#46;mec format natively supports unweighted state properties. If -sp 2 or 3 is specified, weighted properties are encoded into boolean properties: e.g. marking  p*3  is represented by state property  p with -sp 1, p_3 with  -sp 2, and properties p, p_2, and p_3, with -sp 3.
+<P>
+The .ktz format natively supports weighted state properties, even for infinite weights (unbounded places). For &#46;ktz, flag values 1 to 3 yield the same result.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-tp n
+</TD><TD valign=bottom>
+encoding of transition properties for transition system outputs:
+<!-- .nf -->
+<PRE>
+-tp 0 : no transition properties
+-tp 1 : boolean transition properties (default for &#46;aut, &#46;bcg, &#46;mec)
+-tp 2 : weighted transition properties (default for &#46;ktz)
+-tp 3 : weighted transition properties for all weights
+<!-- .fi -->
+</PRE>
+<P>
+The &#46;aut and &#46;bcg formats expect a single transition property (or none, represented by "i"). Multiple properties are encoded into a single one, built from the concatenation of their representations.
+<P>
+The .mec format supports unweighted multiple transition properties.
+Weights are appended to the  properties  as explained above for weighted  state  properties.
+<P>
+The &#46;ktz format natively supports weighted transition properties (even for infinite weights). For &#46;ktz, flag values 1 to 3 yield the same result.
+<P>
+Note: All tina constructions except -V  produce  single transition  properties; construction -V produces multiple  transition  properties. No construction  currently produces weighted  transition properties,  but  options -tp 2 and -tp 3 are still  useful  when  combined  with option -lt and transition labelling is surjective.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-wp n
+</TD><TD valign=bottom>
+encoding of wait states for transition system outputs:
+<P>
+<!-- .nf -->
+<PRE>
+-wp 0 : no wait state properties
+-wp 1 : emit wait state properties
+<!-- .fi -->
+</PRE>
+<P>
+In Time Petri nets, it may happen that no transition firable from some state has a finite firing deadline. Knowledge of such "wait" states is important for e.g. LTL model checkers. With -wp 1, an extra "wait" property is emitted for all wait states (thus for all states if the net is untimed or all transitions have interval [0,w[). In all formats, it is represented by an extra transition labelled "*" looping on states having that property.
+<P>
+Default value: -wp 1 if ktz output and at least one transition has an interval different from [0,w[, otherwise -wp 0. This treatment avoids to associate a wait property for all behavior states in untimed nets, for which LTL model checking typically assumes a fairness hypothesis for transition firing. The tina LTL model checker has a flag to restore these properties, if desired.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Other flags: -->
+<B>Other flags:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-stats
+</TD><TD valign=bottom>
+Prints progress information on the fly.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-g
+</TD><TD valign=bottom>
+Disables liveness analysis (if applicable).
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-p
+</TD><TD valign=bottom>
+Disables reachability and liveness analysis (just parses).
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-d
+</TD><TD valign=bottom>
+As of 2.9.4, tina prints a five lines digest in digestfile (see below)
+after construction of the specified abstraction.
+Flag -d disables printing and computation of digest (if applicable).
+<P>
+The digest information includes status information for the properties
+of the net (boundedness, liveness, reversibility) and some information
+about the contents of the transition system (ts) built:
+<P>
+<!-- .nf -->
+<PRE>
+count: the number of states/transitions in the ts
+props: the number of atomic states/transitions propositions
+       referred to in the ts. Depending on whether ts is built
+       from names or labels, these are:
+       - the numbers of places/transitions of the net, or
+       - the numbers of distinct place/transition labels
+psets: the number of sets of propositions referred to in the
+       ts. Depending on whether ts is built from names or
+       labels, these are
+       - the numbers of markings/transition steps referred
+          to in the ts, or
+       - the numbers of those distinct after labelling
+dead: the numbers of deadlock states and of unfireable transitions
+live: the numbers of live states and transitions, where
+       - a state is live if it is found in some pending
+          strong connected component of the ts
+       - a transition is live if it fires in all pending
+          strong connected components of the ts
+<!-- .fi -->
+</PRE>
+<P>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Input format: -->
+<B>Input format:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+-NET | -NDR | -PNML | -TPN | -TTS
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Specifies the format of the input net. This flag is necessary when the
+input net is read on standard input, or read from a file that does not
+bear the expected extension. By default, the net is assumed in &#46;net or
+&#46;ndr format.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Input source: -->
+<B>Input source:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+infile
+</TD><TD valign=bottom>
+Where the  net is  read. The  input format is  determined by  the file
+type, according to the table below. If absent or specified by "-", the
+net is  read on standard  input in the  format specified by  the input
+flag. If  both an  infile and  some input flag  are present,  then the
+format defined  by the  input flag supersedes  that determined  by the
+infile extension.
+<P>
+<!-- .nf -->
+<PRE>
+file extension&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;input format
+--------------------------------------------------------------
+&#46;net&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;net format
+&#46;ndr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ndr format
+&#46;tpn&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tpn format
+&#46;pnml&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pnml format
+&#46;tts&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tts format
+<!-- .fi -->
+</PRE>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Output destination: -->
+<B>Output destination:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+outfile
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Where results are written. The output format is determined by the file
+type, according  to the  table below. If  absent or specified  by "-",
+then the net is written on standard output in the format specified by
+the output flag. If both an  outfile and some output flag are present,
+then the format defined by  the output flag supersedes that determined
+by the outfile extension.
+<P>
+<!-- .nf -->
+<PRE>
+file extension&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;output format
+--------------------------------------------------------------
+&#46;ktz&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tina binary ktz format
+&#46;bcg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bcg tools bcg format
+&#46;aut&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;aldebaran aut format
+&#46;mec&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mec4 mec format
+any other&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;textual output (default -v style)
+<!-- .fi -->
+</PRE>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Digest destination: -->
+<B>Digest destination:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+digestfile
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+As of 2.9.4, tina prints a five lines digest in digestfile (default stdout)
+after construction of the specified abstraction.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Errors destination: -->
+<B>Errors destination:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+errorfile
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Where error messages are written. By default, errors are printed on standard error.
+<P>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Default options: -->
+<B>Default options:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+Depend upon the features of the input net:
+<!-- .nf -->
+<PRE>
+If no time constraint:     tina -R -s 1 -c 0 -t 0 -b 0 -m 0 -v
+Else, if no priorities:    tina -W -s 1 -c 0 -t 0 -b 0 -m 0 -v
+Otherwise:                 tina -S -s 1 -c 0 -t 0 -b 0 -m 0 -v
+<!-- .fi -->
+</PRE>
+<P>
+<P>
+<!-- .SH EXAMPLES -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=4>
+
+     <H3>EXAMPLES</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+<!-- .nf -->
+<PRE>
+tina -q  &lt; nets/ifip.ndr
+tina -PNML &lt; mynet.xml
+tina -s 0 nets/abp.net abp.txt
+tina -R -q &lt; nets/ifip.ndr &gt; ifip.log-R
+tina -a nets/ifip.ndr &gt; ifip.aut
+tina -C ../nets/hp.ndr hp.ktz
+tina -R ../nets/ifip.ndr ifip.ktz ifip.digest ifip.error
+<!-- .fi -->
+</PRE>
+<P>
+<P>
+<!-- .SH SEE ALSO -->
+</BLOCKQUOTE>
+<A name=5>
+
+     <H3>SEE ALSO</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+nd(n), plan(n), struct(n), ktzio(n), ndrio(n), tedd(n), selt(n), sift(n), muse(n), pathto(n), play(n), walk(n), reduce(n), formats(n)
+<P>
+<P>
+<!-- .SH AUTHORS -->
+</BLOCKQUOTE>
+<A name=6>
+
+     <H3>AUTHORS</H3>
+
+</A>
+<BLOCKQUOTE>
+Bernard Berthomieu, with contributions by Francois Vernadat,
+Pierre-Olivier Ribet, Florent  Peres,  LAAS/CNRS,  2000-2012,
+{Bernard.Berthomieu|Francois.Vernadat}@laas.fr.
+<P>
+</BLOCKQUOTE>
+<P><HR>
+<TABLE width=100%><TR> <TD width=33%><I>Tina Tools</I></TD> <TD width=33% align=center>tina (n)</TD> <TD align=right width=33%><I>Version 3.7.0</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.07</A> from src/tina.n using man macros.</FONT>
+</BODY></HTML>

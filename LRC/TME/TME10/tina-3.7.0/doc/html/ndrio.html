@@ -1,0 +1,321 @@
+<HTML><HEAD>
+<TITLE>Manual Page - ndrio(n)</TITLE>
+<BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
+<!-- .TH ndrio n "Version 3.7.0" "Tina Tools" -->
+<CENTER>
+<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>ndrio (n)</NOBR><HR></H1>
+</CENTER>
+<P>
+<!-- .SH NAME -->
+<A name=0>
+
+     <H3>NAME</H3>
+
+</A>
+<BLOCKQUOTE>
+ndrio  - conversion tool for Petri nets and Time Petri nets
+<P>
+Part of Tina Toolbox for analysis of Petri nets and Time Petri nets.
+<P>
+<!-- .SH SYNOPSIS -->
+</BLOCKQUOTE>
+<A name=contents></A><H3>CONTENTS</H3></A>
+<BLOCKQUOTE>
+<A HREF=#1>Synopsis</A><BR>
+<A HREF=#2>Description</A><BR>
+<A HREF=#3>Options</A><BR>
+<A HREF=#4>Examples</A><BR>
+<A HREF=#5>See Also</A><BR>
+<A HREF=#6>Authors</A><BR>
+</BLOCKQUOTE>
+<A name=7>
+
+     <H3>SYNOPSIS</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+<!-- .B ndrio -->
+<B>ndrio</B> [-<I>h</I>elp]
+<BR>
+      [-NET | -NDR | -PNML | -TPN]
+<BR>
+      [-net | -ndr | -pnml | -tpn | -pnt | -romeo | -lola | -nupn]
+<BR>
+      [-graphplace | -dot | -neato | -circo | -textify]
+<BR>
+      [-no-nupn] [-ren] [-d] [-rev]
+<BR>
+      [infile] [outfile] [errorfile]
+<P>
+<!-- .SH DESCRIPTION -->
+</BLOCKQUOTE>
+<A name=2>
+
+     <H3>DESCRIPTION</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+ndrio converts Petri nets and Time Petri nets between several, graphic
+or textual, formats. ndrio handles tina labels, delay intervals associated
+with transitions, generalized inhibitor and read (test) arcs, generalized
+stopwatch-inhibitor and stopwatch arcs, and priorities.
+The features not supported by the target format are silently omitted.
+The formats manipulated are the following:
+<P>
+<!-- .nf -->
+<PRE>
+name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extension       description
+------------------------------------------------------
+net             &#46;net          tina textual format
+ndr             &#46;ndr          tina graphic format (produced by nd)
+tpn             &#46;tpn          tina textual scripts format
+pnml            &#46;pnml         Petri Net Markup Language format
+                                (with or without graphics)
+pnt             &#46;pnt          INA format
+                                (if the net is timed, the intervals
+                                 are saved into a companion &#46;tim file)
+romeo           &#46;romeo        romeo format (without graphics)
+lola            &#46;lola         LoLA format (unstructured)
+nupn            &#46;nupn         CADP nupn format
+<!-- .fi -->
+</PRE>
+<P>
+<P>
+The conversions currently supported are the following:
+<P>
+<!-- .nf -->
+<PRE>
+from&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to
+------------------------------------------------------
+net             ndr, tpn, pnml, pnt, romeo, lola, nupn
+ndr             net, tpn, pnml, pnt, romeo, lola, nupn
+tpn             net, ndr, pnml, pnt, romeo, lola, nupn
+pnml            net, ndr, tpn, pnml, pnt, romeo, lola, nupn
+<!-- .fi -->
+</PRE>
+<P>
+<!-- .SH OPTIONS -->
+</BLOCKQUOTE>
+<A name=3>
+
+     <H3>OPTIONS</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+<!-- .TP -->
+<TABLE cellpadding=3>
+<TR valign=top><TD width=6% nowrap>
+-<I>h</I>elp
+</TD><TD valign=bottom>
+Recalls options.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Input format flags: -->
+<B>Input format flags:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+-NET | -NDR | -PNML | -TPN
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Specifies the format of the input net. This flag is necessary when the
+input net is read on standard input, or read from a file that does not
+bear the expected extension. Default is -NET.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Output format flags: -->
+<B>Output format flags:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+-net | -ndr | -pnml | -tpn | -pnt | -romeo | -lola | -nupn
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Specifies the  format of the output  net. This flag  is necessary when
+the output net  is written on standard output, or into a file that does
+not bear the expected extension.
+<P>
+Export to romeo and lola is preliminary. The graphic information, if any,
+is currently not exported to romeo. Also, the user should make sure the
+place and transition names used in the input file are legal romeo or
+lola names; ndrio does not attempt to convert them (consider passing options
+-r -d, in addition).
+<P>
+Export to nupn converts pnml format, with or without nupn units descriptions,
+to CADP nupn format. If the input file format is not pnml, or there are no
+unit descriptions in the file, or if option -no-nupn is passed, outputs a file
+in nupn format in which all units are trivial (each contains a single place).
+In all cases, the input net is assumed safe.
+<P>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Drawing options: -->
+<B>Drawing options:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+-graphplace | -dot | -neato | -circo
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Specify a placement filter for nodes. Necessary when converting from a
+graphics-free format  into &#46;ndr; optional when converting  into &#46;pnml
+(graphics information is only  generated if some filter is specified).
+When  converting  from  a   graphic  format,  the  original  placement
+information is always retained, whatever the tool specified.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Textifying option: -->
+<B>Textifying option:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-textify
+</TD><TD valign=bottom>
+Removes any graphics information from the input file when graphics is
+supported but optional in the output format.
+<P>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Other flags: -->
+<B>Other flags:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-no-nupn
+</TD><TD valign=bottom>
+If the input file is in pnml format, forget any nupn units descriptions in it.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-ren | -r
+</TD><TD valign=bottom>
+Renames places and transitions with integers prefixed by "p" and "t", respectively.
+Old names become labels.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-d
+</TD><TD valign=bottom>
+Drops all labels of places and transitions.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+-rev
+</TD><TD valign=bottom>
+Reverses the direction of normal edges (inhibitor, read, stopwatch,
+stopwatch-inhibitor and priority edges are unchanged).
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Input source: -->
+<B>Input source:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD width=6% nowrap>
+infile
+</TD><TD valign=bottom>
+Where the  net is  read. The  input format is  determined by  the file
+type, according to the table above. If absent or specified by "-", the
+net is  read on standard  input in the  format specified by  the input
+flag. If  both an  infile and  some input flag  are present,  then the
+format defined  by the  input flag supersedes  that determined  by the
+infile extension.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Output destination: -->
+<B>Output destination:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+outfile
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Where the net is written. The output format is determined by the file
+type, according  to the  table above. If  absent or specified  by "-",
+then the net is written on standard output in the format specified by
+the output flag. If both an  outfile and some output flag are present,
+then the format defined by  the output flag supersedes that determined
+by the outfile extension.
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<!-- .B Errors destination: -->
+<B>Errors destination:</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<P>
+<!-- .TP -->
+</TD></TR>
+<TR valign=top><TD colspan=2>
+errorfile
+</TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+Where error messages are written. By default, errors are printed on standard error.
+<P>
+<P>
+<!-- .SH EXAMPLES -->
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=4>
+
+     <H3>EXAMPLES</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+<!-- .nf -->
+<PRE>
+ndrio abp.net abp.pnml
+ndrio abp.ndr abp.net
+ndrio -NDR -pnml -neato &lt; abp.ndr &gt; abp.pnml
+ndrio abp.ndr -NET
+ndrio abp.ndr abp.pnt
+<!-- .fi -->
+</PRE>
+<P>
+<!-- .SH SEE ALSO -->
+</BLOCKQUOTE>
+<A name=5>
+
+     <H3>SEE ALSO</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+nd(n), tina(n), plan(n), struct(n), ktzio(n), tedd(n), selt(n), sift(n), muse(n), pathto(n), play(n), walk(n), reduce(n), formats(n)
+<P>
+<!-- .SH AUTHORS -->
+</BLOCKQUOTE>
+<A name=6>
+
+     <H3>AUTHORS</H3>
+
+</A>
+<BLOCKQUOTE>
+Bernard Berthomieu, with contributions by Florent Peres,
+LAAS/CNRS, 2000-2021, <A HREF="mailto:Bernard.Berthomieu@laas.fr.">Bernard.Berthomieu@laas.fr.</A>
+<P>
+</BLOCKQUOTE>
+<P><HR>
+<TABLE width=100%><TR> <TD width=33%><I>Tina Tools</I></TD> <TD width=33% align=center>ndrio (n)</TD> <TD align=right width=33%><I>Version 3.7.0</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.07</A> from src/ndrio.n using man macros.</FONT>
+</BODY></HTML>

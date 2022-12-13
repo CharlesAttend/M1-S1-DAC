@@ -1,0 +1,31 @@
+
+new
+# controler.ndr
+p 250.0 220.0 far 3 e
+p 50.0 220.0 in 0 w
+t 150.0 50.0 A1 c 0 w n App n
+t 150.0 380.0 E1 c 0 0 n Exit s
+t 150.0 160.0 A2 c 0 w n App n
+t 150.0 280.0 E2 c 0 0 n Exit s
+t 430.0 50.0 D c 0 0 e Down n
+t 410.0 380.0 U c 0 0 e Up s
+p 300.0 50.0 Coming 0 n
+p 300.0 380.0 Leaving 0 s
+e far A1 3 se
+e A1 0.897390693255 61.2646630213 far 0.287110953831 60.5476520525 2 n
+e A1 in 1 n
+e far A2 1 n
+e in A2 1 n
+e A2 0.62908169907 40.6265794452 in 0.0409551776716 57.8678442643 2 e
+e far E1 2 ne
+e E1 0.114604495126 55.8320079229 far 0.712889046169 60.5476520525 3 e
+e in E1 1 n
+e in E2 2 w
+e E2 0.375 49.497474683 in 0.953502511081 51.1338731638 1 n
+e E2 far 1 n
+e A1 Coming 1 n
+e Coming D 1 n
+e E1 Leaving 1 n
+e Leaving U 1 n
+h controler
+
