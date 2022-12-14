@@ -1,0 +1,3 @@
+- Pas de IN, ou de NOT IN => Que des UNIONS, EXCEPT, INTERSECT
+- Compréhension de list : ARRAY m.name FOR m IN m.mountains END AS liste_mountagne
+- 
