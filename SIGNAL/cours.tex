@@ -250,12 +250,47 @@ Up sampling = rajouter des zéros entre les échantillons. On regarde si $ m $ e
     0 &\text{ pour } m \neq kM\\
     \end{cases} 
 .\]
+\subsubsection{Diapo 83}
+Permet de lier le spectre avec et sans élévation de cadence.
 
 \subsubsection{Diapo 84}
 Cette fois ci on comprime l'axe des abscises
 
 \subsubsection{Diapo 85}
-Quel est l'intérêt de faire ça ? Recalculer les échantillons intermédiaires du à l'échantillonnage, c'est l'opération inverse du décimateur je crois 
+Quel est l'intérêt de faire ça ? Recalculer les échantillons intermédiaires du à l'échantillonnage, c'est l'opération inverse du décimateur je crois. Voir TD5 exo 4. \\
+
+\subsubsection{Diapo 86-87-88}
+Démonstration que le décimateur c'est l'exact inverse de l'interpolateur
+
+\subsubsection{Diapo 89}
+Modification de cadence d'un facteur rationnel : Imaginons qu'au USA il utilise une autre norme pour échantillonner un CD que chez nous. Et qu'on souhaite lire ce CD en Europe.
+
+Finalement ce dispositif peut changer la période d'échantillonnage comme on veux.
+
+\subsubsection{Diapo 90}
+On peux même combiner les deux filtres en un seul. Mais on peut avoir des pertes d'information. 
+
+\subsubsection{Diapo 91}
+On a vu 4 bloc de base \begin{itemize}
+    \item Echantillonnage 
+    \item Bloqueur d'ordre zéros
+\end{itemize}
+Equivalence en numérique \begin{itemize}
+    \item Décimation
+    \item Interpolation
+\end{itemize}
+Souvent on fait : Ech $\rightarrow$ Décimation $\rightarrow$ (on a graver le CD)$\rightarrow$ Interpolation $\rightarrow$ Blocage $\rightarrow$ (Lecture du CD).
+
+Et on a toujours un filtre en amont d'un échantillonnage, et un filtre en aval pour un bloqueur.
+
+\subsubsection{Diapo 92}
+Exo 3 TD5 
+
+\subsubsection{Diapo 93}
+Exo 4 TD5 
+
+Fin programme de l'exam
+
 
 
 
