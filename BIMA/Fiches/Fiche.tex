@@ -52,6 +52,22 @@ Gausienne 2D :
 \[
     \frac{1}{\sqrt[]{2 \pi \sigma }} e^{- \frac{x^2 + y^2}{2 \sigma ^2}}
 .\]
+Changement d'échelle : 
+
+Rotation : 
+\[
+    P \begin{pmatrix}
+        u \\
+        v
+    \end{pmatrix} = \begin{pmatrix}
+        cos \theta & \sin \theta \\
+        - \sin \theta & \cos \theta 
+    \end{pmatrix} \begin{pmatrix}
+        u \\
+        v
+    \end{pmatrix}
+.\]
+
 
 \section{Edge Detection with filtering}
 \begin{itemize}
@@ -135,7 +151,61 @@ Filtre gaussien plus optimisé + implémentation récursive possible pour évite
 
 
 \section{Corner Detection}
+\begin{itemize}
+    \item Point critique de l'image (local extrema, saddle points) = variation dans une ou plusieurs direction $ \Leftrightarrow det(Hess) = 0 $. Ca c'est la detection basique mais elle est vraiment pas ouf
+    \item $\rightarrow$ On vas donc jouer avec la matrice Hessienne
+\end{itemize}
+
 \subsection{Moravec keypoint detection}
+\subsection{Harris detector}
+
+\[
+    R_i(\sigma ) = g_\sigma \star Hess(I) = g_\sigma \star \begin{pmatrix}
+        I_x^2 & I_x I_y \\
+        I_x I_y & I_y^2
+    \end{pmatrix}
+.\]
+\begin{itemize}
+    \item Instinctivement : Dans le voisinage du filtre gaussien, on regarde pour des variations dans deux directions
+    \item Les valeurs propre de la matrice Hessien indique les changement dans leurs direction respective $ x $ et $ y $ 
+    \item Mauvais sur les changements d'échelles \begin{itemize}
+        \item Multiscale Harris detector : On peut le stabiliser en changeant l'échelle $ \sigma  $ du filtre gaussien en fonction de la scale de ??? Puis en choisissant la meilleure valeur de $ R $ comme coin \textbf{pas compris} Bref on change la scale et on choisis le meilleur coin sur toutes les scales testées
+        \item Pareil pour Harris-Laplace + harris lapalce = flou gaussien + laplace = on peut combiner comme vu avant, je dirais même plus on peut approximer la combinaison pas une différence de gaussienne
+    \end{itemize}
+    \item bien pour les scene texturé
+\end{itemize}
+\begin{proof}[Preuve : ]
+    On part du détecteur de Moravec : il cherche des changements de variation dans les 8 directions possibles : coin = changement dans deux directions = $ E_{u,v}(x,y) $ grands. \\
+    Forcément une image full bruit aura beaucoup de variation, donc pour éviter ça on vas lisser l'image avec un filtre gaussien.
+
+    Donc on cherche les endroits où $ E_{u,v}(x,y) $ est grand aka on veux maximiser la fonctions et trouver les points critique max.
+
+    Point mathématique : Pour savoir la nature d'un point (critique normalement mais bon je sais pas où on annule le gradient) on regarde si la matrice Hessienne est définie positive/négative. Pour ça on regarde les valeurs propre, si elle sont strictement négative, c'est gagné on a trouvé un maximum local ! Par chance, on a pas besoin de diagonaliser à chaque fois car le determinant ($ = \lambda _1 \lambda _2 $ ) et la trace ($ = \lambda _1 + \lambda _2 $ ) sont invariant par changement de base et \href{http://serge.mehl.free.fr/anx/extremum_hesse.html}{suffise pour déterminer le signe des valeurs propres}. \begin{itemize}
+        \item $ \det Hess > 0 $ Valeur propre de même signe \begin{itemize}
+            \item $ Trace > 0 $ $\rightarrow$ valeur propre positive $\rightarrow$ minimum local
+            \item $ Trace < 0 $ $\rightarrow$ valeur propre negative $\rightarrow$ maximum local
+        \end{itemize}
+    \end{itemize}
+
+    Finalement en posant $ R = det - k*trace^2 $ on reproduit le même principe. Ce critère permet de comparer $ \lambda _1 $ et $ \lambda _2 $.
+    \begin{itemize}
+        \item If $ \lambda _1 $  and $ \lambda _2 $  are approximately equal, we note $ \lambda _1 \approx  \lambda _2 = \lambda $ and get 
+        \[
+        R(x,y) \approx \lambda ^2 - k(4 \lambda ^2) = \lambda ^2 (1 - 4k)
+        .\]
+        Since in practice k is chosen as a small value, i.e. $ k << 1$, we get $ R(x,y) \approx \lambda ^2 $  . Then:
+        \begin{itemize}
+            \item If $ \lambda \to 0 $ , this means that the derivative of I are close to 0, i.e. the region is flat (homogenous gray levels), and $ R \to 0 $
+            \item If $ \lambda > 0 $  then $R > 0$, and we have locally a corner.
+        \end{itemize}
+
+        \item If $ \lambda _1 >> \lambda _2 $  (or the reverse) then
+        $ R(x,y) \approx \lambda _1 \lambda _2 - k \lambda _1^2 = \lambda _1^2 ( \frac{\lambda _2}{\lambda _1} - k) \approx - k \lambda _1^2$
+        If the pixel is an edge, it means that the variations of I are in one direction only, i.e. $ \lambda _1 >> \lambda _2 $ , and we get $ R < 0 $.
+    \end{itemize}
+\end{proof}
+
+
 
 
 
