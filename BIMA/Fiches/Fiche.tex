@@ -1,0 +1,142 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage[french]{babel}
+
+\usepackage[default,scale=0.95]{opensans}
+\usepackage[T1]{fontenc}
+\usepackage{amssymb} %math
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{systeme}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Fiche BIMA},
+    % pdfpagemode=FullScreen,
+    }
+\urlstyle{same} %\href{url}{Text}
+
+\theoremstyle{plain}% default
+\newtheorem{thm}{Théorème}[section]
+\newtheorem{lem}[thm]{Lemme}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem*{cor}{Corollaire}
+%\newtheorem*{KL}{Klein’s Lemma}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Définition}[section]
+\newtheorem{exmp}{Exemple}[section]
+% \newtheorem{xca}[exmp]{Exercise}
+
+\theoremstyle{remark}
+\newtheorem*{rem}{Remarque}
+\newtheorem*{note}{Note}
+%\newtheorem{case}{Case}
+
+
+
+\title{Fiche BIMA}
+\author{Charles Vin}
+\date{Décembre 2022}
+
+\begin{document}
+\maketitle
+\tableofcontents
+Gausienne 2D : 
+\[
+    \frac{1}{\sqrt[]{2 \pi \sigma }} e^{- \frac{x^2 + y^2}{2 \sigma ^2}}
+.\]
+
+\section{Edge Detection with filtering}
+\begin{itemize}
+    \item Un bord dans une image peut ressembler à une marche d'escalier ou à une rampe : il est plus ou moins nette
+    \item On regarde la direction du gradient : $ \left\| \nabla f \right\| = \sqrt[]{(\frac{\delta f}{\delta x})^2 + (\frac{\delta f}{\delta y})^2} $ que l'ont normalise $ \frac{\nabla f}{\left\| \nabla f \right\| } $ pour obtenir un vecteur unitaire
+    \item Par une méthode mathématique obscure nommée différence finis, on peut approximer les dérivés des images pas une convolution 
+\end{itemize}
+\subsection{Sobel Edge filter}
+\[
+    G_x = \begin{bmatrix}
+        1 & 0 & -1 \\
+        2 & 0 & -2 \\
+        1 & 0 & -1 
+    \end{bmatrix} = \begin{bmatrix}
+        1 \\
+        2 \\
+        1
+    \end{bmatrix} \times \begin{bmatrix}
+        1 & 0 & -1
+    \end{bmatrix}
+.\]
+
+\[
+    G_y = G_x^T
+.\]
+
+
+\begin{itemize}
+    \item la réponse impulsionnel de Sobel est en faite composé d'une matrice qui approxime la gaussienne et la matrice de dérivation horizontale $ \big(\begin{smallmatrix}
+        1 & 0 & -1
+    \end{smallmatrix}\big) $ 
+    \item $ \left\| G \right\| = \sqrt[]{G_x^2 + G_y^2} $ cette norme est plus forte au niveau des contours (car dérivé d'un escalier $ = + \infty  $ )
+\end{itemize}
+
+
+\subsection{Second order}
+
+\[
+    \begin{pmatrix}
+        0 & 1 & 0 \\
+        1 & -4 & 1 \\
+        0 & 1 & 0 \\
+    \end{pmatrix} \text{ ou } \begin{pmatrix}
+        1 & 1 & 1 \\
+        1 & -8 & 1 \\
+        1 & 1 & 1 \\
+    \end{pmatrix}
+.\]
+\begin{itemize}
+    \item Ici on regarde quand la dérivée seconde s'annule pour trouver le max de la dérivé
+    \item On utilise un laplacien pour approximer la matrice hessienne $ \Delta f = \frac{\partial ^2 f}{\partial x^2} + \frac{\partial ^2f}{\partial y^2} $ 
+    \item Detecter les passages par zéros : \begin{itemize}
+        \item Fenetre 3x3 $\rightarrow$ max et min
+        \item zéro crossing = $max > 0, min < 0, max - min > S$
+    \end{itemize}
+    \item Plus précis et moins sensible à la threshold que gradient
+    \item \textbf{Pas} invariant par rotation ! 
+    \item Thick edge
+    \item bruit ++ $\rightarrow$ filtrage nécessaire $\rightarrow$ \textbf{On peut combiner les deux en une convolution} avec le laplacien de la gaussienne 2D
+\end{itemize}
+
+\subsection{Approche pyramidale}
+Filtre gaussien $\rightarrow$ subsample 2 $\rightarrow$ filtre $\rightarrow$...
+
+\subsection{Canny-Deriche}
+Filtre gaussien plus optimisé + implémentation récursive possible pour éviter de faire deux fois la convolution(x et y)
+
+\subsection{Post processing}
+\begin{itemize}
+    \item Binarization Threshold : thick edge + bruit ou missed detection $\Rightarrow$ Gaussian smoothing 
+    \item Gaussian smoothing + Threshold : \begin{itemize}
+        \item flou ++ = moins de bruit // thick edge (imprecise localization)
+        \item Flou -- = bruit // bonne localisation
+    \end{itemize}
+    \item Non maxima suppression \begin{itemize}
+        \item Arrondie sur une des 8 directions 
+        \item Interpolation à partir des deux voisins 
+        \item $\rightarrow$ Bord fin 
+    \end{itemize}
+\end{itemize}
+
+
+\section{Corner Detection}
+\subsection{Moravec keypoint detection}
+
+
+
+\end{document}
