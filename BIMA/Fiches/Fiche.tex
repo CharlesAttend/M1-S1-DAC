@@ -48,11 +48,12 @@
 \begin{document}
 \maketitle
 \tableofcontents
-Gausienne 2D : 
+
+Gausienne 2D : $ \sigma _f = \frac{1}{\sigma _s \pi } $ 
 \[
-    \frac{1}{\sqrt[]{2 \pi \sigma }} e^{- \frac{x^2 + y^2}{2 \sigma ^2}}
+    \frac{1}{\sqrt[]{2 \pi \sigma }} e^{- \frac{(x-x_0)^2 + (y-y_0)^2}{2 \sigma ^2}}
 .\]
-Changement d'échelle : 
+Changement d'échelle : ?
 
 Rotation : 
 \[
@@ -66,6 +67,38 @@ Rotation :
         u \\
         v
     \end{pmatrix}
+.\]
+Changement de variable 2D : \begin{align*}
+    f(x,y) = (f_1(u), f_2(t)) \\
+    \begin{cases}
+    x = f_1(u)\\
+    y = f_2(t)\\
+    \end{cases} \\
+    dxdy = \det (Jacobienne(f))
+\end{align*}
+Pour inverser les variables : penser au matrice ! 
+
+Généralité : 
+\begin{itemize}
+    \item Dynamique d'une image : $ L = (k_{max} - k_{min}) + 1 $ 
+    \item Changer la dynamique $ [k_{min};k_{max}] \to [I_1, I_2] $  : $ f(k) = \frac{k - k_{min}}{k_{max} - k_{min}} * (I_2 - I_1) + I_1 $ 
+    \item Inverser une image : $ L - p_i $ 
+    \item Histogramme : compter les pixels de chaque couleurs
+    \item Flat hist : $ k' = Int(\frac{k_{max} - k_{min}}{N*M}H_c(k)) $ 
+    \item Gray value profile : line plot de la ligne de l'image
+\end{itemize}
+
+\section{Digitalisation and subsampling}
+SIGNAL pour moi sorry
+
+\section{Filtrage}
+\textbf{Pense à retourner $ h $ pour la convolution !!!}
+Diamond formula 
+\[
+    f(t)\delta (t-t_0) = f(t_0)\delta (t - t_0)
+.\]
+\[
+    f(t) \star \delta (t - \tau) = f(t - \tau)
 .\]
 
 
@@ -131,6 +164,13 @@ Rotation :
 
 \subsection{Approche pyramidale}
 Filtre gaussien $\rightarrow$ subsample 2 $\rightarrow$ filtre $\rightarrow$...
+\begin{align*}
+    &fe > 2 fmax \text{ (shannon) } \\
+    \Leftrightarrow& fe > 2 * \frac{3}{\sigma \pi } \\
+    \Leftrightarrow& \frac{\pi }{6}fe > \frac{1}{\sigma } \\
+    \Leftrightarrow& \frac{\pi}{6} * \frac{1}{2} > \frac{1}{\sigma } \text{ (1/2 car subsample 2)}\\
+    \Leftrightarrow& \frac{12}{\pi } < \sigma 
+\end{align*}
 
 \subsection{Canny-Deriche}
 Filtre gaussien plus optimisé + implémentation récursive possible pour éviter de faire deux fois la convolution(x et y)
