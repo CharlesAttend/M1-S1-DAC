@@ -78,6 +78,16 @@ Changement de variable 2D : \begin{align*}
 \end{align*}
 Pour inverser les variables : penser au matrice ! 
 
+Convolution et dérivation : 
+\[
+    \frac{\partial }{\partial x}(f \star g) = f \star \frac{\partial g}{\partial x}
+.\]
+
+Variance K-D : 
+\[
+    \frac{1}{n} \sum_{}^{}(X_i - g)^T (X_i - g)
+.\]
+
 Généralité : 
 \begin{itemize}
     \item Dynamique d'une image : $ L = (k_{max} - k_{min}) + 1 $ 
@@ -108,6 +118,7 @@ Diamond formula
     \item On regarde la direction du gradient : $ \left\| \nabla f \right\| = \sqrt[]{(\frac{\delta f}{\delta x})^2 + (\frac{\delta f}{\delta y})^2} $ que l'ont normalise $ \frac{\nabla f}{\left\| \nabla f \right\| } $ pour obtenir un vecteur unitaire
     \item Par une méthode mathématique obscure nommée différence finis, on peut approximer les dérivés des images pas une convolution 
 \end{itemize}
+
 \subsection{Sobel Edge filter}
 \[
     G_x = \begin{bmatrix}
@@ -197,24 +208,50 @@ Filtre gaussien plus optimisé + implémentation récursive possible pour évite
 \end{itemize}
 
 \subsection{Moravec keypoint detection}
-\subsection{Harris detector}
-
 \[
-    R_i(\sigma ) = g_\sigma \star Hess(I) = g_\sigma \star \begin{pmatrix}
+    E_{u,v}(x_1, y_1) = \sum_{k = -W_x/2}^{W_x/2} \sum_{k = -W_y/2}^{W_y/2} [I(x_1 + k + u, y_1 + l + v) - I(x_1 + k, y_1 + l)]^2
+.\]
+Par un DL et développement on tombe sur la suite 
+
+\subsection{Harris detector}
+Pour chaque pixel 
+\[
+    M(x,y) = g_\sigma \star \begin{pmatrix}
         I_x^2 & I_x I_y \\
         I_x I_y & I_y^2
     \end{pmatrix}
 .\]
+\[
+    E^1_{u,v}(x, y) = (u,v)M(u,v)^T
+.\]
+Puis on regarde la taille des valeurs propres par la valeur suivante
+\[
+    R(x,y) = \det M(x,y) - k (Trace M(x,y))^2
+.\]
+\begin{itemize}
+    \item Région homogène : $ R = 0 $
+    \item Edge : $ R < 0 $
+    \item Corner : $ R > 0 $
+\end{itemize}
+
 \begin{itemize}
     \item Instinctivement : Dans le voisinage du filtre gaussien, on regarde pour des variations dans deux directions
     \item Les valeurs propre de la matrice Hessien indique les changement dans leurs direction respective $ x $ et $ y $ 
+    \item Bien pour les scene texturé
     \item Mauvais sur les changements d'échelles \begin{itemize}
-        \item Multiscale Harris detector : On peut le stabiliser en changeant l'échelle $ \sigma  $ du filtre gaussien en fonction de la scale de ??? Puis en choisissant la meilleure valeur de $ R $ comme coin \textbf{pas compris} Bref on change la scale et on choisis le meilleur coin sur toutes les scales testées
-        \item Pareil pour Harris-Laplace + harris lapalce = flou gaussien + laplace = on peut combiner comme vu avant, je dirais même plus on peut approximer la combinaison pas une différence de gaussienne
+        \item Multiscale Harris detector : \begin{itemize}
+            \item \textbf{Normalized derivative} Si l'image est scale d'un facteur $ s $ on peux aussi scale la gaussienne d'un facteur $ s $. $ s * I \star \frac{\partial g_{s \sigma }}{\partial x} (sx, sy) $ 
+            \item \textbf{Multiscale Harris} $ R_{\sigma _I, \sigma _D}(x,y) = \sigma _D^2 g_{\sigma _i} \star \begin{pmatrix}
+                I_x^2(\sigma _D) & I_x(\sigma _D) I_y(\sigma _D) \\
+                I_x(\sigma _D) I_y(\sigma _D) & I_y^2(\sigma _D)
+            \end{pmatrix} $
+            \item On peut le stabiliser en changeant l'échelle $ \sigma $ du filtre gaussien en fonction de la scale de ??? Puis en choisissant la meilleure valeur de $ R $ comme coin \textbf{pas compris} Bref on change la scale et on choisis le meilleur coin sur toutes les scales testées
+            \end{itemize}
+        \item Pareil pour Harris-Laplace : harris laplace = flou gaussien + laplace = on peut combiner comme vu avant, je dirais même plus on peut approximer la combinaison pas une différence de gaussienne
     \end{itemize}
-    \item bien pour les scene texturé
 \end{itemize}
-\begin{proof}[Preuve : ]
+
+\begin{proof}[\textbf{Preuve} : ]
     On part du détecteur de Moravec : il cherche des changements de variation dans les 8 directions possibles : coin = changement dans deux directions = $ E_{u,v}(x,y) $ grands. \\
     Forcément une image full bruit aura beaucoup de variation, donc pour éviter ça on vas lisser l'image avec un filtre gaussien.
 
@@ -245,7 +282,121 @@ Filtre gaussien plus optimisé + implémentation récursive possible pour évite
     \end{itemize}
 \end{proof}
 
+\section{Segmentation}
+\subsection{Optimization based}
+Osef je pense 
+\begin{itemize}
+    \item Principe : on vas minimiser une fonction mesurant la distance entre l'image segmenté et l'originale
+    \item On définis l'énergie de l'image segmenté comme somme des distance euclidienne entre chaque pixel de l'image segmentée $ I $  et les valeurs moyenne des pixels de l'image originale $ R $
+    \item Par magie mathématique ça donne finalement la somme des valeurs propres de la matrice de variance covariance des couleurs pixel (3x3)
+    \item Facile à optimiser comme un problème de dual + lagrange
+\end{itemize}
+\subsection{Clustering based}
+\subsubsection{Threshold}
+\begin{itemize}
+    \item Il existe des méthodes automatique pour choisir une bonne threashold
+    \item \textbf{Histograme} on split l'histogramme là ou ça semble logique. Pour chaque partie on trouve la meilleurs threshold qui maximise la taille de la région.
+    \item \textbf{K-means} simple, converge, mais hyperparameter $ k $, sensible à l'init, hp cluster sphérique et distinct
+    \item \textbf{Mean shift}: Finalement proche d'un k-mean mais au lieux de prendre les tous les points les plus proche, on prend uniquement ceux dans un certain rayon. Puis centroide puis boucle. Une sorte de descente de gradient.
+\end{itemize}
+\subsection{Slit n Merge}
+\subsubsection{Split}
+TO DO
+\subsubsection{Merge}
+TO DO
 
+\section{Image Descriptor}
+On cherches des caractérisées \begin{itemize}
+    \item Robustes au changement : rotation, scale, \dots
+    \item Unique
+    \item Efficace
+    \item représentative : beaucoup de point, petite zone
+    \item Locaux : car plus robuste au background ou bruit et plus modulaire
+\end{itemize}
+\subsection{Image intégrale}
+Somme des pixels dans le carré t'as capté. refaire les dessin du TD8 quoi. Si on une rotation par $ \theta  $ fait des dessins avec les centres du pixel comme coordonnée $ x,y $.
+
+\subsection{SIFT}
+\begin{itemize}
+    \item Analyse des keypoints de l'image, méthode proche de Harris, avec prise en compte de la scale
+    \item Pour chaque keypoint, fenêtre autour de lui,  direction du gradient pour chaque pixel, histograms pour chaque direction et on garde la direction max
+    \item Feature vector : On prend une fenêtre (16x16) qu'on divise en 4x4 blocs, pour chaque bloc on fait un histogramme de 8 direction. $\rightarrow$ Un vecteur de 128 
+    \item \textbf{Invariance par rotation} : on normalise le vecteur final par la direction du keypoint ! Pas con pas con
+\end{itemize}
+
+\subsection{SURF}
+Approximation plus rapide de SIFT. En faite c'est le même principe général mais pas vraiment la même méthode mathématique pour trouver l'orientation. De plus le vecteur final n'est pas vraiment du même type. (Ca parle d'ondelette de Hars partout)
+
+\subsection{Gabor filter}
+Détecte l'orientation par ? Pas trop compris
+\begin{itemize}
+    \item On peut compiler toutes les convolutions de dérivé gaussienne dans un seule vecteur, qui est invariant par rotation. En faite c'est des arrondies des matrices gaussienne habituelle (SURF utilise pour être plus rapide)
+\end{itemize}
+
+\section{PCA}
+But : réduire les dimensions en gardant uniquement celle qui maximise la variance. C'est à dire les plus explicatives 
+
+Variance corrigé projeté : \begin{align*}
+    \sigma _v^2 &= \frac{1}{n-1}\sum_{i=1}^{n}(\pi (x_i - g))^T (\pi (x_i - g)) \\
+    &= v^T \Sigma v
+\end{align*}
+$ \Sigma = (n-1)^{-1} X X^T, X = (x_1 - g, x_2 - g, \dots, x_n - g) = X - g$ matrice de covariance variance des données
+\[
+    \begin{cases}
+    \max v^T \Sigma v &\text{}\\
+    \text{s.c } v^T v = 1\\
+    \end{cases} \Leftrightarrow \Sigma v = \lambda v
+.\]
+Par définition de la diagonalisation : $ \lambda $ valeurs propre et $ v $ vecteur propre de $ \Sigma  $ \\
+$\Rightarrow $ Composant principal = les vecteurs propres ayant les plus grandes valeurs propre. On peut choisir de garder 95\% de la variance par exemple.
+
+\section{LDA}
+On vas projeter sur un axe qui : \begin{itemize}
+    \item Minimise la variance intra classe (within class)
+    \item Maximise la variance inter classe (between class)
+\end{itemize}
+\begin{align*}
+    \sigma ^2 &= \sigma _w^2 + \sigma _b^2 \\
+    \sigma _v^2 &= v^T \Sigma v \\
+    \sigma _b^2 &= \sum_{k=1}^{K} \frac{N_k}{N}\sigma _{k,b}^2 \\
+        &= \sum_{k=1}^{K}\frac{N_k}{N}(g_k - g)^T(g_k - g) \\
+        &= \text{Variance pondérée de la moyenne des classe} \\
+        &= \text{inter class variance} \\
+    \sigma _{v(b)}^2 &= V^T [\sum_{k=1}^{K} \frac{N_k}{N} (g_k - g)(g_k -g)^T] v = v^T B v \\
+    \sigma _w^2  &= \sum_{k=1}^{K} \frac{N_k}{N} \sigma _{k,w} \\
+        &= \sum_{k=1}^{K} \frac{N_k}{N} \frac{1}{N_k} \sum_{X_i \in C_k} (X_i - g_k)^T (X_i - g_k) \\
+        &= \text{ Moyenne pondéré par } N_k \text{ des variances intra classe} \\
+    \sigma _{v(b)}^2 &= v^T [\frac{1}{n} \sum_{k=1}^{K} n_k (\frac{1}{n_k} \sum_{x_i \in C_k}^{} (x_i - g_k)(x_k - g_k)^T)] v = v^T W v \\
+    & \begin{cases}
+    \min \sigma _{v(w)}^2 \\
+    \max \sigma _{v(b)}^2 \\
+    \end{cases} \Leftrightarrow \Sigma ^{-1} B V = \lambda V
+\end{align*}
+Puis on sort $ \Sigma ^{-1}B $ en fonction des valeurs propres again. \\
+Pour assiger une classe à un nouveau point, on le projette et on regarde le centre de classe le plus proche.
+
+
+\section{Autre truc moins important}
+
+\subsection{Rappel très très rapide diagonalisation}
+\begin{align*}
+    &f(v) = \lambda v \\
+    & \Leftrightarrow f(v) - \lambda v = 0 \\
+    & \Leftrightarrow \det (A - \lambda Id) = 0 \\
+    & \Leftrightarrow \lambda _1 ,\dots, \lambda _k = \lambda \text{ valeurs propres} \\
+    & AX = \lambda X \Rightarrow X \text{ vecteur propre }
+\end{align*}
+
+\subsection{Dérivé de matrice}
+\begin{align*}
+    \frac{\partial (vMv)}{\partial v} &= (M + M^T)V = 2MV \text{ si } M \text{ symétrique} \\
+    \frac{\partial (v^T a)}{\partial v} &= \frac{\partial (a^T v)}{\partial v} = a \\
+    \frac{\partial (\log_{} \det M)}{\partial v} &= M^{-1}\\
+    \frac{\partial (Tr(AM))}{\partial v} &= A
+\end{align*}
+
+\subsection{Blob detector}
+On parcourt l'image (convolution) à différente échelle (variation du $ \sigma  $), si on tombe sur un truc qui resemble à une gaussienne y'a un match sur $ \arg \min _{x,y} \max _\sigma \Delta [\sigma L(x,y,\sigma )] = \{x_0, y_0, \sigma _0\} $. remember la forme des dérivé d'une gaussienne
 
 
 
