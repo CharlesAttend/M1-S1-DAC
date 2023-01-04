@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.10.4)  3 JAN 2023 20:54
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.10.4)  4 JAN 2023 20:39
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -487,7 +487,7 @@ Here is how much of TeX's memory you used:
  14 hyphenation exceptions out of 8191
  34i,14n,40p,709b,591s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/opensans/a_jg4h6q.enc}</usr/share/texlive/texmf-dist/fonts/type1/ascender/opensans/OpenSans-Bold.pfb></usr/share/texlive/texmf-dist/fonts/type1/ascender/opensans/OpenSans-BoldItalic.pfb></usr/share/texlive/texmf-dist/fonts/type1/ascender/opensans/OpenSans-Italic.pfb></usr/share/texlive/texmf-dist/fonts/type1/ascender/opensans/OpenSans-Regular.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
-Output written on /home/charles/M1-S1-DAC/BIMA/Fiches/Fiche.pdf (8 pages, 178963 bytes).
+Output written on /home/charles/M1-S1-DAC/BIMA/Fiches/Fiche.pdf (8 pages, 179047 bytes).
 PDF statistics:
  259 PDF objects out of 1000 (max. 8388607)
  232 compressed objects within 3 object streams

@@ -226,7 +226,7 @@ Pour chaque pixel
 .\]
 Puis on regarde la taille des valeurs propres par la valeur suivante
 \[
-    R(x,y) = \det M(x,y) - k (Trace M(x,y))^2
+    R(x,y) = \det M(x,y) - k (Trace M(x,y))^2 = \lambda _1 \lambda _2 - k (\lambda _1 + \lambda _2)
 .\]
 \begin{itemize}
     \item Région homogène : $ R = 0 $
@@ -237,7 +237,7 @@ Puis on regarde la taille des valeurs propres par la valeur suivante
 \begin{itemize}
     \item Instinctivement : Dans le voisinage du filtre gaussien, on regarde pour des variations dans deux directions
     \item Les valeurs propre de la matrice Hessien indique les changement dans leurs direction respective $ x $ et $ y $ 
-    \item Bien pour les scene texturé
+    \item Bien pour les scenes texturées
     \item Mauvais sur les changements d'échelles \begin{itemize}
         \item Multiscale Harris detector : \begin{itemize}
             \item \textbf{Normalized derivative} Si l'image est scale d'un facteur $ s $ on peux aussi scale la gaussienne d'un facteur $ s $. $ s * I \star \frac{\partial g_{s \sigma }}{\partial x} (sx, sy) $ 
@@ -340,7 +340,7 @@ Variance corrigé projeté : \begin{align*}
     \sigma _v^2 &= \frac{1}{n-1}\sum_{i=1}^{n}(\pi (x_i - g))^T (\pi (x_i - g)) \\
     &= v^T \Sigma v
 \end{align*}
-$ \Sigma = (n-1)^{-1} X X^T, X = (x_1 - g, x_2 - g, \dots, x_n - g) = X - g$ matrice de covariance variance des données
+Avec $ \Sigma = (n-1)^{-1} X X^T, X = (x_1 - g, x_2 - g, \dots, x_n - g) = X - g$ matrice de covariance variance des données
 \[
     \begin{cases}
     \max v^T \Sigma v &\text{}\\
