@@ -242,9 +242,28 @@ Liste des axiomes logique épistémique S5 :
 \begin{defn}[]
     Connaissance commune : tout le monde sait que tout le monde sait
 \end{defn}
-
+JE ME SOUVIENS DE RIEN
 
 \section{Intervale de Allen}
+On a 13 relations possible entre les noeuds, par défault un noeud a toutes les relations. \\
+L'ordre est toujours important, si on veut prendre l'inverse on met des $ x^t $ partout
+
+Savoir faire un graph temporel : 
+\begin{defn}[]
+    On a une pile de chose à faire. On doit propager toutes les relations du graph. 
+    \begin{itemize}
+        \item Prendre une relation $ R_{i,j} $ dans la pile de chose à faire.
+        \item Pour tout noeud $ k $ faire : \begin{itemize}
+            \item $ ik = ik \cap ij \circ jk $ 
+            \item $ kj = kj \cap ki \circ ij $ 
+        \end{itemize}
+        \item Si $ \varnothing \rightarrow $ contradiction
+        \item Si changement d'une relation, ajouter cette relation dans la pile de chose a faire ! 
+    \end{itemize}
+\end{defn}
+
+Logique réifié de Allen = juste de la logique comme d'hab avec des intervales de Allen. On peut faire des résolutions dedans c'est plus pratique que la propagation pour prouver des contradictions.
+
 \section{Réseau de pétri}
 
 
