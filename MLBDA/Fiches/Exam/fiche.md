@@ -246,14 +246,20 @@ Il faut recreer un type simple qui contient une restriction
 # XPath
 - `//` au début pour chercher parmis tous l'arbre DOM
 - `/` pour faire un chemin dans l'arbre DOM
+- `..` pour accédé au parent, attention un attribue est un fils dans l'arbre DOM
 - `element[condition and condition or nor(condition)]`
+- `A!=N` est vrai si la valeur textuelle d'un des noeuds est différente de la valeur textuelle de A.
 - fonction **contains()** : `//restaurant[contains(menu/@nom, @ville)]` mais si il y a plusieurs menu il est pas sûr du comportement de contain donc pour être sur on fait `//restaurant[menu[contain(@nom, ../@ville)]]`
 - fonction **count(menu)**
 - Les foreign key : `//ville[@nom = //restaurant/@ville[count(menu) >= 4]]` ou `//restaurant[@ville = //ville[count(plusBeauMonument) = 0]/@nom`
 - **Position**, 
-    - Plus safe d'utiliser à partir de la racine uniquement : on traduit le `//menu` par `/restaurant/menu` => `/descendant::menu[5]` on prend le 5ème menu du premier restaurant 
+    - Plus safe d'utiliser à partir de `descendant::menu[5]` plutôt que `//`=`descendant-or-self::` : 
+      -  `descendant::menu[5]` 5ème menu du document : **pas de contexte self**
+      -  `descendant-or-self::menu[5]` Le 5ème menu de chaque restaurant : **avec contexte self**
+    - `last()` pour le dernier element mais attention c'est particulier aussi
+    - `preceding-sibling`, ect ... voir image pour les voisins
 - `//ville[@nom = //restaurant/@ville[count(./menu) >= 4]]`
 
-Go s'entrainer 
+![](./xpath-siblings.png)
 
 # XQuery
