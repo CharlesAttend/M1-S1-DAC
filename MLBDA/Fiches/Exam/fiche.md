@@ -263,3 +263,134 @@ Il faut recreer un type simple qui contient une restriction
 ![](./xpath-siblings.png)
 
 # XQuery
+Classiquement : **for — let — where - order by - return**
+```xml
+<results>{
+  for $r in //restaurant
+  where $r/@etoile = 2
+  return (
+
+  )
+}</results>
+```
+Imbriquer les boucles
+```xml
+<result>{
+    for $b in //book, $t in $b/title, $a in $b/author
+    return
+        <result>
+            {$t}
+            {$a}
+        </result>
+}</result>
+```
+Equivalent à 
+```xml
+<results>{
+  for $b in //book
+  return (
+    for $a in $b/author
+      return (
+        <result>
+         {$b/title}
+         {$a}
+        </result>
+      )              
+  )
+}</results>
+```
+## For loop
+The For Clause
+To loop a specific number of times in a for clause, you may use the to keyword.
+
+This
+```
+for $x in (1 to 5)
+return <te­st>­{$x­}</­tes­t>
+```
+Returns
+```xml
+<te­st>­1</­tes­t>
+<te­st>­2</­tes­t>
+<te­st>­3</­tes­t>
+<te­st>­4</­tes­t>
+<te­st>­5</­tes­t>
+```
+
+To count the iteration use the at keyword
+
+This
+```xml
+for $x at $i in doc("bo­oks.xm­l")/­boo­kst­ore­/bo­ok/­title
+return <bo­ok>­{$i}. {data(­$x)­}</­boo­k>
+```
+Returns
+```xml
+<bo­ok>1. Everyday Italia­n</­boo­k>
+<bo­ok>2. Harry Potter­</b­ook>
+<bo­ok>3. XQuery Kick Start<­/bo­ok>
+<bo­ok>4. Learning XML</b­ook>
+```
+
+it is also allowed with more than one expression in the for clause. Use comma to separate each in expres­sion.
+
+This
+```xml
+for $x in (10,20), $y in (100,200)
+return <te­st>­x={$x} and y={$y}­</t­est>
+```
+Returns
+```xml
+<te­st>x=10 and y=100<­/te­st>
+<te­st>x=10 and y=200<­/te­st>
+<te­st>x=20 and y=100<­/te­st>
+<te­st>x=20 and y=200<­/te­st>
+```
+## Jointure
+```xml
+<books-with-prices>{
+  for $b in /bib/book,
+      $r in  /reviews/entry
+  where $b/title=$r/title
+  return <book-with-prices>
+      {$b/title}
+      <price-review>{$r/price/text()}</price-review>
+      <price-bib>{$b/price/text()}</price-bib>
+ </book-with-prices>
+}
+</books-with-prices>
+```
+
+## Order by 
+Classique
+```xml
+for $x in doc("bo­oks.xm­l")/­boo­kst­ore­/book
+order by $x/@ca­tegory, $x/title
+return $x/title
+```
+
+## Expression conditionnel
+```xml
+<books>{
+  for $x in //book
+  return
+    <book>
+      { $x/title } 
+      est {
+        if ($x/@year > 1999)
+        then "récent"
+        else "ancient"
+      }
+    </book>
+}
+</books>
+```
+Some et Exist DIAPO 32
+
+## Autre truc maybe utile
+Opérateurs séquences:
+- union: union
+- différence : except
+- intersection : intersect
+- Distinct-value() : concat les str de l'objet pour faire un id DIAPO 38
+Fonctions : count(), last(), first(), contains()...
