@@ -262,9 +262,66 @@ Savoir faire un graph temporel :
     \end{itemize}
 \end{defn}
 
-Logique réifié de Allen = juste de la logique comme d'hab avec des intervales de Allen. On peut faire des résolutions dedans c'est plus pratique que la propagation pour prouver des contradictions.
+Logique réifié de Allen = juste de la logique comme d'hab avec des intervalles de Allen. On peut faire des résolutions dedans c'est plus pratique que la propagation pour prouver des contradictions.
 
 \section{Réseau de pétri}
+\begin{itemize}
+    \item Il faut rester un max concentré
+    \item On a des transitions $ \Box  $ et des états $ \bigcirc  $. Les états contiennent des jetons. Et pour déclancher une transition on regarde toute les flèches qui pointe vers lui et on somme le nombre de jeton nécéssaire
+    \item Une transition par pas de temps 
+\end{itemize}
+
+\subsection{Matrice d'incidence}
+On fait toujours transition d'un rond vers un carré : donc $ Pre $ c'est de $ \bigcirc \to \Box  $ et $ Post $ c'est de $ \Box \to \bigcirc  $ \\
+\textbf{toujours les transitions en colonne} \\
+\begin{defn}[Transition franchissable]
+    Une transition $ t_0 $  est franchissable si 
+    \[
+        \forall p M(p) \geq Pre(p, t_0)
+    .\]
+    La colonne lié à la transition doit être supérieur ou égale au vecteur $ M^T $ 
+\end{defn}
+
+\begin{defn}[Nouvel état $ M $ ]
+    Soit $ t_0 $ et $ M_0 $ respectivement une transition franchissable et une répartition de jeton initiale. Appliquer $ t_0 $ 
+    \[
+        \forall p M_1(p) = M(p) + Post(p, t_0) - Pre(p,t_0)
+    .\]
+    On peut calculer $ Post - Pre $ directement pour aller plus vite. Puis on somme la colonne associté à $ t_0 $ 
+\end{defn}
+
+\begin{thm}[Factorisation d'une série de transition]
+    Soit $ L = (t_0, t_1, t_0, \dots) $ une liste de transitions \textbf{toutes franchissable} 
+    \begin{enumerate}
+        \item Compter le nombre d'apparition de chaque transition : $ T = (nbt_0, nbt_1, \dots) $ 
+        \item alors la répartition des jetons finale se définis comme 
+        \[
+            M_{final} = M_0 + (Post - Pre)*T
+        .\]
+    \end{enumerate}
+\end{thm}
+
+\begin{defn}[Graph de marquage]
+    Comme l'arbre des transition mais avec les boucles indiquées. Utile pour voir les propriétés du réseau de pétrie pour un $ M_0 $.
+\end{defn}
+
+\begin{defn}[Propriété des réseaux de Pétrie]
+    Liste des propriétés des réseaux de Pétrie, à savoir par coeur
+    \begin{itemize}
+        \item \textbf{Borné} $ \forall M_i, \forall t_j, M_i \leq k $ Il y a convergence du nombre de jeton max pour tout $ M $ du graph de marquage
+        \item \textbf{Vivant} : toute les transitions du réseau sont vivante.
+        \item \textbf{Transition vivante} $ \forall (M_i, M_j) \text{ accessible }, \exists \sigma tq M_i \to ^\sigma M_j, T_j \in \sigma  $ Une transition $ T_j $  est vivante pour un marquage initial $ M_0 $ , si pour tout marquage accessible, il existe une séquence de franchissement qui contienne $ T_k $ à partir de ce marquage accessible. Il existe toujours un chemin pour revenir à la transition, un peu comme avec un état récurent de Markov.
+        \item \textbf{Quasi Vivant} toute les transition du réseau sont quasi-vivante
+        \item \textbf{Transition quasi vivante} $ \forall t, \exists M $ accessible depuis $ M_0 $ tel que $ t $ franchissable. Toute les transition apparaisse au moins une fois dans le graph
+        \item \textbf{Sans blocage} $ \forall M $ accessible, $ \exists t $ franchissable. ie. pas d'état puis
+        \item \textbf{Inversible} $ \forall M $ accessible, $ M_0 $ accessible depuis $ M $. On peut toujours retourner au point de départ
+    \end{itemize}
+\end{defn}
+
+
+
+
+
 
 
 
