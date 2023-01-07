@@ -3,7 +3,9 @@ Arbre DOM :
     - Restaurant : IDREF:@nom, @etoile, @ville
         - Fermeture : txt
         - menu : @nom, @prix
-    - Ville : ID: @nom, @departement
+        - menu : @nom, @prix
+        - menu : @nom, @prix
+    - Ville : ID:@nom, @departement
         - plusBeauMonument : @nom, @tarif 
 
 # Exercice 1 : 
@@ -20,9 +22,10 @@ Arbre DOM :
 10) 
     a) `//restaurant[count(menu/@nom = @ville) > 0 and position(/menu) = 2]`
     b) `//menu[position() = 5]`
-12)  `//restaurant[@ville = //ville[3]/@nom]/@etoile`
+11)  `//restaurant[@ville = //ville[3]/@nom]/@etoile`
+12)  
     a) `//restaurant/@menu[@prix < 150][2]`
-    b) `//restaurant/@meun[2][@prix < 150]`
+    b) `//restaurant/@menu[2][@prix < 150]`
 13) Les restaurants ouvert Lundi : 
 14) `//ville[@nom = //restaurant/@ville[not(etoile = 3)]]` ?
 15) 
@@ -44,13 +47,13 @@ Arbre DOM :
 9) -> Use `contain` : `//restaurant[contains(menu/@nom, @ville)]` mais si il y a plusieurs menu il est pas sur du comportement de contain donc pour être sur on fait `//restaurant[menu[contain(@nom, ../@ville)]]`
 10) 
     a) Missuse of `position` : `//restaurant/menu[2]`
-    b) Pas de `//` ça fait qu'on fait le 5 ème menu par son parent `Restaurant` il ne faut pas utiliser le raccourcis `\\`, c'est quand on traduit le `//menu`=`/restaurant/menu`: `/descendant::menu[5]`
+    b) Pas de `//` ça fait qu'on fait le 5 ème menu par son parent `Restaurant` il ne faut pas utiliser le raccourcis `//`, c'est quand on traduit le `//menu`=`/restaurant/menu`: `/descendant::menu[5]`
 11)  C'est bon mais attention quand y'a un ordre, il vaut mieux ne pas utiliser `//`, ici ça marche comme on part de la racine
 12)
     a) Attention assez subtile, je prends le deuxième menu parmis ceux à moins de 150€  
     b) Ok
 13)  `//restaurant[not(contain(fermeture, "lundi"))]`
-14)  `//vile[not(@nom=//restaurant[@etoile=3])]/@ville`
+14)  `//ville[not(@nom=//restaurant[@etoile=3])]/@ville`
 15)  
     a) OK + autre solution : `//ville[not(PlusBeauMonument)]`
     b) OK + autre solution `//restaurant[@ville = //ville[not(PlusBeauMonument)]`

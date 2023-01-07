@@ -27,8 +27,6 @@
             <xs:selector xpath="client"/>
             <xs:field xpath="@clientId"/>
           </xs:key>
-        </xs:simpleType>
-        
         </xs:element>
 
         <xs:element name='commandes'>
@@ -75,7 +73,6 @@
     <xs:restriction base="xs:integer">
       <xs:minInclusive value="10"></xs:minInclusive>
     </xs:restriction>
-
   </xs:simpleType>
   
   
