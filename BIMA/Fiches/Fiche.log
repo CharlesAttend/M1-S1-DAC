@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.10.4)  4 JAN 2023 20:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.10.2)  8 JAN 2023 11:02
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -468,29 +468,29 @@ LaTeX Font Info:    Font shape `T1/opensans-TLF/m/it' will be
 LaTeX Font Info:    Font shape `T1/opensans-TLF/b/it' will be
 (Font)              scaled to size 9.49997pt on input line 254.
  [4] [5] [6] [7]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 403.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 405.
  [8]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 403.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 405.
  (/home/charles/M1-S1-DAC/BIMA/Fiches/Fiche.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 403.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 403.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 405.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 405.
 Package rerunfilecheck Info: File `Fiche.out' has not changed.
-(rerunfilecheck)             Checksum: 0CE05EEDFF4992C8B3CEE2DF22E99B68;1789.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 403.
+(rerunfilecheck)             Checksum: C93241852D0D245A5133CD94D09DE375;1850.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 405.
  ) 
 Here is how much of TeX's memory you used:
- 9368 strings out of 483154
- 139052 string characters out of 5965023
+ 9370 strings out of 483154
+ 139082 string characters out of 5965023
  420485 words of memory out of 5000000
- 24159 multiletter control sequences out of 15000+600000
+ 24160 multiletter control sequences out of 15000+600000
  546527 words of font info for 69 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  34i,14n,40p,709b,591s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/opensans/a_jg4h6q.enc}</usr/share/texlive/texmf-dist/fonts/type1/ascender/opensans/OpenSans-Bold.pfb></usr/share/texlive/texmf-dist/fonts/type1/ascender/opensans/OpenSans-BoldItalic.pfb></usr/share/texlive/texmf-dist/fonts/type1/ascender/opensans/OpenSans-Italic.pfb></usr/share/texlive/texmf-dist/fonts/type1/ascender/opensans/OpenSans-Regular.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
-Output written on /home/charles/M1-S1-DAC/BIMA/Fiches/Fiche.pdf (8 pages, 179047 bytes).
+Output written on /home/charles/M1-S1-DAC/BIMA/Fiches/Fiche.pdf (8 pages, 179371 bytes).
 PDF statistics:
- 259 PDF objects out of 1000 (max. 8388607)
- 232 compressed objects within 3 object streams
- 39 named destinations out of 1000 (max. 500000)
- 233 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 264 PDF objects out of 1000 (max. 8388607)
+ 237 compressed objects within 3 object streams
+ 40 named destinations out of 1000 (max. 500000)
+ 241 words of extra memory for PDF output out of 10000 (max. 10000000)
 
