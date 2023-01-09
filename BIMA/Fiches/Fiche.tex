@@ -93,9 +93,17 @@ Généralité :
     \item Dynamique d'une image : $ L = (k_{max} - k_{min}) + 1 $ 
     \item Changer la dynamique $ [k_{min};k_{max}] \to [I_1, I_2] $  : $ f(k) = \frac{k - k_{min}}{k_{max} - k_{min}} * (I_2 - I_1) + I_1 $ 
     \item Inverser une image : $ L - p_i $ 
-    \item Histogramme : compter les pixels de chaque couleurs
     \item Flat hist : $ k' = Int(\frac{k_{max} - k_{min}}{N*M}H_c(k)) $ 
     \item Gray value profile : line plot de la ligne de l'image
+    \item Histogramme : compter les pixels de chaque couleurs
+    \item Histogramme Normalisé : $ \frac{H(k)}{N*M} $ 
+    \item Histogramme cumulé : $ H_c(k) = \sum_{i \leq k}^{}H(i) $ 
+    \item Histogramme cumulé normalisé : $ H_{nc}(k) = \sum_{i \leq k}^{}H_n(i) $ c'est une presque une fonction de répartion
+    \item Histogramme + passage au log : low value increase, high value decrease $\rightarrow$ meilleur contraste des parties sombre
+    \item Histogramme + passage à l'exp : inverse : contraste ++ des parties clair
+    \item Histogramme + translation : $ k' = k + t $ changement de luminosité 
+    \item Histogramme + affine : $ k' = ak + b $ changement de luminosité et de contraste 
+    \item Normaliser une image = étirer l'histogramme dans $ [0, L-1] = [0, k_{max} - k{min}] $ 
 \end{itemize}
 
 \section{Digitalisation and subsampling}
