@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>XML</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+/* From extension ms-toolsai.jupyter */
+/* These classnames are inherited from bootstrap, but are present in most notebook renderers */
+
+.alert {
+    width: auto;
+    padding: 1em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+.alert > *:last-child {
+    margin-bottom: 0;
+}
+#preview > .alert:last-child {
+    /* Prevent this being set to zero by the default notebook stylesheet */
+    padding-bottom: 1em;
+}
+
+.alert-success {
+    /* Note there is no suitable color available, so we just copy "info" */
+    background-color: var(--theme-info-background);
+    color: var(--theme-info-foreground);
+}
+.alert-info {
+    background-color: var(--theme-info-background);
+    color: var(--theme-info-foreground);
+}
+.alert-warning {
+    background-color: var(--theme-warning-background);
+    color: var(--theme-warning-foreground);
+}
+.alert-danger {
+    background-color: var(--theme-error-background);
+    color: var(--theme-error-foreground);
+}
+
+</style>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="xml">XML</h1>
+<h2 id="dtd">DTD</h2>
+<ul>
+<li>Faire un arbre et checker que tout vas bien. <strong>Ordre important</strong></li>
+<li>La balise après le DOCTYPE doit indiquer la balise à la racine du document.</li>
+<li><s>(#PCDATA, balise1, balise2)</s> FAUX =&gt; (#PCDATA | balise1 | balise2) OK</li>
+<li><code>+</code> = [1-n]</li>
+<li><code>*</code> = [0-n]</li>
+<li><code>?</code> = [0-1]</li>
+<li>On peut utiliser <code>EMPTY</code> pour un élément vide, mais en général avec des attributs</li>
+</ul>
+<pre><code>&lt;!ELEMENT menu EMPTY&gt;
+&lt;!ATTLIST menu 
+    nom CDATA #REQUIRED
+    prix CDATA #REQUIRED
+&gt;
+</code></pre>
+<p>Ca ressemble à ça une DTD pour un elm restaurant</p>
+<pre><code>&lt;!ELEMENT base (restaurant|ville)*&gt;
+&lt;!ELEMENT restaurant (fermeture?, menu, menu+)&gt;
+&lt;!ATTLIST restaurant 
+    nom CDATA #REQUIRED
+    etoile (0|1|2|3) #IMPLIED
+    ville IDREF #REQUIRED
+&gt;
+</code></pre>
+<h3 id="attribut">Attribut</h3>
+<pre><code class="language-xml"><span class="hljs-meta">&lt;!ATTLIST <span class="hljs-keyword">Balise</span> 
+    <span class="hljs-keyword">nom</span> <span class="hljs-keyword">type</span> <span class="hljs-keyword">mode</span>
+    <span class="hljs-keyword">nom</span> <span class="hljs-keyword">type</span> <span class="hljs-keyword">mode</span>
+&gt;</span>
+</code></pre>
+<p>Liste des types :</p>
+<ul>
+<li><strong>CDATA</strong> : la valeur de l 'attribut est une chaîne de caractères</li>
+<li><strong>ID</strong> : identificateur d 'élément, <strong>IDREF(S)</strong> : renvoi vers un (des) ID. Ici c'est ez, <strong>tous les ID sont uniques</strong> donc on idref juste vers un ID existant.</li>
+<li>NMTOKEN(S) : un ou des noms symboliques (sans blanc)</li>
+<li><code>(value1 | value2 | value3)</code> liste</li>
+<li>ENTITY(IES) : entités externes non XML
+Liste des mode :</li>
+<li>Une valeurs par default</li>
+<li><code>#FIXED</code> une constante</li>
+<li><code>#REQUIRED</code> Attribut requis</li>
+<li><code>#IMPLIED</code> Attribut facultatif</li>
+<li></li>
+</ul>
+<h1 id="xschema">XSchema</h1>
+<h2 id="généralité">Généralité</h2>
+<ul>
+<li>Ordre des séquences importants</li>
+<li>Cardinalité précise</li>
+<li>On a des type simple et des type complexes, qu'on imbrique dans des balise <code>&lt;xs:element&gt;</code></li>
+</ul>
+<h3 id="balise-element">Balise element</h3>
+<pre><code class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">xs:element</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;restaurant&quot;</span> <span class="hljs-attr">minOccurs</span>=<span class="hljs-string">&quot;0&quot;</span> <span class="hljs-attr">maxOccurs</span>=<span class="hljs-string">&quot;unbounded&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">xs:complexeType</span>&gt;</span>..... <span class="hljs-tag">&lt;/<span class="hljs-name">xs:complexType</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">xs:element</span>&gt;</span>
+</code></pre>
+<h3 id="type-simple">Type simple</h3>
+<ul>
+<li><code>xs:string</code></li>
+<li><code>xs:decimal</code></li>
+<li><code>xs:integer</code></li>
+<li><code>xs:boolean</code></li>
+<li><code>xs:date</code></li>
+<li><code>xs:time</code></li>
+</ul>
+<pre><code class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">xs:element</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;start_date&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;xs:date&quot;</span>/&gt;</span>
+</code></pre>
+<h3 id="type-complexe">Type complexe</h3>
+<ul>
+<li>empty elements</li>
+<li>elements that contain only other elements</li>
+<li>elements that contain only text</li>
+<li>elements that contain both other elements and text</li>
+</ul>
+<p>A l'intérieur d'un <code>&lt;xs:complexType&gt;</code> on a toujours soit :</p>
+<ul>
+<li>Un <code>&lt;xs:choice name=&quot;&quot; type=&quot;&quot;&gt;</code></li>
+<li>Un <code>&lt;xs:sequence name=&quot;&quot; type=&quot;&quot;&gt;</code></li>
+<li>=&gt; Qui contienne des <code>&lt;xs:element&gt;</code>.</li>
+</ul>
+<p>Et ensuite des <code>&lt;xs:attribute name=&quot;&quot; type=&quot;&quot;&gt;</code></p>
+<h4 id="exemple">Exemple</h4>
+<p>Complex Example + <strong>héritage</strong></p>
+<pre><code class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">xs:element</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;employee&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;personinfo&quot;</span>/&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">xs:element</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;student&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;personinfo&quot;</span>/&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">xs:complexType</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;personinfo&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">xs:sequence</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">xs:element</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;firstname&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;xs:string&quot;</span>/&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">xs:element</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;lastname&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;xs:string&quot;</span>/&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">xs:sequence</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">xs:complexType</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">xs:element</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;professor&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;fullpersoninfo&quot;</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">xs:complexType</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;fullpersoninfo&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">xs:complexContent</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">xs:extension</span> <span class="hljs-attr">base</span>=<span class="hljs-string">&quot;personinfo&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">xs:sequence</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">xs:element</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;address&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;xs:string&quot;</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">xs:element</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;city&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;xs:string&quot;</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">xs:element</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;country&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;xs:string&quot;</span>/&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">xs:sequence</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">xs:extension</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">xs:complexContent</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">xs:complexType</span>&gt;</span> 
+</code></pre>
+<p>Empty Element</p>
+<pre><code class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">xs:complexType</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;prodtype&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">xs:attribute</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;prodid&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;xs:positiveInteger&quot;</span>/&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">xs:complexType</span>&gt;</span>
+</code></pre>
+<p>Text only + attribute</p>
+<pre><code class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">xs:complexType</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;shoetype&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">xs:simpleContent</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">xs:extension</span> <span class="hljs-attr">base</span>=<span class="hljs-string">&quot;xs:integer&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">xs:attribute</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;country&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;xs:string&quot;</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">xs:extension</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">xs:simpleContent</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">xs:complexType</span>&gt;</span>
+</code></pre>
+<p>Integer only + Attirbute + attribute restriction</p>
+<pre><code class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">xs:complexType</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">xs:simpleContent</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">xs:extension</span> <span class="hljs-attr">base</span>=<span class="hljs-string">&quot;xs:integer&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">xs:attribute</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;unit&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">xs:simpleType</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">xs:restriction</span> <span class="hljs-attr">base</span>=<span class="hljs-string">&quot;xs:string&quot;</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">xs:length</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;3&quot;</span> /&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-name">xs:restriction</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">xs:simpleType</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">xs:attribute</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">xs:extension</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">xs:simpleContent</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">xs:complexType</span>&gt;</span>
+</code></pre>
+<h2 id="restriction">Restriction</h2>
+<h3 id="sur-le-nombre-délément-max">Sur le nombre d'élément max</h3>
+<p>On utilise <code>minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;</code> dans les <code>xs:element</code>, <code>xs:choice</code>, <code>xs:sequence</code>.</p>
+<h3 id="unicité">Unicité</h3>
+<p>On créer une clé pour garantir l'unicité d'un élement.</p>
+<pre><code class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">xs:element</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&#x27;clients&#x27;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">xs:complexType</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">xs:sequence</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">xs:element</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&#x27;client&#x27;</span> <span class="hljs-attr">minOccurs</span>=<span class="hljs-string">&#x27;0&#x27;</span> <span class="hljs-attr">maxOccurs</span>=<span class="hljs-string">&#x27;unbounded&#x27;</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">xs:complexType</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&#x27;ClType&#x27;</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">xs:sequence</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">xs:element</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&#x27;nom&#x27;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&#x27;xs:string&#x27;</span> /&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">xs:element</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&#x27;prenom&#x27;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&#x27;xs:string&#x27;</span> /&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">xs:element</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&#x27;dateNaissance&#x27;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&#x27;xs:string&#x27;</span> /&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">xs:sequence</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">xs:attribute</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&#x27;clientID&#x27;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&#x27;xs:integer&#x27;</span> /&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">xs:complexType</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">xs:element</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">xs:sequence</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">xs:complexType</span>&gt;</span>
+    
+    <span class="hljs-comment">&lt;!-- /!\ Placement important /!\ --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">xs:key</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;clientUnique&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">xs:selector</span> <span class="hljs-attr">xpath</span>=<span class="hljs-string">&quot;client&quot;</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">xs:field</span> <span class="hljs-attr">xpath</span>=<span class="hljs-string">&quot;@clientId&quot;</span>/&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">xs:key</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">xs:element</span>&gt;</span>
+</code></pre>
+<h3 id="sur-le-contenu">Sur le contenu</h3>
+<p>Il faut recreer un type simple qui contient une restriction</p>
+<pre><code class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">xs:simpleType</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;costInt&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">xs:restriction</span> <span class="hljs-attr">base</span>=<span class="hljs-string">&quot;xs:integer&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">xs:minInclusive</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;10&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">xs:minInclusive</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">xs:restriction</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">xs:simpleType</span>&gt;</span>
+</code></pre>
+<ul>
+<li><code>xs:minInclusive </code></li>
+<li><code>xs:maxInclusive</code></li>
+<li><code>xs:minExclusive</code></li>
+<li><code>xs:maxExclusive</code></li>
+<li><code>xs:enumeration</code></li>
+<li><code>xs:pattern</code></li>
+<li><code>xs:whiteSpace</code></li>
+<li><code>xs:length</code></li>
+<li><code>xs:minLength</code></li>
+<li><code>xs:maxLength</code></li>
+<li><code>xs:totalDigits</code></li>
+<li><code>xs:fractionDigits</code></li>
+</ul>
+<h3 id="min-max">Min-max</h3>
+<pre><code class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">xs:element</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;age&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">xs:simpleType</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">xs:restriction</span> <span class="hljs-attr">base</span>=<span class="hljs-string">&quot;xs:integer&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">xs:minInclusive</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;0&quot;</span>/&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">xs:maxInclusive</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;120&quot;</span>/&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">xs:restriction</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">xs:simpleType</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">xs:element</span>&gt;</span> 
+</code></pre>
+<h3 id="enumeration">Enumeration</h3>
+<pre><code class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">xs:element</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;car&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;carType&quot;</span>/&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">xs:simpleType</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;carType&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">xs:restriction</span> <span class="hljs-attr">base</span>=<span class="hljs-string">&quot;xs:string&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">xs:enumeration</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;Audi&quot;</span>/&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">xs:enumeration</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;Golf&quot;</span>/&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">xs:enumeration</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;BMW&quot;</span>/&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">xs:restriction</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">xs:simpleType</span>&gt;</span>
+</code></pre>
+<h2 id="ref">Ref</h2>
+<ul>
+<li>Les <code>key</code> et <code>keyref</code> la racine du parent commun. <code>@</code> lorsqu'on pointe sur un attribut</li>
+</ul>
+<pre><code class="language-xml"><span class="hljs-comment">&lt;!-- Ville : Key --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">xs:key</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;idVille&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">xs:selector</span> <span class="hljs-attr">xpath</span>=<span class="hljs-string">&quot;ville&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">xs:selector</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">xs:field</span> <span class="hljs-attr">xpath</span>=<span class="hljs-string">&quot;@nom&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">xs:field</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">xs:key</span>&gt;</span>
+
+<span class="hljs-comment">&lt;!-- Restaurant Ref ville --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">xs:keyref</span> <span class="hljs-attr">refer</span>=<span class="hljs-string">&quot;idVille&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;refVille&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">xs:selector</span> <span class="hljs-attr">xpath</span>=<span class="hljs-string">&quot;restaurant&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">xs:selector</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">xs:field</span> <span class="hljs-attr">xpath</span>=<span class="hljs-string">&quot;@ville&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">xs:field</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">xs:keyref</span>&gt;</span>
+</code></pre>
+<h1 id="xpath">XPath</h1>
+<ul>
+<li><code>//</code> au début pour chercher parmis tous l'arbre DOM</li>
+<li><code>/</code> pour faire un chemin dans l'arbre DOM</li>
+<li><code>..</code> pour accédé au parent, attention un attribue est un fils dans l'arbre DOM</li>
+<li><code>element[condition and condition or nor(condition)]</code></li>
+<li><code>A!=N</code> est vrai si la valeur textuelle d'un des noeuds est différente de la valeur textuelle de A.</li>
+<li>fonction <strong>contains()</strong> : <code>//restaurant[contains(menu/@nom, @ville)]</code> mais si il y a plusieurs menu il est pas sûr du comportement de contain donc pour être sur on fait <code>//restaurant[menu[contain(@nom, ../@ville)]]</code></li>
+<li>fonction <strong>count(menu)</strong></li>
+<li>Les foreign key : <code>//ville[@nom = //restaurant/@ville[count(menu) &gt;= 4]]</code> ou <code>//restaurant[@ville = //ville[count(plusBeauMonument) = 0]/@nom</code></li>
+<li><strong>Position</strong>,
+<ul>
+<li>Plus safe d'utiliser à partir de <code>descendant::menu[5]</code> plutôt que <code>//</code>=<code>descendant-or-self::</code> :
+<ul>
+<li><code>descendant::menu[5]</code> 5ème menu du document : <strong>pas de contexte self</strong></li>
+<li><code>descendant-or-self::menu[5]</code> Le 5ème menu de chaque restaurant : <strong>avec contexte self</strong></li>
+</ul>
+</li>
+<li><code>last()</code> pour le dernier element mais attention c'est particulier aussi</li>
+<li><code>preceding-sibling</code>, ect ... voir image pour les voisins</li>
+</ul>
+</li>
+<li><code>//ville[@nom = //restaurant/@ville[count(./menu) &gt;= 4]]</code></li>
+</ul>
+<p><img src="file:////home/charles/M1-S1-DAC/MLBDA/Fiches/Exam/xpath-siblings.png" alt=""></p>
+<h1 id="xquery">XQuery</h1>
+<p>Classiquement : <strong>for — let — where - order by - return</strong></p>
+<pre><code class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">results</span>&gt;</span>{
+  for $r in //restaurant
+  where $r/@etoile = 2
+  return (
+
+  )
+}<span class="hljs-tag">&lt;/<span class="hljs-name">results</span>&gt;</span>
+</code></pre>
+<p>Imbriquer les boucles</p>
+<pre><code class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">result</span>&gt;</span>{
+    for $b in //book, $t in $b/title, $a in $b/author
+    return
+        <span class="hljs-tag">&lt;<span class="hljs-name">result</span>&gt;</span>
+            {$t}
+            {$a}
+        <span class="hljs-tag">&lt;/<span class="hljs-name">result</span>&gt;</span>
+}<span class="hljs-tag">&lt;/<span class="hljs-name">result</span>&gt;</span>
+</code></pre>
+<p>Equivalent à</p>
+<pre><code class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">results</span>&gt;</span>{
+  for $b in //book
+  return (
+    for $a in $b/author
+      return (
+        <span class="hljs-tag">&lt;<span class="hljs-name">result</span>&gt;</span>
+         {$b/title}
+         {$a}
+        <span class="hljs-tag">&lt;/<span class="hljs-name">result</span>&gt;</span>
+      )              
+  )
+}<span class="hljs-tag">&lt;/<span class="hljs-name">results</span>&gt;</span>
+</code></pre>
+<h2 id="for-loop">For loop</h2>
+<p>The For Clause
+To loop a specific number of times in a for clause, you may use the to keyword.</p>
+<p>This</p>
+<pre><code>for $x in (1 to 5)
+return &lt;te­st&gt;­{$x­}&lt;/­tes­t&gt;
+</code></pre>
+<p>Returns</p>
+<pre><code class="language-xml">&lt;te­st&gt;­1&lt;/­tes­t&gt;
+&lt;te­st&gt;­2&lt;/­tes­t&gt;
+&lt;te­st&gt;­3&lt;/­tes­t&gt;
+&lt;te­st&gt;­4&lt;/­tes­t&gt;
+&lt;te­st&gt;­5&lt;/­tes­t&gt;
+</code></pre>
+<p>To count the iteration use the at keyword</p>
+<p>This</p>
+<pre><code class="language-xml">for $x at $i in doc(&quot;bo­oks.xm­l&quot;)/­boo­kst­ore­/bo­ok/­title
+return &lt;bo­ok&gt;­{$i}. {data(­$x)­}&lt;/­boo­k&gt;
+</code></pre>
+<p>Returns</p>
+<pre><code class="language-xml">&lt;bo­ok&gt;1. Everyday Italia­n&lt;/­boo­k&gt;
+&lt;bo­ok&gt;2. Harry Potter­&lt;/b­ook&gt;
+&lt;bo­ok&gt;3. XQuery Kick Start&lt;­/bo­ok&gt;
+&lt;bo­ok&gt;4. Learning XML&lt;/b­ook&gt;
+</code></pre>
+<p>it is also allowed with more than one expression in the for clause. Use comma to separate each in expres­sion.</p>
+<p>This</p>
+<pre><code class="language-xml">for $x in (10,20), $y in (100,200)
+return &lt;te­st&gt;­x={$x} and y={$y}­&lt;/t­est&gt;
+</code></pre>
+<p>Returns</p>
+<pre><code class="language-xml">&lt;te­st&gt;x=10 and y=100&lt;­/te­st&gt;
+&lt;te­st&gt;x=10 and y=200&lt;­/te­st&gt;
+&lt;te­st&gt;x=20 and y=100&lt;­/te­st&gt;
+&lt;te­st&gt;x=20 and y=200&lt;­/te­st&gt;
+</code></pre>
+<h2 id="jointure">Jointure</h2>
+<pre><code class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">books-with-prices</span>&gt;</span>{
+  for $b in /bib/book,
+      $r in  /reviews/entry
+  where $b/title=$r/title
+  return <span class="hljs-tag">&lt;<span class="hljs-name">book-with-prices</span>&gt;</span>
+      {$b/title}
+      <span class="hljs-tag">&lt;<span class="hljs-name">price-review</span>&gt;</span>{$r/price/text()}<span class="hljs-tag">&lt;/<span class="hljs-name">price-review</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">price-bib</span>&gt;</span>{$b/price/text()}<span class="hljs-tag">&lt;/<span class="hljs-name">price-bib</span>&gt;</span>
+ <span class="hljs-tag">&lt;/<span class="hljs-name">book-with-prices</span>&gt;</span>
+}
+<span class="hljs-tag">&lt;/<span class="hljs-name">books-with-prices</span>&gt;</span>
+</code></pre>
+<h2 id="order-by">Order by</h2>
+<p>Classique</p>
+<pre><code class="language-xml">for $x in doc(&quot;bo­oks.xm­l&quot;)/­boo­kst­ore­/book
+order by $x/@ca­tegory, $x/title
+return $x/title
+</code></pre>
+<h2 id="expression-conditionnel">Expression conditionnel</h2>
+<pre><code class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">books</span>&gt;</span>{
+  for $x in //book
+  return
+    <span class="hljs-tag">&lt;<span class="hljs-name">book</span>&gt;</span>
+      { $x/title } 
+      est {
+        if ($x/@year &gt; 1999)
+        then &quot;récent&quot;
+        else &quot;ancient&quot;
+      }
+    <span class="hljs-tag">&lt;/<span class="hljs-name">book</span>&gt;</span>
+}
+<span class="hljs-tag">&lt;/<span class="hljs-name">books</span>&gt;</span>
+</code></pre>
+<p>Some et Exist DIAPO 32</p>
+<h2 id="autre-truc-maybe-utile">Autre truc maybe utile</h2>
+<p>Opérateurs séquences:</p>
+<ul>
+<li>union: union</li>
+<li>différence : except</li>
+<li>intersection : intersect</li>
+<li>Distinct-value() : concat les str de l'objet pour faire un id DIAPO 38
+Fonctions : count(), last(), first(), contains()...</li>
+</ul>
+<h1 id="rdf">RDF</h1>
+<ul>
+<li>Ensemble de triplet type : Sujet x Prédicat x Object.</li>
+<li>Peux être sous la forme d'un graph</li>
+<li>Syntaxe Turtle = factoriser les triplet</li>
+</ul>
+<h2 id="factorisation">Factorisation</h2>
+<p>On factorise comme ça :</p>
+<ul>
+<li>s p1 o1 + s p2 o2 -&gt; s p1 o1 ; p2 o2</li>
+<li>s p o1 + s p o2 -&gt; s p o1, o2</li>
+</ul>
+<h2 id="développement">Développement</h2>
+<pre><code>@base &lt;http://example.org/&gt; .
+@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
+@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
+@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .
+@prefix rel: &lt;http://www.perceive.net/schemas/relationship/&gt; .
+&lt;#green-goblin&gt;
+rel:enemyOf &lt;#spiderman&gt; ;
+a foaf:Person ; # in the context of the Marvel universe
+foaf:name &quot;Green Goblin&quot; .
+&lt;#spiderman&gt;
+rel:enemyOf &lt;#green-goblin&gt; ;
+a foaf:Person ;
+foaf:name &quot;Spiderman&quot;, &quot;Человек-паук&quot;@ru .
+</code></pre>
+<p>Donne :</p>
+<table>
+<thead>
+<tr>
+<th>Sujet</th>
+<th>Prédicat/propriété</th>
+<th>Objet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&lt;#green-goblin&gt;</td>
+<td>rel:enemyOf</td>
+<td>&lt;#spiderman&gt;</td>
+</tr>
+<tr>
+<td>&lt;#green-goblin&gt;</td>
+<td>a</td>
+<td>foof:Person</td>
+</tr>
+<tr>
+<td>&lt;#green-goblin&gt;</td>
+<td>foaf:name</td>
+<td>&quot;Green goblin&quot;</td>
+</tr>
+<tr>
+<td>&lt;#spiderman&gt;</td>
+<td>rel:enemyOf</td>
+<td>&lt;#green-goblin&gt;</td>
+</tr>
+<tr>
+<td>&lt;#spiderman&gt;</td>
+<td>a</td>
+<td>foof:Person</td>
+</tr>
+<tr>
+<td>&lt;#spiderman&gt;</td>
+<td>foaf:name</td>
+<td>&quot;Spiderman&quot;</td>
+</tr>
+<tr>
+<td>&lt;#spiderman&gt;</td>
+<td>foaf:name</td>
+<td>&quot;dsgosqg&quot;@run</td>
+</tr>
+</tbody>
+</table>
+<h1 id="sparql">SPARQL</h1>
+<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> $variable
+<span class="hljs-keyword">WHERE</span> {MOTIF}
+<span class="hljs-keyword">ORDER</span> <span class="hljs-operator">|</span> LIMIT <span class="hljs-operator">|</span> <span class="hljs-keyword">OFFSET</span>
+</code></pre>
+<p>Tout tourne autour des motifs</p>
+<ul>
+<li><code>.</code> le point est un &quot;et&quot;</li>
+<li><code>UNION</code> l'union des deux cotés, c'est comme un &quot;OU&quot;, opérateur prioritaire sur le <code>.</code></li>
+<li><code>OPTIONAL ...</code> &quot;et éventuellement un ...</li>
+<li><code>FILTER (! bound(?l))</code> retire les lignes avec des cases vides</li>
+<li><code>FILTER (Condition)</code> pour mettre des conditions sur les variables</li>
+</ul>
+<h2 id="exemple">Exemple</h2>
+<p>Les personnes qui ont étudié dans une université différente que cette de leur père ou leur mère</p>
+<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> 
+{
+    ?p :studiedAt ?u.
+    ?p :hasFather :f.
+    ?f :studiedAt :u1.
+    ?p :hasMother :m.
+    :m :studiedAt :u2.
+    <span class="hljs-keyword">FILTER</span>(?u <span class="hljs-operator">!=</span> ?u1 <span class="hljs-operator">&amp;&amp;</span> ?u <span class="hljs-operator">!=</span> ?u2)
+}
+</code></pre>
+<p>Les villes citées dans la DB</p>
+<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DISTINCT</span> $v
+{
+    {?x :livesIn ?v} <span class="hljs-keyword">UNION</span>
+    {?y :locatedAt ?v} <span class="hljs-keyword">UNION</span>
+    {?v a :city}
+}
+</code></pre>
+<p>Imprimer le TD en vrais de vrais</p>
+<h1 id="n1qljson">N1QL/JSON</h1>
+<ul>
+<li><code>ARRAY_LENGTH()</code> Taille d'une liste imbriqué</li>
+<li><strong>Pas de sous requête</strong></li>
+<li><strong>Penser au <code>INTERSECT</code>, <code>EXECPT</code> (DIFFERENCE en SQL)</strong></li>
+</ul>
+<h2 id="any--every">ANY &amp; EVERY</h2>
+<ul>
+<li><code>ANY (...c IN continent...) SATISFIES (...condition...) END</code></li>
+<li><code>EVERY ... SATISFIES ... END</code></li>
+<li>Condition dans les listes : donc s'utilise sur des listes uniquement !</li>
+<li>Pas de <code>ANY</code> ou <code>EVERY</code> à la racine d'un doc =&gt; penser aux jointures : intersect, except, ...</li>
+<li>Ces deux trucs en faite duplique chaque résultat comme avec un produit cartésiens pour ensuite filtrer ligne par ligne</li>
+</ul>
+<h3 id="exemple">Exemple</h3>
+<p>Les noms des pays qui se trouve <em>exactement</em> sur deux continents et où la couverture sur l'un des continents dépasse 50%</p>
+<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> name
+<span class="hljs-keyword">FROM</span> country
+<span class="hljs-keyword">WHERE</span> 
+    ARRAY_LENGTH(continents) <span class="hljs-operator">=</span> <span class="hljs-number">2</span> 
+    <span class="hljs-keyword">AND</span>
+    <span class="hljs-keyword">ANY</span> c <span class="hljs-keyword">IN</span> continent SATISFIES (continents.percentage <span class="hljs-operator">&gt;</span> <span class="hljs-number">50</span>) <span class="hljs-keyword">END</span>
+</code></pre>
+<p>Les noms des pays dont toutes les frontières sont supérieures à 100km</p>
+<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> name
+<span class="hljs-keyword">FROM</span> country
+<span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">EVERY</span> n <span class="hljs-keyword">IN</span> neighbors SATISFIES n.length <span class="hljs-operator">&gt;</span> <span class="hljs-number">100</span>
+</code></pre>
+<h2 id="unnest">UNNEST</h2>
+<ul>
+<li>Comme un <code>table()</code> de SQL3, quand on doit plonger dans un liste de sous-objet</li>
+<li>Assez space 🤔</li>
+</ul>
+<h3 id="exemple">Exemple</h3>
+<p>Les nom des continents sans doublons</p>
+<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DISTINCT</span> c.continent
+<span class="hljs-keyword">FROM</span> Country UNNEST continents <span class="hljs-keyword">AS</span> c
+</code></pre>
+<h2 id="compréhension-de-liste">Compréhension de liste</h2>
+<ul>
+<li>Pour recréer une liste rapidement en résultat</li>
+<li><code>ARRAY ... FOR ... IN ... END</code></li>
+</ul>
+<p>Les nom des pays se trouvant sur plus d'un continent avec la liste des noms de leurs continents et le nombre de leurs voisins</p>
+<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> name, <span class="hljs-keyword">ARRAY</span> c.continent <span class="hljs-keyword">FOR</span> c <span class="hljs-keyword">ON</span> continents <span class="hljs-keyword">END</span>, ARRAY_LENGTH(neighbots) <span class="hljs-keyword">AS</span> NB_VOISIN
+<span class="hljs-keyword">FROM</span> Country
+<span class="hljs-keyword">WHERE</span> ARRAY_LENGTH(continents) <span class="hljs-operator">&gt;</span> <span class="hljs-number">1</span>
+</code></pre>
+<h2 id="array-aggregate">Array Aggregate</h2>
+<ul>
+<li>S'utilise avec <code>GROUP BY</code></li>
+<li>Ca transforme en liste</li>
+</ul>
+<p>Exemple :
+Pour les organisation ayant plus de 4 pays, leurs noms, la liste des noms des pays membres ainsi que la somme des populations de ces pays</p>
+<table>
+<thead>
+<tr>
+<th>Org</th>
+<th>c.nom</th>
+<th>c.population</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UN</td>
+<td>Country1</td>
+<td>1142</td>
+</tr>
+<tr>
+<td></td>
+<td>Country2</td>
+<td>21432</td>
+</tr>
+<tr>
+<td></td>
+<td>...</td>
+<td>123123</td>
+</tr>
+</tbody>
+</table>
+<p>=&gt; Le ARRAY_AGG transforme la colonne c.nom en une liste.
+=&gt; Le COUNT compte le nombre de ligne par org
+=&gt; Le SUM somme sur c.population</p>
+<h2 id="jointure">Jointure</h2>
+<ul>
+<li>Il faut potentiellement toujours utiliser INNER JOIN et pas que JOIN tout seul pour pas qu'il confonde avec la syntaxe de JOIN ON KEY</li>
+<li>Syntaxe :</li>
+</ul>
+<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> name, capital, d.deserts
+<span class="hljs-keyword">FROM</span> Country c 
+  <span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> Deserts m <span class="hljs-keyword">ON</span> (c.name <span class="hljs-operator">=</span> d.country)
+</code></pre>
+
+        <script async src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+        
+    </body>
+    </html>

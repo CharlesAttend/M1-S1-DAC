@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Excercice 1</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+/* From extension ms-toolsai.jupyter */
+/* These classnames are inherited from bootstrap, but are present in most notebook renderers */
+
+.alert {
+    width: auto;
+    padding: 1em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+.alert > *:last-child {
+    margin-bottom: 0;
+}
+#preview > .alert:last-child {
+    /* Prevent this being set to zero by the default notebook stylesheet */
+    padding-bottom: 1em;
+}
+
+.alert-success {
+    /* Note there is no suitable color available, so we just copy "info" */
+    background-color: var(--theme-info-background);
+    color: var(--theme-info-foreground);
+}
+.alert-info {
+    background-color: var(--theme-info-background);
+    color: var(--theme-info-foreground);
+}
+.alert-warning {
+    background-color: var(--theme-warning-background);
+    color: var(--theme-warning-foreground);
+}
+.alert-danger {
+    background-color: var(--theme-error-background);
+    color: var(--theme-error-foreground);
+}
+
+</style>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="excercice-1">Excercice 1</h1>
+<table>
+<thead>
+<tr>
+<th>Sujet</th>
+<th>Prédicat/Propriété</th>
+<th>Objet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&lt;#green-goblin&gt;</td>
+<td>rel:enemyOf</td>
+<td>&lt;#spiderman&gt;</td>
+</tr>
+<tr>
+<td>&lt;#green-goblin&gt;</td>
+<td>a</td>
+<td>foof:Person</td>
+</tr>
+<tr>
+<td>&lt;#green-goblin&gt;</td>
+<td>foaf:name</td>
+<td>&quot;Green goblin&quot;</td>
+</tr>
+<tr>
+<td>&lt;#spiderman&gt;</td>
+<td>rel:enemyOf</td>
+<td>&lt;#green-goblin&gt;</td>
+</tr>
+<tr>
+<td>&lt;#spiderman&gt;</td>
+<td>a</td>
+<td>foof:Person</td>
+</tr>
+<tr>
+<td>&lt;#spiderman&gt;</td>
+<td>foaf:name</td>
+<td>&quot;Spiderman&quot;</td>
+</tr>
+<tr>
+<td>&lt;#spiderman&gt;</td>
+<td>foaf:name</td>
+<td>&quot;dsgosqg&quot;@run</td>
+</tr>
+</tbody>
+</table>
+<p>On factorise comme ça :</p>
+<ul>
+<li>s p1 o1 + s p2 o2 -&gt; s p1 o1 ; p2 o2</li>
+<li>s p o1 + s p o2 -&gt; s p o1, o2</li>
+</ul>
+<h1 id="exercice-2">Exercice 2</h1>
+<h2 id="question-1">Question 1</h2>
+<h3 id="a">a</h3>
+<p>Première partie de la requete : <code>?p email ?e</code></p>
+<table>
+<thead>
+<tr>
+<th>?p</th>
+<th>?e</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>p2</td>
+<td>rick@org</td>
+</tr>
+<tr>
+<td>p4</td>
+<td><a href="mailto:liz@aut.gov">liz@aut.gov</a></td>
+</tr>
+</tbody>
+</table>
+<p>Deuxième partie de la requete : <code>?p webpage ?w</code></p>
+<table>
+<thead>
+<tr>
+<th>?p</th>
+<th>?e</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>p3</td>
+<td><a href="http://lars.com">lars.com</a></td>
+</tr>
+<tr>
+<td>p4</td>
+<td>liz.pers</td>
+</tr>
+</tbody>
+</table>
+<p>Résultat finale : joiture (inner join)</p>
+<table>
+<thead>
+<tr>
+<th>?p</th>
+<th>?e</th>
+<th>?w</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>p4</td>
+<td><a href="mailto:liz@aut.gov">liz@aut.gov</a></td>
+<td>liz.pers</td>
+</tr>
+</tbody>
+</table>
+<h3 id="b">b</h3>
+<table>
+<thead>
+<tr>
+<th>?p</th>
+<th>?e</th>
+<th>?w</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>p2</td>
+<td>rick@org</td>
+<td>.</td>
+</tr>
+<tr>
+<td>p4</td>
+<td><a href="mailto:liz@aut.gov">liz@aut.gov</a></td>
+<td>.</td>
+</tr>
+<tr>
+<td>p3</td>
+<td>.</td>
+<td><a href="http://lars.com">lars.com</a></td>
+</tr>
+<tr>
+<td>p4</td>
+<td>.</td>
+<td>liz.pers</td>
+</tr>
+</tbody>
+</table>
+<h3 id="c">c</h3>
+<table>
+<thead>
+<tr>
+<th>?p</th>
+<th>?e</th>
+<th>?w</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>p2</td>
+<td><a href="mailto:rick@org.com">rick@org.com</a></td>
+<td>.</td>
+</tr>
+<tr>
+<td>p4</td>
+<td><a href="mailto:liz@aut.gov">liz@aut.gov</a></td>
+<td>liz.pers</td>
+</tr>
+</tbody>
+</table>
+<p>Personne ayant un email et éventuellement une webpage : Ici l'ordre dans la requête compte -&gt; Question 2</p>
+<h2 id="question-2">Question 2</h2>
+<p>Pour le <code>{M1  OPTIONAL M2} OPTIONAL M3</code> :</p>
+<ul>
+<li>OPTIONAL
+<ul>
+<li>M3</li>
+<li>OPTIONAL
+<ul>
+<li>M1</li>
+<li>M2</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Les personnes ayant un <strong>nom</strong> et éventuellement soit un mail soit une webpage</p>
+<table>
+<thead>
+<tr>
+<th>?p</th>
+<th>?n</th>
+<th>?e</th>
+<th>?w</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>p1</td>
+<td>john</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>p2</td>
+<td>rick</td>
+<td>rick@org</td>
+<td></td>
+</tr>
+<tr>
+<td>p3</td>
+<td>lars</td>
+<td></td>
+<td><a href="http://lars.com">lars.com</a></td>
+</tr>
+<tr>
+<td>p4</td>
+<td>liz</td>
+<td><a href="mailto:liz@aut.gov">liz@aut.gov</a></td>
+<td>liz.pers</td>
+</tr>
+</tbody>
+</table>
+<h2 id="question-3">Question 3</h2>
+<p>Pour le <code>M1 OPTIONAL {M2 OPTIONAL M3}</code> :</p>
+<ul>
+<li>OPTIONAL
+<ul>
+<li>M1</li>
+<li>OPTIONAL
+<ul>
+<li>M2</li>
+<li>M3</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Les personnes ayant un nom et éventuellement un email et si c'est le cas éventuellement une webpage</p>
+<table>
+<thead>
+<tr>
+<th>?p</th>
+<th>?n</th>
+<th>?e</th>
+<th>?w</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>p1</td>
+<td>john</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>p2</td>
+<td>rick</td>
+<td>rick@org</td>
+<td></td>
+</tr>
+<tr>
+<td>p3</td>
+<td>lars</td>
+<td></td>
+<td>X</td>
+</tr>
+<tr>
+<td>p4</td>
+<td>liz</td>
+<td><a href="mailto:liz@aut.gov">liz@aut.gov</a></td>
+<td>liz.pers</td>
+</tr>
+</tbody>
+</table>
+<h2 id="question-4">Question 4</h2>
+<p>Première partie de la requête : <code>?p name ?n</code></p>
+<table>
+<thead>
+<tr>
+<th>?p</th>
+<th>?n</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>p1</td>
+<td>john</td>
+</tr>
+<tr>
+<td>p2</td>
+<td>rick</td>
+</tr>
+<tr>
+<td>p3</td>
+<td>lars</td>
+</tr>
+<tr>
+<td>p4</td>
+<td>liz</td>
+</tr>
+</tbody>
+</table>
+<p>Deuxième partie de la requête : <code>{?p email ?e} UNION {?p phone ?l}</code></p>
+<table>
+<thead>
+<tr>
+<th>?p</th>
+<th>?e</th>
+<th>?l</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>p2</td>
+<td>rick@org</td>
+<td></td>
+</tr>
+<tr>
+<td>p4</td>
+<td><a href="mailto:liz@aut.gov">liz@aut.gov</a></td>
+<td></td>
+</tr>
+<tr>
+<td>p1</td>
+<td></td>
+<td>11-345-89</td>
+</tr>
+<tr>
+<td>p4</td>
+<td></td>
+<td>09-134-21</td>
+</tr>
+</tbody>
+</table>
+<p>Jointure finale :
+Les personnes qui ont un nom, soit un email, soit un téléphone.</p>
+<table>
+<thead>
+<tr>
+<th>?p</th>
+<th>?n</th>
+<th>?e</th>
+<th>?p</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>p1</td>
+<td>john</td>
+<td></td>
+<td>11-345-89</td>
+</tr>
+<tr>
+<td>p2</td>
+<td>rick</td>
+<td>rick@org</td>
+<td></td>
+</tr>
+<tr>
+<td>p4</td>
+<td>liz</td>
+<td><a href="mailto:liz@aut.gov">liz@aut.gov</a></td>
+<td></td>
+</tr>
+<tr>
+<td>p4</td>
+<td>liz</td>
+<td></td>
+<td>09-134-21</td>
+</tr>
+</tbody>
+</table>
+<h2 id="question-5">Question 5</h2>
+<h3 id="a">a</h3>
+<p>Avant filtre :</p>
+<table>
+<thead>
+<tr>
+<th>?p</th>
+<th>?w</th>
+<th>?l</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>p3</td>
+<td><a href="http://lars.com">lars.com</a></td>
+<td>X</td>
+</tr>
+<tr>
+<td>p4</td>
+<td>liz.pers</td>
+<td>09-134-21</td>
+</tr>
+</tbody>
+</table>
+<p>Après filtre :</p>
+<table>
+<thead>
+<tr>
+<th>?p</th>
+<th>?w</th>
+<th>?l</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>p4</td>
+<td>liz.pers</td>
+<td>09-134-21</td>
+</tr>
+</tbody>
+</table>
+<h3 id="b">b</h3>
+<table>
+<thead>
+<tr>
+<th>?p</th>
+<th>?w</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>p3</td>
+<td><a href="http://lars.com">lars.com</a></td>
+</tr>
+<tr>
+<td>p4</td>
+<td>liz.pers</td>
+</tr>
+<tr>
+<td>MINUS</td>
+<td></td>
+</tr>
+<tr>
+<td>?p</td>
+<td>?l</td>
+</tr>
+<tr>
+<td>----</td>
+<td>-----------</td>
+</tr>
+<tr>
+<td>p1</td>
+<td>11-345-89</td>
+</tr>
+<tr>
+<td>p4</td>
+<td>09-134-21</td>
+</tr>
+<tr>
+<td>==&gt;</td>
+<td></td>
+</tr>
+<tr>
+<td>?p</td>
+<td>?w</td>
+</tr>
+<tr>
+<td>----</td>
+<td>----------</td>
+</tr>
+<tr>
+<td>p3</td>
+<td><a href="http://lars.com">lars.com</a></td>
+</tr>
+</tbody>
+</table>
+<h1 id="exercice-3">Exercice 3</h1>
+<ol>
+<li></li>
+</ol>
+<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DISTINCT</span> $v
+{
+    {?x :livesIn ?v} <span class="hljs-keyword">UNION</span>
+    {?y :locatedAt ?v} <span class="hljs-keyword">UNION</span>
+    {?v a :city}
+}
+</code></pre>
+<p><code>?v, ?y</code> variable osef</p>
+<ol start="2">
+<li></li>
+</ol>
+<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DISTINCT</span> ?p
+{
+    {?p :hasMother ?m. ?p :studiedAt ?u.?m :studiedAt ?u}
+    <span class="hljs-keyword">UNION</span>
+    {?p :hasFather ?m. ?p :studiedAt ?u.?m :studiedAt ?u}
+    
+}
+</code></pre>
+<ol start="3">
+<li></li>
+</ol>
+<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DISTINCT</span> ?p
+{
+    ?p :studiedAt ?u.
+    ?p :hasFather ?f . ?f :studiedAt ?u
+    ?p :hasMother ?m . ?m :studiedAt ?u
+}
+</code></pre>
+<ol start="4">
+<li>Possibilité 1</li>
+</ol>
+<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DISTINCT</span> ?p
+{
+    {?p a :Person}
+    MINUS
+    {
+        {?p :studiedAt ?u}.
+        {
+            {?p :hasMother ?m. ?p :studiedAt ?u.?m :studiedAt ?u}
+            <span class="hljs-keyword">UNION</span>
+            {?p :hasFather ?m. ?p :studiedAt ?u.?m :studiedAt ?u}
+        }
+    }
+}
+</code></pre>
+<p>Possibilité 2 : <strong>plus simple</strong></p>
+<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> 
+{
+    ?p :studiedAt ?u.
+    ?p :hasFather :f.
+    ?f :studiedAt :u1.
+    ?p :hasMother :m.
+    :m :studiedAt :u2.
+    <span class="hljs-keyword">FILTER</span>(?u <span class="hljs-operator">!=</span> ?u1 <span class="hljs-operator">&amp;&amp;</span> ?u <span class="hljs-operator">!=</span> ?u2)
+}
+</code></pre>
+<ol start="6">
+<li>.</li>
+</ol>
+<pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> ?p
+{
+    $p :studiedAt ?u.
+    ?u :locatedAt ?v1.
+    ?p :livesIn ?v2
+    <span class="hljs-keyword">FILTER</span> (?v1 <span class="hljs-operator">!=</span> ?v2)
+}
+</code></pre>
+
+        <script async src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+        
+    </body>
+    </html>
