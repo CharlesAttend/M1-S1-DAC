@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bibliothèque>
+    <ouvrage ed='E1' type='livre'>
+        <description>
+            <titre>HistoryOfFutureCities</titre>
+            <auteur>Brook</auteur> 
+            Every month, five million people... 
+        </description>
+        <pages nb="480"/>
+    </ouvrage>
+    <ouvrage ed='E2' type='livre'>
+        <description>
+            <titre>L'ombre du vent</titre>
+<auteur>Zafon</auteur> 1945.Barcelone se réveille... </description>
+        <pages nb="505"/>
+    </ouvrage>
+    <ouvrage ed='E2' type='biographie'>
+        <description>
+            <titre>Mémoires de mon père</titre>
+            <auteur>Olivier IKOR</auteur>
+        </description>
+        <pages />
+    </ouvrage>
+    <ouvrage ed='E1' type='livre'>
+        <description>
+            <titre>The Perfect Storm</titre>
+<auteur>Junger</auteur> It was the storm of the century… </description>
+        <pages />
+    </ouvrage>
+    <ouvrage ed="E2" type= "biographie">
+        <description>
+            <titre>Prisonnier du ciel</titre>
+            <auteur>Zafon</auteur>
+        </description>
+        <pages nb="352"/>
+    </ouvrage>
+    <editeur n="E2" nom="Laffont">
+        <pays>France</pays>
+    </editeur>
+    <editeur n="E1"/>
+</bibliothèque>

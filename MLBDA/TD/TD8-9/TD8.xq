@@ -110,5 +110,17 @@
         </result>
 }</result>
 
+(:~ Solution simple :  ~:)
+<results>{
+    for $a in //author
+    let $b := //book[author = $a]/title
+    return (
+        <result>
+            {$a}
+            {$b}
+        </result>
+    )
+}</results>
+
 
 (:~ S4ENTRAINER PLUS !!!!! CORRECTION SUR MATTERMSOT ~:)
