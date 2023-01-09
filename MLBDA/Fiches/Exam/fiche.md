@@ -394,3 +394,45 @@ Opérateurs séquences:
 - intersection : intersect
 - Distinct-value() : concat les str de l'objet pour faire un id DIAPO 38
 Fonctions : count(), last(), first(), contains()...
+
+
+# RDF
+- Ensemble de triplet type : Sujet x Prédicat x Object. 
+- Peux être sous la forme d'un graph
+- Syntaxe Turtle = factoriser les triplet 
+
+## Factorisation 
+On factorise comme ça :
+- s p1 o1 + s p2 o2 -> s p1 o1 ; p2 o2
+- s p o1 + s p o2 -> s p o1, o2
+
+## Développement 
+```
+@base <http://example.org/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix rel: <http://www.perceive.net/schemas/relationship/> .
+<#green-goblin>
+rel:enemyOf <#spiderman> ;
+a foaf:Person ; # in the context of the Marvel universe
+foaf:name "Green Goblin" .
+<#spiderman>
+rel:enemyOf <#green-goblin> ;
+a foaf:Person ;
+foaf:name "Spiderman", "Человек-паук"@ru .
+```
+
+Donne : 
+
+| Sujet           | Prédicat/propriété | Objet           |
+|-----------------|--------------------|-----------------|
+| <#green-goblin> | rel:enemyOf        | <#spiderman>    |
+| <#green-goblin> | a                  | foof:Person     |
+| <#green-goblin> | foaf:name          | "Green goblin"  |
+| <#spiderman>    | rel:enemyOf        | <#green-goblin> |
+| <#spiderman>    | a                  | foof:Person     |
+| <#spiderman>    | foaf:name          | "Spiderman"     |
+| <#spiderman>    | foaf:name          | "dsgosqg"@run   |
+
+# SPARQL

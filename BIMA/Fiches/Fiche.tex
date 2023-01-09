@@ -406,6 +406,8 @@ Pour assiger une classe à un nouveau point, on le projette et on regarde le cen
 \subsection{Blob detector}
 On parcourt l'image (convolution) à différente échelle (variation du $ \sigma  $), si on tombe sur un truc qui resemble à une gaussienne y'a un match sur $ \arg \min _{x,y} \max _\sigma \Delta [\sigma L(x,y,\sigma )] = \{x_0, y_0, \sigma _0\} $. remember la forme des dérivé d'une gaussienne
 
+\subsection{Otsu method}
+In the simplest form, the algorithm returns a single intensity threshold that separate pixels into two classes, foreground and background. This threshold is determined by minimizing intra-class intensity variance, or equivalently, by maximizing inter-class variance.
 
 
 \end{document}

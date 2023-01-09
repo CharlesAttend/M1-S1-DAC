@@ -1,0 +1,60 @@
+@base <http://example.org/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix rel: <http://www.perceive.net/schemas/relationship/> .
+@prefix : <http://example.org/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix univ: <http://www.faculty.ac> .
+
+#rdf types
+:john a :Person .
+:liz a :Person .
+:robert a :Person .
+:dan a :Person .
+:J.Horrow a :Professor .
+:larry a :Artist .
+:cmu a :university .
+:mit a :institute .
+:mi a :state .
+:nyc a :City .
+:pittsburgh a :City .
+
+#family and friendships
+:john :hasMother :suzan .
+:john :hasFather :richard .
+:richard :hasBrother :luke .
+:john :hasBrother :richard .
+:larry :hasFather :john .
+:liz :hasBrother :robert .
+:liz :hasFather :luke .
+:liz :hasMother :monica .
+:dan rel:ChildOf univ:J.Horrow .
+:Jim rel:ChildOf univ:L.Yang .
+:liz :friend :dan .
+:liz :friend :larry .
+:larry :friend :dan .
+:dan :friend :john .
+:larry :friend :liz .
+
+#POI
+:robert :livesIn :nyc .
+:liz :livesIn :westLafayette .
+
+#degree and university
+:luke :hasDegree "Eng" .
+:luke :studiedAt :cmu .
+:liz :studiedAt :cmu .
+:richard :studiedAt :mit .
+:suzan :studiedAt :ucsd .
+:monica :supervisedBy univ:L.Yang .
+:monica :supervisedBy univ:J.Horrow .
+:Jim :studiedAt :ucsb .
+:monica :studiedAt :cmu .
+:john :studiedAt :ucsd .
+:larry :studiedAt :ucsd .
+:J.Horrow :studiedAt :ucla .
+
+#misc descriptions
+:ucsb :locatedAt :santaBarbara .
+:cmu :locatedAt :pittsburgh .
