@@ -436,3 +436,117 @@ Donne :
 | <#spiderman>    | foaf:name          | "dsgosqg"@run   |
 
 # SPARQL
+```sql
+SELECT $variable
+WHERE {MOTIF}
+ORDER | LIMIT | OFFSET
+```
+Tout tourne autour des motifs
+- `.` le point est un "et"
+- `UNION` l'union des deux cotés, c'est comme un "OU", opérateur prioritaire sur le `.`
+- `OPTIONAL ...` "et éventuellement un ...
+- `FILTER (! bound(?l))` retire les lignes avec des cases vides
+- `FILTER (Condition)` pour mettre des conditions sur les variables
+
+## Exemple
+Les personnes qui ont étudié dans une université différente que cette de leur père ou leur mère
+```sql
+SELECT 
+{
+    ?p :studiedAt ?u.
+    ?p :hasFather :f.
+    ?f :studiedAt :u1.
+    ?p :hasMother :m.
+    :m :studiedAt :u2.
+    FILTER(?u != ?u1 && ?u != ?u2)
+}
+```
+
+Les villes citées dans la DB
+```sql
+SELECT DISTINCT $v
+{
+    {?x :livesIn ?v} UNION
+    {?y :locatedAt ?v} UNION
+    {?v a :city}
+}
+```
+
+Imprimer le TD en vrais de vrais
+
+# N1QL/JSON
+- `ARRAY_LENGTH()` Taille d'une liste imbriqué
+- **Pas de sous requête**
+- **Penser au `INTERSECT`, `EXECPT` (DIFFERENCE en SQL)**
+
+## ANY & EVERY
+- `ANY (...c IN continent...) SATISFIES (...condition...) END` 
+- `EVERY ... SATISFIES ... END` 
+- Condition dans les listes : donc s'utilise sur des listes uniquement ! 
+- Pas de `ANY` ou `EVERY` à la racine d'un doc => penser aux jointures : intersect, except, ...
+- Ces deux trucs en faite duplique chaque résultat comme avec un produit cartésiens pour ensuite filtrer ligne par ligne
+
+### Exemple
+Les noms des pays qui se trouve *exactement* sur deux continents et où la couverture sur l'un des continents dépasse 50%
+```sql
+SELECT name
+FROM country
+WHERE 
+    ARRAY_LENGTH(continents) = 2 
+    AND
+    ANY c IN continent SATISFIES (continents.percentage > 50) END
+```
+
+Les noms des pays dont toutes les frontières sont supérieures à 100km
+```sql
+SELECT name
+FROM country
+WHERE EVERY n IN neighbors SATISFIES n.length > 100
+```
+
+## UNNEST
+- Comme un `table()` de SQL3, quand on doit plonger dans un liste de sous-objet
+- Assez space 🤔
+
+### Exemple 
+Les nom des continents sans doublons
+```sql
+SELECT DISTINCT c.continent
+FROM Country UNNEST continents AS c
+```
+
+## Compréhension de liste
+- Pour recréer une liste rapidement en résultat
+- `ARRAY ... FOR ... IN ... END`
+
+Les nom des pays se trouvant sur plus d'un continent avec la liste des noms de leurs continents et le nombre de leurs voisins
+```sql
+SELECT name, ARRAY c.continent FOR c ON continents END, ARRAY_LENGTH(neighbots) AS NB_VOISIN
+FROM Country
+WHERE ARRAY_LENGTH(continents) > 1
+```
+
+## Array Aggregate 
+- S'utilise avec `GROUP BY`
+- Ca transforme en liste
+
+Exemple : 
+Pour les organisation ayant plus de 4 pays, leurs noms, la liste des noms des pays membres ainsi que la somme des populations de ces pays
+| Org | c.nom    | c.population |
+|-----|----------|--------------|
+| UN  | Country1 | 1142         |
+|     | Country2 | 21432        |
+|     | ...      | 123123       |
+
+=> Le ARRAY_AGG transforme la colonne c.nom en une liste. 
+=> Le COUNT compte le nombre de ligne par org
+=> Le SUM somme sur c.population
+
+## Jointure
+- Il faut potentiellement toujours utiliser INNER JOIN et pas que JOIN tout seul pour pas qu'il confonde avec la syntaxe de JOIN ON KEY
+- Syntaxe : 
+```sql
+SELECT name, capital, d.deserts
+FROM Country c 
+  INNER JOIN Deserts m ON (c.name = d.country)
+```
