@@ -1,0 +1,231 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage[french]{babel}
+
+\usepackage[default,scale=0.95]{opensans}
+\usepackage[T1]{fontenc}
+\usepackage{amssymb} %math
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{systeme}
+\usepackage{multicol}
+\usepackage{sectsty}
+\usepackage{titlesec}
+\titleformat{\section}{\normalfont\small\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\small\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalfont\small\bfseries}{\thesubsubsection}{1em}{}
+\titleformat{\paragraph}{\normalfont\small\bfseries}{\theparagraph}{1em}{}
+\titleformat{\subparagraph}{\normalfont\small\bfseries}{\thesubparagraph}{1em}{}
+
+\titlespacing*{\section}{0pt}{0.8mm}{0.1mm}
+\titlespacing*{\subsection}{0pt}{0.1mm}{0.1mm}
+
+\begin{document}
+\small   
+\begin{multicols}{2}
+    \section{Définition}
+    \begin{itemize}
+        \item Formule d'Euler : $ e^{ix} = \cos x + i \sin x $ 
+        \item Formule d'Euler : $ \cos x = \frac{e^{ix} + e^{-ix}}{2} $ et $ \sin x = \frac{e^{ix} - e^{-ix}}{2i} $
+        \item Suite géométrique : $ \sum _{k=0}^{n}u_{k}=u_{0}+\cdots +u_{n}=u_{0}(1+q+\cdots +q^{n})=u_{0}{\frac {1-q^{n+1}}{1-q}}\ \ (q\neq 1) $
+        \item trigo : $ \sin ^2(\theta ) = \frac{1 - \cos 2 \theta }{2}$, $ \cos ^2(\theta ) = \frac{1 + \cos 2 \theta}{2} $ 
+        \item Peigne de Dirac de pas $ T $ $ W_T(t) = \sum_{k=-\infty }^{k=+\infty } \delta (t - kT) $
+        \item Energie d'un signal à temps continue : $ E_x = \int_{\mathbb{R}}^{} x(t) x^*(t)dt = \int_{\mathbb{R}}^{} \left| x(t) \right| ^2 dt$ si $ x(t) \in \mathbb{R} $ 
+        \item Si divergence : Puissance moyenne temps continue : $ P_x = \lim_{\theta  \to \infty} \frac{1}{2 \theta } x(t) x^*(t)dt $. Temps discret : $ \lim_{K \to \infty} \frac{1}{2K+1}\sum_{k=-K}^{K}x[k]x^*[k] $ 
+        \item Intercorrélation temps continue : taux de ressemblance entre deux signaux décalés l'un par rapport à l'autre \begin{itemize}
+            \item A energie finie : $ \gamma _{xy}(\tau ) = \int_{\mathbb{R}}^{}x(t) y^*(t - \tau ) dt$ 
+            \item A puissance finie : $ \gamma _{xy}(\tau ) = \lim_{\theta  \to \infty} \frac{1}{2 \theta } \int_{\mathbb{R}}^{}x(t) y^*(t - \tau ) dt$ 
+        \end{itemize} Discret reprendre le même schéma que au dessus
+        \item Autocorrélation temps continue : taux de ressemblance avec une version décalée de lui-même. Même formule que l'intercorrélation mais avec $ y(t) = x(t) $ 
+        \item Réponse impulsionnelle $ h(t) $ : on input $ \delta [k] $ dans notre SLI
+        \item Réponse indicielle : on input $ u [k] $ dans notre SLI on obtient $ y_u(t) = \int_{-\infty }^{t}h(u)du $ fonction de répartition, et donc $ h $ densité
+        \item Réponse en fréquence : $ H(f) = TF\{h(t)\} = Y / X $ 
+        \item Gain de $ H $ = $ 2 \log_{10} \left| H(f) \right|  $, Phase : $ \psi(f) = \arg H(f) $ 
+        \item Si SLI : $ y[k] = x[k] \star h[k] $ 
+        \item Convolution : $ x(t) \star h(t) = \int_{\mathbb{R}}^{}h(\tau )x(t - \tau )d\tau $ 
+        \item $ X(f) = TF\{x(t)\} = \int_{\mathbb{R}}^{} x(t) e^{-j 2 \pi ft}dt $ 
+        \item $ x(t) = TF^{-1}\{X(f)\} = \int_{\mathbb{R}}^{} X(f) e^{+j 2 \pi ft}df $ 
+        \item $ X(\nu ) = TF\{x[k]\} = \sum_{k = -\infty }^{+ \infty }x[k] e^{- j 2 \pi \nu k}$ périodique de période 1
+        \item $ x[k] = TF^{-1} \{X(\nu )\} = \int_{0}^{1}X(\nu ) e^{+j 2 \pi \nu k} d \nu $
+        \item Egalité de Plancherel : $ \int_{\mathbb{R}}^{}x_1(t)x_2^*(t) dt = \int_{\mathbb{R}}^{}X_1(f)X_2^*(f) df $ On peut intégré dans les deux domaines : $ \int_{}^{}sinc^2 \to \int_{}^{}rect  $ 
+        \item Egalité de Parseval : $ \int_{\mathbb{R}}^{}\left| x(t) \right| ^2 dt = \int_{\mathbb{R}}^{}\left| X(f) \right| ^2df $ 
+        \item Densité spectrale d'énergie (DSE) = Energie d'un signal calculé dans le domaine fréquentiel (voir thm de Wiener): $ \Gamma _x (f) = \left| X(f) \right| ^2 $ 
+        \item Densité spectrale de puissance (DSP) = same = $ \Gamma _c (f) = \lim_{\theta  \to \infty} \frac{1}{2 \theta } \left| X_\theta (f) \right| ^2 $ avec $ X_\theta  $ DSE de $ x(t) $ limité à $ [-\theta ; \theta ] $ 
+    \end{itemize}
+    
+    
+    \section{Démonstration}
+    \begin{itemize}
+        \item $ f(t) \delta(t - t_0) = f(t_0)\delta (t- t_0) $ 
+        \begin{align*}
+            \forall t \neq t_0 &: \delta (t - t_0) = 0 \text{ donc}\\
+            &\Leftrightarrow f(t) \delta (t - t_0) = 0 \\
+            &= f(t_0)\delta (t - t_0) \\
+            \forall t = t_0 &: f(t) = f(t_0) \implies f(t) \delta (t - t_0) = f(t_0) \delta (t - t_0)
+        \end{align*}
+        \item $ \gamma _{xy} (\tau ) = \gamma _{yx} (-\tau ) $ faire un changement de variable $ t' = t - \tau  $ 
+        \item $ x(t) \star \delta (t - \tau ) = x(t - \tau )$ définition into diamond formula 
+        \item TF discrète de période 1 : montrer que $ X(\nu ) = X(\nu +1) $ 
+        \item Propriété des TF : \begin{itemize}
+            \item Retard : $ TF\{x(t - \tau )\} = e^{- j 2 \pi f \tau }X(f) $ changement de variable $ t' = t - \tau  $ 
+            \item Inversion temporel : $ TF \{x(-t)\} = X(-f) $ changement de variable $ t' = - t  $ attention changement du sens des bornes
+            \item Conjugaison : $ TF\{x^*(t)\} = X^*(f) = \int_{}^{}x^*(t) e^{-j 2 \pi ft} = (\int_{}^{}x(t) e^{j \pi ft})^* = (X(-f))^* $ 
+            \item $ x $ réel + pair $ \implies TF\{x\} $ réel paire : $ x(-t) = x(t) \implies X(-t) = X(t) $ et $ x(t) = x^*(t) \implies X*(f) = X(f) $   
+            \item Dérivation : $ TF\{x^{(n)}(t)\} = (j2 \pi f)^n X(f)$ et $ TF\{(-j2 \pi t)^n x(t)\} = X^{(n)}(f) $  
+            \item Changement d'échelle : $ TF\{x(\alpha t)\} = \frac{1}{\left| \alpha  \right| }X(\frac{f}{\alpha }) $ : \textbf{compression de l'échelle du temps $ \implies  $ dilatation de l'échelle des fréquence} : changement de variable ATTENTION signe de $ \alpha  $ faire deux cas $ t' = \frac{t}{\alpha } $ 
+            \item Modulation : $  TF \{x(t) e^{j 2 \pi f_0 t}\} = X(f - f_0) $ : évident 
+            \item Convolution : $ TF\{x(t) \star y(t)\} =X(f)Y(f) $ : definition into Fubini into changement de var into cqfd
+            \item Produit : Attention temps discret donne $ \circledast  $ : prouver par tf inverse 
+        \end{itemize}
+        \item Théorème de Wiener-Kintchine : $ \Gamma _x(f) = TF\{\gamma _x(\tau )\} $ : $ \gamma _x (\tau ) = x(\tau )\star x^*(\tau ) $ puis prop TF pour cqfd
+    \end{itemize}
+    
+    \section{Système Linéaire, homogène et invariant}
+    \begin{itemize}
+        \item Linéaire = Additivité + homogène 
+        \item Additivité : \begin{itemize}
+            \item Soit $ x_1(t) \to h(t) $ et $ x_2(t) \to h(t) $ $\rightarrow$ somme des deux sorties $ = y_1(t) $
+            \item Soit $ x_1(t)+x_2(t) \to h(t) \to y_2(t) $
+            \item Additif si $ y_1(t) = y_2(t) $  
+        \end{itemize} 
+        \item Homogène \begin{itemize}
+            \item Soit $ x(t)*K \to h(t) \to y_1(t)$ 
+            \item Soit $ x(t) \to h(t) \to *K \to y_2(t)$
+            \item Homogène si $ y_1(t) = y_2(t) $
+        \end{itemize}
+        \item Invariance dans le temps \begin{itemize}
+            \item Soit $ x(t) \to (t-T) \to h(t) \to y_1(t) $ 
+            \item Soit $ x(t) \to h(t) \to t-T \to y_2(t) $ 
+            \item Invariant si $ y_1(t) = y_2(t) $
+        \end{itemize}
+    \end{itemize}
+    
+    \section{Analyse en régime harmonique}
+    La réponse en fréquence d'un SLI peut être obtenue par une analyse en régime harmonique (régime sinusoïdale permanent) pour diverses valeurs de $ f_0 $ balayant l'axe des fréquences :
+    \[
+        x(t) = A_e sin(2 \pi f_0 t) \to SLI \to y(t) = A_s(f_0) \sin (2 \pi f_0 t + \psi (f_0))
+    .\]
+    \[
+        \left| H(f_0) \right| = \frac{A_s (f_0)}{A_e}
+    .\]
+    \[
+        \psi (f_0) = arg H(f_0)
+    .\]
+    
+    \section{Convolution à la main}
+    $ y(t) = x(t) \star h(t) = \int_{\mathbb{R}}^{}x(t-u)h(u)du $ 
+    \begin{enumerate}
+        \item inversion du temps de $ x(u) \to x(-u) $
+        \item Décalage en un $ t $ donné : $ x(-u) \to x(t - u) $
+        \item Multiplication terme à terme avec $ h(u) : x(t - u) \to h(u)x(t-u) $  
+        \item Intégration du produit sur $ \mathbb{R} $ 
+    \end{enumerate}
+    \section{TF}
+    Pour les TF complexe : 4 méthode : \begin{itemize}
+        \item Brut force le calcul
+        \item Penser à la formule de la dérivé 
+        \item La fonction est le résultat d'une convolution
+    \end{itemize}    
+    
+    \section{Échantillonnage}
+    $ x(t) \to x[k] = x(kT_e+), T_e $  période d'échantillonnage. \\
+    \begin{align*}
+        x_e(t)  &= \sum_{k=-\infty }^{+\infty }x(kT_e)\delta (t - kT_e) \\
+                &= \sum_{k=-\infty }^{+\infty }x[k]\delta (t - kT_e) \\
+                &= x(t) \sum_{k}^{}\delta (t - kT_e)\\
+        X_e(f)  &= \sum_{}^{} x[k] e^{- j 2 \pi fkT_e} \\
+                &= X(\nu ) \vert _{\nu = fT_e = \frac{f}{f_e}} \\
+                &= X(f) \star TF\{\sum_{}^{} \delta (t - kT_e)\} \\
+                &= \frac{1}{T_e} \sum_{}^{}X(f - k \frac{1}{T_e}) \\
+        X(\nu ) &= f_e \sum_{}^{}X(f - \frac{k}{T_e}) \vert _{f = \frac{\nu}{T_e} = \nu f_e}
+    \end{align*}
+    + Filtre antialisaing pré-échantillonage: $ f_c = f_e / 2 $ pour éviter le recouvrement spectrale + \textbf{dessin}
+    
+    \section{Blocage d'ordre zéro}
+    On veut : $ x[k] \to y(t) $. Inverse de l'échantillonnage : on cale des rectangles $ p(t) = rect_{T_e} (t - \frac{T_e}{2}) $ faire dessin
+    \begin{align*}
+        y(t)&= \sum_{}^{}x[k]p(t - kT_e) \\
+            &= \sum_{}^{}x[k](\delta (t - kT_e) \star p(t)) \\
+            &= p(t) \star x_e(t) \\
+        Y(f)&= P(f)X_e(f) \\
+            &= T_e \frac{sin(\pi f T_e)}{\pi f T_e} e^{-j 2 \pi f T_e/2} * X_e(f)
+    \end{align*}
+    Le sinus cardinale s'annule en $ f = f_e $ et vaut $ 1/f_e $ en zéro. Il est proche de 1 autour de zéros. Par sa valeur en zéro, il annule l'effet du $ *f_e $ qu'on a après échantillonnage sur l'ordonnée\\
+    + filtre post bloqueur en again $ f_c = f_e/2 $ pour retirer les ondelettes provoqué par le sinc autour de $ f_e $. 
+    
+    \section{Réduction de cadence}
+    = échantillonnage version numérique = même démo que échantillonnage continue avec $ T_e = N $  : $ x[k] \to x^\downarrow [n] = x[k] = x[nN] $
+    \begin{align*}
+        x_e[k] = \sum_{n}^{}x[nN] \delta (k-nN) \\
+                &= \sum_{}^{}x^\downarrow [n] \delta (k - nN) \\
+                &= x[k] \sum_{}^{}\delta (k - nN) \\
+        X_e(\nu ) &= TF\{\sum_{}^{}x^\downarrow [n] \delta (k - nN)\} \\
+                &= \sum_{}^{}x^\downarrow e^{- j 2 \pi \nu nN} \\
+                &= X(\nu ') \vert_{\nu ' = \nu N} \\
+        X_e(\nu ) &= X(\nu ) \circledast \frac{1}{N}\sum_{n= -\infty }^{+\infty }\delta (\mu - \frac{n}{N}) \\
+                &= \frac{1}{N} X( \nu ) \star \sum_{n=0}^{N-1}\delta (\nu - \frac{n}{N}) \\
+                &= \frac{1}{N} \sum_{}^{}X(\nu - \frac{n}{N}) \\
+        X^\downarrow (\nu ') &= \frac{1}{N} \sum_{}^{}X(\nu - \frac{n}{N}) \vert _{\nu = \nu ' / N}\\
+    \end{align*}
+    Cette fois-ci on écarte l'axe des abscises $ \nu ' = \nu N $ . Shannon $ \frac{1}{N} > 2 \nu _{max} $  donc on filtre antialiasing $ f_c = \frac{1}{2N} $  avant 
+    
+    \section{Élévation de cadence}
+    Insérer $ M - 1 $ zéros entre chaque point. \\
+    = bloqueur d'ordre zéros version numérique \\
+    $ x[k] \to x^\uparrow [m] = \begin{cases}
+    x[k] &\text{si } m=kM\\
+    0 &\text{sinon}\\
+    \end{cases}  $ \begin{align*}
+        X^\uparrow (\nu '') &= TF \{x^\uparrow [m]\} = \sum_{m}^{}x^\uparrow [m] e^{-j 2 \pi \mu '' m} \\
+        &= \sum_{k}^{}x[k] e^{-j 2 \pi \nu '' kM} \\
+        &= X(\nu ) \vert _{\nu  = M \nu ''}
+    \end{align*}
+    On réduit l'axe des abscises par $ \nu '' = \nu / M $. \\
+    Filtre post traitement de $ f_c = \frac{1}{2M} $ \textbf{et de hauteur $ M $ } pour ré-équilibré le $ * \frac{1}{N} $ qu'on fait avec une réduction de cadence
+    
+    
+\end{multicols}
+
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{|l|l|}
+        \hline
+        $x(t)$ & $X(f)$ \\ \hline
+        $\delta(t)$ & 1 \\ \hline
+        $\delta(t - t_0)$ & $e^{-j 2 \pi f t_0}$ \\ \hline
+        1 & $\delta(t)$ \\ \hline
+        $e^{-j 2 \pi f_0 t}$ & $\delta(f - f_0)$ \\ \hline
+        $\cos (2 \pi f_0t)$ & $\frac{1}{2}\delta(f - f_0) + \frac{1}{2}\delta (f + f_0)$ \\ \hline
+        $\sin (2 \pi f_0t)$ & $\frac{1}{2j}\delta(f - f_0) + \frac{1}{2j}\delta (f + f_0)$ \\ \hline
+        $Rect_T (t)$ & $T sinc (\pi f T)$ \\ \hline
+        $W_T(t)$ & $\frac{1}{T} \sum \delta(f - \frac{n}{T})$ \\ \hline
+    \end{tabular}
+\end{table}
+
+
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{|l|l|}
+    \hline
+        $x[k]$ & $X(\nu)$ \\ \hline
+        $\delta[k]$ & 1 \\ \hline
+        $\delta[k - k_0]$ & $e^{-j 2 \pi \nu k_0}$ \\ \hline
+        1 & $\delta(t)$ \\ \hline
+        $e^{-j 2 \pi \nu_0 k}$ & $\delta(\nu - \nu_0)$ \\ \hline
+        $\cos [2 \pi \nu_0t]$ & $\frac{1}{2}\delta(\nu -\nu_0) + \frac{1}{2}\delta (\nu +\nu_0)$ \\ \hline
+        $\sin [2 \pi \nu_0t]$ & $\frac{1}{2j}\delta(\nu -\nu_0) + \frac{1}{2j}\delta (\nu +\nu_0)$ \\ \hline
+        $x[k] = \begin{cases}
+            1 & \forall k = 0, 1, \dots, N-1\\
+            0 &\text{ sinon}\\
+        \end{cases} $ & $\begin{cases}
+        e^{-j \pi \nu (N-1) \frac{sin(\pi \nu N)}{sin(\pi \nu )}} &\text{ si } \nu \neq 0\\
+        N                                                          &\text{ si } \nu  = 0\\
+        \end{cases} $ \\ \hline
+        $W_N[k]$ & $\frac{1}{N} \sum \delta(\nu - \frac{n}{N})$ \\ \hline
+    \end{tabular}
+\end{table}
+
+
+\end{document}
