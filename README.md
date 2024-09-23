@@ -6,7 +6,8 @@
 * MAPSI
 * MLBDA
 * SIGNAL
-Pour plus de cours, il y a ce [lien drive](https://drive.google.com/drive/folders/1g7cq-u_X6-kglTt23AGK8-1U69PVNY8L?usp=sharing)
+
+Pour plus de cours, en particulier d'ANDROID, il y a ce [~lien drive~](https://drive.google.com/drive/folders/1g7cq-u_X6-kglTt23AGK8-1U69PVNY8L?usp=sharing) et ce [lien drive](https://drive.google.com/drive/folders/1g7cq-u_X6-kglTt23AGK8-1U69PVNY8L?usp=sharing) de *youssefkadhi*.
 
 ## Notes manuscrites
 Mes notes manuscrites et TD sont disponibles sur [OneNote](https://univlillefr-my.sharepoint.com/:o:/g/personal/charles_vin_etu_univ-lille_fr/Ejf31RDPL8VGuM9oOW9T3vkB8P2SBZXqT9At1djpd9wOvw?e=HyOWPo).
