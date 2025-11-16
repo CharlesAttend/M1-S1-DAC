@@ -1,0 +1,54 @@
+﻿Guide de démarrage pour le TME
+
+I. Connexion a distance. 
+
+Le TP repose sur l'utilisation d'un solveur de programmation linéaire. Le solveur Gurobi est installé dans les salles machines de la plateforme informatique.
+Pour l'utiliser, vous pouvez vous connecter à distance sur votre compte (vous pouvez bien sûr travailler en local sur votre ordinateur personnel si jamais
+vous avez un solveur, ou si vous installez Gurobi).
+
+Pour la connexion à distance, vous trouverez les explications pour se connecter en ssh ici: 
+https://www-ppti.ufr-info-p6.jussieu.fr/index.php/support/connexions-distantes
+
+Notamment, la connexion en mode graphique permet d'utiliser les outils que vous utilisez en salle machine (Spyder par exemple pour le TP ici). Comme expliqué dans le document,
+c'est possible aussi pour ceux qui seraient sous windows.
+
+II. Configuration pour pouvoir commencer le TP.
+
+1. Ouvrir/créer le fichier ~/.bash_profile et copier la ligne suivante à la fin du fichier:
+
+[[ -s ~/.bashrc ]] && source ~/.bashrc
+
+2. De même, copier les lignes suivantes à la fin du fichier ~/.bashrc :
+
+# Gurobi
+export GUROBI_HOME="/opt/gurobi801/linux64"
+export PATH="${PATH}:${GUROBI_HOME}/bin"
+export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${GUROBI_HOME}/lib"
+
+3. Exécuter la commande suivante dans un terminal :
+
+source ~/.bashrc
+
+4. Créer un répertoire MOGPL avec la commande :
+
+mkdir MOGPL
+
+5. Enregistrer dans le répertoire MOGPL le fichier mogplex.py.
+
+6. Ouvrir un terminal, lancer spyder depuis le terminal (et non pas spyder3), ouvrir le fichier mogplex.py et s'assurer qu'il s'exécute correctement.
+Dans le cas contraire, executer 'python mogplex.py' en ligne de commande dans le terminal (dans le répertoire MOGPL que vous avez créé) et s'assurer que ça marche 
+au moins dans le terminal.
+
+7. S'aider du fichier mogplex.py pour s'initier à la syntaxe de la librairie gurobipy. C'est le programme linéaire ci-dessous qui est codé :
+
+Max z=4x_1+3x_2
+Sous contraintes:
+x_1 <= 8
+x_2 <= 6
+x_1 + 2x_2 <= 15
+2x_1 + x_2 <= 18
+x_1 >= 0, x_2 >= 0
+
+8. Pour chaque exercice, créer un nouveau fichier python dans le répertoire MOGPL. 
+Note pour l'exercice 33: il se peut que vous ayez des problemes d'imports de fichier si vous reprenez les lignes 3 et 4 de l'enonce ("from ... import ..."). 
+Si tel est le cas contentez-vous de formuler le PL, et de le resoudre sur les deux jeux de donnees avec Gurobi.
